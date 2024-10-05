@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('tmdb_id');
             $table->string('titre');
             $table->string('slug');
-            $table->string('realisateur')->nullable();
             $table->string('url_affiche');
             $table->string('duree');
             $table->text('synopsis');
@@ -27,7 +26,6 @@ return new class extends Migration
             //indexes et contraintes
             $table->unique('slug');
             $table->unique('tmdb_id');
-            $table->index('realisateur');
             $table->index('duree');
         });
     }

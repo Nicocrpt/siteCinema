@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -25,6 +26,24 @@ class Film extends Model
     {
         return $this->belongsToMany(Pays::class, 'film_pays');
     }
+
+    public function realisateurs(): BelongsToMany
+    {
+        return $this->belongsToMany(Realisateur::class, 'film_realisateur');
+    }
+
+    public function acteurs(): BelongsToMany
+    {
+        return $this->belongsToMany(Acteur::class, 'film_acteur');
+    }
+
+    public function compositeurs(): BelongsToMany
+    {
+        return $this->belongsToMany(Compositeur::class);
+    }
+
+
+
 
     public function formatDuration()
     {

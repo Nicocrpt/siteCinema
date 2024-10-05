@@ -11,7 +11,15 @@
         <img src="{{ $film->url_affiche }}" alt="" style="width: 500px ; border-radius: 10px">
         <div>
             <h1>{{ $film->titre }}</h1>
-            <p>Réalisateur : {{ $film->realisateur }}</p>
+            <p>Réalisateur : 
+                @foreach ($film->realisateurs as $realisateur)
+                    @if ($realisateur === $film->realisateurs->last())
+                        {{ $realisateur->nom}}
+                    @else
+                        {{ $realisateur->nom . ', '}}
+                    @endif
+                @endforeach
+            </p>
             <p>Pays : 
                 @foreach ($film->pays as $country)
                     @if ($country === $film->pays->last())
@@ -20,6 +28,14 @@
                         {{ $country->nom . ', '}}
                     @endif
                 @endforeach</p>
+            <p>Genre(s) : @foreach ($film->genres as $genre)
+                @if ($genre === $film->genres->last())
+                        {{ $genre->nom}}
+                    @else
+                        {{ $genre->nom . ', '}}
+                    @endif
+                
+            @endforeach</p>
             <p> durée :{{$duration}}</p>
             <p>{{ $film->annee }}</p>   
             <p>{{ $film->synopsis }}</p>
