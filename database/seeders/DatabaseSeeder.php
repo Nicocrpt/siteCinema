@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PaysSeeder::class);
 
+        $this->call(UserSeeder::class);
+
         // Insertions des salles
 
         $this->call(SalleSeeder::class);

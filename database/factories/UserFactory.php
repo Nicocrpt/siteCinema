@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Pays;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,11 +24,23 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $prenom = fake('fr_FR')->firstName();
+        $name = fake('fr_FR')->lastName();
+
+        $pays = rand(0, count(Pays::all()->toArray()) - 1);
+
+
         return [
-            'nom' => fake()->lastName(),
-            'prenom' => fake()->firstname(),
-            'email' => fake()->unique()->safeEmail(),
+            'nom' => $name,
+            'prenom' => $prenom,
+            'email' => strtolower($name). '.' . strtolower($prenom) . "@mail.com",
             'email_verified_at' => now(),
+            'telephone' => fake('fr_FR')->phoneNumber(),
+            'adresse' => fake('fr_FR')->streetAddress(),
+            'code_postal' => fake('fr_FR')->postcode(),
+            'ville' => fake('fr_FR')->city(),
+            'pays_id' => $pays,
+            'statut_abo' => rand(0, 1),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
