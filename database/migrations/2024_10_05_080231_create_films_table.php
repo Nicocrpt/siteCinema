@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('films', function (Blueprint $table) {
             $table->id();
+            $table->integer('tmdb_id');
+            $table->foreignId('pays_id')->constrained('payss');
             $table->string('titre');
             $table->string('slug');
             $table->string('realisateur');
@@ -24,6 +26,8 @@ return new class extends Migration
 
             //indexes et contraintes
             $table->unique('slug');
+            $table->unique('tmdb_id');
+            $table->index('pays_id');
             $table->index('realisateur');
             $table->index('duree');
         });
