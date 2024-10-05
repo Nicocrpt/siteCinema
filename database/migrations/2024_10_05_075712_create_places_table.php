@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('rangee', 1);
-            $table->integer('numero');
+            $table->string('numero', 2);
             $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
