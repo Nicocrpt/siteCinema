@@ -21,13 +21,23 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('code_postal');
             $table->string('ville');
-            $table->string('pays');
+            $table->foreignId('pays_id')->constrained('payss');
             $table->boolean('statut_abo')->default(false);
             $table->string('password');
             $table->rememberToken();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
             //$table->timestamps();
+
+            //Indexes et contraintes
+            $table->unique('email');
+            $table->unique('telephone');
+            $table->unique(['nom', 'prenom']);
+            $table->index('code_postal');
+            $table->index('pays_id');
+            $table->index('statut_abo');
+            $table->index('ville');
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
