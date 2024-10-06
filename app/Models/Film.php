@@ -34,12 +34,12 @@ class Film extends Model
 
     public function acteurs(): BelongsToMany
     {
-        return $this->belongsToMany(Acteur::class, 'film_acteur');
+        return $this->belongsToMany(Acteur::class, 'film_acteur')->withPivot('ordre');
     }
 
     public function compositeurs(): BelongsToMany
     {
-        return $this->belongsToMany(Compositeur::class);
+        return $this->belongsToMany(Compositeur::class, 'film_compositeur');
     }
 
 

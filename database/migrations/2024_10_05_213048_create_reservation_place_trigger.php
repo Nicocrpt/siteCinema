@@ -13,10 +13,7 @@ return new class extends Migration
     public function up(): void
     {
 
-        DB::unprepared('
-            CREATE TRIGGER after_
         
-        ');
 
         DB::unprepared('
             CREATE TRIGGER after_reservationLigne_insert

@@ -96,7 +96,8 @@ class FilmSeeder extends Seeder
                 }
                 DB::table('film_acteur')->insert([
                     'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
-                    'acteur_id' => Acteur::where('tmdb_id', $actor['id'])->first()->id
+                    'acteur_id' => Acteur::where('tmdb_id', $actor['id'])->first()->id,
+                    'ordre' => $actor['order']
                 ]);
             }
         }

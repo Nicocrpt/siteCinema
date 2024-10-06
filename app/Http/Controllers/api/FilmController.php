@@ -21,17 +21,39 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {   
         try {
-            $films = Film::all();
+            $films = Film::query();
+
+            if ($request->query('acteurs')==='1') {
+                $films->with('acteurs:id,nom,tmdb_id');
+            }
+            if ($request->query('realisateurs')==='1') {
+                $films->with('realisateurs:id,nom,tmdb_id');
+            }
+            if ($request->query('pays')==='1') {
+                $films->with('pays:id,nom,alpha_2');
+            }
+            if ($request->query('genres')==='1') {
+                $films->with('genres:id,nom,tmdb_id');
+            }
+            if ($request->query('compositeurs')==='1') {
+                $films->with('compositeurs:id,nom,tmdb_id');
+            }
+
+            $films = $films->get();
+
             return response()->json($films);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Une erreur s\'est produite lors de la récupération des films : ' . $e->getMessage(),
-            ],500);
+                'message' => 'Une erreur s\'est produite lors de la sélection des films : ' . $e->getMessage(),
+            ]);
         }
+        
+
+
     }
 
     /**
@@ -71,12 +93,33 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, $id)
     {
         try {
-            $film = Film::find($id);
+            $film = Film::find($id)->query();
+
+            if ($request->query('pays')==='1') {
+                $film->with('pays:id,nom,alpha_2');
+            }
+            if ($request->query('acteurs')==='1') {
+                $film->with('acteurs:id,nom,tmdb_id');
+            }
+            if ($request->query('realisateurs')==='1') {
+                $film->with('realisateurs:id,nom,tmdb_id');
+            }
+            if ($request->query('genres')==='1') {
+                $film->with('genres:id,nom,tmdb_id');
+            }
+            if ($request->query('compositeurs')==='1') {
+                $film->with('compositeurs:id,nom,tmdb_id');
+            }
+
+            $film = $film->first();
+
             return response()->json($film);
+
         } catch (\Exception $e) {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Une erreur s\'est produite lors de la récupération du film : ' . $e->getMessage(),
@@ -186,7 +229,8 @@ class FilmController extends Controller
                 }
                 DB::table('film_acteur')->insert([
                     'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
-                    'acteur_id' => Acteur::where('tmdb_id', $actor['id'])->first()->id
+                    'acteur_id' => Acteur::where('tmdb_id', $actor['id'])->first()->id,
+                    'ordre' => $actor['order']
                 ]);
             }
         }
