@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\FilmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -8,4 +9,4 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 
-Route::post('/films', [App\Http\Controllers\FilmController::class, 'addfilm']);
+Route::apiResource('films', FilmController::class);
