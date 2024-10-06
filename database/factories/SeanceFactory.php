@@ -23,7 +23,6 @@ class SeanceFactory extends Factory
             'salle_id' => $salle->id,
             'film_id' => Film::all()->random()->id,
             'datetime_seance' => fake('fr_FR')->dateTimeBetween('now', '+1 week'),
-            'nombre_places_disponibles' => $salle->nombre_places,
             'vf' => rand(0, 1),
         ];
     }

@@ -24,7 +24,6 @@ return new class extends Migration
 
 
             //indexes et contraintes
-            $table->unique('slug');
             $table->unique('tmdb_id');
             $table->index('duree');
         });

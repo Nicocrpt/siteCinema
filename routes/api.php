@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\FilmController;
+use App\Http\Controllers\api\SeanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,3 +11,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::apiResource('films', FilmController::class);
+
+Route::apiResource('seances', SeanceController::class);

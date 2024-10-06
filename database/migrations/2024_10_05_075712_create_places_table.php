@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['rangee', 'numero', 'salle_id']);
+            $table->index('salle_id');
         });
     }
 
