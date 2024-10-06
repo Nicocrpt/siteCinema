@@ -8,6 +8,7 @@
 </head>
 <body>
     <div>
+        <a href="{{ route('home')}}">mon compte</a>
         <h1>Films</h1>
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px">
             @foreach ($films as $film)

@@ -42,6 +42,11 @@ class Film extends Model
         return $this->belongsToMany(Compositeur::class, 'film_compositeur');
     }
 
+    public function langue(): BelongsTo
+    {
+        return $this->belongsTo(Langue::class);
+    }
+
 
 
 

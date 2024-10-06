@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('url_affiche');
             $table->string('duree');
             $table->text('synopsis');
+            $table->foreignId('langue_id')->constrained('langues');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 
@@ -26,6 +27,7 @@ return new class extends Migration
             //indexes et contraintes
             $table->unique('tmdb_id');
             $table->index('duree');
+            $table->index('langue_id');
         });
     }
 

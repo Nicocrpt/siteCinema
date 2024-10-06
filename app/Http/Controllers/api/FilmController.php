@@ -10,6 +10,7 @@ use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Langue;
 use App\Models\Pays;
 use App\Models\Realisateur;
 use App\Services\TmdbService;
@@ -41,6 +42,9 @@ class FilmController extends Controller
             if ($request->query('compositeurs')==='1') {
                 $films->with('compositeurs:id,nom,tmdb_id');
             }
+            if ($request->query('langue')==='1') {
+                $films->with('langue:id,langue,iso_2');
+            }
 
             $films = $films->get();
 
@@ -54,14 +58,6 @@ class FilmController extends Controller
         
 
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -96,7 +92,7 @@ class FilmController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            $film = Film::find($id)->query();
+            $film = Film::query();
 
             if ($request->query('pays')==='1') {
                 $film->with('pays:id,nom,alpha_2');
@@ -113,8 +109,11 @@ class FilmController extends Controller
             if ($request->query('compositeurs')==='1') {
                 $film->with('compositeurs:id,nom,tmdb_id');
             }
+            if ($request->query('langue')==='1') {
+                $film->with('langue:id,langue,iso_2');
+            }
 
-            $film = $film->first();
+            $film = $film->find($id)->get();
 
             return response()->json($film);
 
@@ -130,10 +129,7 @@ class FilmController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -175,6 +171,7 @@ class FilmController extends Controller
             'slug' => Str::slug($movie['title']),
             'titre' => $movie['title'],
             'synopsis' => $movie['overview'],
+            'langue_id' => Langue::where('iso_2', $movie['original_language'])->first()->id,
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
             'duree' => $movie['runtime'],
             

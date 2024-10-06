@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payss', function (Blueprint $table) {
+        Schema::create('langues', function (Blueprint $table) {
             $table->id();
-            $table->string('alpha_2', 2)->unique();
-            $table->string('nom')->unique();
-            $table->string('langue');
-            $table->string('iso_langue', 3);
+            $table->string('langue')->unique();
+            $table->string('iso_2', 3)->unique();
+            $table->string('iso_3', 3)->unique();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            $table->unique(['nom', 'alpha_2']);
+            $table->unique(['iso_2','iso_3', 'langue']);
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payss');
+        Schema::dropIfExists('langues');
     }
 };

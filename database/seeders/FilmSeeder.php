@@ -6,6 +6,7 @@ use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Langue;
 use App\Models\Pays;
 use App\Models\Realisateur;
 use App\Services\TmdbService;
@@ -42,6 +43,7 @@ class FilmSeeder extends Seeder
             'slug' => Str::slug($movie['title']),
             'titre' => $movie['title'],
             'synopsis' => $movie['overview'],
+            'langue_id' => Langue::where('iso_2', $movie['original_language'])->first()->id,
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
             'duree' => $movie['runtime'],
             
