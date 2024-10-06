@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['reservation_id', 'place_id']);
+            $table->index('reservation_id');
         });
     }
 

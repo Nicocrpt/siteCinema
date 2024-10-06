@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('acteur_id')->constrained('acteurs')->onDelete('cascade');
             $table->integer('ordre');
             $table->timestamps();
+
+            $table->unique(['film_id', 'acteur_id', 'ordre']);
         });
     }
 

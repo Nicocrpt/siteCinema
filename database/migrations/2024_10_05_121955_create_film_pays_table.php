@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('pays_id')->constrained('payss')->onDelete('cascade');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['film_id', 'pays_id']);
         });
     }
 

@@ -19,6 +19,12 @@ return new class extends Migration
             $table->dateTime('datetime_seance');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['salle_id', 'datetime_seance']);
+            $table->index('salle_id');
+            $table->index('film_id');
+            $table->index('vf');
+            $table->index('datetime_seance');
         });
     }
 

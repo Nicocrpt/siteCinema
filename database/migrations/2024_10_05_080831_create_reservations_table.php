@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            
         });
     }
 

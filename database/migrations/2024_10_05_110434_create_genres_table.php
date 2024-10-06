@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nom')->unique();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['nom', 'tmdb_id']);
         });
     }
 
