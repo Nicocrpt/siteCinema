@@ -27,13 +27,13 @@ class UserFactory extends Factory
         $prenom = fake('fr_FR')->firstName();
         $name = fake('fr_FR')->lastName();
 
-        $pays = rand(0, count(Pays::all()->toArray()) - 1);
+        $pays = rand(1, Pays::all()->count());
 
 
         return [
             'nom' => $name,
             'prenom' => $prenom,
-            'email' => strtolower($name). '.' . strtolower($prenom) . "@mail.com",
+            'email' => fake('fr_FR')->safeEmail(),
             'email_verified_at' => now(),
             'telephone' => fake('fr_FR')->phoneNumber(),
             'adresse' => fake('fr_FR')->streetAddress(),

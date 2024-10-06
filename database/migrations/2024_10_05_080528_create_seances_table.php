@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade');
             $table->foreignId('film_id')->constrained('films')->onDelete('cascade');
-            $table->integer('nombre_places_disponibles');
+            $table->integer('nombre_places_disponibles')->nullable();
             $table->boolean('vf')->default(true);
             $table->dateTime('datetime_seance');
             $table->dateTime('created_at')->useCurrent();

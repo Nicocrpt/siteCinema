@@ -15,14 +15,17 @@ class SalleSeeder extends Seeder
     {
         DB::table('salles')->insert([
             [
+                'nombre_places' => 280,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+                'nombre_places' => 162,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
+                'nombre_places' => 112,
                 'created_at' => now(),
                 'updated_at' => now()
             ]

@@ -33,5 +33,11 @@ class DatabaseSeeder extends Seeder
         $this->call(GenreSeeder::class);
 
         $this->call(FilmSeeder::class);
+
+        $this->call(SeanceSeeder::class);
+
+        $this->call(ReservationSeeder::class);
+
+        $this->call(ReservationligneSeeder::class);
     }
 }
