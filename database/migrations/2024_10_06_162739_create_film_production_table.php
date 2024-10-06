@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payss', function (Blueprint $table) {
+        Schema::create('film_production', function (Blueprint $table) {
             $table->id();
-            $table->string('alpha_2', 2)->unique();
-            $table->string('nom')->unique();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
-
+            $table->foreignId('film_id')->constrained('films')->onDelete('cascade');
+            $table->foreignId('production_id')->constrained('productions')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payss');
+        Schema::dropIfExists('film_production');
     }
 };

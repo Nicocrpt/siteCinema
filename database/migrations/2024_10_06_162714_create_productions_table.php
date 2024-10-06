@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payss', function (Blueprint $table) {
+        Schema::create('productions', function (Blueprint $table) {
             $table->id();
-            $table->string('alpha_2', 2)->unique();
             $table->string('nom')->unique();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
-
+            $table->bigInteger('tmdb_id')->unique();
+            $table->foreignId('pays_id')->constrained('payss');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payss');
+        Schema::dropIfExists('productions');
     }
 };

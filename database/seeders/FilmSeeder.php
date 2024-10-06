@@ -8,6 +8,7 @@ use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Langue;
 use App\Models\Pays;
+use App\Models\Production;
 use App\Models\Realisateur;
 use App\Services\TmdbService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -27,8 +28,9 @@ class FilmSeeder extends Seeder
         $this->addMovieToDb(329);
         $this->addMovieToDb(615777);
         $this->addMovieToDb(313369);
-        $this->addMovieToDb(339964);
         $this->addMovieToDb(122);
+        $this->addMovieToDb(339964);
+        
     }
 
     public function addMovieToDb($id): void
@@ -117,6 +119,23 @@ class FilmSeeder extends Seeder
                     'compositeur_id' => Compositeur::where('tmdb_id', $crew['id'])->first()->id
                 ]);
             }
+        }
+
+        foreach ($movie['production_companies'] as $prod) {
+
+            if (!Production::where('tmdb_id', $prod['id'])->exists()) {
+                Production::create([
+                    'tmdb_id' => $prod['id'],
+                    'nom' => $prod['name'],
+                    'pays_id' => Pays::where('alpha_2', $prod['origin_country'])->first()->id
+                ]);
+            }
+
+            DB::table('film_production')->insert([
+                'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
+                'production_id' => Production::where('tmdb_id', $prod['id'])->first()->id
+            ]);
+
         }
 
 

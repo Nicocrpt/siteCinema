@@ -47,6 +47,11 @@ class Film extends Model
         return $this->belongsTo(Langue::class);
     }
 
+    public function productions(): BelongsToMany
+    {
+        return $this->belongsToMany(Production::class, 'film_production');
+    }
+
 
 
 

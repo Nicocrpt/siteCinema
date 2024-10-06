@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // Insertions des pays
 
         $this->call(PaysSeeder::class);
+        
         $this->call(LangueSeeder::class);
 
         $this->call(UserSeeder::class);
