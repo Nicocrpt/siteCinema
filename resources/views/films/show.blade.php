@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="display:grid; grid-template-columns: 1fr 3fr">
+    <div style="display:grid; grid-template-columns: 1fr 3fr; gap: 20px">
         <img src="{{ $film->url_affiche }}" alt="" style="width: 500px ; border-radius: 10px">
         <div>
             <h1>{{ $film->titre }}</h1>
@@ -39,6 +39,7 @@
             <p> durée :{{$duration}}</p>
             <p>{{ $film->annee }}</p>   
             <p>{{ $film->synopsis }}</p>
+            <iframe width="560" height="315" src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen style="border-radius: 10px; shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]"></iframe>
             <a href="{{ route('films.index') }}" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Retour</a>
         </div>
     </div>

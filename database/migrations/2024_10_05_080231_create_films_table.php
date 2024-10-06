@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('titre');
             $table->string('slug');
             $table->string('url_affiche');
+            $table->string('url_trailer');
             $table->string('duree');
             $table->text('synopsis');
             $table->foreignId('langue_id')->constrained('langues');

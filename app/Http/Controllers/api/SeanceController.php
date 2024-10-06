@@ -148,4 +148,5 @@ class SeanceController extends Controller
             ]);
         }
     }
+    
 }

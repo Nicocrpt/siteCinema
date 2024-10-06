@@ -10,7 +10,9 @@ use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Langue;
 use App\Models\Pays;
+use App\Models\Production;
 use App\Models\Realisateur;
 
 class TmdbService
@@ -59,13 +61,22 @@ class TmdbService
 
         $movie = $tmdbClient->getFilmById($id);
 
+        foreach ($movie['videos']['results'] as $video) {
+            if ($video['type'] == 'Trailer') {
+                if($video['iso_639_1'] == 'fr' && $video['site'] == 'YouTube' && preg_match('/\b(VF|VOST|VOSTF)\b/i', $video['name'])) {
+                    $trailer = $video['key'];
+                }
+            }
+        }
 
         DB::table('films')->insert([
             'tmdb_id' => $movie['id'],
             'slug' => Str::slug($movie['title']),
             'titre' => $movie['title'],
             'synopsis' => $movie['overview'],
+            'langue_id' => Langue::where('iso_2', $movie['original_language'])->first()->id,
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
+            'url_trailer' => 'https://www.youtube.com/embed/' . $trailer,
             'duree' => $movie['runtime'],
             
         ]);
@@ -138,6 +149,24 @@ class TmdbService
                     'compositeur_id' => Compositeur::where('tmdb_id', $crew['id'])->first()->id
                 ]);
             }
+        }
+
+        foreach ($movie['production_companies'] as $prod) {
+
+            if (!Production::where('tmdb_id', $prod['id'])->exists()) {
+
+                Production::create([
+                    'tmdb_id' => $prod['id'],
+                    'nom' => $prod['name'],
+                    'pays_id' => Pays::where('alpha_2', $prod['origin_country'])->first()->id
+                ]);
+            }
+
+            DB::table('film_production')->insert([
+                'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
+                'production_id' => Production::where('tmdb_id', $prod['id'])->first()->id
+            ]);
+
         }
 
 

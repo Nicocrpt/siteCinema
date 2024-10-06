@@ -10,6 +10,12 @@ class Production extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nom',
+        'tmdb_id',
+        'pays_id',
+    ];
+
     public function films(): BelongsToMany
     {
         return $this->belongsToMany(Film::class, 'film_production');
