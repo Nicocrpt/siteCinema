@@ -37,8 +37,8 @@
                     @endif
                 
             @endforeach</p>
-            <p> durée :{{$duration}}</p>
-            <p>{{ $film->date_sortie }}</p> 
+            <p> durée : {{$duration}}</p>
+            <p>Sorti le : {{ date('d/m/Y', strtotime($film->date_sortie)) }}</p> 
             <img src="{{ENV('HOST') . $film->certification->url_logo }}" alt="" class="rounded w-6"></p>  
             <p class="mb-10 mt-10">{{ $film->synopsis }}</p>
             @if ($film->url_trailer)
