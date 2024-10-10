@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>films</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
+@extends('layouts.layout')
+@section('title' , 'Films')
+@section('content')
     <div>
-        <a href="{{ route('home')}}" class="p-3 bg-slate-100 rounded-xl hover:bg-amber-100 m-5">mon compte</a>
+            
         <h1 class="text-3xl text-center m-10 font-bold">Films</h1>
         <div style="display: flex; flex-wrap : wrap ;flex-direction: row; align-items: center; justify-content: center; gap: 20px">
             @foreach ($films as $film)
@@ -19,7 +12,4 @@
             @endforeach
         </div>
     </div>
-
-
-</body>
-</html>
+@endsection

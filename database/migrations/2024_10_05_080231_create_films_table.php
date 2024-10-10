@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('titre');
             $table->string('slug');
             $table->string('url_affiche');
+            $table->string('url_backdrop')->nullable();
             $table->string('url_trailer')->nullable();
             $table->string('duree');
             $table->text('synopsis');
+            $table->string('tagline')->nullable();
             $table->foreignId('langue_id')->constrained('langues');
             $table->foreignId('certification_id')->constrained('certifications');
             $table->string('date_sortie');

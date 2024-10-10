@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
+            $table->string('reference')->unique();
             $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade');
             $table->foreignId('film_id')->constrained('films')->onDelete('cascade');
             $table->boolean('vf')->default(true);

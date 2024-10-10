@@ -25,19 +25,19 @@ class FilmController extends Controller
 
     public function welcomePage(): View
     {
-        $films = Film::with('seances')->get();
+        $films = Film::with('seances')->with('realisateurs')->get();
         $seances = Seance::with('film')->get();
 
         return view('index', compact('films', 'seances'));
     }
 
-    public function getfilms(): View
+    public function index(): View
     {
         $films = Film::all();
         return view('films.index', compact('films'));
     }
 
-    public function getfilm($slug): View
+    public function show($slug): View
     {
         $film = Film::where('slug', $slug)->first();
         $duration = $film->formatDuration();

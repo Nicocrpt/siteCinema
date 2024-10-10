@@ -105,10 +105,12 @@ class TmdbService
             'slug' => Str::slug($movie['title']),
             'titre' => $movie['title'],
             'synopsis' => $movie['overview'],
+            'tagline' => $movie['tagline'] ?? null,
             'certification_id' => Certification::where('valeur', $movie['certification'])->first()->id,
             'date_sortie' => $movie['date_sortie'],
             'langue_id' => Langue::where('iso_2', $movie['original_language'])->first()->id,
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
+            'url_backdrop' => 'https://image.tmdb.org/t/p/original' . $movie['backdrop_path'],
             'url_trailer' => $trailer,
             'duree' => $movie['runtime'],
             

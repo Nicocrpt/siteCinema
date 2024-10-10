@@ -20,6 +20,7 @@ class SeanceFactory extends Factory
     {
         $salle = Salle::all()->random();
         return [
+            'reference' => fake('fr_FR')->ean8(),
             'salle_id' => $salle->id,
             'film_id' => Film::all()->random()->id,
             'datetime_seance' => fake('fr_FR')->dateTimeBetween('now', '+1 week'),

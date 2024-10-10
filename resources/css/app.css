@@ -13,3 +13,119 @@
 .main-title {
     @apply text-4xl font-extrabold;
 }
+
+.h-120 {
+    height: 30rem;
+}
+
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+
+
+/* seat selector */
+
+.seat {
+    width: 2vw; /* 32px */
+    height: 2vw; /* 32px */
+    background-color: #ddd;
+    border-radius: 30%; /* 6px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    
+  }
+
+  .seat.Hand {
+    width: 4.5vw; /* 32px */
+    height: 2vw; /* 32px */
+    background-color: #ddd;
+    border-radius: 10px; /* 6px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    
+  }
+
+  .seatDemo {
+    width: 2rem; /* 32px */
+    height: 2rem; /* 32px */
+    border-radius: 0.6rem; /* 6px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    text-align: center; /* Center text inside the seat */
+  }
+
+  .seat:hover {
+    background-color: #cbcbcb;
+    color: #fff;
+  }
+
+  .seat.Hand:hover {
+    background-color: #9fcefd;
+    color: #fff;
+  }
+  .seat.selected {
+    background-color: rgb(65, 203, 148);
+    color: #fff;
+    border: solid 2px rgb(104, 104, 104);
+    
+  }
+  .seat.Hand.selected {
+    background-color: rgb(65, 203, 148);
+    color: #fff;
+    border: solid 2px rgb(104, 104, 104);
+    
+  }
+
+
+  .seat.oqp {
+      background-color: rgb(253, 102, 102);
+      border: none;
+      cursor: default;
+  }
+
+  @media (max-width: 600px) {
+    .seat {
+      width: 2.5vw; /* 24px */
+      height: 2.5vw; /* 24px */
+    }
+
+    .seat.selected {
+      border: solid 0.8px rgb(104, 104, 104);
+    }
+
+    .seatDemo {
+      width: 5vw; /* 24px */
+      height: 5vw;
+    }
+
+  }
+
+  /* Grille personnalisée avec plus de 12 colonnes */
+  .grid-cols-custom {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+  }
+
+  .gap-vw-2 {
+    gap: 1vw;
+  }
+
+  .screen {
+      margin-top: 4vw;
+      height : 1.5vw;
+      width: 100%;
+  }

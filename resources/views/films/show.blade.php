@@ -49,7 +49,7 @@
                 <div class="flex gap-10">
                     @if ($film->seances->count() > 0)
                         @foreach ($film->seances as $seance)
-                            <a href="{{ route('seances.show', $seance->id)}}"><div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2">
+                            <a href="{{ route('seances.show', $seance->reference)}}"><div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2">
                                 <p class="text-slate-600 font-bold">{{ date('d',strtotime($seance->datetime_seance)) }}</p>
                                 <p class="text-slate-600 font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
                             </div></a>

@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\SeanceController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
 
-Route::get('/films', [FilmController::class, 'getfilms'])->name('films.index');
-Route::get('/films/{id}', [FilmController::class, 'getfilm'])->name('film.show');
+Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+Route::get('/films/{id}', [FilmController::class, 'show'])->name('film.show');
+
+Route::get('/seances', [SeanceController::class, 'index'])->name('seances.index');
+Route::get('/seances/{id}', [SeanceController::class, 'show'])->name('seances.show');
 
 Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
