@@ -64,6 +64,9 @@ class TmdbService
                 $item = $result['release_dates'][0];
                 if($item['certification'] =='U' || $item['certification'] == 'TP' || $item['certification'] == '') {
                     $certification = 'Touts publics';
+                }else
+                {
+                    $certification = $item['certification'];
                 }
                 $dateSortie = $item['release_date'];
             }
