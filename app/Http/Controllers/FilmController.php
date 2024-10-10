@@ -13,6 +13,7 @@ use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Pays;
 use App\Models\Realisateur;
+use App\Models\Seance;
 use App\Services\TmdbService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -21,6 +22,15 @@ use Illuminate\Support\Str;
 
 class FilmController extends Controller
 {
+
+    public function welcomePage(): View
+    {
+        $films = Film::with('seances')->get();
+        $seances = Seance::with('film')->get();
+
+        return view('index', compact('films', 'seances'));
+    }
+
     public function getfilms(): View
     {
         $films = Film::all();
