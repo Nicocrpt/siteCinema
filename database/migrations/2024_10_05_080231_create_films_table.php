@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('duree');
             $table->text('synopsis');
             $table->foreignId('langue_id')->constrained('langues');
+            //$table->foreignId('certification_id')->nullable()->constrained('certifications');
+            //$table->string('date_sortie');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

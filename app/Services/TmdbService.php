@@ -25,7 +25,7 @@ class TmdbService
         // Crée une instance du client Guzzle
         $this->client = new Client();
         // Remplace par ta clé API TMDB
-        $this->apiKey = env('TMDB_API_KEY'); // Assurez-vous que la clé est dans votre .env
+        $this->apiKey = env('TMDB_API_KEY'); 
     }
 
     // public function getGenres()

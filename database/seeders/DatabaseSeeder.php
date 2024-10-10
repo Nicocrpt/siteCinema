@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         
         $this->call(LangueSeeder::class);
 
+        $this->call(CertificationSeeder::class);
+
         $this->call(UserSeeder::class);
 
         // Insertions des salles

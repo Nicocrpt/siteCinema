@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>film - {{$film->titre}}</title>
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -44,12 +44,16 @@
             <div class="pt-10 pb-10">
                 <h1 class="pb-5 text-xl">Séances</h1>
                 <div class="flex gap-10">
-                    @foreach ($film->seances as $seance)
-                        <a href="{{ route('seances.show', $seance->id)}}"><div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2">
-                            <p class="text-slate-600 font-bold">{{ date('d',strtotime($seance->datetime_seance)) }}</p>
-                            <p class="text-slate-600 font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
-                        </div></a>
-                    @endforeach
+                    @if ($film->seances->count() > 0)
+                        @foreach ($film->seances as $seance)
+                            <a href="{{ route('seances.show', $seance->id)}}"><div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2">
+                                <p class="text-slate-600 font-bold">{{ date('d',strtotime($seance->datetime_seance)) }}</p>
+                                <p class="text-slate-600 font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
+                            </div></a>
+                        @endforeach
+                    @else
+                        <p><i>Aucune seance disponible</i></p>
+                    @endif
                 </div>
             </div>
             <a href="{{ route('films.index') }}" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Retour</a>
