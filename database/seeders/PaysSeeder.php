@@ -190,7 +190,8 @@ class PaysSeeder extends Seeder
                 ('Viêt Nam', 'VN'),
                 ('Yémen', 'YE'),
                 ('Zambie', 'ZM'),
-                ('Zimbabwe', 'ZW');
+                ('Zimbabwe', 'ZW'),
+                ('Inconnu', 'XX');
 
         ");
     }

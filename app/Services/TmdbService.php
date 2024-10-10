@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Acteur;
+use App\Models\Certification;
 use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Genre;
@@ -49,7 +50,27 @@ class TmdbService
             ],
         ]);
 
+        $responseRD = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/release_dates?language=fr-FR&api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ],
+        ]);
+
         $data = json_decode($response->getBody(), true); // json_decode()
+        $dataRD = json_decode($responseRD->getBody(), true); 
+        foreach ($dataRD['results'] as $result)
+        {// json_decode()
+            if ($result['iso_3166_1'] == "FR") {
+                $item = $result['release_dates'][0];
+                if($item['certification'] =='U' || $item['certification'] == 'TP' || $item['certification'] == '') {
+                    $certification = 'Touts publics';
+                }
+                $dateSortie = $item['release_date'];
+            }
+        }
+        
+        $data['certification'] = $certification;
+        $data['date_sortie'] = $dateSortie;
 
         return $data;
     }
@@ -61,6 +82,7 @@ class TmdbService
 
         $movie = $tmdbClient->getFilmById($id);
 
+        $trailer = null;
         foreach ($movie['videos']['results'] as $video) {
             if ($video['type'] == 'Trailer') {
                 if($video['iso_639_1'] == 'fr' && $video['site'] == 'YouTube' && preg_match('/\b(VF|VOST|VOSTF)\b/i', $video['name'])) {
@@ -68,15 +90,23 @@ class TmdbService
                 }
             }
         }
+        if ($trailer) {
+            $trailer = "https://www.youtube.com/embed/$trailer";
+        }
+        
+
+        
 
         DB::table('films')->insert([
             'tmdb_id' => $movie['id'],
             'slug' => Str::slug($movie['title']),
             'titre' => $movie['title'],
             'synopsis' => $movie['overview'],
+            'certification_id' => Certification::where('valeur', $movie['certification'])->first()->id,
+            'date_sortie' => $movie['date_sortie'],
             'langue_id' => Langue::where('iso_2', $movie['original_language'])->first()->id,
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
-            'url_trailer' => 'https://www.youtube.com/embed/' . $trailer,
+            'url_trailer' => $trailer,
             'duree' => $movie['runtime'],
             
         ]);
@@ -90,6 +120,7 @@ class TmdbService
             ]);
         }
 
+        
         foreach ($movie['genres'] as $genre) {
 
             if (!Genre::where('tmdb_id', $genre['id'])->exists()) {
@@ -152,9 +183,11 @@ class TmdbService
         }
 
         foreach ($movie['production_companies'] as $prod) {
-
+            if($prod['origin_country'] === ""){
+                $prod['origin_country'] = "XX";
+            }
             if (!Production::where('tmdb_id', $prod['id'])->exists()) {
-
+                
                 Production::create([
                     'tmdb_id' => $prod['id'],
                     'nom' => $prod['name'],
@@ -168,6 +201,8 @@ class TmdbService
             ]);
 
         }
+
+        
 
 
     }

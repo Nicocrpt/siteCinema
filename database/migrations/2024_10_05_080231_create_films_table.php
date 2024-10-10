@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('titre');
             $table->string('slug');
             $table->string('url_affiche');
-            $table->string('url_trailer');
+            $table->string('url_trailer')->nullable();
             $table->string('duree');
             $table->text('synopsis');
             $table->foreignId('langue_id')->constrained('langues');
-            //$table->foreignId('certification_id')->nullable()->constrained('certifications');
-            //$table->string('date_sortie');
+            $table->foreignId('certification_id')->constrained('certifications');
+            $table->string('date_sortie');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

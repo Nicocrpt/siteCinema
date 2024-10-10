@@ -52,6 +52,11 @@ class Film extends Model
         return $this->belongsToMany(Production::class, 'film_production');
     }
 
+    public function certification(): BelongsTo
+    {
+        return $this->belongsTo(Certification::class);
+    }
+
 
 
 
