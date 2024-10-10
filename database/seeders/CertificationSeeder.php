@@ -31,7 +31,7 @@ class CertificationSeeder extends Seeder
             [
                 'valeur' => "Touts publics",
                 'description' => null,
-                'url_logo' => null,
+                'url_logo' => 'storage/certifications/toutPublic.png',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
