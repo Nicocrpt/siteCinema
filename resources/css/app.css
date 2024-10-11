@@ -120,6 +120,10 @@
     grid-template-columns: repeat(20, minmax(0, 1fr));
   }
 
+  .grid-cols-28-custom {
+    grid-template-columns: repeat(30, minmax(0, 1fr));
+  }
+
   .gap-vw-2 {
     gap: 1vw;
   }

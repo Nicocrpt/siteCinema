@@ -1,4 +1,5 @@
 @if ($salle->id === 1)
+
     <div class="w-full max-w-6xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
         <h1 class="text-2xl font-bold text-center mb-6">Disposition des Sièges</h1>
         <div class="grid grid-rows-12 gap-vw-2">
@@ -8,44 +9,40 @@
             <div class="space-y-2">
             <!-- 1ère rangée -->
                 <div class="grid grid-cols-28-custom gap-2">
-                    
-                    <div class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                   
+                    <x-seat seat="A01" />
+                    <x-seat seat="A02" />
+                    <x-seat seat="A03" />
+                    <x-seat seat="A04" />              
+                    <x-seat seat="A05" />
+                    <x-seat seat="A06" /> 
                     <div> </div>
 
                     <!-- Séparation centrale -->
                     
-                    <div class="seat" id="A07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat oqp" id="A09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat oqp" id="A10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="A07" />
+                    <x-seat seat="A08" />
+                    <x-seat seat="A09" />
+                    <x-seat seat="A10" />
+                    <x-seat seat="A11" />
+                    <x-seat seat="A12" />
+                    <x-seat seat="A13" />
+                    <x-seat seat="A14" />
+                    <x-seat seat="A15" />
+                    <x-seat seat="A16" />
+                    <x-seat seat="A17" />
+                    <x-seat seat="A18" />
+                    <x-seat seat="A19" />
+                    <x-seat seat="A20" />
+                    <x-seat seat="A21" />
+                    <x-seat seat="A22" />
                     <div> </div>
-
-
-
-                    <div class="seat" id="A23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat oqp" id="A24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat oqp" id="A25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat oqp" id="A26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-
+                    <x-seat seat="A23" />
+                    <x-seat seat="A24" />
+                    <x-seat seat="A25" />
+                    <x-seat seat="A26" />
+                    <x-seat seat="A27" />
+                    <x-seat seat="A28" />
                 </div>
             </div>
 
@@ -53,42 +50,39 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="B01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="B01" />
+                        <x-seat seat="B02" />
+                        <x-seat seat="B03" />
+                        <x-seat seat="B04" />              
+                        <x-seat seat="B05" />
+                        <x-seat seat="B06" />
                         <div> </div>
-        
+
                         <!-- Séparation centrale -->
                         
-                        <div class="seat" id="B07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="B07" />
+                        <x-seat seat="B08" />
+                        <x-seat seat="B09" />
+                        <x-seat seat="B10" />
+                        <x-seat seat="B11" />
+                        <x-seat seat="B12" />
+                        <x-seat seat="B13" />
+                        <x-seat seat="B14" />
+                        <x-seat seat="B15" />
+                        <x-seat seat="B16" />
+                        <x-seat seat="B17" />
+                        <x-seat seat="B18" />
+                        <x-seat seat="B19" />
+                        <x-seat seat="B20" />
+                        <x-seat seat="B21" />
+                        <x-seat seat="B22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="B23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="B28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="B23" />
+                        <x-seat seat="B24" />
+                        <x-seat seat="B25" />
+                        <x-seat seat="B26" />
+                        <x-seat seat="B27" />
+                        <x-seat seat="B28" />
         
                     </div>
             </div>
@@ -97,42 +91,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="C01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="C01" />
+                        <x-seat seat="C02" />
+                        <x-seat seat="C03" />
+                        <x-seat seat="C04" />              
+                        <x-seat seat="C05" />
+                        <x-seat seat="C06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="C07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="C07" />
+                        <x-seat seat="C08" />
+                        <x-seat seat="C09" />
+                        <x-seat seat="C10" />
+                        <x-seat seat="C11" />
+                        <x-seat seat="C12" />
+                        <x-seat seat="C13" />
+                        <x-seat seat="C14" />
+                        <x-seat seat="C15" />
+                        <x-seat seat="C16" />
+                        <x-seat seat="C17" />
+                        <x-seat seat="C18" />
+                        <x-seat seat="C19" />
+                        <x-seat seat="C20" />
+                        <x-seat seat="C21" />
+                        <x-seat seat="C22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="C23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="C28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="C23" />
+                        <x-seat seat="C24" />
+                        <x-seat seat="C25" />
+                        <x-seat seat="C26" />
+                        <x-seat seat="C27" />
+                        <x-seat seat="C28" />
         
                     </div>
             </div>
@@ -141,42 +129,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="D01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="D01" />
+                        <x-seat seat="D02" />
+                        <x-seat seat="D03" />
+                        <x-seat seat="D04" />              
+                        <x-seat seat="D05" />
+                        <x-seat seat="D06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="D07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="D07" />
+                        <x-seat seat="D08" />
+                        <x-seat seat="D09" />
+                        <x-seat seat="D10" />
+                        <x-seat seat="D11" />
+                        <x-seat seat="D12" />
+                        <x-seat seat="D13" />
+                        <x-seat seat="D14" />
+                        <x-seat seat="D15" />
+                        <x-seat seat="D16" />
+                        <x-seat seat="D17" />
+                        <x-seat seat="D18" />
+                        <x-seat seat="D19" />
+                        <x-seat seat="D20" />
+                        <x-seat seat="D21" />
+                        <x-seat seat="D22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="D23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="D28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="D23" />
+                        <x-seat seat="D24" />
+                        <x-seat seat="D25" />
+                        <x-seat seat="D26" />
+                        <x-seat seat="D27" />
+                        <x-seat seat="D28" />
         
                     </div>
             </div>
@@ -185,42 +167,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="E01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="E01" />
+                        <x-seat seat="E02" />
+                        <x-seat seat="E03" />
+                        <x-seat seat="E04" />              
+                        <x-seat seat="E05" />
+                        <x-seat seat="E06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="E07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="E20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="E07" />
+                        <x-seat seat="E08" />
+                        <x-seat seat="E09" />
+                        <x-seat seat="E10" />
+                        <x-seat seat="E11" />
+                        <x-seat seat="E12" />
+                        <x-seat seat="E13" />
+                        <x-seat seat="E14" />
+                        <x-seat seat="E15" />
+                        <x-seat seat="E16" />
+                        <x-seat seat="E17" />
+                        <x-seat seat="E18" />
+                        <x-seat seat="E19" />
+                        <x-seat seat="E20" />
+                        <x-seat seat="E21" />
+                        <x-seat seat="E22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="E23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="E28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="E23" />
+                        <x-seat seat="E24" />
+                        <x-seat seat="E25" />
+                        <x-seat seat="E26" />
+                        <x-seat seat="E27" />
+                        <x-seat seat="E28" />
         
                     </div>
             </div>
@@ -229,42 +205,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="F01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="F01" />
+                        <x-seat seat="F02" />
+                        <x-seat seat="F03" />
+                        <x-seat seat="F04" />              
+                        <x-seat seat="F05" />
+                        <x-seat seat="F06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="F07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat Hand col-span-2" id="F08"><img src="assets/handicap-svgrepo-com.svg" alt="" width="30%"></div>
-                        <!-- <div class="seat"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div> -->
-                        <div class="seat" id="F09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat Hand col-span-2" id="F19"><img src="assets/handicap-svgrepo-com.svg" alt="" width="30%"></div>
-                        <!-- <div class="seat"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div> -->
-                        <div class="seat" id="F20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="F07" />
+                        <x-seat seat="F08" />
+                        <x-seat seat="F09" />
+                        <x-seat seat="F10" />
+                        <x-seat seat="F11" />
+                        <x-seat seat="F12" />
+                        <x-seat seat="F13" />
+                        <x-seat seat="F14" />
+                        <x-seat seat="F15" />
+                        <x-seat seat="F16" />
+                        <x-seat seat="F17" />
+                        <x-seat seat="F18" />
+                        <x-seat seat="F19" />
+                        <x-seat seat="F20" />
+                        <x-seat seat="F21" />
+                        <x-seat seat="F22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="F21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="F26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="F23" />
+                        <x-seat seat="F24" />
+                        <x-seat seat="F25" />
+                        <x-seat seat="F26" />
+                        <x-seat seat="F27" />
+                        <x-seat seat="F28" />
         
                     </div>
             </div>
@@ -276,42 +246,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="G01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="G01" />
+                        <x-seat seat="G02" />
+                        <x-seat seat="G03" />
+                        <x-seat seat="G04" />              
+                        <x-seat seat="G05" />
+                        <x-seat seat="G06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="G07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="G14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat oqp" id="G15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="G07" />
+                        <x-seat seat="G08" />
+                        <x-seat seat="G09" />
+                        <x-seat seat="G10" />
+                        <x-seat seat="G11" />
+                        <x-seat seat="G12" />
+                        <x-seat seat="G13" />
+                        <x-seat seat="G14" />
+                        <x-seat seat="G15" />
+                        <x-seat seat="G16" />
+                        <x-seat seat="G17" />
+                        <x-seat seat="G18" />
+                        <x-seat seat="G19" />
+                        <x-seat seat="G20" />
+                        <x-seat seat="G21" />
+                        <x-seat seat="G22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="G23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="G28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="G23" />
+                        <x-seat seat="G24" />
+                        <x-seat seat="G25" />
+                        <x-seat seat="G26" />
+                        <x-seat seat="G27" />
+                        <x-seat seat="G28" />
         
                     </div>
             </div>
@@ -320,42 +284,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="H01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="H01" />
+                        <x-seat seat="H02" />
+                        <x-seat seat="H03" />
+                        <x-seat seat="H04" />              
+                        <x-seat seat="H05" />
+                        <x-seat seat="H06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="H07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="H07" />
+                        <x-seat seat="H08" />
+                        <x-seat seat="H09" />
+                        <x-seat seat="H10" />
+                        <x-seat seat="H11" />
+                        <x-seat seat="H12" />
+                        <x-seat seat="H13" />
+                        <x-seat seat="H14" />
+                        <x-seat seat="H15" />
+                        <x-seat seat="H16" />
+                        <x-seat seat="H17" />
+                        <x-seat seat="H18" />
+                        <x-seat seat="H19" />
+                        <x-seat seat="H20" />
+                        <x-seat seat="H21" />
+                        <x-seat seat="H22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="H23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="H28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="H23" />
+                        <x-seat seat="H24" />
+                        <x-seat seat="H25" />
+                        <x-seat seat="H26" />
+                        <x-seat seat="H27" />
+                        <x-seat seat="H28" />
         
                     </div>
             </div>
@@ -364,42 +322,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="I01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="I01" />
+                        <x-seat seat="I02" />
+                        <x-seat seat="I03" />
+                        <x-seat seat="I04" />              
+                        <x-seat seat="I05" />
+                        <x-seat seat="I06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="I07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I19"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="I07" />
+                        <x-seat seat="I08" />
+                        <x-seat seat="I09" />
+                        <x-seat seat="I10" />
+                        <x-seat seat="I11" />
+                        <x-seat seat="I12" />
+                        <x-seat seat="I13" />
+                        <x-seat seat="I14" />
+                        <x-seat seat="I15" />
+                        <x-seat seat="I16" />
+                        <x-seat seat="I17" />
+                        <x-seat seat="I18" />
+                        <x-seat seat="I19" />
+                        <x-seat seat="I20" />
+                        <x-seat seat="I21" />
+                        <x-seat seat="I22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="I23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I27"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="I28"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="I23" />
+                        <x-seat seat="I24" />
+                        <x-seat seat="I25" />
+                        <x-seat seat="I26" />
+                        <x-seat seat="I27" />
+                        <x-seat seat="I28" />
         
                     </div>
             </div>
@@ -408,42 +360,36 @@
                 <!-- 1ère rangée -->
                     <div class="grid grid-cols-28-custom gap-2">
                         
-                        <div class="seat" id="J01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="J01" />
+                        <x-seat seat="J02" />
+                        <x-seat seat="J03" />
+                        <x-seat seat="J04" />              
+                        <x-seat seat="J05" />
+                        <x-seat seat="J06" />
                         <div> </div>
-        
-                        <!-- Séparation centrale -->
-                        
-                        <div class="seat" id="J07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat Hand col-span-2" id="J08"><img src="assets/handicap-svgrepo-com.svg" alt="" width="30%"></div>
-                        <!-- <div class="seat"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div> -->
-                        <div class="seat" id="J09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat Hand col-span-2" id="J19"><img src="assets/handicap-svgrepo-com.svg" alt="" width="30%"></div>
-                        <!-- <div class="seat"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div> -->
-                        <div class="seat" id="J20"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="J07" />
+                        <x-seat seat="J08" />
+                        <x-seat seat="J09" />
+                        <x-seat seat="J10" />
+                        <x-seat seat="J11" />
+                        <x-seat seat="J12" />
+                        <x-seat seat="J13" />
+                        <x-seat seat="J14" />
+                        <x-seat seat="J15" />
+                        <x-seat seat="J16" />
+                        <x-seat seat="J17" />
+                        <x-seat seat="J18" />
+                        <x-seat seat="J19" />
+                        <x-seat seat="J20" />
+                        <x-seat seat="J21" />
+                        <x-seat seat="J22" />
                         <div> </div>
-        
-        
-        
-                        <div class="seat" id="J21"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J22"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J23"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J24"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J25"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                        <div class="seat" id="J26"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                        <x-seat seat="J23" />
+                        <x-seat seat="J24" />
+                        <x-seat seat="J25" />
+                        <x-seat seat="J26" />
+                        <x-seat seat="J27" />
+                        <x-seat seat="J28" />
         
                     </div>
             </div>
@@ -476,179 +422,255 @@
 
     </div>  
 @elseif ($salle->id === 2)
-    <div class="w-full max-w-2xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
-        <h1 class="text-2xl font-bold text-center mb-6">Disposition des Sièges</h1>
 
-        <div class="grid grid-rows-8 gap-vw-2">
+
+    <div class="w-full max-w-4xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
+        <h1 class="text-2xl font-bold text-center mb-6" id="title"></h1>
+
+        <div class="grid grid-rows-10 gap-vw-2">
         
         
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div></div>
-                    <div class="seat" id="A11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                </div>
-            </div>
-            <div class="space-y-2">
-            <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="B01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    {{-- <div :class="{selected: isChoosed('A01')}" class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%" @click="toggleSeat"></div> --}}
+                    <x-seat seat="A01" />
+                    <x-seat seat="A02" />
+                    <x-seat seat="A03" />
+                    <x-seat seat="A04" />
+                    <div> </div>                
+                    <x-seat seat="A05" />
+                    <x-seat seat="A06" />
+                    <x-seat seat="A07" />
+                    <x-seat seat="A08" />
+                    <x-seat seat="A09" />
+                    <x-seat seat="A10" />
+                    <x-seat seat="A11" />
+                    <x-seat seat="A12" />
+                    <x-seat seat="A13" />
+                    <x-seat seat="A14" />
                     <div> </div>
-                    <div class="seat" id="B11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="A15" />
+                    <x-seat seat="A16" />
+                    <x-seat seat="A17" />
+                    <x-seat seat="A18" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="C01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="B01" />
+                    <x-seat seat="B02" />
+                    <x-seat seat="B03" />
+                    <x-seat seat="B04" />
+                    <div> </div>                
+                    <x-seat seat="B05" />
+                    <x-seat seat="B06" />
+                    <x-seat seat="B07" />
+                    <x-seat seat="B08" />
+                    <x-seat seat="B09" />
+                    <x-seat seat="B10" />
+                    <x-seat seat="B11" />
+                    <x-seat seat="B12" />
+                    <x-seat seat="B13" />
+                    <x-seat seat="B14" />
                     <div> </div>
-                    <div class="seat" id="C11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="B15" />
+                    <x-seat seat="B16" />
+                    <x-seat seat="B17" />
+                    <x-seat seat="B18" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="D01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="C01" />
+                    <x-seat seat="C02" />
+                    <x-seat seat="C03" />
+                    <x-seat seat="C04" />
+                    <div> </div>                
+                    <x-seat seat="C05" />
+                    <x-seat seat="C06" />
+                    <x-seat seat="C07" />
+                    <x-seat seat="C08" />
+                    <x-seat seat="C09" />
+                    <x-seat seat="C10" />
+                    <x-seat seat="C11" />
+                    <x-seat seat="C12" />
+                    <x-seat seat="C13" />
+                    <x-seat seat="C14" />
                     <div> </div>
-                    <div class="seat" id="D11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="C15" />
+                    <x-seat seat="C16" />
+                    <x-seat seat="C17" />
+                    <x-seat seat="C18" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="E01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="D01" />
+                    <x-seat seat="D02" />
+                    <x-seat seat="D03" />
+                    <x-seat seat="D04" />
+                    <div> </div>                
+                    <x-seat seat="D05" />
+                    <x-seat seat="D06" />
+                    <x-seat seat="D07" />
+                    <x-seat seat="D08" />
+                    <x-seat seat="D09" />
+                    <x-seat seat="D10" />
+                    <x-seat seat="D11" />
+                    <x-seat seat="D12" />
+                    <x-seat seat="D13" />
+                    <x-seat seat="D14" />
                     <div> </div>
-                    <div class="seat" id="E11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="D15" />
+                    <x-seat seat="D16" />
+                    <x-seat seat="D17" />
+                    <x-seat seat="D18" />
+                </div>
+            </div>
+
+            <div class="space-y-2">
+            <!-- 1ère rangée -->
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="E01" />
+                    <x-seat seat="E02" />
+                    <x-seat seat="E03" />
+                    <x-seat seat="E04" />
+                    <div> </div>                
+                    <x-seat seat="E05" />
+                    <x-seat seat="E06" />
+                    <x-seat seat="E07" />
+                    <x-seat seat="E08" />
+                    <x-seat seat="E09" />
+                    <x-seat seat="E10" />
+                    <x-seat seat="E11" />
+                    <x-seat seat="E12" />
+                    <x-seat seat="E13" />
+                    <x-seat seat="E14" />
+                    <div> </div>
+                    <x-seat seat="E15" />
+                    <x-seat seat="E16" />
+                    <x-seat seat="E17" />
+                    <x-seat seat="E18" />
                 </div>
             </div>
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="F01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="F01" />
+                    <x-seat seat="F02" />
+                    <x-seat seat="F03" />
+                    <x-seat seat="F04" />
+                    <div> </div>                
+                    <x-seat seat="F05" />
+                    <x-seat seat="F06" />
+                    <x-seat seat="F07" />
+                    <x-seat seat="F08" />
+                    <x-seat seat="F09" />
+                    <x-seat seat="F10" />
+                    <x-seat seat="F11" />
+                    <x-seat seat="F12" />
+                    <x-seat seat="F13" />
+                    <x-seat seat="F14" />
                     <div> </div>
-                    <div class="seat" id="F11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="F15" />
+                    <x-seat seat="F16" />
+                    <x-seat seat="F17" />
+                    <x-seat seat="F18" />
                 </div>
             </div>
+
+            <div></div>
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="G01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="G01" />
+                    <x-seat seat="G02" />
+                    <x-seat seat="G03" />
+                    <x-seat seat="G04" />
+                    <div> </div>                
+                    <x-seat seat="G05" />
+                    <x-seat seat="G06" />
+                    <x-seat seat="G07" />
+                    <x-seat seat="G08" />
+                    <x-seat seat="G09" />
+                    <x-seat seat="G10" />
+                    <x-seat seat="G11" />
+                    <x-seat seat="G12" />
+                    <x-seat seat="G13" />
+                    <x-seat seat="G14" />
                     <div> </div>
-                    <div class="seat" id="G11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="G15" />
+                    <x-seat seat="G16" />
+                    <x-seat seat="G17" />
+                    <x-seat seat="G18" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
-                    <div class="seat" id="H01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="H01" />
+                    <x-seat seat="H02" />
+                    <x-seat seat="H03" />
+                    <x-seat seat="H04" />
+                    <div> </div>                
+                    <x-seat seat="H05" />
+                    <x-seat seat="H06" />
+                    <x-seat seat="H07" />
+                    <x-seat seat="H08" />
+                    <x-seat seat="H09" />
+                    <x-seat seat="H10" />
+                    <x-seat seat="H11" />
+                    <x-seat seat="H12" />
+                    <x-seat seat="H13" />
+                    <x-seat seat="H14" />
                     <div> </div>
-                    <div class="seat" id="H11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                    <x-seat seat="H15" />
+                    <x-seat seat="H16" />
+                    <x-seat seat="H17" />
+                    <x-seat seat="H18" />
                 </div>
             </div>
+
+            <div class="space-y-2">
+            <!-- 1ère rangée -->
+                <div class="grid grid-cols-custom gap-2">
+                    <x-seat seat="I01" />
+                    <x-seat seat="I02" />
+                    <x-seat seat="I03" />
+                    <x-seat seat="I04" />
+                    <div> </div>                
+                    <x-seat seat="I05" />
+                    <x-seat seat="I06" />
+                    <x-seat seat="I07" />
+                    <x-seat seat="I08" />
+                    <x-seat seat="I09" />
+                    <x-seat seat="I10" />
+                    <x-seat seat="I11" />
+                    <x-seat seat="I12" />
+                    <x-seat seat="I13" />
+                    <x-seat seat="I14" />
+                    <div> </div>
+                    <x-seat seat="I15" />
+                    <x-seat seat="I16" />
+                    <x-seat seat="I17" />
+                    <x-seat seat="I18" />
+                </div>
+            </div>
+
+        
+
+
             
 
         </div>
@@ -680,251 +702,178 @@
     </div>
 @else
     <div class="w-full max-w-4xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
-        <h1 class="text-2xl font-bold text-center mb-6" id="title"></h1>
+        <h1 class="text-2xl font-bold text-center mb-6">Disposition des Sièges</h1>
 
-        <div class="grid grid-rows-10 gap-vw-2">
+        <div class="grid grid-rows-8 gap-vw-2">
         
         
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="A05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="A15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="A18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="A01" />
+                    <x-seat seat="A02" />
+                    <x-seat seat="A03" />
+                    <x-seat seat="A04" />              
+                    <x-seat seat="A05" />
+                    <x-seat seat="A06" />
+                    <x-seat seat="A07" />
+                    <x-seat seat="A08" />
+                    <x-seat seat="A09" />
+                    <x-seat seat="A10" />
+                    <div></div>
+                    <x-seat seat="A11" />
+                    <x-seat seat="A12" />
+                    <x-seat seat="A13" />
+                    <x-seat seat="A14" />
+                </div>
+            </div>
+            <div class="space-y-2">
+            <!-- 1ère rangée -->
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="B01" />
+                    <x-seat seat="B02" />
+                    <x-seat seat="B03" />
+                    <x-seat seat="B04" />              
+                    <x-seat seat="B05" />
+                    <x-seat seat="B06" />
+                    <x-seat seat="B07" />
+                    <x-seat seat="B08" />
+                    <x-seat seat="B09" />
+                    <x-seat seat="B10" />
+                    <div></div>
+                    <x-seat seat="B11" />
+                    <x-seat seat="B12" />
+                    <x-seat seat="B13" />
+                    <x-seat seat="B14" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="B01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="B05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="B15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="B18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="C01" />
+                    <x-seat seat="C02" />
+                    <x-seat seat="C03" />
+                    <x-seat seat="C04" />              
+                    <x-seat seat="C05" />
+                    <x-seat seat="C06" />
+                    <x-seat seat="C07" />
+                    <x-seat seat="C08" />
+                    <x-seat seat="C09" />
+                    <x-seat seat="C10" />
+                    <div></div>
+                    <x-seat seat="C11" />
+                    <x-seat seat="C12" />
+                    <x-seat seat="C13" />
+                    <x-seat seat="C14" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="C01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="C05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="C15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="C18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="D01" />
+                    <x-seat seat="D02" />
+                    <x-seat seat="D03" />
+                    <x-seat seat="D04" />              
+                    <x-seat seat="D05" />
+                    <x-seat seat="D06" />
+                    <x-seat seat="D07" />
+                    <x-seat seat="D08" />
+                    <x-seat seat="D09" />
+                    <x-seat seat="D10" />
+                    <div></div>
+                    <x-seat seat="D11" />
+                    <x-seat seat="D12" />
+                    <x-seat seat="D13" />
+                    <x-seat seat="D14" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="D01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="D05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="D15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="D18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-            <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="E01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="E05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="E15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="E18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="E01" />
+                    <x-seat seat="E02" />
+                    <x-seat seat="E03" />
+                    <x-seat seat="E04" />              
+                    <x-seat seat="E05" />
+                    <x-seat seat="E06" />
+                    <x-seat seat="E07" />
+                    <x-seat seat="E08" />
+                    <x-seat seat="E09" />
+                    <x-seat seat="E10" />
+                    <div></div>
+                    <x-seat seat="E11" />
+                    <x-seat seat="E12" />
+                    <x-seat seat="E13" />
+                    <x-seat seat="E14" />
                 </div>
             </div>
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="F01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="F05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="F15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="F18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="F01" />
+                    <x-seat seat="F02" />
+                    <x-seat seat="F03" />
+                    <x-seat seat="F04" />              
+                    <x-seat seat="F05" />
+                    <x-seat seat="F06" />
+                    <x-seat seat="F07" />
+                    <x-seat seat="F08" />
+                    <x-seat seat="F09" />
+                    <x-seat seat="F10" />
+                    <div></div>
+                    <x-seat seat="F11" />
+                    <x-seat seat="F12" />
+                    <x-seat seat="F13" />
+                    <x-seat seat="F14" />
                 </div>
             </div>
-
-            <div></div>
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="G01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="G05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="G15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="G18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="G01" />
+                    <x-seat seat="G02" />
+                    <x-seat seat="G03" />
+                    <x-seat seat="G04" />              
+                    <x-seat seat="G05" />
+                    <x-seat seat="G06" />
+                    <x-seat seat="G07" />
+                    <x-seat seat="G08" />
+                    <x-seat seat="G09" />
+                    <x-seat seat="G10" />
+                    <div></div>
+                    <x-seat seat="G11" />
+                    <x-seat seat="G12" />
+                    <x-seat seat="G13" />
+                    <x-seat seat="G14" />
                 </div>
             </div>
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="H01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat"id="H03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="H05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="H15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="H18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
+                <div class="grid grid-cols-custom gap-2">              
+                    <x-seat seat="H01" />
+                    <x-seat seat="H02" />
+                    <x-seat seat="H03" />
+                    <x-seat seat="H04" />              
+                    <x-seat seat="H05" />
+                    <x-seat seat="H06" />
+                    <x-seat seat="H07" />
+                    <x-seat seat="H08" />
+                    <x-seat seat="H09" />
+                    <x-seat seat="H10" />
+                    <div></div>
+                    <x-seat seat="H11" />
+                    <x-seat seat="H12" />
+                    <x-seat seat="H13" />
+                    <x-seat seat="H14" />
                 </div>
             </div>
-
-            <div class="space-y-2">
-            <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
-                    <div class="seat" id="I01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I02"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I03"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I04"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>                
-                    <div class="seat" id="I05"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I06"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I07"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I08"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I09"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I10"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I11"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I12"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I13"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I14"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div> </div>
-                    <div class="seat" id="I15"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I16"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I17"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                    <div class="seat" id="I18"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                </div>
-            </div>
-
-        
-
-
             
 
         </div>
@@ -954,4 +903,6 @@
 
 
     </div>
+
 @endif
+

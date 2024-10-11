@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('reference')->unique();
             $table->foreignId('seance_id')->constrained('seances')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

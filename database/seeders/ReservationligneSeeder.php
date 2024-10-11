@@ -13,6 +13,6 @@ class ReservationligneSeeder extends Seeder
      */
     public function run(): void
     {
-        Reservationligne::factory(20)->create();
+        Reservationligne::factory(100)->create();
     }
 }

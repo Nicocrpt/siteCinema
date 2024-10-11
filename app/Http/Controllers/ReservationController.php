@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Place;
+use App\Models\Reservation;
+use App\Models\Reservationligne;
+use App\Models\Seance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -19,7 +24,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +32,29 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'seance' => 'required',
+            'places' => 'required',
+        ]);
+
+        $places = explode(',', $request['places']);
+
+        Reservation::create([
+            'seance_id' => $request['seance'],
+            'reference' => uniqid(),
+            'user_id' => Auth::id() ?? null,
+        ]);
+
+        
+        foreach($places as $place){
+            Reservationligne::create([
+                'reservation_id' => Reservation::latest()->first()->id,
+                'place_id' => Place::where('rangee', substr($place, 0, 1))->where('numero', substr($place, 1))->where('salle_id', Seance::where('id', $request['seance'])->first()->salle_id)->first()->id
+            ]);
+        };
+        
+
+        return redirect()->route('index');
     }
 
     /**

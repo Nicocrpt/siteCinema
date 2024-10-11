@@ -39,7 +39,7 @@
             @endforeach</p>
             <p> durée : {{$duration}}</p>
             <p>Sorti le : {{ date('d/m/Y', strtotime($film->date_sortie)) }}</p> 
-            <img src="{{ENV('HOST') . $film->certification->url_logo }}" alt="" class="rounded w-6"></p>  
+            <img src="{{Storage::url($film->certification->url_logo)}}" alt="" class="rounded w-6"></p>  
             <p class="mb-10 mt-10">{{ $film->synopsis }}</p>
             @if ($film->url_trailer)
                 <iframe width="560" height="315" src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen style="border-radius: 10px; shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]"></iframe>

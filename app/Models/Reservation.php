@@ -11,7 +11,13 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public function reservationligne(): HasMany
+    protected $fillable = [
+        'seance_id',
+        'reference',
+        'user_id',
+    ];
+
+    public function reservationlignes(): HasMany
     {
         return $this->hasMany(ReservationLigne::class);
     }

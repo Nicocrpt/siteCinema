@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SeanceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,10 @@ Route::get('/films/{id}', [FilmController::class, 'show'])->name('film.show');
 
 Route::get('/seances', [SeanceController::class, 'index'])->name('seances.index');
 Route::get('/seances/{id}', [SeanceController::class, 'show'])->name('seances.show');
+Route::post('/seances/{id}', [SeanceController::class, 'transfer'])->name('seances.transfer');
+Route::get('/seances/{id}/buy', [SeanceController::class, 'buy'])->name('seances.buy');
+
+Route::resource('/reservations', ReservationController::class);
 
 Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
 

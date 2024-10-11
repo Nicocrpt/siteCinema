@@ -10,6 +10,11 @@ class Reservationligne extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'reservation_id',
+        'place_id',
+    ];
+
     public function reservation(): BelongsTo
     {
         return $this->belongsTo(Reservation::class);
