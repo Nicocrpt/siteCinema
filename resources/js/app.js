@@ -48,6 +48,12 @@ document.addEventListener('alpine:init', () => {
             })
         },
 
+
+
+
+
+
+
         init() {
             this.setReservedPlaces()
         }

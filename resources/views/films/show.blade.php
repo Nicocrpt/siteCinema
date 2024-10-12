@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>film - {{$film->titre}}</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
+@extends('layouts.layout')
+@section('title' , 'Films')
+@section('content')
     <div style="display:grid; grid-template-columns: 1fr 3fr; gap: 20px" class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 m-3 rounded-2xl">
         <img src="{{ $film->url_affiche }}" alt="" style="width: 500px ; border-radius: 10px">
         <div>
@@ -59,8 +52,7 @@
                     @endif
                 </div>
             </div>
-            <a href="{{ route('films.index') }}" class="rounded-sm underline hover:text-black focus:outline-none focus-visible:ring-1 focus-visible:ring-[#FF2D20] dark:hover:text-white">Retour</a>
+            <a href="{{ route('films.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Retour</a>
         </div>
     </div>
-</body>
-</html>
+@endsection

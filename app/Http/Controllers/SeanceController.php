@@ -38,6 +38,13 @@ class SeanceController extends Controller
 
     public function transfer($reference, Request $request):RedirectResponse
     {   
+        $request->validate([
+            'seats' => 'required'
+        ],
+        [
+            'seats.required' => 'Veuillez selectionner au moins un siege'
+        ]);
+
         session([
             'places' => explode(',', $request->seats),
             'seance' => Seance::where('reference', $reference)->with('salle')->with('film')->first()
@@ -54,6 +61,7 @@ class SeanceController extends Controller
 
         return view('seances.buy', compact('places', 'seance'));
     }
+
 
 //     public function clearSeats(Request $request)
 // {

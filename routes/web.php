@@ -18,6 +18,7 @@ Route::post('/seances/{id}', [SeanceController::class, 'transfer'])->name('seanc
 Route::get('/seances/{id}/buy', [SeanceController::class, 'buy'])->name('seances.buy');
 
 Route::resource('/reservations', ReservationController::class);
+Route::get('/reservations/{id}/validated', [ReservationController::class, 'validated'])->name('reservations.validated');
 
 Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
 

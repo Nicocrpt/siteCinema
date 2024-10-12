@@ -2,29 +2,68 @@
 @section('title' , 'Accueil')
 
 @section('content')
-    <div class="flex-col items-center justify-center">
+    <div class="flex-col items-center justify-center" x-data="seats()">
         <h1 class="text-3xl text-center m-10 font-bold">Résumé de votre selection</h1>
 
         <div class="grid grid-cols-6 shadow-inner border-solid border-2 border-gray-300 m-auto w-1/2 h-1/2 p-4 rounded-xl">
             <img src="{{$seance->film->url_affiche}}" alt="" class="col-span-2 rounded-xl">
             <div class="col-span-4 flex flex-col p-5 pl-10">
-                <p class="text-4xl font-bold">{{$seance->film->titre}}</p>
+                <span class="flex gap-2"><p class="text-4xl font-bold">{{$seance->film->titre}}</p><img src="{{Storage::url($seance->film->certification->url_logo)}}" alt="" class="w-8"></span>
                 <p class="text-2xl mt-5">Séance du {{ date('d/m/Y',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</p>
+                <div class="flex items-center">
+                    <p class="text-3xl mt-3">Salle {{$seance->salle->id}}</p>
+                    @if ($seance->dolby_atmos)
+                        <img src="{{Storage::url('seanceAttributes/dolbyAtmos.png')}}" alt="" class="w-20 ml-5">  
+                    @endif
+                    @if ($seance->dolby_vision)    
+                        <img src="{{Storage::url('seanceAttributes/dolbyVision.png')}}" alt="" class="w-20 ml-5"> 
+                    @endif
+                    @if ($seance->vf)
+                        <p class="bg-slate-400 text-white rounded-xl p-1 pl-2 pr-2 ml-5">VF</p>
+                    @else
+                        <p class="bg-slate-400 text-white rounded-xl p-1 pl-2 pr-2 ml-5" title="{{$seance->film->langue->langue}}">VOST</p>
+                    @endif
+                </div>
                 <div class="flex mt-5 text-xl">
-                    <p><span class="font-bold">Place(s) Réservée(s) :</span>
+                    <p><span class="font-bold">{{count($places)}} Place(s) selectionnée(s) :</span>
                         @foreach ($places as $place)
                             @if ($place === end($places))
-                            {{ $place}}
+                                <span class="place{{array_search($place, $places)}}" id="place{{array_search($place, $places)}}">{{$place}}</span>
                             @else
-                            {{ $place . ', '}}
+                                <span>
+                                    <span class="place{{array_search($place, $places)}}" id="place{{array_search($place, $places)}}">{{$place}}</span>
+                                    <span>, </span>
+                                </span>
                             @endif
                         @endforeach
                     </p>
                 </div>
                 <div class=" mt-10 space-x-4">
-                    <form action="{{route('reservations.store')}}" method="POST">
+                    <form action="{{route('reservations.store')}}" method="POST" class="flex flex-col">
                         <input type="hidden" name="places" id="places" value="{{ implode(',', $places)}}">
                         <input type="hidden" name="seance" id="seance" value="{{ $seance->id }}">
+                        <div class="flex items-center gap-2">
+                            <p class="text-xl">Tarif normal (9,00 €)</p>
+                            <select name="TarifNormal" id="TarifNormal" class="rounded-xl">
+                                <option value="0">0</option>
+                                @foreach ($places as $place)
+                                    <option value="{{array_search($place, $places)+1}}">{{array_search($place, $places)+1}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mt-2 flex items-center gap-2">
+                            <p class="text-xl">Tarif étudiant (6,00 €)</p>
+                            <select name="TarifEtudiant" id="TarifEtudiant" class="rounded-xl">
+                                <option value="0">0</option>
+                                @foreach ($places as $place)
+                                    <option value="{{array_search($place, $places)+1}}">{{array_search($place, $places)+1}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <p class="text-xl">Total : </p>
+                        </div>
+         
                         @csrf
                         <button class="
                         font-bold
@@ -33,7 +72,7 @@
                         border-red-500 
                         relative h-[50px] w-40
                         overflow-hidden 
-                        border-2 border-red-500 
+                        border-2
                         bg-white p-2
                         rounded-full
                         shadow shadow-gray-500/50
@@ -44,6 +83,7 @@
                         before:duration-500 
                         hover:text-white
                         hover:before:left-0 hover:before:w-full
+                        mt-5
                         "><span class="relative z-10" type="submit">Je réserve !</span></button>
                     </form>
                       
@@ -52,4 +92,7 @@
         </div>
         
     </div>
+    <script>
+        window.selectedPlaces = @json($places)
+    </script>
 @endsection

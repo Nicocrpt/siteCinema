@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\Reservationligne;
 use App\Models\Seance;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,7 +55,7 @@ class ReservationController extends Controller
         };
         
 
-        return redirect()->route('index');
+        return redirect()->route('reservations.validated', Reservation::latest()->first()->reference);
     }
 
     /**
@@ -87,5 +88,16 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function validated($reference): View
+    {
+        $reservation = Reservation::where('reference', $reference)->with('reservationlignes')->first();
+        $places_id = $reservation->reservationlignes->pluck('place_id')->toArray();
+        $places = Place::whereIn('id', $places_id)->get();
+
+
+        return view('reservation.validated', compact('reservation', 'places'));
     }
 }

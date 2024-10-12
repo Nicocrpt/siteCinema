@@ -15,9 +15,12 @@
             <x-seat-selector :salle="$seance->salle"/>
         </div>
         
-        <form action="{{route('seances.transfer', $seance->reference)}}" method="POST" class="flex justify-center m-4">
+        <form action="{{route('seances.transfer', $seance->reference)}}" method="POST" class="flex flex-col items-center justify-center m-4">
             @csrf
             <input name="seats" type="hidden" x-model="getAllSelected">
+            @error('seats')
+                <p class="text-red-500 pb-4">{{$message}}</p>
+            @enderror
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Valider la selection</button>
         </form>
     </div>
