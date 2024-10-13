@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navBar-li {
-    @apply text-2xl font-semibold text-amber-50 hover:text-red-600;
+    @apply text-2xl font-semibold text-white hover:text-cyan-300 ;
 }
 
 .navBar-account {
@@ -23,7 +23,28 @@
 }
 
 
+/* film Caroussel */
 
+.filmList::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(to left,rgba(255, 255, 255, 0), black);
+    content: "";
+    z-index: 2;
+}
+
+.filmList::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0),black);
+  content: "";
+}
 
 
 

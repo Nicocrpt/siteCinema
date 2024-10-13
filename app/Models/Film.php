@@ -57,6 +57,11 @@ class Film extends Model
         return $this->belongsTo(Certification::class);
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
 
 
 

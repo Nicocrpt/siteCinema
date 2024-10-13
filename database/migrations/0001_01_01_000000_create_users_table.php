@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('telephone');
-            $table->string('adresse');
-            $table->string('code_postal');
-            $table->string('ville');
-            $table->foreignId('pays_id')->constrained('payss');
+            $table->string('adresse')->nullable()->default(null);
+            $table->string('code_postal')->nullable()->default(null);
+            $table->string('ville')->nullable()->default(null);
+            $table->foreignId('pays_id')->nullable()->constrained('payss');
             $table->boolean('statut_abo')->default(false);
             $table->string('password');
             $table->rememberToken();

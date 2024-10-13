@@ -11,11 +11,11 @@ class FilmCard extends Component
     /**
      * Create a new component instance.
      */
-    public $film;
+    public $films;
 
-    public function __construct($film)
+    public function __construct($films)
     {
-        $this->film = $film;
+        $this->films = $films;
     }
 
     /**

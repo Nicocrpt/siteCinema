@@ -1,4 +1,4 @@
-<nav class=" p-8 shadow-md ml-5 mr-5 flex justify-between items-center">
+<nav class=" p-8 ml-5 mr-5 flex justify-between items-center h-20">
     <ul class="row  flex space-x-10">
         <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
         <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>

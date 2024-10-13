@@ -38,11 +38,26 @@
                         @endforeach
                     </p>
                 </div>
-                <div class=" mt-10 space-x-4">
+                <div class=" mt-10 space-x-4" x-data="selectPrices()">
+                    
                     <form action="{{route('reservations.store')}}" method="POST" class="flex flex-col">
                         <input type="hidden" name="places" id="places" value="{{ implode(',', $places)}}">
                         <input type="hidden" name="seance" id="seance" value="{{ $seance->id }}">
-                        <div class="flex items-center gap-2">
+
+                        <div class="flex gap-3 mb-3">
+                            <p id="labelSTD" class="text-xl p-2 pl-0">Tarif normal (9,00 €)</p>
+                            <button @click="updateValueSTD" id="minusSTD" type="button" class="bg-gray-300 pl-4 pr-4 text-xl font-bold rounded-full">-</button>
+                            <input id="priceSTD" type="text" name="TarifNormal" id="TarifNormal" value="0" class="w-10 text-center text-xl font-bold" readonly>
+                            <button @click="updateValueSTD" id="plusSTD" type="button" class="bg-yellow-300 pl-4 pr-4 text-xl font-bold rounded-full">+</button>
+                        </div>
+                        <div class="flex gap-3">
+                            <p id="labelET" class="text-xl p-2 pl-0">Tarif étudiant (6,00 €)</p>
+                            <button @click="updateValueET" id="minusET" type="button" class="bg-gray-300 pl-4 pr-4 text-xl font-bold rounded-full">-</button>
+                            <input id="priceET" type="text" name="TarifEtudiant" id="TarifEtudiant" value="0" class="w-10 text-center text-xl font-bold" readonly>
+                            <button @click="updateValueET" id="plusET" type="button" class="bg-yellow-300 pl-4 pr-4 text-xl font-bold rounded-full">+</button>
+                        </div>
+                        
+                        {{-- <div class="flex items-center gap-2">
                             <p class="text-xl">Tarif normal (9,00 €)</p>
                             <select name="TarifNormal" id="TarifNormal" class="rounded-xl">
                                 <option value="0">0</option>
@@ -59,9 +74,10 @@
                                     <option value="{{array_search($place, $places)+1}}">{{array_search($place, $places)+1}}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div>
+                        </div> --}}
+                        <div class="flex mt-5">
                             <p class="text-xl">Total : </p>
+                            <p id="total">0,00 €</p>
                         </div>
          
                         @csrf
@@ -93,6 +109,6 @@
         
     </div>
     <script>
-        window.selectedPlaces = @json($places)
+        window.selectedPlaces = @json($places);
     </script>
 @endsection

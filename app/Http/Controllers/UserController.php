@@ -11,12 +11,9 @@ class UserController extends Controller
 {
     public function homepage(): View
     {   
-        $user = User::find(27);
-        if ($user == Auth::user()) {
-            return view('welcome');
-        }
-
-
+        
+        $user = Auth::user();
+        
         return view('users.account', compact('user'));
     }
 }

@@ -61,6 +61,19 @@ class FilmController extends Controller
 
     }
 
+
+    public function send(Request $request)
+    {
+        $request->validate([
+            'id' => 'integer|required',
+        ]);
+        
+        $tmdbClient = new TmdbService;
+        $movie = $tmdbClient->getAllFilmById($request->id);
+
+        return response()->json($movie);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -74,6 +87,35 @@ class FilmController extends Controller
             // Créer une nouvelle instance du film
             $tmdbClient = new TmdbService;
             $tmdbClient->addMovieToDb($request->tmdb_id);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Film ajouté avec succès !',
+            ], 201);
+        } catch (\Exception $e) {
+            // Gérer l'erreur
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur s\'est produite lors de l\'ajout à la base de données : ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    public function adminAdd(Request $request)
+    {
+        $request->validate([
+            'poster_path' => 'string|required',
+            'backdrop_path' => 'string|required',
+            'logo_path' => 'string|required',
+        ]);
+
+        $movie = $request->json()->all();
+
+        try {
+            // Créer une nouvelle instance du film
+            $tmdbClient = new TmdbService;
+            $tmdbClient->addCustomMovieToDb($movie);
 
             return response()->json([
                 'success' => true,

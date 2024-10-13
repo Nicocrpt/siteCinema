@@ -19,12 +19,15 @@ return new class extends Migration
             $table->string('url_affiche');
             $table->string('url_backdrop')->nullable();
             $table->string('url_trailer')->nullable();
+            $table->string('url_logo')->nullable();
             $table->string('duree');
             $table->text('synopsis');
             $table->string('tagline')->nullable();
             $table->foreignId('langue_id')->constrained('langues');
             $table->foreignId('certification_id')->constrained('certifications');
             $table->string('date_sortie');
+            $table->boolean('a_laffiche')->default(true);
+            $table->boolean('est_favori')->default(false);
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

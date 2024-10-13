@@ -43,7 +43,7 @@
     <p>Votre Réservation a bien été traitée, un email va vous être envoyé avec un QR Code à présenter à votre arrivée au cinéma</p>
     <div>
         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" href="{{route('index')}}">Retour à l'accueil</a>
-        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" href="{{route('home', $reservation)}}">Accéder à mon compte</a>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" href="{{route('home')}}">Accéder à mon compte</a>
     </div>
 </div>
 @endsection
