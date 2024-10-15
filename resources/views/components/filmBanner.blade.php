@@ -108,10 +108,10 @@
     <div class="owl-carousel owl-theme carousel-1  border-b-4  border-b-slate-200 max-h-fit" style="">
         @foreach ($films as $film)
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">
-                <div class="grid grid-rows-5">
+                <div class="grid grid-rows-5 h-full w-full">
                     <div></div>
-                    <div class="row-start-3 row-span-3 grid grid-cols-2">
-                        <div class="p-10 flex flex-col-reverse justify-center items-center">
+                    <div class="row-start-2 row-span-4 grid grid-cols-2">
+                        <div class="p-10 flex flex-col-reverse justify-start items-center mb-24 gap-5">
                             
                             <a href="{{route('film.show', $films->where('est_favori', 1)->first()->slug)}}"><button class="
                                 font-bold
