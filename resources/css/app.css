@@ -1,13 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 .navBar-li {
-    @apply text-2xl font-semibold text-white hover:text-cyan-300 ;
+    @apply text-xl text-white opacity-90 pl-2 pr-2 pb-1 pt-1 hover:bg-white hover:bg-opacity-20 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
+    font-weight: 500;
 }
 
 .navBar-account {
-    @apply text-xl font-semibold text-amber-50 hover:text-red-600;
+    @apply  text-white opacity-90 pl-2 pr-2 pb-1 pt-1 hover:bg-white hover:bg-opacity-20 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
 }
 
 .main-title {
@@ -22,6 +39,32 @@
     display: none;
 }
 
+.dropdown-account {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+.filmes {
+  /* height: 400px; */
+  transition: all 0.5s ease-in-out ;
+}
+.filmes:hover {
+  width: 600px;
+}
+
+
+.carousel-box {
+  transition: transform 1s ease-in-out;
+}
 
 /* film Caroussel */
 
@@ -29,21 +72,23 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 20%;
+    width: 5%;
     height: 100%;
     background: linear-gradient(to left,rgba(255, 255, 255, 0), black);
     content: "";
     z-index: 2;
+    pointer-events: none;
 }
 
 .filmList::after {
   position: absolute;
   top: 0;
   right: 0;
-  width: 20%;
+  width: 5%;
   height: 100%;
   background: linear-gradient(to right, rgba(255,255,255,0),black);
   content: "";
+  pointer-events: none;
 }
 
 

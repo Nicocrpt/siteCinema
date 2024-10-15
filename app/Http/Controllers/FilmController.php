@@ -34,6 +34,7 @@ class FilmController extends Controller
     public function index(): View
     {
         $films = Film::all();
+        
         return view('films.index', compact('films'));
     }
 

@@ -75,9 +75,9 @@
                                 @endforeach
                             </select>
                         </div> --}}
-                        <div class="flex mt-5">
-                            <p class="text-xl">Total : </p>
-                            <p id="total">0,00 €</p>
+                        <div class="flex mt-5 gap-2">
+                            <p class="text-xl">Total :</p>
+                            <p class="text-xl ml-2 font-bold"><span id="total" class="font-bold"> 0</span>€</p>
                         </div>
          
                         @csrf
