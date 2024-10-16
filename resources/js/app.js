@@ -14,6 +14,8 @@ window.$ =window.jQuery = $;
 
 
 
+
+
 document.addEventListener('alpine:init', () => {
 
 
@@ -144,7 +146,7 @@ document.addEventListener('alpine:init', () => {
                     loop: true, // Défilement infini
                     dots: true, // Dots pour la navigation
                     autoplay: true, // Démarrer le défilement automatique
-                    autoplayTimeout: 5000,
+                    autoplayTimeout: 10000,
                     smartSpeed: 5000,
                     //autoplaySpeed: 2000, // Temps entre les défilements
                     autoplayHoverPause: true,
@@ -389,4 +391,8 @@ function initCarousel() {
         owl.trigger('next.owl.carousel');
     });
 }
+
+
+
+
 

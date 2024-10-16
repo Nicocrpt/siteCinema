@@ -1,4 +1,4 @@
-<div class="absolute bg-stone-950 bg-opacity-95 !top-0 !left-0 transition-all ease-in-out duration-300"  style="min-width: 100%; min-height: 100%; z-index: 9999; backdrop-filter: blur(5px);" x-show="open" x-transition:enter="transition ease-out duration-300" 
+<div class="absolute bg-stone-950 bg-opacity-95 !top-0 !left-0 transition-all ease-in-out duration-300"  style="width: 100%; height: 100%; z-index: 9999; backdrop-filter: blur(15px);" x-show="open" x-transition:enter="transition ease-out duration-300" 
 x-transition:enter-start="opacity-0 " 
 x-transition:enter-end="opacity-100" 
 x-transition:leave="transition ease-in duration-300" 

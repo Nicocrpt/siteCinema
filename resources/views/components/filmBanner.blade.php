@@ -1,7 +1,8 @@
 <style>
     .owl-carousel.carousel-1 {
         width: 100%;
-        height: 80vh;
+        height: 65vh;
+        min-height: 500px !important;
         position: relative;
         overflow: hidden;
         transition: height 0.8s ease-in-out;
@@ -20,6 +21,7 @@
         background-color: #4a90e2; /* Couleur de fond par défaut */
         color: #fff; /* Couleur du texte */
         height: 65vh; /* Hauteur de chaque slide */
+        min-height: 500px !important;
         background-size: cover; /* Couvrir l'arrière-plan */
         background-position: center; /* Centrer l'image */
         transition: height 0.5s ease-in-out;
@@ -58,7 +60,7 @@
         
         
         span {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         border: solid 5px white;
         opacity: 1; /* Opacité à 100% pour le dot actif */
         
@@ -87,11 +89,13 @@
     @media (max-width: 109em) {
         .owl-carousel.carousel-1 {
             height: 50vh;
+            min-height: 500px !important;
         }
 
         .owl-carousel.carousel-1 .item {
         
             height: 50vh; /* Hauteur de chaque slide */
+            min-height: 500px !important;
         
         }
 
@@ -99,6 +103,9 @@
             margin-top: 59vh
         }
     }
+
+
+
 
 </style>
 

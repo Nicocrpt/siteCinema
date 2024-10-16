@@ -21,7 +21,7 @@
             </a>
 
 
-            <div @click.away="dropdown = false" class="p-1 absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-stone-600 bg-opacity-50 shadow-lg focus:outline-none" style="backdrop-filter: blur(5px)" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
+            <div @click.away="dropdown = false" class="p-1 absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-stone-600 bg-opacity-60 shadow-lg focus:outline-none"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
             x-transition:enter="transition ease-out duration-200" 
         x-transition:enter-start="transform opacity-0 scale-y-50" 
         x-transition:enter-end="transform opacity-100 scale-y-100" 
@@ -32,7 +32,10 @@
                   <a href="{{route('home')}}" class="block px-4 py-2 text-sm text-white opacity-100"  tabindex="-1" id="menu-item-0"><span class="text-white">Voir mon compte</span></a>
                 </div>
                 <div class="mt-1 hover:bg-white hover:bg-opacity-30 rounded" role="none">
-                  <a href="{{route('logout')}}" class="block px-4 py-2 text-sm text-white" role="menuitem" tabindex="-1" id="menu-item-1">Me déconnecter</a>
+                    <form action="{{route('logout')}}" method="POST" class="p-0 m-0">
+                        @csrf
+                        <button type="submit" class="block px-4 py-2 text-sm text-white hover:text-red-500" role="menuitem" tabindex="-1" id="menu-item-1">Me déconnecter</button>
+                    </form>
                 </div>
               </div>
             </div>

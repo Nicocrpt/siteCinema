@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layoutNavigation')
 @section('title' , 'Accueil')
 
 @section('content')

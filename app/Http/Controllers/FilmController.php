@@ -31,10 +31,24 @@ class FilmController extends Controller
         return view('index', compact('films', 'seances'));
     }
 
+    public function userQuery($request)
+    {   
+        $request->validate([
+            'research' => 'required'
+        ],
+        [
+            'research.required' => 'Veuillez entrer une recherche'
+        ]);
+
+        $films = Film::where('nom', 'like', '%' . $request . '%')->get();
+
+        return response()->json($films);
+    }
+
     public function index(): View
     {
         $films = Film::all();
-        
+
         return view('films.index', compact('films'));
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layoutNavigation')
 @section('title' , 'Films')
 @section('content')
     <div style="display:grid; grid-template-columns: 1fr 3fr; gap: 20px" class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 m-3 rounded-2xl">

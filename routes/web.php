@@ -21,6 +21,7 @@ Route::resource('/reservations', ReservationController::class);
 Route::get('/reservations/{id}/validated', [ReservationController::class, 'validated'])->name('reservations.validated');
 
 Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
+Route::put('/my-account/{id}/update', [UserController::class, 'update'])->name('users.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

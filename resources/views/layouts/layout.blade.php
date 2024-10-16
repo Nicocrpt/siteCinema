@@ -11,12 +11,18 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative bg-stone-900" 
+<body class="relative" 
     x-data="{
         open : false, 
-        dropdown : false 
+        dropdown : false,
+        scrolled: false 
     }">
-    <header  style="background : linear-gradient(180deg,rgba(24, 24, 24, 0.656) 33%,rgba(8, 8, 8, 0) 100%); height: 102px">
+    <header  
+        class="transition-all ease-in-out duration-700"
+        style="background : linear-gradient(180deg,rgba(24, 24, 24, 0.656) 33%,rgba(8, 8, 8, 0) 100%); height: 102px"
+        x-init="$watch('scrolled', () => console.log(scrolled))"
+        :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 80px; backdrop-filter: blur(15px); padding-bottom: 2px' : 'linear-gradient(180deg,rgba(24, 24, 24, 0.656) 33%,rgba(8, 8, 8, 0) 100%)'"
+        @scroll.window="scrolled = (window.scrollY > window.innerHeight/8)">
         <x-navbar/>
     </header>
 

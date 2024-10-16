@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+</head>
+<body class=" bg-zinc-200 dark:bg-zinc-800 relative" 
+    x-data="{
+        open : false, 
+        dropdown : false,
+        scrolled: false 
+    }">
+    <header>
+        <div class="top-0 left-0 h-20  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(20,20,20,0.6); backdrop-filter: blur(15px);">
+            <img width="45px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
+            <ul class="row  flex space-x-8">
+                <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
+                <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
+                <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
+                <li class="navBar-li"><a href="">Evenements spéciaux</a></li>
+                <li class="navBar-li"><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="absolute top-0 left-0 w-full">
+        @yield('content')
+    </main>
+
+    
+    
+    <footer>
+
+    </footer>
+</body>
+</html>
