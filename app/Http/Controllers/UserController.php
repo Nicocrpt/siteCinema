@@ -9,12 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function homepage(): View
+    public function homepage()
     {   
-        
+
         $user = Auth::user();
+
+        if ($user)
+        {
+            return view('users.account', compact('user'));
+        }else
+        {
+            return redirect()->route('login');
+        }
         
-        return view('users.account', compact('user'));
+        
     }
 
     public function update(Request $request, $id)

@@ -1,9 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('./homePage.css');
+@import url('./seatSelector.css');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 
 .sideMenu {
@@ -28,24 +32,12 @@ header {
 }
 
 .navBar-li {
-    @apply text-xl text-white opacity-90 pl-2 pr-2 pb-1 pt-1 hover:bg-white hover:bg-opacity-20 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
+    @apply text-lg text-white opacity-85 pl-2 pr-2  hover:bg-white hover:bg-opacity-10 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
     font-weight: 500;
 }
 
 .navBar-account {
-    @apply  text-white opacity-90 pl-2 pr-2 pb-1 pt-1 hover:bg-white hover:bg-opacity-20 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
-}
-
-.main-title {
-    @apply text-4xl font-extrabold;
-}
-
-.h-120 {
-    height: 30rem;
-}
-
-.hide-scroll::-webkit-scrollbar {
-    display: none;
+    @apply  text-white opacity-90 pl-2 pr-2 hover:bg-white hover:bg-opacity-20 hover:opacity-100 rounded-md transition-all duration-300 ease-in-out;
 }
 
 .dropdown-account {
@@ -54,22 +46,11 @@ header {
 
 
 
+/* Custom Tailwind Classes */
 
-
-
-
-
-
-
-
-.filmes {
-  /* height: 400px; */
-  transition: all 0.5s ease-in-out ;
+.h-120 {
+    height: 30rem;
 }
-.filmes:hover {
-  width: 600px;
-}
-
 
 .carousel-box {
   transition: transform 1s ease-in-out;
@@ -103,108 +84,3 @@ header {
 
 
 
-/* seat selector */
-
-.seat {
-    width: 2vw; /* 32px */
-    height: 2vw; /* 32px */
-    background-color: #ddd;
-    border-radius: 30%; /* 6px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-    
-  }
-
-  .seat.Hand {
-    width: 4.5vw; /* 32px */
-    height: 2vw; /* 32px */
-    background-color: #ddd;
-    border-radius: 10px; /* 6px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-    
-  }
-
-  .seatDemo {
-    width: 2rem; /* 32px */
-    height: 2rem; /* 32px */
-    border-radius: 0.6rem; /* 6px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: default;
-    text-align: center; /* Center text inside the seat */
-  }
-
-  .seat:hover {
-    background-color: #cbcbcb;
-    color: #fff;
-  }
-
-  .seat.Hand:hover {
-    background-color: #9fcefd;
-    color: #fff;
-  }
-  .seat.selected {
-    background-color: rgb(65, 203, 148);
-    color: #fff;
-    border: solid 2px rgb(104, 104, 104);
-    
-  }
-  .seat.Hand.selected {
-    background-color: rgb(65, 203, 148);
-    color: #fff;
-    border: solid 2px rgb(104, 104, 104);
-    
-  }
-
-
-  .seat.oqp {
-      background-color: rgb(253, 102, 102);
-      border: none;
-      cursor: default;
-  }
-
-  @media (max-width: 600px) {
-    .seat {
-      width: 2.5vw; /* 24px */
-      height: 2.5vw; /* 24px */
-    }
-
-    .seat.selected {
-      border: solid 0.8px rgb(104, 104, 104);
-    }
-
-    .seatDemo {
-      width: 5vw; /* 24px */
-      height: 5vw;
-    }
-
-  }
-
-  /* Grille personnalisée avec plus de 12 colonnes */
-  .grid-cols-custom {
-    grid-template-columns: repeat(20, minmax(0, 1fr));
-  }
-
-  .grid-cols-28-custom {
-    grid-template-columns: repeat(30, minmax(0, 1fr));
-  }
-
-  .gap-vw-2 {
-    gap: 1vw;
-  }
-
-  .screen {
-      margin-top: 4vw;
-      height : 1.5vw;
-      width: 100%;
-  }

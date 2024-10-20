@@ -3,13 +3,11 @@
 
 @section('content')
 
-    <style>
-        
-    </style>
+
     
     <div style="height: 100%; width: 100%" x-data="{sideMenu : true}" class="relative">
 
-        <a @click="sideMenu = true" class="text-xl text-white p-3 px-4 rounded-r-xl bg-zinc-900 bg-opacity-90 hover:bg-opacity-100 transition-all ease-in-out duration-300 absolute top-24 left-0 cursor-pointer shadow-lg"
+        <a @click="sideMenu = true" class="text-xl text-white p-3 px-4 rounded-r-xl bg-zinc-900 bg-opacity-90 hover:bg-opacity-100 transition-all ease-in-out duration-300 absolute top-24 left-0 cursor-pointer shadow-lg z-10"
         x-show="!sideMenu"
         x-transition:enter="transition transform ease-in-out duration-[1s]" 
         x-transition:enter-start="translate-x-[-100%]" 
@@ -20,7 +18,7 @@
             <svg fill="#ffffff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>icn/menu</title><path d="M2 3h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z" id="a"></path></g></svg>
         </a>
 
-        <div x-show="sideMenu" style="height: 100vh" class="absolute w-full max-w-96 bg-zinc-900 py-6 pt-24 flex flex-col gap-10 shadow-lg shadow-black z-20 margin-0"
+        <div x-show="sideMenu" style="height: 100vh" class="absolute w-full max-w-80 bg-zinc-900 py-6 pt-24 flex flex-col gap-10 shadow-lg shadow-black z-20 margin-0"
             x-transition:enter="transition transform ease-in-out duration-500" 
             x-transition:enter-start="translate-x-[-100%]" 
             x-transition:enter-end="translate-x-0" 
@@ -36,8 +34,8 @@
                 <div>
                     <h1 class="text-white text-2xl font-semibold mb-10 ml-6">Bonjour {{ Auth::user()->prenom }}</h1>
                     <ul class=" text-white w-full">
-                        <li><a href="" class="sideMenu">Informations personnelles</a></li>
-                        <li><a href="" class="sideMenu">Reservations</a></li>
+                        <li><a href="#infoPerso" class="sideMenu">Informations personnelles</a></li>
+                        <li><a href="#reservations" class="sideMenu">Reservations</a></li>
                         <li><a href="" class="sideMenu">Favoris</a></li>
                         <li><a href="" class="sideMenu">Mes reservations</a></li>
                         <li><a href="" class="sideMenu disconnect">Me deconnecter</a></li>
@@ -48,9 +46,9 @@
             {{-- Side Menu --}}
             
 
-        <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-700 z-10"
-        :class="sideMenu == true ? 'ml-96' : 'ml-0'">
-            <div style="width: 80%; padding-left: 10%; padding-right: 10%; margin-top: 80px" class="relative ml-24">
+        <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10"
+        :class="sideMenu ? 'ml-80' : 'ml-0'">
+            <div id="infoPerso" style="width: 80%; padding-left: 10%; padding-right: 10%; margin-top: 60px" class="relative pl-24">
                 @if (session('success'))
                     <div class="flex justify-center absolute top-4" 
                         x-data="{show : true}"
@@ -126,11 +124,11 @@
                         >Mettre à jour</button>
                     </div>  
                 </form>
-                <div class="h-48"></div>
+                <div class="h-24"></div>
 
-                <div class="flex gap-4 w-full mb-10">
+                <div class="flex gap-4 w-full mb-10 pt-24" id="reservations">
                     <div class="w-8">
-                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="fill-zinc-800 dark:fill-zinc-100"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" width="24"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M8.706,37.027c2.363-0.585,4.798-1.243,6.545-1.243c0.683,0,1.261,0.101,1.688,0.345c1.474,0.845,2.318,4.268,3.245,7.502 C21.421,43.866,22.694,44,24,44c1.306,0,2.579-0.134,3.816-0.368c0.926-3.234,1.771-6.657,3.244-7.501 c0.427-0.245,1.005-0.345,1.688-0.345c1.747,0,4.183,0.658,6.545,1.243c1.605-1.848,2.865-3.99,3.706-6.333 c-2.344-2.406-4.872-4.891-4.872-6.694c0-1.804,2.528-4.288,4.872-6.694c-0.841-2.343-2.101-4.485-3.706-6.333 c-2.363,0.585-4.798,1.243-6.545,1.243c-0.683,0-1.261-0.101-1.688-0.345c-1.474-0.845-2.318-4.268-3.245-7.502 C26.579,4.134,25.306,4,24,4c-1.306,0-2.579,0.134-3.816,0.368c-0.926,3.234-1.771,6.657-3.245,7.501 c-0.427,0.245-1.005,0.345-1.688,0.345c-1.747,0-4.183-0.658-6.545-1.243C7.101,12.821,5.841,14.962,5,17.306 C7.344,19.712,9.872,22.196,9.872,24c0,1.804-2.527,4.288-4.872,6.694C5.841,33.037,7.101,35.179,8.706,37.027z M18,24 c0-3.314,2.686-6,6-6s6,2.686,6,6s-2.686,6-6,6S18,27.314,18,24z"></path> </g> </g></svg>
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="fill-zinc-800 dark:fill-zinc-100"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" width="24"></g><g id="SVGRepo_iconCarrier"><path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M8.706,37.027c2.363-0.585,4.798-1.243,6.545-1.243c0.683,0,1.261,0.101,1.688,0.345c1.474,0.845,2.318,4.268,3.245,7.502 C21.421,43.866,22.694,44,24,44c1.306,0,2.579-0.134,3.816-0.368c0.926-3.234,1.771-6.657,3.244-7.501 c0.427-0.245,1.005-0.345,1.688-0.345c1.747,0,4.183,0.658,6.545,1.243c1.605-1.848,2.865-3.99,3.706-6.333 c-2.344-2.406-4.872-4.891-4.872-6.694c0-1.804,2.528-4.288,4.872-6.694c-0.841-2.343-2.101-4.485-3.706-6.333 c-2.363,0.585-4.798,1.243-6.545,1.243c-0.683,0-1.261-0.101-1.688-0.345c-1.474-0.845-2.318-4.268-3.245-7.502 C26.579,4.134,25.306,4,24,4c-1.306,0-2.579,0.134-3.816,0.368c-0.926,3.234-1.771,6.657-3.245,7.501 c-0.427,0.245-1.005,0.345-1.688,0.345c-1.747,0-4.183-0.658-6.545-1.243C7.101,12.821,5.841,14.962,5,17.306 C7.344,19.712,9.872,22.196,9.872,24c0,1.804-2.527,4.288-4.872,6.694C5.841,33.037,7.101,35.179,8.706,37.027z M18,24 c0-3.314,2.686-6,6-6s6,2.686,6,6s-2.686,6-6,6S18,27.314,18,24z"></path> </g> </g></svg>
                     </div>
                     <h1 class="text-3xl font-semibold dark:text-white">Réservations</h1>
                 </div>  

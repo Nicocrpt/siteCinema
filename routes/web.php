@@ -11,6 +11,7 @@ Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
 Route::get('/films/{id}', [FilmController::class, 'show'])->name('film.show');
+Route::get('/query-films', [FilmController::class, 'userQuery'])->name('films.query');
 
 Route::get('/seances', [SeanceController::class, 'index'])->name('seances.index');
 Route::get('/seances/{id}', [SeanceController::class, 'show'])->name('seances.show');

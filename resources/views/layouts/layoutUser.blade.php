@@ -18,13 +18,12 @@
         scrolled: false 
     }">
     <header>
-        <div class="top-0 left-0 h-20  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(20,20,20,0.6); backdrop-filter: blur(15px);">
-            <img width="45px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
-            <ul class="row  flex space-x-8">
+        <div class="fixed top-0 left-0 h-14  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(20,20,20,0.6); backdrop-filter: blur(15px);">
+            <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
+            <ul class="row  flex space-x-6">
                 <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
                 <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
                 <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
-                <li class="navBar-li"><a href="">Evenements spéciaux</a></li>
                 <li class="navBar-li"><a href="">Contact</a></li>
             </ul>
         </div>

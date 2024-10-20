@@ -16,16 +16,18 @@
         open : false, 
         dropdown : false,
         scrolled: false 
-    }">
+    }"
+    :class="open ? 'overflow-hidden' : 'overflow-auto'"
+    >
     <header  
-        class="transition-all ease-in-out duration-700"
-        style="background : linear-gradient(180deg,rgba(24, 24, 24, 0.656) 33%,rgba(8, 8, 8, 0) 100%); height: 102px"
+        class="transition-all ease-in-out duration-700 h-14"
         x-init="$watch('scrolled', () => console.log(scrolled))"
-        :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 80px; backdrop-filter: blur(15px); padding-bottom: 2px' : 'linear-gradient(180deg,rgba(24, 24, 24, 0.656) 33%,rgba(8, 8, 8, 0) 100%)'"
+        :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; backdrop-filter: blur(15px); padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
         @scroll.window="scrolled = (window.scrollY > window.innerHeight/8)">
         <x-navbar/>
+        
     </header>
-
+    <x-search-modal class="transition-all ease-in-out duration-300"/>
     <main>
         @yield('content')
     </main>

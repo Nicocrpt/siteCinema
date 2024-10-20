@@ -1,0 +1,11 @@
+.index-content {
+    height: 60vh ;
+}
+@media (max-width: 109em) {
+
+    .index-content {
+        margin: 0 !important;
+        height: 44vh ;
+        min-height: 440px;
+    }
+}

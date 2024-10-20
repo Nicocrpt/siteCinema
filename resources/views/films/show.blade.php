@@ -1,58 +1,77 @@
 @extends('layouts.layoutNavigation')
 @section('title' , 'Films')
 @section('content')
-    <div style="display:grid; grid-template-columns: 1fr 3fr; gap: 20px" class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 m-3 rounded-2xl">
-        <img src="{{ $film->url_affiche }}" alt="" style="width: 500px ; border-radius: 10px">
-        <div>
-            <h1 class="text-3xl mb-5 p-3">{{ $film->titre }}</h1>
-            <p>Réalisateur : 
-                @foreach ($film->realisateurs as $realisateur)
-                    @if ($realisateur === $film->realisateurs->last())
-                        {{ $realisateur->nom}}
+
+<style>
+    .video-container {
+            position: relative;
+            width: 100%; /* Le conteneur prend toute la largeur */
+            padding-bottom: 60%; /* 21:9 = 42.86% */
+            overflow: hidden;
+             /* Optionnel, pour fond noir */
+    }
+
+
+    .video-container iframe {
+        position: absolute;
+        top: -13.39%;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        z-index: 10;
+         /* Correspond à un ratio 16:9 */
+            /* Utiliser un clip-path pour découper la vidéo et simuler le format 21:9 */
+    }
+</style>
+<div class="relative">
+    <div class="video-container bg-black">
+        <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen style="shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]"></iframe>
+    </div>
+
+    <div class="absolute top-0 dark:bg-zinc-800 bg-zinc-300  border-t-4 border-t-zinc-900 shadow-md" style="z-index: 20; margin-top: calc(100*0.4286vw); width: 100%; min-height:100%">
+        <div class=" dark:text-white  p-5">
+            <h1 class="text-3xl dark:text-white font-bold">Séances disponibles</h1>
+            <div class="flex gap-5 flex-col">
+                @foreach ($datesSeances as $dateSeance)
+                    @if($dateSeance == date('d/m/Y'))
+                        <p class=" dark:text-white rounded-xl p-1 pl-2 pr-2">Aujourd'hui</p>
                     @else
-                        {{ $realisateur->nom . ', '}}
+                        <p class="my-5 text-2xl dark:text-white font-semibold">{{$dateSeance}}</p>
                     @endif
-                @endforeach
-            </p>
-            <p>Pays : 
-                @foreach ($film->pays as $country)
-                    @if ($country === $film->pays->last())
-                        {{ $country->nom}}
-                    @else
-                        {{ $country->nom . ', '}}
-                    @endif
-                @endforeach</p>
-            <p>Genre(s) : @foreach ($film->genres as $genre)
-                @if ($genre === $film->genres->last())
-                        {{ $genre->nom}}
-                    @else
-                        {{ $genre->nom . ', '}}
-                    @endif
-                
-            @endforeach</p>
-            <p> durée : {{$duration}}</p>
-            <p>Sorti le : {{ date('d/m/Y', strtotime($film->date_sortie)) }}</p> 
-            <img src="{{Storage::url($film->certification->url_logo)}}" alt="" class="rounded w-6"></p>  
-            <p class="mb-10 mt-10">{{ $film->synopsis }}</p>
-            @if ($film->url_trailer)
-                <iframe width="560" height="315" src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen style="border-radius: 10px; shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]"></iframe>
-            @endif
-            <div class="pt-10 pb-10">
-                <h1 class="pb-5 text-xl">Séances</h1>
-                <div class="flex gap-10">
-                    @if ($film->seances->count() > 0)
+
+                    <div class="flex gap-10">
                         @foreach ($film->seances as $seance)
-                            <a href="{{ route('seances.show', $seance->reference)}}"><div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2">
-                                <p class="text-slate-600 font-bold">{{ date('d',strtotime($seance->datetime_seance)) }}</p>
-                                <p class="text-slate-600 font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
-                            </div></a>
+                            @if(strftime('%A %d %B', strtotime($seance->datetime_seance)) == $dateSeance)
+                                <a href="{{ route('seances.show', $seance->reference)}}">
+                                    <div class="flex flex-col justify-center items-center rounded bg-slate-400 p-1 px-2 hover:shadow-md gap-2 pb-2">
+                                        <p class="dark:text-white font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
+                                        <div class="flex justify-center items-center gap-2">
+                                            @if($seance->dolby_atmos)
+                                                <x-atmos-logo :width="25"/>
+                                            @endif
+                                            @if($seance->dolby_vision)
+                                                <x-vision-logo :width="25"/>
+                                            @endif
+                                            @if($seance->vf || (!$seance->vf && $seance->film->langue == 'FR'))
+                                                <p class="bg-slate-300 dark:text-white rounded px-1" title="Francais">VF</p>
+                                            @else
+                                                <p class="bg-slate-300 dark:text-white rounded px-1 " title="{{$seance->film->langue->langue}}">VO</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
                         @endforeach
-                    @else
-                        <p><i>Aucune seance disponible</i></p>
-                    @endif
-                </div>
+                    </div>
+                @endforeach
+
+
+                
             </div>
-            <a href="{{ route('films.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Retour</a>
+            
         </div>
     </div>
+</div>
+
 @endsection
+

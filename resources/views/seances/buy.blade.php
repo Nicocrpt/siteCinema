@@ -62,13 +62,15 @@
                                 <div class="flex gap-3 mb-3">
                                     <p id="labelSTD" class="text-xl p-2 pl-0">Tarif normal (9,00 €)</p>
                                     <button @click="updateValueSTD" id="minusSTD" type="button" class="bg-gray-300 pl-4 pr-4 text-xl font-bold rounded-full">-</button>
-                                    <input id="priceSTD" type="text" name="TarifNormal" id="TarifNormal" value="0" class="w-10 text-center text-xl font-bold" readonly>
-                                    <button @click="updateValueSTD" id="plusSTD" type="button" class="bg-yellow-300 pl-4 pr-4 text-xl font-bold rounded-full">+</button>
+                                    <input id="priceSTD" type="text" name="TarifNormal" id="TarifNormal" value="0" class="w-12 text-center text-xl font-bold rounded-md border-zinc-800 px-2" readonly>
+                                    <button @click="updateValueSTD" id="plusSTD" type="button" class="bg-yellow-300 pl-4 pr-4 text-xl font-bold rounded-full">
+                                        +
+                                    </button>
                                 </div>
                                 <div class="flex gap-3">
                                     <p id="labelET" class="text-xl p-2 pl-0">Tarif étudiant (6,00 €)</p>
                                     <button @click="updateValueET" id="minusET" type="button" class="bg-gray-300 pl-4 pr-4 text-xl font-bold rounded-full">-</button>
-                                    <input id="priceET" type="text" name="TarifEtudiant" id="TarifEtudiant" value="0" class="w-10 text-center text-xl font-bold" readonly>
+                                    <input id="priceET" type="text" name="TarifEtudiant" id="TarifEtudiant" value="0" class="w-12 text-center text-xl font-bold rounded-md border-zinc-800 px-2"  readonly>
                                     <button @click="updateValueET" id="plusET" type="button" class="bg-yellow-300 pl-4 pr-4 text-xl font-bold rounded-full">+</button>
                                 </div>
                                 

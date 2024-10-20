@@ -1,35 +1,21 @@
 @extends('layouts.layout')
 @section('title' , 'Accueil')
-<style>
 
-    .index-content {
-        height: 60vh ;
-    }
-    @media (max-width: 109em) {
-  
-        .index-content {
-            margin: 0 !important;
-            height: 44vh ;
-            min-height: 440px;
-        }
-    }
-</style>
 
 
 @section('content')
-        <x-search-modal class="transition-all ease-in-out duration-300 !overflow-hidden"/>
-        <x-filmbanner :films="$films->where('est_favori', 1)" id="banniere"/>
-        <div class="bg-stone-950">
-            <div class="index-content transition-all ease-in-out duration-[0.75s] "></div>
-        {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
-            <div >
-                <x-films-caroussel :films="$films"/>
+        <div :class="open ? 'overflow-hidden' : ''">
+            <x-filmbanner :films="$films->where('est_favori', 1)" id="banniere"/>
+            <div class="bg-stone-900">
+                <div class="index-content transition-all ease-in-out duration-[0.75s] "></div>
+            {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
+                <div >
+                    <x-films-caroussel :films="$films"/>
+                </div>
             </div>
+                       
         </div>
-       
-        
-        
-        
+              
        <!-- <div class="w-full bg-black p-10">
             <h1 class="text-3xl font-bold text-white">Nos Films à l'affiche</h1>
         </div>
