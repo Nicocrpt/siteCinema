@@ -34,8 +34,8 @@
                 <div>
                     <h1 class="text-white text-2xl font-semibold mb-10 ml-6">Bonjour {{ Auth::user()->prenom }}</h1>
                     <ul class=" text-white w-full">
-                        <li><a href="#infoPerso" class="sideMenu">Informations personnelles</a></li>
-                        <li><a href="#reservations" class="sideMenu">Reservations</a></li>
+                        <li><a href="#infoPerso" class="sideMenu" @click="if (window.innerWidth < 768) sideMenu = false" >Informations personnelles</a></li>
+                        <li><a href="#reservations" class="sideMenu"  @click="if (window.innerWidth < 768) sideMenu = false">Reservations</a></li>
                         <li><a href="" class="sideMenu">Favoris</a></li>
                         <li><a href="" class="sideMenu">Mes reservations</a></li>
                         <li><a href="" class="sideMenu disconnect">Me deconnecter</a></li>
@@ -47,7 +47,7 @@
             
 
         <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10"
-        :class="sideMenu ? 'ml-80' : 'ml-0'">
+        :class="sideMenu ? 'md:ml-80' : 'ml-0'">
             <div id="infoPerso" style="width: 80%; padding-left: 10%; padding-right: 10%; margin-top: 60px" class="relative pl-24">
                 @if (session('success'))
                     <div class="flex justify-center absolute top-4" 

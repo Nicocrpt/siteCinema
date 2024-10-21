@@ -6,7 +6,7 @@
 @section('content')
         <div :class="open ? 'overflow-hidden' : ''">
             <x-filmbanner :films="$films->where('est_favori', 1)" id="banniere"/>
-            <div class="bg-stone-900">
+            <div class="bg-zinc-200  dark:bg-zinc-900">
                 <div class="index-content transition-all ease-in-out duration-[0.75s] "></div>
             {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
                 <div >

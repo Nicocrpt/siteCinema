@@ -9,9 +9,11 @@ use Illuminate\View\Component;
 class AtmosLogo extends Component
 {
     public $width;
-    public function __construct($width)
+    public $class;
+    public function __construct($width, $class)
     {
         $this->width = $width;
+        $this->class = $class;
     }
 
     /**

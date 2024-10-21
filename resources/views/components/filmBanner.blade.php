@@ -1,6 +1,6 @@
 <style>
     .owl-carousel.carousel-1 {
-        width: 100%;
+        width: 100vw;
         height: 65vh;
         min-height: 500px !important;
         position: relative;
@@ -12,6 +12,14 @@
         .owl-dots {
             opacity: 100%;
         }
+    }
+
+    .owl-stage {
+        @apply !w-fit overflow-hidden;
+    }
+
+    .owl-item.cloned {
+        overflow: hidden;
     }
 
     .owl-carousel.carousel-1 .item {
@@ -117,10 +125,10 @@
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">
                 <div class="grid grid-rows-5 h-full w-full">
                     <div></div>
-                    <div class="row-start-2 row-span-4 grid grid-cols-2">
-                        <div class="p-10 flex flex-col-reverse justify-start items-center mb-24 gap-5">
+                    <div class="row-start-3 row-span-3 flex md:row-start-2 md:row-span-4 md:grid md:grid-cols-2">
+                        <div class="p-10 flex flex-col-reverse justify-start items-center mb-5 gap-5 md:mb-24">
                             
-                            <a href="{{route('film.show', $films->where('est_favori', 1)->first()->slug)}}"><button class="
+                            <a href="{{route('film.show', $film->slug)}}"><button class="
                                 font-bold
                                 text-white
                                 hover:before:bg-white-500
@@ -139,7 +147,7 @@
                                 hover:before:left-0 hover:before:w-full
                                 mt-5
                                 "><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a>
-                                <img src="{{ $film->url_logo }}" alt="">
+                            <img src="{{ $film->url_logo }}" alt="">
                         </div>
                         
                     </div>

@@ -48,7 +48,7 @@ document.addEventListener('alpine:init', () => {
 
         
         get getAllSelected() {
-             return this.seats
+            return this.seats
         },
 
         setReservedPlaces() {
@@ -175,10 +175,10 @@ document.addEventListener('alpine:init', () => {
                     loop: true,
                     responsive: {
                         0: {
-                            items: 1, // Un élément à la fois
+                            items: 2, // Un élément à la fois
                         },
                         600: {
-                            items: 3, // Un élément à la fois
+                            items: 2, // Un élément à la fois
                         },
                         1050: {
                             items: 4
@@ -247,15 +247,15 @@ document.addEventListener('alpine:init', () => {
 
                     console.log(this.places)
                     if (this.places == 0) {
-                        button.classList.remove('bg-yellow-300')
+                        button.classList.remove('bg-cyan-500')
                         button.classList.add('bg-gray-200')
                         button.classList.add('text-gray-400')
-                        document.getElementById('plusET').classList.remove('bg-yellow-300')
+                        document.getElementById('plusET').classList.remove('bg-cyan-500')
                         document.getElementById('plusET').classList.add('bg-gray-200')
                         document.getElementById('plusET').classList.add('text-gray-400')
                         if (document.getElementById('priceET').value == 0) {
                             let other = document.getElementById('plusET')
-                            other.classList.remove('bg-yellow-300')
+                            other.classList.remove('bg-cyan-500')
                             other.classList.add('bg-gray-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusET').setAttribute('disabled', 'true')
@@ -275,10 +275,10 @@ document.addEventListener('alpine:init', () => {
                     this.total -= 9
                     this.totalHTML.innerHTML = this.total.toString()
                     document.getElementById('plusSTD').classList.remove('bg-gray-300')
-                    document.getElementById('plusSTD').classList.add('bg-yellow-300')
+                    document.getElementById('plusSTD').classList.add('bg-cyan-500')
                     document.getElementById('plusSTD').classList.remove('text-gray-400')
 
-                    document.getElementById('plusET').classList.add('bg-yellow-300')
+                    document.getElementById('plusET').classList.add('bg-cyan-500')
                     document.getElementById('plusET').classList.remove('bg-gray-200')
                     document.getElementById('plusET').classList.remove('text-gray-400')
                     document.getElementById('plusET').removeAttribute('disabled')
@@ -304,16 +304,16 @@ document.addEventListener('alpine:init', () => {
                     this.totalHTML.innerHTML = this.total.toString()
                     console.log(this.places)
                     if (this.places == 0) {
-                        button.classList.remove('bg-yellow-300')
+                        button.classList.remove('bg-cyan-500')
                         button.classList.add('bg-gray-200')
                         button.classList.add('text-gray-400')
                         document.getElementById('plusSTD').classList.add('bg-gray-200')
                         document.getElementById('plusSTD').classList.remove('bg-gray-300')
-                        document.getElementById('plusSTD').classList.remove('bg-yellow-300')
+                        document.getElementById('plusSTD').classList.remove('bg-cyan-500')
                         document.getElementById('plusSTD').classList.add('text-gray-400')
                         if (document.getElementById('priceSTD').value == 0) {
                             let other = document.getElementById('plusSTD')
-                            other.classList.remove('bg-yellow-300')
+                            other.classList.remove('bg-cyan-500')
                             other.classList.add('bg-gray-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusSTD').setAttribute('disabled', 'true')
@@ -333,10 +333,10 @@ document.addEventListener('alpine:init', () => {
                     this.total -= 6
                     this.totalHTML.innerHTML = this.total.toString()
                     document.getElementById('plusET').classList.remove('bg-gray-300')
-                    document.getElementById('plusET').classList.add('bg-yellow-300')
+                    document.getElementById('plusET').classList.add('bg-cyan-500')
                     document.getElementById('plusET').classList.remove('text-gray-400')
 
-                    document.getElementById('plusSTD').classList.add('bg-yellow-300')
+                    document.getElementById('plusSTD').classList.add('bg-cyan-500')
                     document.getElementById('plusSTD').classList.remove('bg-gray-200')
                     document.getElementById('plusSTD').classList.remove('text-gray-400')
                     document.getElementById('plusSTD').removeAttribute('disabled')

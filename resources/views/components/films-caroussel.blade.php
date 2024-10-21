@@ -101,7 +101,7 @@
     <h1 class="text-3xl font-bold text-white mb-10 title-section">Nos Films</h1>
     <div class="owl-carousel owl-theme carousel-2 overflow-hidden overflow-x-scroll">
         @foreach ($films as $film)
-            <div @click="onPosterClick($event)"  style="background-image: url({{$film->url_affiche}}); width:100%;height:450px; margin-left" class="bg-center bg-cover bg-no-repeat film flex flex-col justify-end">
+            <div @click="onPosterClick($event)"  style="background-image: url({{$film->url_affiche}});height:450px;width: auto ;margin-left" class="bg-center bg-cover bg-no-repeat film flex flex-col justify-end">
                 <div class="contenu hidden-content">
                     <h1 class="text-3xl font-bold text-white mb-2">{{$film->titre}}</h1>
                     <p class="text-white text-md">{{$film->synopsis}}</p>

@@ -1,3 +1,13 @@
+.owl-stage {
+    position: fixed;
+    overflow:hidden !important;
+}
+
+.owl-item {
+    overflow: hidden !important;
+}
+
+
 .index-content {
     height: 60vh ;
 }

@@ -12,7 +12,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   class="fill-black dark:fill-white">
+   class="{{$class}}">
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"

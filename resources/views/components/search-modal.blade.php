@@ -5,7 +5,7 @@
 </style>
 
 
-<div class="fixed bg-stone-950 bg-opacity-80 !top-0 !left-0 transition-all ease-in-out duration-300"  style="width: 100%; max-height: 100vh ;min-height: 100vh; z-index: 9999; backdrop-filter: blur(15px);" x-show="open" x-transition:enter="transition ease-out duration-300" 
+<div class="fixed bg-stone-950 bg-opacity-80 !top-0 !left-0 transition-all ease-in-out duration-300"  style="width: 100%; max-height: 100% ;min-height: 100% !important; z-index: 9999; backdrop-filter: blur(15px);" x-show="open" x-transition:enter="transition ease-out duration-300" 
 x-transition:enter-start="opacity-0 " 
 x-transition:enter-end="opacity-100" 
 x-transition:leave="transition ease-in duration-300" 
@@ -16,11 +16,11 @@ x-transition:leave-end="opacity-0">
 
         
 
-        <div class="pt-24 flex flex-col w-full items-center overflow-hidden overflow-y-scroll" style="max-height: 100vh">
-            <h1 class="text-3xl font-bold text-white mb-12 ">Que souhaitez vous voir ?</h1>
+        <div class="pt-24 flex flex-col w-full max-w-full items-center overflow-hidden overflow-y-scroll" style="max-height: 100vh">
+            <h1 class="text-2xl md:text-3xl font-bold text-white mb-12 ">Que souhaitez vous voir ?</h1>
             <form action="" class="flex justify-center gap-2">
                 @csrf
-                <input autofocus id="searchInput" type="text" class=" bg-white bg-opacity-20 border-none rounded-xl  text-2xl p-2 pl-4 pr-4 w-96 text-white focus:outline-none h-12" >
+                <input autofocus id="searchInput" type="text" class=" bg-white bg-opacity-20 border-none rounded-xl text-2xl p-2 pl-4 pr-4 w-80 md:w-96 text-white focus:outline-none h-12" >
                 {{-- <button id="btnSend" type="button" class="text-2xl  rounded-xl font-bold bg-cyan-600 hover:bg-cyan-500 transition-all ease-in-out duration-300"><svg class="h-12 w-12 p-2 text-stone-200 hover:opacity-90 opacity-70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button> --}}
                 
             </form>
