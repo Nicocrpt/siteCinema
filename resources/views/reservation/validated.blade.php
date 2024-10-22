@@ -42,8 +42,8 @@
     </div>
     <p class="text-center dark:text-white px-2 mb-20" >un email va vous être envoyé avec un QR Code à présenter à votre arrivée au cinéma.</p>
     <div class="fixed bottom-0 w-full grid grid-cols-2 h-16">
-        <button type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white border-r dark:border-r-zinc-800 text-center transition-all ease-in-out duration-300"><a href="{{route('index')}}" class="py-2 px-4">Retour à l'accueil</a></button>
-        <button type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white py-2 px-4 border-l dark:border-l-zinc-800 transition-all ease-in-out duration-300" ><a href="{{route('home')}}" class="">Accéder à mon compte</a></button>
+        <button type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white border-r border-r-cyan-900 text-center transition-all ease-in-out duration-300"><a href="{{route('index')}}" class="py-2 px-4">Retour à l'accueil</a></button>
+        <button type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white py-2 px-4 border-l border-l-cyan-900 transition-all ease-in-out duration-300" ><a href="{{route('home')}}" class="">Accéder à mon compte</a></button>
     </div>
 </div>
 @endsection

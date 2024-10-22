@@ -26,11 +26,11 @@
                         @endif
                     </div>  
                 </div>
-                <div class="flex flex-col justify-center items-center md:mt-20 h-[44px] hidden md:block">
+                <div class="flex-col justify-center items-center md:mt-20 hidden md:flex gap-2">
                     <p class="md:text-xl text-center text-white">Sieges séléctionnés : </p>
-                    <div class="flex justify-start gap-1 max-w-[150px] overflow-x-auto overflow-y-hidden">
+                    <div class="flex justify-center gap-1 flex-wrap mx-4">
                         <template x-for="seat in seats" :key="seat" class="">
-                            <span x-text="seat" class="rounded bg-slate-300 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm flex"></span>
+                            <span x-text="seat" class="rounded bg-slate-300 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm flex p-1"></span>
                         </template>
                     </div> 
                 </div>
@@ -41,21 +41,24 @@
         {{-- Side Menu --}}
         
 
-    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 transition-all ease-in-out duration-700 z-10">
-        <div class="relative mx-8 mt-56">
+    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 transition-all ease-in-out duration-700 z-10 pt-48 md:pt-32">
            
-            <div class="px-10">
+            <div class="px-2">
 
-
-                
-            
                 <div class="flex justify-center">
                     <x-seat-selector :salle="$seance->salle"/>
                 </div>
                 
+                <div class="flex flex-col justify-start items-center md:mt-20 mt-4 h-[44px] md:hidden gap-2">
+                    <p class="md:text-xl text-center dark:text-white">Sieges séléctionnés : </p>
+                    <div class="flex justify-center gap-1 flex-wrap p-2 pb-20">
+                        <template x-for="seat in seats" :key="seat" class="">
+                            <span x-text="seat" class="rounded bg-slate-300 p-1 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm flex"></span>
+                        </template>
+                    </div> 
+                </div>
             </div>
-            
-        </div>    
+
     </div>       
 
     <form action="{{route('seances.transfer', $seance->reference)}}" method="POST" class="fixed bottom-0 left-0 w-full h-16 items-center justify-center">

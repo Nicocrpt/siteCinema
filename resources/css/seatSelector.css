@@ -1,16 +1,12 @@
 /* seat selector */
 
 .seat {
-    width: 2vw; /* 32px */
-    height: 2vw; /* 32px */
-    background-color: #ddd;
+    @apply p-[1.5px] md:p-[3px];
+    width: 100%;
+    /* background-color: #ddd; */
     border-radius: 30%; /* 6px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    text-align: center;
     
   }
 
@@ -31,7 +27,6 @@
   .seatDemo {
     width: 2rem; /* 32px */
     height: 2rem; /* 32px */
-    border-radius: 0.6rem; /* 6px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +35,7 @@
   }
 
   .seat:hover {
-    background-color: #cbcbcb;
+    @apply bg-[#777777] dark:bg-[#dfdddd];
     color: #fff;
   }
 
@@ -51,20 +46,19 @@
   .seat.selected {
     background-color: rgb(65, 203, 148);
     color: #fff;
-    border: solid 2px rgb(104, 104, 104);
+    @apply border border-zinc-500 dark:border-zinc-300 xl:border-2;
     
   }
   .seat.Hand.selected {
     background-color: rgb(65, 203, 148);
     color: #fff;
-    border: solid 2px rgb(104, 104, 104);
+    
     
   }
 
 
   .seat.oqp {
-      background-color: rgb(253, 102, 102);
-      border: none;
+      background-color: rgba(228, 1, 1, 0.756);
       cursor: default;
   }
 
@@ -75,7 +69,8 @@
     }
 
     .seat.selected {
-      border: solid 0.8px rgb(104, 104, 104);
+      border: solid 0.8px;
+      @apply border-zinc-500 dark:border-zinc-300;
     }
 
     .seatDemo {
@@ -92,6 +87,10 @@
 
   .grid-cols-28-custom {
     grid-template-columns: repeat(30, minmax(0, 1fr));
+  }
+
+  .grid-cols-14-custom {
+    grid-template-columns: repeat(15, minmax(0, 1fr));
   }
 
   .gap-vw-2 {

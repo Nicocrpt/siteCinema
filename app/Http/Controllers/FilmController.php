@@ -78,7 +78,7 @@ class FilmController extends Controller
             }
         }
 
-        return view('films.show', compact('film', 'duration', 'datesSeances'));
+        return view('films.showV2', compact('film', 'duration', 'datesSeances'));
     }
 
 

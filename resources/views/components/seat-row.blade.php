@@ -1,6 +1,6 @@
 <div class="space-y-2">
     <!-- 1ère rangée -->
-        <div class="grid grid-cols-custom gap-2" x-data="seats('A')">
+        <div class="grid grid-cols-custom gap-2 w-full" x-data="seats('A')">
             {{-- <div :class="{selected: isChoosed('A01')}" class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%" @click="toggleSeat"></div> --}}
             <x-seat seat="{{$rangee}}{{$numero}}" />
             <x-seat seat="A02" />

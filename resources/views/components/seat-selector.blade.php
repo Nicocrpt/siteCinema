@@ -1,14 +1,15 @@
 @if ($salle->id === 1)
 
-    <div class="w-full max-w-6xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
-        <h1 class="text-2xl font-bold text-center mb-6">Disposition des Sièges</h1>
+    <div class="w-full md:max-w-[95%] xl:max-w-[80%] 2xl:max-w-[70%]  border-solid border border-gray-300 dark:border-zinc-500 rounded-md px-3 shadow-inner bg-neutral-300 dark:bg-[#3d3d3d]">
+        <h1 class="md:text-2xl text-lg mt-4 font-semibold text-center mb-6 dark:text-white">Disposition des Sièges</h1>
+
         <div class="grid grid-rows-12 gap-vw-2">
         
         
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-28-custom gap-2">
+                <div class="grid grid-cols-28-custom gap-auto place-items-center">
                    
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
@@ -16,7 +17,7 @@
                     <x-seat seat="A04" />              
                     <x-seat seat="A05" />
                     <x-seat seat="A06" /> 
-                    <div> </div>
+                    <div></div>
 
                     <!-- Séparation centrale -->
                     
@@ -36,7 +37,7 @@
                     <x-seat seat="A20" />
                     <x-seat seat="A21" />
                     <x-seat seat="A22" />
-                    <div> </div>
+                    <div></div>
                     <x-seat seat="A23" />
                     <x-seat seat="A24" />
                     <x-seat seat="A25" />
@@ -48,7 +49,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="B01" />
                         <x-seat seat="B02" />
@@ -89,7 +90,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="C01" />
                         <x-seat seat="C02" />
@@ -127,7 +128,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="D01" />
                         <x-seat seat="D02" />
@@ -165,7 +166,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="E01" />
                         <x-seat seat="E02" />
@@ -203,7 +204,7 @@
                 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="F01" />
                         <x-seat seat="F02" />
@@ -244,7 +245,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="G01" />
                         <x-seat seat="G02" />
@@ -282,7 +283,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="H01" />
                         <x-seat seat="H02" />
@@ -320,7 +321,7 @@
             
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="I01" />
                         <x-seat seat="I02" />
@@ -358,7 +359,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-2">
+                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
                         
                         <x-seat seat="J01" />
                         <x-seat seat="J02" />
@@ -397,35 +398,32 @@
         </div>
 
 
-        <div class="screen flex bg-gray-300 justify-center text-gray-500 text-sm font-bold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
+        <div class="screen flex bg-gray-300 justify-center text-gray-500 md:text-sm text-[0.4rem] h-2 md:h-3 lg:h-4 font-semibold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
 
 
-        <div class="sm:flex sm:flex-rows gap-10 justify-center items-center m-10">
+        <div class="flex sm:gap-10 gap-3 justify-center items-center mx-5 my-6">
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-red-400"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Occupé(s)</div>
+                <div class="seatDemo bg-red-400 rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Occupé(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-gray-300"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Libre(s)</div>
+                <div class="seatDemo dark:bg-slate-300 bg-[#b1b1b1]  rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Libre(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-green-400 border-solid border-2 border-gray-600"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Séléctionné(s)</div>
+                <div class="seatDemo bg-green-400 border-solid border rounded-lg border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Séléctionné(s)</div>
             </div>
         </div>
-
-        
-
 
     </div>  
 @elseif ($salle->id === 2)
 
 
-    <div class="w-full max-w-4xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
-        <h1 class="text-2xl font-bold text-center mb-6" id="title"></h1>
+    <div class="w-full md:max-w-[80%] border-solid border-2 border-gray-300 rounded-lg px-3 shadow-inner bg-slate-100">
+        <h1 class="md:text-2xl text-lg mt-2 font-bold text-center mb-6">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-10 gap-vw-2">
         
@@ -433,7 +431,7 @@
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     {{-- <div :class="{selected: isChoosed('A01')}" class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%" @click="toggleSeat"></div> --}}
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
@@ -460,7 +458,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center place-items-center">
                     <x-seat seat="B01" />
                     <x-seat seat="B02" />
                     <x-seat seat="B03" />
@@ -486,7 +484,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="C01" />
                     <x-seat seat="C02" />
                     <x-seat seat="C03" />
@@ -512,7 +510,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="D01" />
                     <x-seat seat="D02" />
                     <x-seat seat="D03" />
@@ -538,7 +536,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="E01" />
                     <x-seat seat="E02" />
                     <x-seat seat="E03" />
@@ -564,7 +562,7 @@
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="F01" />
                     <x-seat seat="F02" />
                     <x-seat seat="F03" />
@@ -592,7 +590,7 @@
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="G01" />
                     <x-seat seat="G02" />
                     <x-seat seat="G03" />
@@ -618,7 +616,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="H01" />
                     <x-seat seat="H02" />
                     <x-seat seat="H03" />
@@ -644,7 +642,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">
+                <div class="grid grid-cols-custom gap-auto place-items-center">
                     <x-seat seat="I01" />
                     <x-seat seat="I02" />
                     <x-seat seat="I03" />
@@ -668,31 +666,25 @@
                 </div>
             </div>
 
-        
-
-
-            
-
         </div>
 
+        <div class="screen flex bg-gray-300 justify-center text-gray-500 md:text-sm text-[0.4rem] h-2 font-semibold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
 
-        <div class="screen flex bg-yellow-200 justify-center text-gray-400 text-sm font-bold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
 
-
-        <div class="sm:flex sm:flex-rows gap-10 justify-center items-center m-10">
+        <div class="flex sm:gap-10 gap-3 justify-center items-center mx-5 my-6">
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-red-400"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Occupé(s)</div>
+                <div class="seatDemo bg-red-400 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Occupé(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-gray-300"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Libre(s)</div>
+                <div class="seatDemo bg-gray-300 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Libre(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-green-400 border-solid border-2 border-gray-600"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Séléctionné(s)</div>
+                <div class="seatDemo bg-green-400 border-solid border rounded border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Séléctionné(s)</div>
             </div>
         </div>
 
@@ -701,8 +693,8 @@
 
     </div>
 @else
-    <div class="w-full max-w-4xl border-solid border-2 border-gray-300 rounded-lg p-6 shadow-inner">
-        <h1 class="text-2xl font-bold text-center mb-6">Disposition des Sièges</h1>
+    <div class="w-full md:max-w-[80%] border-solid border-2 border-gray-300 rounded-lg px-3 shadow-inner bg-slate-100">
+        <h1 class="md:text-2xl text-lg mt-2 font-bold text-center mb-6">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-8 gap-vw-2">
         
@@ -710,7 +702,7 @@
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
                     <x-seat seat="A03" />
@@ -730,7 +722,7 @@
             </div>
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="B01" />
                     <x-seat seat="B02" />
                     <x-seat seat="B03" />
@@ -751,7 +743,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="C01" />
                     <x-seat seat="C02" />
                     <x-seat seat="C03" />
@@ -772,7 +764,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="D01" />
                     <x-seat seat="D02" />
                     <x-seat seat="D03" />
@@ -793,7 +785,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="E01" />
                     <x-seat seat="E02" />
                     <x-seat seat="E03" />
@@ -814,7 +806,7 @@
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="F01" />
                     <x-seat seat="F02" />
                     <x-seat seat="F03" />
@@ -835,7 +827,7 @@
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="G01" />
                     <x-seat seat="G02" />
                     <x-seat seat="G03" />
@@ -856,7 +848,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-2">              
+                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
                     <x-seat seat="H01" />
                     <x-seat seat="H02" />
                     <x-seat seat="H03" />
@@ -879,23 +871,23 @@
         </div>
 
 
-        <div class="screen flex bg-yellow-200 justify-center text-gray-400 text-sm font-bold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
+        <div class="screen flex bg-gray-300 justify-center text-gray-500 md:text-sm text-[0.4rem] h-2 font-semibold rounded-b-full shadow shadow-gray-500 items-center w-100">Ecran</div>
 
 
-        <div class="sm:flex sm:flex-rows gap-10 justify-center items-center m-10">
+        <div class="flex sm:gap-10 gap-3 justify-center items-center mx-5 my-6">
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-red-400"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Occupé(s)</div>
+                <div class="seatDemo bg-red-400 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Occupé(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-gray-300"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Libre(s)</div>
+                <div class="seatDemo bg-gray-300 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Libre(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-green-400 border-solid border-2 border-gray-600"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%"></div>
-                <div>Séléctionné(s)</div>
+                <div class="seatDemo bg-green-400 border-solid border rounded border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs" >Séléctionné(s)</div>
             </div>
         </div>
 

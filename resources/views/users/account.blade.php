@@ -46,9 +46,9 @@
             {{-- Side Menu --}}
             
 
-        <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10"
+        <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10 "
         :class="sideMenu ? 'md:ml-80' : 'ml-0'">
-            <div id="infoPerso" style="width: 80%; padding-left: 10%; padding-right: 10%; margin-top: 60px" class="relative pl-24">
+            <div id="infoPerso"  class="relative md:pl-48 px-4  w-full">
                 @if (session('success'))
                     <div class="flex justify-center absolute top-4" 
                         x-data="{show : true}"
