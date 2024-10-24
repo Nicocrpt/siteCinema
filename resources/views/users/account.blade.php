@@ -48,7 +48,7 @@
 
         <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10 "
         :class="sideMenu ? 'md:ml-80' : 'ml-0'">
-            <div id="infoPerso"  class="relative md:pl-48 px-4  w-full">
+            <div id="infoPerso"  class="relative md:pl-24 px-4  w-full">
                 @if (session('success'))
                     <div class="flex justify-center absolute top-4" 
                         x-data="{show : true}"
@@ -78,15 +78,15 @@
                     </div>
                     
                     <div style="max-width: 700px">
-                        <div class="flex gap-4 mt-10">
-                            <div>
+                        <div class="flex gap-4 mt-10 w-full">
+                            <div class="w-full">
                                 <x-input-label for="Nom" :value="__('Nom')" />
                                 @error('Nom')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
                                 @enderror
                                 <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Nom" id="Nom" value="{{ $user->nom }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                             </div>
-                            <div>
+                            <div class="w-full">
                                 <x-input-label for="Prenom" :value="__('Prenom')" />
                                 <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Prenom" id="Prenom" value="{{ $user->prenom }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                             </div>
@@ -104,11 +104,11 @@
                             <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Adresse" id="Adresse" value="{{ $user->adresse ? $user->adresse : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                         </div>
                         <div class="flex gap-4 mt-10">
-                            <div>
+                            <div class="w-full">
                                 <x-input-label for="CodePostal" :value="__('Code postal')" />
                                 <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="CodePostal" id="CodePostal" value="{{ $user->code_postal ? $user->code_postal : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                             </div>
-                            <div>
+                            <div class="w-full">
                                 <x-input-label for="Ville" :value="__('Ville')" />
                                 <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Ville" id="Ville" value="{{ $user->ville ? $user->ville : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                             </div>
