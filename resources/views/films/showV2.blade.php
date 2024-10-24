@@ -8,12 +8,12 @@
 
     
 
-    <div class="absolute md:fixed md:w-80 2xl:w-[32rem] w-full md:h-full h-64 top-0 bg-zinc-900  pt-14 gap-4 md:gap-10 shadow-md md:shadow-lg z-20 margin-0 transition-width ease-in-out duration-100">
+    <div class="absolute md:fixed md:w-80 2xl:w-[26rem] w-full md:h-full h-64 top-0 bg-zinc-900  pt-14 gap-4 md:gap-10 shadow-md md:shadow-lg z-20 margin-0 transition-width ease-in-out duration-100">
         <div class="flex gap-4 h-full w-full md:flex-col">
             <img src="{{ $film->url_affiche }}" alt="" class="h-full w-36 md:w-full md:h-auto">
-            <div class="flex flex-col mt-2 justify-evenly">
+            <div class="flex flex-col mt-2 justify-evenly pl-4 gap-4">
                 <h1 class="text-xl font-semibold text-white">{{ $film->titre }}</h1>
-                <div>
+                <div class="">
                     <p class="text-white text-xs">De :</p>
                     <p class="font-semibold">
                         @foreach ($film->realisateurs as $realisateur)
@@ -42,26 +42,26 @@
         </div>
     </div>
 
-    <div class=" w-full mt-64 md:mt-14 h-16 flex md:pl-80 2xl:pl-[32rem]">
+    <div class=" w-full mt-64 md:mt-14 h-16 flex md:pl-80 2xl:pl-[26rem]">
         <button @click="contentFilm = false" class="w-full h-full text-md font-semibold dark:text-white  transition-all ease-in-out duration-200" :class="contentFilm == true ? 'bg-neutral-300  shadow-inner-br dark:bg-neutral-700 rounded-br hover:bg-neutral-400 hover:dark:bg-neutral-500' : ''" :disabled="contentFilm == false">Informations</button>
         <button @click="contentFilm = true" class="w-full h-full text-md font-semibold   dark:text-white transition-all ease-in-out duration-200" :class="contentFilm == false ? 'bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 hover:dark:bg-neutral-500  shadow-inner-bl rounded-bl ' : ''">Seances</button>
     </div>
     
     <div x-show="contentFilm == false" class="md:pt-12 pt-10 px-4 gap-2 flex flex-col md:ml-80 2xl:ml-[32rem]">
-        <div class="w-full h-[60vw]">
+        <div class="w-full max-w-[1000px] aspect-[16/9]">
             <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded-md" ></iframe>
         </div>
         
-        <div class="h-[0.18rem] w-auto mt-14 mb-4 mx-1 bg-neutral-300 rounded-full dark:bg-neutral-500"></div>
+        <div class="max-w-[1000px] h-[0.18rem] w-auto mt-14 mb-4 mx-1 bg-neutral-300 rounded-full dark:bg-neutral-500"></div>
 
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 max-w-[1000px] ">
             <h1 class="text-2xl font-semibold dark:text-white">Synopsis</h1>
             <p class="dark:text-white text-sm">{{ $film->synopsis }}</p>
         </div>
         
-        <div class="h-[0.18rem] w-auto mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
+        <div class="max-w-[1000px] h-[0.18rem] w-auto mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
 
-        <div class="mx-4 pb-20">
+        <div class="max-w-[1000px] mx-1 pb-20">
             <img src="{{ $film->url_backdrop }}" alt="" class="rounded-lg shadow-md">
         </div>
     </div>
@@ -84,7 +84,7 @@
                         @foreach ($film->seances as $seance)
                             @if(strftime('%A %d %B', strtotime($seance->datetime_seance)) == $dateSeance)
                                 <a href="{{ route('seances.show', $seance->reference)}}">
-                                    <div class="flex flex-col justify-center items-center rounded bg-slate-400 p-1 px-2 hover:shadow-md gap-2 pb-2">
+                                    <div class="flex flex-col justify-center items-center rounded bg-slate-200 hover:bg-slate-300 dark:bg-slate-500 dark:hover:bg-slate-400 p-1 px-2 shadow gap-2 pb-2 transition-all ease-in-out duration-200 group">
                                         <p class="dark:text-white font-semibold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
                                         <div class="flex justify-center items-center gap-2">
                                             @if($seance->dolby_atmos)
@@ -94,7 +94,7 @@
                                                 <x-vision-logo :width="25" :class="'fill-black dark:fill-white'"/>
                                             @endif
                                             @if($seance->vf || (!$seance->vf && $seance->film->langue == 'FR'))
-                                                <p class="bg-slate-300 dark:text-white rounded px-1" title="Francais">VF</p>
+                                                <p class="bg-slate-300 dark:text-white rounded px-1 dark:group-hover:bg-slate-500 transition-all ease-in-out duration-200" title="Francais">VF</p>
                                             @else
                                                 <p class="bg-slate-300 dark:text-white rounded px-1 " title="{{$seance->film->langue->langue}}">VO</p>
                                             @endif

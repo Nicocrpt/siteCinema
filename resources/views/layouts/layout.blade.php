@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition bg-black" style="height: 100%"
+<body class="relative no-transition bg-neutral-100" style="height: 100%"
     x-data="{
         open : false, 
         dropdown : false,

@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-zinc-200 dark:bg-zinc-800 relative"
+<body class=" bg-neutral-50 dark:bg-zinc-800 relative"
 x-data="{
     open : false, 
     dropdown : false,

@@ -2,14 +2,14 @@
 @section('title' , 'Seance')
 
 @section('content')
-<div style="height: 100%; width: 100%"  class="relative" x-data="seats()" x-init="init()" >
+<div class="h-full w-full relative" x-data="seats()" x-init="init()" >
 
     
 
-    <div class="fixed md:absolute md:min-h-[100vh] md:min-w-80 h-44 w-full md:max-w-80 bg-zinc-900 pt-14 flex md:flex-col md:gap-10 shadow-lg md:shadow-black z-20 margin-0">
+    <div class="fixed md:absolute md:min-h-screen md:w-80 h-44 w-full 2xl:w-[26rem] bg-zinc-900 pt-14 flex md:flex-col md:gap-10 shadow-lg md:shadow-black z-20 margin-0">
             <img src="{{ $seance->film->url_affiche }}" alt="" class="md:w-full md:h-auto w-auto h-full">
             <div class="flex flex-col gap-3 justify-center items-center w-full">
-                <h1 class="md:text-xl text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m/Y',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
+                <h1 class="md:text-xl text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
                 <div class="flex md:flex-col gap-10 justify-center items-center">
                     <div class="flex justify-center items-center h-[44px] gap-2 sm:gap-5">
                         <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$seance->salle->id}}</p>
@@ -30,7 +30,7 @@
                     <p class="md:text-xl text-center text-white">Sieges séléctionnés : </p>
                     <div class="flex justify-center gap-1 flex-wrap mx-4">
                         <template x-for="seat in seats" :key="seat" class="">
-                            <span x-text="seat" class="rounded bg-slate-300 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm flex p-1"></span>
+                            <span x-text="seat" class="rounded bg-stone-950 text-white shadow-sm flex py-1 px-2 border border-zinc-900"></span>
                         </template>
                     </div> 
                 </div>
@@ -41,7 +41,7 @@
         {{-- Side Menu --}}
         
 
-    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 transition-all ease-in-out duration-700 z-10 pt-48 md:pt-32">
+    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 2xl:ml-[26rem] z-10 pt-48 md:pt-32">
            
             <div class="px-2">
 
@@ -69,6 +69,7 @@
         @enderror --}}
         <button class="
             md:pl-80
+            2xl:pl-[26rem]
             z-10
             shadow-lg
             fixed

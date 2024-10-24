@@ -1,15 +1,13 @@
 @if ($salle->id === 1)
 
-    <div class="w-full md:max-w-[95%] xl:max-w-[80%] 2xl:max-w-[70%]  border-solid border border-gray-300 dark:border-zinc-500 rounded-md px-3 shadow-inner bg-neutral-300 dark:bg-[#3d3d3d]">
+    <div class="w-full md:max-w-[95%] xl:max-w-[80%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
         <h1 class="md:text-2xl text-lg mt-4 font-semibold text-center mb-6 dark:text-white">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-12 gap-vw-2">
-        
-        
-        <!-- Exemple pour une rangée -->
+
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                    
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
@@ -17,7 +15,7 @@
                     <x-seat seat="A04" />              
                     <x-seat seat="A05" />
                     <x-seat seat="A06" /> 
-                    <div></div>
+                    <div class="emptySpace"></div>
 
                     <!-- Séparation centrale -->
                     
@@ -37,7 +35,7 @@
                     <x-seat seat="A20" />
                     <x-seat seat="A21" />
                     <x-seat seat="A22" />
-                    <div></div>
+                    <div class="emptySpace"></div>
                     <x-seat seat="A23" />
                     <x-seat seat="A24" />
                     <x-seat seat="A25" />
@@ -49,7 +47,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="B01" />
                         <x-seat seat="B02" />
@@ -90,7 +88,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="C01" />
                         <x-seat seat="C02" />
@@ -128,7 +126,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="D01" />
                         <x-seat seat="D02" />
@@ -166,7 +164,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="E01" />
                         <x-seat seat="E02" />
@@ -204,7 +202,7 @@
                 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="F01" />
                         <x-seat seat="F02" />
@@ -245,7 +243,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="G01" />
                         <x-seat seat="G02" />
@@ -283,7 +281,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="H01" />
                         <x-seat seat="H02" />
@@ -321,7 +319,7 @@
             
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="I01" />
                         <x-seat seat="I02" />
@@ -359,7 +357,7 @@
 
             <div class="space-y-2">
                 <!-- 1ère rangée -->
-                    <div class="grid grid-cols-28-custom gap-auto place-items-center">
+                    <div class="grid grid-cols-28-custom gap-vw-1 place-items-center">
                         
                         <x-seat seat="J01" />
                         <x-seat seat="J02" />
@@ -431,7 +429,7 @@
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     {{-- <div :class="{selected: isChoosed('A01')}" class="seat" id="A01"><img src="{{Storage::url('seats/seat.svg')}}" alt="" width="85%" @click="toggleSeat"></div> --}}
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
@@ -458,7 +456,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center place-items-center">
                     <x-seat seat="B01" />
                     <x-seat seat="B02" />
                     <x-seat seat="B03" />
@@ -484,7 +482,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="C01" />
                     <x-seat seat="C02" />
                     <x-seat seat="C03" />
@@ -510,7 +508,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="D01" />
                     <x-seat seat="D02" />
                     <x-seat seat="D03" />
@@ -536,7 +534,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="E01" />
                     <x-seat seat="E02" />
                     <x-seat seat="E03" />
@@ -562,7 +560,7 @@
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="F01" />
                     <x-seat seat="F02" />
                     <x-seat seat="F03" />
@@ -590,7 +588,7 @@
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="G01" />
                     <x-seat seat="G02" />
                     <x-seat seat="G03" />
@@ -616,7 +614,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="H01" />
                     <x-seat seat="H02" />
                     <x-seat seat="H03" />
@@ -642,7 +640,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-custom gap-auto place-items-center">
+                <div class="grid grid-cols-custom gap-vw-1 place-items-center">
                     <x-seat seat="I01" />
                     <x-seat seat="I02" />
                     <x-seat seat="I03" />
@@ -702,7 +700,7 @@
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="A01" />
                     <x-seat seat="A02" />
                     <x-seat seat="A03" />
@@ -722,7 +720,7 @@
             </div>
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="B01" />
                     <x-seat seat="B02" />
                     <x-seat seat="B03" />
@@ -743,7 +741,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="C01" />
                     <x-seat seat="C02" />
                     <x-seat seat="C03" />
@@ -764,7 +762,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="D01" />
                     <x-seat seat="D02" />
                     <x-seat seat="D03" />
@@ -785,7 +783,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="E01" />
                     <x-seat seat="E02" />
                     <x-seat seat="E03" />
@@ -806,7 +804,7 @@
                 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="F01" />
                     <x-seat seat="F02" />
                     <x-seat seat="F03" />
@@ -827,7 +825,7 @@
             
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="G01" />
                     <x-seat seat="G02" />
                     <x-seat seat="G03" />
@@ -848,7 +846,7 @@
 
             <div class="space-y-2">
             <!-- 1ère rangée -->
-                <div class="grid grid-cols-14-custom gap-auto place-items-center">              
+                <div class="grid grid-cols-14-custom gap-vw-1 place-items-center">              
                     <x-seat seat="H01" />
                     <x-seat seat="H02" />
                     <x-seat seat="H03" />
