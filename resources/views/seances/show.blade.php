@@ -6,7 +6,7 @@
 
     
 
-    <div class="fixed md:absolute md:min-h-screen md:w-80 h-44 w-full 2xl:w-[26rem] bg-zinc-900 pt-14 flex md:flex-col md:gap-10 shadow-lg md:shadow-black z-20 margin-0">
+    <div class="fixed md:absolute md:min-h-screen md:w-80 h-44 w-full 2xl:w-[26rem] bg-zinc-900 pt-14 flex md:flex-col md:gap-6 shadow-lg md:shadow-black z-20 margin-0">
             <img src="{{ $seance->film->url_affiche }}" alt="" class="md:w-full md:h-auto w-auto h-full">
             <div class="flex flex-col gap-2 justify-center items-center w-full">
                 <h1 class="md:text-xl text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
@@ -26,8 +26,8 @@
                         @endif
                     </div>  
                 </div>
-                <div class="flex-col justify-center items-center md:mt-20 hidden md:flex gap-2">
-                    <p class="md:text-xl text-center text-white">Sieges séléctionnés : </p>
+                <div class="flex-col justify-center items-center md:mt-8 hidden md:flex gap-2">
+                    <p class="md:text-xl text-center text-zinc-300">Sieges séléctionnés : </p>
                     <div class="flex justify-center gap-1 flex-wrap mx-4">
                         <template x-for="seat in seats" :key="seat" class="">
                             <span x-text="seat" class="rounded bg-stone-950 text-white shadow-sm flex py-1 px-2 border border-zinc-900"></span>

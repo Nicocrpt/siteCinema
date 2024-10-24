@@ -98,7 +98,7 @@
 
 
 <div x-data="filmsCarousel" x-init="init" class=" pt-10 pb-20 p-4 box relative">
-    <h1 class="text-3xl font-bold dark:text-white mb-10 title-section">Nos Films</h1>
+    <h1 class="text-3xl font-bold text-white mb-10 title-section">Nos Films</h1>
     <div class="owl-carousel owl-theme carousel-2 overflow-hidden overflow-x-scroll">
         @foreach ($films as $film)
             <div @click="onPosterClick($event)"  style="background-image: url({{$film->url_affiche}});height:450px;width: auto ;margin-left" class="bg-center bg-cover bg-no-repeat film flex flex-col justify-end">

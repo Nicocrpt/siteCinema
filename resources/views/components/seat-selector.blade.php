@@ -420,7 +420,7 @@
 @elseif ($salle->id === 2)
 
 
-    <div class="w-full md:max-w-[80%] border-solid border-2 border-gray-300 rounded-lg px-3 shadow-inner bg-slate-100">
+    <div class="w-full md:max-w-[95%] xl:max-w-[70%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
         <h1 class="md:text-2xl text-lg mt-2 font-bold text-center mb-6">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-10 gap-vw-2">
@@ -671,18 +671,18 @@
 
         <div class="flex sm:gap-10 gap-3 justify-center items-center mx-5 my-6">
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-red-400 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Occupé(s)</div>
+                <div class="seatDemo bg-red-400 rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Occupé(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-gray-300 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Libre(s)</div>
+                <div class="seatDemo dark:bg-slate-300 bg-[#b1b1b1]  rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Libre(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-green-400 border-solid border rounded border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Séléctionné(s)</div>
+                <div class="seatDemo bg-green-400 border-solid border rounded-lg border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Séléctionné(s)</div>
             </div>
         </div>
 
@@ -691,7 +691,7 @@
 
     </div>
 @else
-    <div class="w-full md:max-w-[80%] border-solid border-2 border-gray-300 rounded-lg px-3 shadow-inner bg-slate-100">
+    <div class="w-full md:max-w-[95%] xl:max-w-[70%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
         <h1 class="md:text-2xl text-lg mt-2 font-bold text-center mb-6">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-8 gap-vw-2">
@@ -874,18 +874,18 @@
 
         <div class="flex sm:gap-10 gap-3 justify-center items-center mx-5 my-6">
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-red-400 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Occupé(s)</div>
+                <div class="seatDemo bg-red-400 rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Occupé(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-gray-300 rounded"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Libre(s)</div>
+                <div class="seatDemo dark:bg-slate-300 bg-[#b1b1b1]  rounded-lg"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Libre(s)</div>
             </div>
         
             <div class="flex flex-row items-center gap-2">
-                <div class="seatDemo bg-green-400 border-solid border rounded border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
-                <div class="sm: text-xs" >Séléctionné(s)</div>
+                <div class="seatDemo bg-green-400 border-solid border rounded-lg border-gray-600"><svg class="opacity-5" viewBox="-2.64 -2.64 29.28 29.28" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#000000" stroke-width="0.4800000000000001" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+                <div class="sm: text-xs dark:text-white" >Séléctionné(s)</div>
             </div>
         </div>
 
