@@ -178,13 +178,13 @@ document.addEventListener('alpine:init', () => {
                             items: 2, // Un élément à la fois
                         },
                         600: {
-                            items: 2, // Un élément à la fois
+                            items: 3, // Un élément à la fois
                         },
-                        1050: {
+                        1000: {
                             items: 4
                         },
                         1400: {
-                            items: 4
+                            items: 6
                         },
                         
                         1750: {
