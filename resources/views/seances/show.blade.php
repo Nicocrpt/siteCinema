@@ -8,7 +8,7 @@
 
     <div class="fixed md:absolute md:min-h-screen md:w-80 h-44 w-full 2xl:w-[26rem] bg-zinc-900 pt-14 flex md:flex-col md:gap-10 shadow-lg md:shadow-black z-20 margin-0">
             <img src="{{ $seance->film->url_affiche }}" alt="" class="md:w-full md:h-auto w-auto h-full">
-            <div class="flex flex-col gap-3 justify-center items-center w-full">
+            <div class="flex flex-col gap-2 justify-center items-center w-full">
                 <h1 class="md:text-xl text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
                 <div class="flex md:flex-col gap-10 justify-center items-center">
                     <div class="flex justify-center items-center h-[44px] gap-2 sm:gap-5">
@@ -45,7 +45,7 @@
            
             <div class="px-2">
 
-                <div class="flex justify-center">
+                <div class="flex justify-center aspect-ratio-[16/9]">
                     <x-seat-selector :salle="$seance->salle"/>
                 </div>
                 

@@ -2,10 +2,10 @@
 @section('title' , 'Accueil')
 
 @section('content')
-<div class="flex flex-col items-center justify-center gap-5 mt-10 relative">
-    <h1 class="text-xl md:text-3xl text-center m-10 md:mt-24 md:mb-10 mb-0 font-bold dark:text-white">Merci pour votre Réservation ! </h1>
-    <div class=" md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%] w-full overflow-hidden flex-col items-center justify-center border-zinc-400 border-y-2 md:border-2 dark:bg-zinc-600   dark:border-zinc-500 bg-stone-300 md:rounded-lg">
-        <div class="flex items-center justify-start border-b-2 dark:border-zinc-500 border-zinc-400 dark:bg-zinc-700 bg-zinc-300">
+<div class="flex flex-col items-center justify-center gap-5 my-auto">
+    <h1 class="text-xl md:text-3xl text-center pt-24 md:my-auto mb-0 font-bold dark:text-white">Merci pour votre Réservation ! </h1>
+    <div class=" md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%] w-full overflow-hidden flex-col items-center justify-center border-zinc-400 border-y-2 md:border-2 dark:bg-zinc-600   dark:border-zinc-500 bg-stone-300 md:rounded-lg my-auto">
+        <div class="flex items-center justify-start border-b-2 dark:border-zinc-500 border-zinc-400 dark:bg-zinc-700 bg-zinc-300 md: gap-4">
             <img src="{{$reservation->seance->film->url_affiche}}" alt="" class="h-52 md:h-96 md:grid-col-1">
             <div class="flex flex-col gap-4  justify-center items-center h-full m-auto md:grid-col-2 col-span-2">
                 <p class="text-xl md:text-3xl font-bold dark:text-white">{{$reservation->seance->film->titre}}</p>

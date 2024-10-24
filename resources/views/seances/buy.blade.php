@@ -36,7 +36,7 @@
         
 
     <div class="relative overflow-hidden overflow-y-auto h-[100vh] md:ml-80 transition-all ease-in-out duration-700 z-10 shadow-lg">
-        <div class="mx-3 mt-48">
+        <div class="mx-3 mt-52 md:pt-16 md:my-auto">
            
             <div class="flex-col items-center justify-center" x-data="seats()">
                 <h1 class="md:text-3xl text-2xl text-center m-5 md:m-10 font-bold dark:text-white">Selectionnez vos tarifs</h1>

@@ -60,7 +60,6 @@ x-transition:leave-end="opacity-0">
         url += '?research=' + inputContent;
         console.log(url)
 
-    // Utilisation de fetch avec l'URL injectée
         fetch(url, {
             method: 'GET',
             headers: {
