@@ -120,7 +120,7 @@
 
 
 <div x-data="filmsBanner" x-init="init" class=" block top-0 absolute max-w-full">
-    <div class="owl-carousel owl-theme carousel-1  border-b-2  border-b-slate-200 max-h-fit" style="">
+    <div class="owl-carousel owl-theme carousel-1  border-b-2  border-b-neutral-300 max-h-fit" style="">
         @foreach ($films as $film)
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">
                 <div class="grid grid-rows-5 h-full w-full">
