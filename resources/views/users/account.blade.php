@@ -7,7 +7,7 @@
     
     <div style="height: 100%; width: 100%" x-data="{sideMenu : true}" class="relative">
 
-        <a @click="sideMenu = true" class="text-xl text-white p-3 px-4 rounded-r-xl bg-zinc-900 bg-opacity-90 hover:bg-opacity-100 transition-all ease-in-out duration-300 absolute top-24 left-0 cursor-pointer shadow-lg z-10"
+        <a @click="sideMenu = true" class="text-xl text-white p-3 px-4 rounded-r-xl bg-zinc-900 bg-opacity-90 hover:bg-opacity-100 transition-all ease-in-out duration-300 absolute md:top-24 top-16 left-0 cursor-pointer shadow-lg z-10"
         x-show="!sideMenu"
         x-transition:enter="transition transform ease-in-out duration-[1s]" 
         x-transition:enter-start="translate-x-[-100%]" 
@@ -18,7 +18,7 @@
             <svg fill="#ffffff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>icn/menu</title><path d="M2 3h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z" id="a"></path></g></svg>
         </a>
 
-        <div x-show="sideMenu" style="height: 100vh" class="absolute w-full max-w-80 bg-zinc-900 py-6 pt-24 flex flex-col gap-10 shadow-lg shadow-black z-20 margin-0"
+        <div x-show="sideMenu" style="height: 100vh" class="absolute w-full max-w-80 bg-zinc-900 py-6 md:pt-24 pt-16 flex flex-col gap-10 shadow-lg shadow-black z-20 margin-0"
             x-transition:enter="transition transform ease-in-out duration-500" 
             x-transition:enter-start="translate-x-[-100%]" 
             x-transition:enter-end="translate-x-0" 

@@ -1,5 +1,5 @@
 @extends('layouts.layoutNavigation')
-@section('title' , 'Films')
+@section('title' , $film->title)
 @section('content')
 
 <style>

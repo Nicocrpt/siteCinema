@@ -34,34 +34,15 @@
     <x-loading-screen/>
     <x-search-modal class="transition-all ease-in-out duration-300 overflow-hidden min-h-full"/>
 
-    <div class="fixed bottom-0 w-full left-0 bg-neutral-950 h-20 z-40 border-t-2 border-neutral-800 md:hidden">
-        <ul class="flex justify-center items-center h-full w-full">
-            <li class="h-full w-full border-r border-neutral-800">
-                <a href="" class="text-sm text-white font-semibold flex flex-cols items-center justify-center h-full w-full">
-                    Accueil
-                </a>
-            </li>
 
-            <li class="h-full w-full border-x border-neutral-800">
-                <a href="" class="text-sm text-white font-semibold flex flex-cols items-center justify-center h-full w-full">
-                    Films
-                </a>
-            </li>
 
-            <li class="h-full w-full border-x border-neutral-800">
-                <a href="" class="text-sm text-white font-semibold flex flex-cols items-center justify-center h-full w-full">
-                    Seances
-                </a>
-                
-            </li>
 
-            <li class="h-full w-full border-l border-neutral-800">
-                <a href="" class="text-sm text-white font-semibold flex flex-cols items-center justify-center h-full w-full">
-                    Compte
-                </a>
-            </li>
-        </ul>
-    </div>
+    <x-bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+
+    {{-- <x-floating-burger-menu/> --}}
+
+
+
     <main>
         @yield('content')
     </main>

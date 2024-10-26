@@ -20,12 +20,14 @@
     <header>
         <div class="fixed top-0 left-0 h-14  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(20,20,20,0.6); backdrop-filter: blur(15px);">
             <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
-            <ul class="row  flex space-x-6">
+
+            <ul class="row space-x-6 hidden md:flex">
                 <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
                 <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
                 <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
                 <li class="navBar-li"><a href="">Contact</a></li>
             </ul>
+            <p class="text-white text-xl font-base md:hidden">Le Cinéma</p>
         </div>
     </header>
 
@@ -33,7 +35,7 @@
         @yield('content')
     </main>
 
-    
+    <x-bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
     
     <footer>
 

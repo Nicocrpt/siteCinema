@@ -38,7 +38,7 @@
     <div class="relative overflow-hidden overflow-y-auto h-[100vh] md:ml-80 transition-all ease-in-out duration-700 z-10 shadow-lg">
         <div class="mx-3 mt-52 md:pt-16 md:my-auto">
            
-            <div class="flex-col items-center justify-center" x-data="seats()">
+            <div class="flex-col items-center justify-center pb-16" x-data="seats()">
                 <h1 class="md:text-3xl text-2xl text-center m-5 md:m-10 font-bold dark:text-white">Selectionnez vos tarifs</h1>
             
                 <div class="border-gray-300 border-2 dark:bg-zinc-600   dark:border-zinc-500 bg-stone-300  rounded-md shadow-sm mt-1 w-full md:max-w-[700px] md:m-auto block mb-24">
@@ -115,7 +115,8 @@
         z-10
         shadow-lg
         fixed
-        bottom-0
+        md:bottom-0
+        bottom-[4.5rem]
         left-0
         w-full
         text-xl

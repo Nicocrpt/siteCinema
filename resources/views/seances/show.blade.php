@@ -51,7 +51,7 @@
                 
                 <div class="flex flex-col justify-start items-center md:mt-20 mt-4 h-[44px] md:hidden gap-2">
                     <p class="md:text-xl text-center dark:text-white">Sieges séléctionnés : </p>
-                    <div class="flex justify-center gap-1 flex-wrap p-2 pb-20">
+                    <div class="flex justify-center gap-1 flex-wrap p-2 pb-40">
                         <template x-for="seat in seats" :key="seat" class="">
                             <span x-text="seat" class="rounded bg-slate-300 p-1 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm flex"></span>
                         </template>
@@ -73,7 +73,8 @@
             z-10
             shadow-lg
             fixed
-            bottom-0
+            bottom-[4.5rem]
+            md:bottom-0
             left-0
             w-full
             text-xl
@@ -87,7 +88,13 @@
             ease-in-out
             "
             :class="seats.length == 0 ? 'bg-gray-300 opacity-0' : 'dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600  text-white'"
-            type="submit" :disabled="seats.length == 0">
+            type="submit" :disabled="seats.length == 0"
+            x-transition:enter="transition ease-out duration-200" 
+            x-transition:enter-start="transform translate-x-[-100%]" 
+            x-transition:enter-end="transform translate-x-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="transform translate-x-0" 
+            x-transition:leave-end="transform translate-x-[-100%]" >
             Je valide ma séléction
         </button>   
     </form>

@@ -1,9 +1,9 @@
-<nav class="md:mx-5 mx-2 flex justify-between items-center h-14 navigation bg-transparent ">
-    <div class="flex items-center md:gap-10 gap-5">
+<nav class="md:mx-5 mx-2 flex justify-between items-center h-14 navigation bg-transparent md:flex-row flex-row-reverse">
+    <div class="flex items-center md:gap-10 gap-5 md:flex-row flex-row-reverse">
         <a cursor="pointer" @click="open = true">
-            <svg class="w-10 h-10 p-2 rounded-md hover:bg-slate-300 hover:bg-opacity-40 cursor-pointer transition-all ease-in-out duration-300" fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M497.938,430.063l-126.914-126.91C389.287,272.988,400,237.762,400,200C400,89.719,310.281,0,200,0 C89.719,0,0,89.719,0,200c0,110.281,89.719,200,200,200c37.762,0,72.984-10.711,103.148-28.973l126.914,126.91 C439.438,507.313,451.719,512,464,512c12.281,0,24.563-4.688,33.938-14.063C516.688,479.195,516.688,448.805,497.938,430.063z M64,200c0-74.992,61.016-136,136-136s136,61.008,136,136s-61.016,136-136,136S64,274.992,64,200z"></path> </g> </g></svg>
+            <svg class="w-[42px] h-[42px] md:w-10 md:h-10 p-2 rounded-md hover:bg-slate-300 hover:bg-opacity-40 cursor-pointer transition-all ease-in-out duration-300" fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M497.938,430.063l-126.914-126.91C389.287,272.988,400,237.762,400,200C400,89.719,310.281,0,200,0 C89.719,0,0,89.719,0,200c0,110.281,89.719,200,200,200c37.762,0,72.984-10.711,103.148-28.973l126.914,126.91 C439.438,507.313,451.719,512,464,512c12.281,0,24.563-4.688,33.938-14.063C516.688,479.195,516.688,448.805,497.938,430.063z M64,200c0-74.992,61.016-136,136-136s136,61.008,136,136s-61.016,136-136,136S64,274.992,64,200z"></path> </g> </g></svg>
         </a>
-        <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
+        <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="" class="hidden md:block">
         <ul class="lg:space-x-6 md:space-x-4 md:flex hidden">
             <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
             <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
@@ -21,7 +21,7 @@
                 </a>
     
     
-                <div @click.away="dropdown = false" class="p-1 absolute right-0 z-10 mt-4 w-48 origin-top-right  rounded-md bg-stone-600 bg-opacity-60 shadow-lg focus:outline-none"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
+                <div @click.away="dropdown = false" class="p-1 absolute right-0 z-10 mt-4 w-48 origin-top-right  rounded-md bg-stone-600 bg-opacity-60 shadow-lg focus:outline-none backdrop-blur"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
                     x-transition:enter="transition ease-out duration-200" 
                     x-transition:enter-start="transform opacity-0 scale-y-50" 
                     x-transition:enter-end="transform opacity-100 scale-y-100" 
@@ -52,8 +52,12 @@
         </a>
     </div>
     @endif
-    {{-- <div class="block md:hidden">
-        <svg fill="#ffffff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>icn/menu</title><path d="M2 3h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z" id="a"></path></g></svg>
-    </div> --}}
+
+    <div class="flex items-center justify-center gap-3 md:hidden">
+        <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
+        <p class="text-xl text-white font-base">Le Cinéma</p>
+    </div>
+    
+        
 
 </nav>

@@ -1,15 +1,18 @@
 @extends('layouts.layoutNavigation')
-@section('title' , 'Accueil')
+@section('title' , 'Séances')
 
 @section('content')
-    <div class="flex justify-center">
-        <x-date-caroussel/>
+    <div class="w-full h-full">
+        <div class="flex justify-center overflow-hidden">
+            <x-date-caroussel class=""/>
+        </div>
+        
+        <div class="flex flex-col items-center">
+            @foreach ($films as $film)
+            <x-seances-film-card :film="$film"/>
+        @endforeach
+        </div>
     </div>
     
-    <div class="flex flex-col items-center">
-        @foreach ($films as $film)
-        <x-seances-film-card :film="$film"/>
-    @endforeach
-    </div>
     
 @endsection

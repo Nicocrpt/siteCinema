@@ -1,5 +1,5 @@
 @extends('layouts.layoutNavigation')
-@section('title' , 'Films')
+@section('title' , $film->title)
 @section('content')
 
 
@@ -8,42 +8,40 @@
 
     
 
-    <div class="fixed md:absolute md:w-80 2xl:w-[26rem] w-full md:h-screen h-64 top-0 left-0 bg-zinc-900  pt-14 gap-4 md:gap-10 shadow-md md:shadow-lg z-20 margin-0 transition-width ease-in-out duration-100">
-        <div class="flex gap-4 h-full w-full md:flex-col">
-            <img src="{{ $film->url_affiche }}" alt="" class="h-full w-36 md:w-full md:h-auto">
-            <div class="flex flex-col mt-2 justify-evenly pl-4 gap-4">
+    <div class="fixed md:absolute md:w-80 2xl:w-[26rem] w-full md:h-screen h-56 top-0 left-0 bg-zinc-900  pt-14 gap-4 md:gap-10 shadow-md md:shadow-lg z-20 margin-0 transition-width ease-in-out duration-100">
+        <div class="flex gap-2 h-full w-full md:flex-col">
+            <img src="{{ $film->url_affiche }}" alt="" class="h-full w-36 md:w-full md:h-auto w-auto">
+            <div class="flex flex-col mt-2 justify-start md:justify-start pl-4 gap-5 h-full">
                 <h1 class="text-xl font-semibold text-white">{{ $film->titre }}</h1>
-                <div class="">
-                    <p class="text-white text-xs">De :</p>
-                    <p class="font-semibold">
+                <div class="flex flex-col gap-3">
+                    <div class="flex flex-wrap items-center">
+                        <p class="text-white text-xs font-semibold">De : &ensp;</p>
                         @foreach ($film->realisateurs as $realisateur)
                             @if ($realisateur == $film->realisateurs->last())
-                                <span class="text-white text-xs">{{ $realisateur->nom }}</span>
+                                <p class="text-white text-xs">{{ $realisateur->nom }}</p>
                             @else
-                            <span class="text-white text-xs"> {{ $realisateur->nom . "," }}</span>
+                            <p class="text-white text-xs"> {{ $realisateur->nom . ", &ensp;" }}</p>
                             @endif
                         @endforeach
-                    </p>
-                </div>
-                <p></p>
-                <div>
-                    <p class="text-white text-xs">Avec :</p>
-                    <p class="font-semibold">
+                    </div>
+                    <div class="flex flex-wrap items-center">
+                        <p class="text-white font-semibold text-xs">Avec : &ensp;</p>
+                        
                         @foreach ($film->acteurs as $acteur)
                             @if ($acteur == $film->acteurs->last())
-                                <span class="text-white text-xs">{{ $acteur->nom }}</span>
+                                <p class="text-white text-xs">{{ $acteur->nom }}</p>
                             @else
-                            <span class="text-white text-xs"> {{ $acteur->nom }}, </span>
+                                <p class="text-white text-xs"> {{ $acteur->nom }}, &ensp;</p>
                             @endif
                         @endforeach
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="w-screen h-screen overflow-hidden overflow-y-auto ">
-        <div class=" w-full mt-64 md:mt-14 h-16 flex md:pl-80 2xl:pl-[26rem]">
+        <div class=" w-full mt-56 md:mt-14 h-16 flex md:pl-80 2xl:pl-[26rem]">
             <button @click="contentFilm = false" class="w-full h-full text-md font-semibold dark:text-white  transition-all ease-in-out duration-200" :class="contentFilm == true ? 'bg-neutral-300  shadow-inner-br dark:bg-neutral-700 rounded-br hover:bg-neutral-400 hover:dark:bg-neutral-500' : ''" :disabled="contentFilm == false">Informations</button>
             <button @click="contentFilm = true" class="w-full h-full text-md font-semibold   dark:text-white transition-all ease-in-out duration-200" :class="contentFilm == false ? 'bg-neutral-300 dark:bg-neutral-700 hover:bg-neutral-400 hover:dark:bg-neutral-500  shadow-inner-bl rounded-bl ' : ''">Seances</button>
         </div>
@@ -62,7 +60,7 @@
             
             <div class="max-w-[1000px] h-[0.18rem] w-auto mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
     
-            <div class="max-w-[1000px] mx-1 pb-20">
+            <div class="max-w-[1000px] mx-3 pb-20">
                 <img src="{{ $film->url_backdrop }}" alt="" class="rounded-lg shadow-md">
             </div>
         </div>
