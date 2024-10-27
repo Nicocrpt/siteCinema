@@ -79,22 +79,22 @@
             w-full
             text-xl
             font-semibold
-            bg-gray-400
-            text-gray-500
-
             h-16
             transition-all
             duration-300
             ease-in-out
+            dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600 text-white
             "
-            :class="seats.length == 0 ? 'bg-gray-300 opacity-0' : 'dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600  text-white'"
+            {{-- :class="seats.length == 0 ? '' : 'dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600 text-white opacity-100'" --}}
+            x-show="seats.length > 0"
             type="submit" :disabled="seats.length == 0"
-            x-transition:enter="transition ease-out duration-200" 
-            x-transition:enter-start="transform translate-x-[-100%]" 
-            x-transition:enter-end="transform translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="transform translate-x-0" 
-            x-transition:leave-end="transform translate-x-[-100%]" >
+            {{-- x-init="$el.classList.remove('opacity-0')" --}}
+            x-transition:enter="transition transform ease-out duration-200" 
+            x-transition:enter-start="transition opacity-0 transform translate-y-[100%]" 
+            x-transition:enter-end="transform opacity-100 translate-y-0"
+            x-transition:leave="transition transform ease-in duration-200"
+            x-transition:leave-start="transition opacity-100 transform translate-y-0" 
+            x-transition:leave-end="transition opacity-0 transform translate-y-[100%]" >
             Je valide ma séléction
         </button>   
     </form>

@@ -1,5 +1,3 @@
-<div class="h-screen w-screen flex justify-center items-center absolute top-0 bg-black z-50" x-show="loading">
-
-    <svg fill="#000000" viewBox="0 0 24 24" width="50" id="loading" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="secondary" d="M16,18v3H8V18a6,6,0,0,1,2.4-4.8L12,12l1.6,1.2A6,6,0,0,1,16,18ZM16,6V3H8V6a6,6,0,0,0,2.4,4.8L12,12l1.6-1.2A6,6,0,0,0,16,6Z" style="fill: #2ca9bc; stroke-width: 2;"></path><path id="primary" d="M16,18v3H8V18a6,6,0,0,1,2.4-4.8L12,12l1.6,1.2A6,6,0,0,1,16,18ZM16,6V3H8V6a6,6,0,0,0,2.4,4.8L12,12l1.6-1.2A6,6,0,0,0,16,6ZM6,21H18M6,3H18" style="fill: none; stroke: #000000; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></g></svg>
-
+<div class="h-screen w-screen flex flex-col justify-center items-center gap-4 absolute top-0 bg-neutral-950 z-50" x-show="loading">
+    <svg width="50" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" type="rotate" dur="1s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg>
 </div>

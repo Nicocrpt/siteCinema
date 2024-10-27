@@ -27,7 +27,7 @@
                 <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
                 <li class="navBar-li"><a href="">Contact</a></li>
             </ul>
-            <p class="text-white text-xl font-base md:hidden">Le Cinéma</p>
+            <p class="text-white text-xl font-base md:hidden">La Pellicule</p>
         </div>
     </header>
 

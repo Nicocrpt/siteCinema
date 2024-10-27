@@ -1,5 +1,5 @@
 @extends('layouts.layoutNavigation')
-@section('title' , 'Accueil')
+@section('title' , 'Réservation validée')
 
 @section('content')
 <div class="flex flex-col items-center justify-center gap-5 my-auto">

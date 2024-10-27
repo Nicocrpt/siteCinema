@@ -82,6 +82,23 @@ class TmdbService
         }
 
         $dataIMG = json_decode($responseIMG->getBody(), true); 
+
+
+        $backdropCollection = [];
+        $count = 0 ;
+        foreach ($dataIMG['backdrops'] as $result)
+        {   
+            if ($count <= 8) {                
+                if ($result['iso_639_1'] == null) {
+                    $backdropCollection[] = "https://image.tmdb.org/t/p/original" . $result['file_path'];
+                    $count++;
+                }
+            }
+        }
+
+        $data['images'] = implode(',', $backdropCollection);
+
+
         $frCount = 0 ;
         $data['url_logo'] = null;
         foreach ($dataIMG['logos'] as $result)
@@ -151,6 +168,7 @@ class TmdbService
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
             'url_backdrop' => 'https://image.tmdb.org/t/p/original' . $movie['backdrop_path'],
             'url_trailer' => $trailer,
+            'images' => $movie['images'],
             'url_logo' => $movie['url_logo'],
             'duree' => $movie['runtime'],
             
@@ -314,6 +332,8 @@ class TmdbService
         if ($trailer) {
             $trailer = "https://www.youtube.com/embed/$trailer";
         }
+
+        $images = $movie['images']['backdrops'];
 
 
         DB::table('films')->insert([

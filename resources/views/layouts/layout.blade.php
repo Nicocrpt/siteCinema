@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition bg-zinc-800" style="height: 100%"
+<body class="relative no-transition h-full w-full bg-zinc-800"
     x-data="{
         open : false, 
         dropdown : false,

@@ -11,13 +11,15 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-neutral-50 dark:bg-zinc-800 relative"
+<body class=" bg-neutral-50 dark:bg-zinc-800"
 x-data="{
     open : false, 
     dropdown : false,
-}">
+    loading : true
+}"
+x-init="window.onload = () => loading = false; document.body.classList.remove('no-transition');">
     
-    <header class="">
+    <header class="z-30">
         <nav class="fixed top-0 h-14  w-full z-2 shadow-lg flex items-center justify-between px-5" style="background : rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
             <div class="flex md:gap-10 gap-3 items-center">
                 <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
@@ -27,7 +29,7 @@ x-data="{
                     <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
                     <li class="navBar-li"><a href="">Contact</a></li>
                 </ul>
-                <p class="text-white text-xl font-base md:hidden">Le Cinéma</p>
+                <p class="text-white text-xl font-base md:hidden">La Pellicule</p>
             </div>
             
             @if (Auth::check())
@@ -72,6 +74,8 @@ x-data="{
             </nav>
     </header>
 
+    <x-loading-screen/>
+    
     <main class="absolute top-0 left-0 w-full h-[100%]">
         @yield('content')
     </main>

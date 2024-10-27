@@ -1,5 +1,5 @@
 @extends('layouts.layoutNavigation')
-@section('title' , 'Accueil')
+@section('title' , 'Tarifs')
 
 @section('content')
 <div style="height: 100%; width: 100%"  class="relative" x-data="selectPrices()">
@@ -121,17 +121,19 @@
         w-full
         text-xl
         font-semibold
-        bg-gray-400
-        text-gray-500
-
+        dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600  text-white
         h-16
-        transition-colors
-        duration-300
-        ease-in-out
         "
         @click="document.getElementById('reservationForm').submit()"
-        :class="places != 0 ? 'bg-gray-300' : 'dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600  text-white'"
-        type="submit" :disabled="places != 0">
+        type="submit" :disabled="places != 0"
+        x-show="places == 0"
+        x-transition:enter="transition transform ease-out duration-200" 
+        x-transition:enter-start="transition opacity-0 transform translate-y-[100%]" 
+        x-transition:enter-end="transform opacity-100 translate-y-0"
+        x-transition:leave="transition transform ease-in duration-200"
+        x-transition:leave-start="transition opacity-100 transform translate-y-0" 
+        x-transition:leave-end="transition opacity-0 transform translate-y-[100%]"
+        >
         Je réserve !
     </button>       
          

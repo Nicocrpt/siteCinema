@@ -65,77 +65,6 @@ document.addEventListener('alpine:init', () => {
 
     }))
 
-    // Alpine.data('filmsCaroussel', () => ({
-    //     currentIndex: 0,
-    //     totalSlides : window.films ? window.films.length : 0,
-    //     slideInterval : null,
-    //     autoSlideInterval : 5000,
-    //     carouselBox : null,
-        
-    //     next() {
-
-    //         this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-    //         this.carouselBox.style.transform = `translateX(-${(this.currentIndex + this.totalSlides - 1) * 100}%)`;
-    //         this.resetAutoSlide();
-
-            
-
-
-    //         // this.currentIndex = (this.currentIndex + 1) % this.totalSlides
-    //         // // //this.carouselBox.append(this.carouselBox.firstElementChild)
-    //         // console.log(this.currentIndex)
-    //         // this.resetAutoSlide()
-    //         // console.log(this.currentIndex)
-    //         // // Débogage
-
-    //     },
-
-    //     prev() {
-            
-
-    //         console.log(this.totalSlides)
-    //         this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides
-    //         this.resetAutoSlide()
-    //     },
-
-    //     autoSlide() {
-    //         console.log('Autoslide initialized')
-    //         if(this.slideInterval)
-    //         {
-    //             clearInterval(this.slideInterval);
-    //         }
-    //         this.slideInterval = setInterval(() => {
-    //             console.log('calling next')
-    //             this.next()
-    //         },this.autoSlideInterval);
-            
-    //     },
-
-    //     resetAutoSlide() {
-    //         clearInterval(this.slideInterval); // Arrêter l'intervalle en cours
-    //         this.autoSlide(); // Relancer le défilement automatique
-    //     },
-
-    //     pauseAutoSlide() {
-    //         clearInterval(this.slideInterval); // Arrêter l'intervalle en cours
-    //     },
-
-    //     init() {
-    //         console.log('initialized');
-    //         this.carouselBox = document.querySelector('.carousel-container');  // Sélectionner la zone du carousel
-    //         this.autoSlide();
-
-    //         // Ajouter les événements pour mettre en pause ou redémarrer l'autoslide lors du survol
-    //         this.carouselBox.addEventListener('mouseenter', () => {
-    //             this.pauseAutoSlide();
-    //         });
-
-    //         this.carouselBox.addEventListener('mouseleave', () => {
-    //             this.resetAutoSlide();
-    //         });
-        
-    //     }
-    // }));
 
     Alpine.data('filmsBanner', () => ({
         init() {
@@ -163,69 +92,6 @@ document.addEventListener('alpine:init', () => {
 
         },
 
-    }));
-
-    Alpine.data('filmsCarousel', () => ({
-        init() {
-            //console.log('initialized');
-            $(document).ready(function() {
-                var owl = $('.carousel-2');
-
-                owl.owlCarousel({
-                    loop: true,
-                    responsive: {
-                        0: {
-                            items: 2, // Un élément à la fois
-                        },
-                        600: {
-                            items: 3, // Un élément à la fois
-                        },
-                        1000: {
-                            items: 4
-                        },
-                        1400: {
-                            items: 6
-                        },
-                        
-                        1750: {
-                            items: 5
-                        },
-                        2000: {
-                            items: 8, // Un élément à la fois
-                        },
-                    },
-     // Défilement infini
-                    dots: false,
-                    margin: 10,
-                    mouseDrag: true,
-                    stagePadding: 10,
-                    touchDrag: true,
-                    nav: true, // Dots pour la navigation
-
-                });
-            
-                // Force Owl Carousel à redimensionner les éléments en temps réel
-                $(window).on('resize', function() {
-                    owl.trigger('refresh.owl.carousel'); // Recalculer les dimensions
-                });
-            })
-        },
-
-        onPosterClick(e) {
-            const clickedFilm = e.target.closest('.owl-item')
-            const clickedContent = e.target.querySelector('.contenu')
-
-            if (!clickedFilm.classList.contains('details-active')) {
-                clickedFilm.classList.add('details-active')
-                clickedContent.classList.remove('hidden-content')
-                clickedContent.classList.add('actif')
-                
-            } else {
-                clickedFilm.classList.remove('details-active')
-                clickedContent.classList.remove('actif')
-                clickedContent.classList.add('hidden-content')
-            }
-        }
     }));
 
 
@@ -353,6 +219,29 @@ document.addEventListener('alpine:init', () => {
             
         }
     }))
+
+    Alpine.data('filmShow', () => ({
+        contentFilm: false, 
+        scrollState: 0, 
+        maxSize: 14, 
+        minSize: 11, 
+        scrollLimit: 100,
+        isSmallScreen: window.innerWidth <= 768,
+
+        init() {
+            window.addEventListener('resize', () => {
+                this.isSmallScreen = window.innerWidth <= 768 
+                console.log(this.isSmallScreen)
+            })
+
+            window.addEventListener('scroll', () => { 
+                if (this.isSmallScreen) {
+                    this.scrollState = Math.min(window.scrollY, this.scrollLimit)
+                }
+            })
+        }
+
+    }))
        
 
 });
@@ -366,31 +255,9 @@ $(window).on('load', function () {
     initBanner();
 });
 
-console.log('jQuery version:', $.fn.jquery);
 
-function initCarousel() {
-    console.log('initCarousel')
-    var owl = $(".custom-carousel").owlCarousel({
-        autoWidth: true,
-        loop: false,
-        margin: 10,
-        nav: false, // Activer les flèches de navigation
-        dots: false, // Désactiver les points de pagination
-        autoplay: false, // Activer le défilement automatique
-    });
-    $(".custom-carousel .film").click(function () {
-        $(".custom-carousel .film").not($(this)).removeClass("active");
-        $(this).toggleClass("active");
-      });
 
-    $('.owl-prev').on('click', function() {
-        owl.trigger('prev.owl.carousel');
-    });
 
-    $('.owl-next').on('click', function() {
-        owl.trigger('next.owl.carousel');
-    });
-}
 
 
 

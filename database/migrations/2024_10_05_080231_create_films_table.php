@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('url_backdrop')->nullable();
             $table->string('url_trailer')->nullable();
             $table->string('url_logo')->nullable();
+            $table->text('images')->nullable();
             $table->string('duree');
             $table->text('synopsis');
             $table->string('tagline')->nullable();
