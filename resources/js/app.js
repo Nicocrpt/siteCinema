@@ -226,12 +226,16 @@ document.addEventListener('alpine:init', () => {
         maxSize: 14, 
         minSize: 11, 
         scrollLimit: 100,
-        isSmallScreen: window.innerWidth <= 768,
+        isSmallScreen: window.innerWidth < 768,
+        is2xlScreen: window.innerWidth >= 1536,
+        fullscreenImage: false,
+        translation: 0,
 
         init() {
             window.addEventListener('resize', () => {
-                this.isSmallScreen = window.innerWidth <= 768 
+                this.isSmallScreen = window.innerWidth < 768 
                 console.log(this.isSmallScreen)
+                this.is2xlScreen = window.innerWidth >= 1536
             })
 
             window.addEventListener('scroll', () => { 

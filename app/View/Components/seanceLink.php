@@ -6,14 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class monoimageSlider extends Component
+class seanceLink extends Component
 {
-    public $images;
+    /**
+     * Create a new component instance.
+     */
 
-    public function __construct($images)
+    public $seance;
+    public function __construct($seance)
     {
-        $this->images = $images;
-
+        $this->seance = $seance;
     }
 
     /**
@@ -21,6 +23,6 @@ class monoimageSlider extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.monoimage-slider');
+        return view('components.seance-link');
     }
 }

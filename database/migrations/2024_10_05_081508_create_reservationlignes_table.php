@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservationlignes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservation_id')->constrained('reservations')->onDelete('cascade');
-            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
+            $table->foreignId('reservation_id')->constrained('reservations');
+            $table->foreignId('place_id')->constrained('places');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 

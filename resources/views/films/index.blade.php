@@ -33,10 +33,5 @@
         
     </div>
 
-    <script>
-        // Assurez-vous que le script est chargé après le DOM
-        document.addEventListener('alpine:init', () => {
-            Alpine.start();
-        });
-    </script>
+
 @endsection

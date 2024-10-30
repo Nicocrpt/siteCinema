@@ -6,30 +6,32 @@
 
     
 
-    <div class="fixed md:min-h-[100vh] md:min-w-80 h-44 w-full md:max-w-80 bg-zinc-900 pt-14 flex md:flex-col md:gap-10 shadow-lg md:shadow-black z-20 margin-0">
-            
-            <img src="{{ $seance->film->url_affiche }}" alt="" class="md:w-full md:h-auto w-auto h-full">
-            <div class="flex flex-col gap-3 justify-center items-center w-full">
-                <h1 class="text-lg text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
-                <div class="flex md:flex-col gap-10 justify-center items-center">
-                    <div class="flex justify-center items-center h-[44px] gap-2">
-                        <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$seance->salle->id}}</p>
-                        @if ($seance->dolby_atmos)
-                            <x-atmos-logo :width="35" :class="'fill-white'"/>  
-                        @endif
-                        @if ($seance->dolby_vision)    
-                            <x-vision-logo :width="35" :class="'fill-white'"/>
-                        @endif
-                        @if ($seance->vf)
-                            <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2">VF</p>
-                        @else
-                            <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2" title="{{$seance->film->langue->langue}}">VOST</p>
-                        @endif
-                    </div> 
+    <div class="fixed md:fixed md:w-80 xl:w-[26rem] w-full h-44 md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-black md:shadow-lg z-20 margin-0 overflow-hidden">
+            <div class="h-full md:max-h-[620px] xl:max-h-[760px] w-full flex md:block relative">
+                <img src="{{ $seance->film->url_affiche }}" alt="" class="h-full md:w-full md:h-auto w-auto flex-shrink">
+                <div class="flex flex-col py-4 w-[94%] md:ml-[3%] md:mr-[3%] md:my-3 bg-zinc-900 bg-opacity-70 justify-evenly md:justify-start px-4 flex-grow overflow-hidden md:absolute md:bottom-0 backdrop-blur rounded-md">
+                    <h1 class="text-lg text-center mt-2 font-semibold text-zinc-300">Séance du {{ date('d/m',strtotime($seance->datetime_seance)) }} à {{ date('H:i',strtotime($seance->datetime_seance)) }}</h1>
+                    <div class="flex md:flex-col gap-10 justify-center items-center">
+                        <div class="flex justify-center items-center h-[44px] gap-2">
+                            <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$seance->salle->id}}</p>
+                            @if ($seance->dolby_atmos)
+                                <x-atmos-logo :width="35" :class="'fill-white'"/>  
+                            @endif
+                            @if ($seance->dolby_vision)    
+                                <x-vision-logo :width="35" :class="'fill-white'"/>
+                            @endif
+                            @if ($seance->vf)
+                                <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2">VF</p>
+                            @else
+                                <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2" title="{{$seance->film->langue->langue}}">VOST</p>
+                            @endif
+                        </div> 
+                        
+                    </div>
                     
                 </div>
-                
             </div>
+            
     </div>
     
         {{-- Side Menu --}}

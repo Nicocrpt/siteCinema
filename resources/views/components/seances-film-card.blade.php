@@ -1,15 +1,10 @@
-<div class="grid grid-cols-8 border-solid border-2 border-gray-800 m-5 w-5/6 p-4 rounded-xl">
-    <img src="{{$film->url_affiche}}" alt="">
-    <div class="col-span-7 flex flex-col justify-between">
-        <p class="text-center"><span class="text-2xl font-bold">{{$film->titre}}</p>
-        <div class="flex justify-evenly ml-20 mr-20">
+<div class="flex bg-zinc-300 dark:bg-zinc-700 shadow-md overflow-hidden mx-[4%] md:px-5 my-2 w-[92%] md:h-52 h-40 gap-4 rounded-md">
+    <img src="{{$film->url_affiche}}" alt="" class="h-full w-auto">
+    <div class="col-span-7 flex flex-col justify-between items-start gap-14 my-4">
+        <p><span class="md:text-2xl text-lg font-bold dark:text-white">{{$film->titre}}</p>
+        <div class="flex gap-4">
             @foreach ($film->seances as $seance)
-                <a href="{{ route('seances.show', $seance->reference)}}">
-                    <div class="flex flex-col justify-center items-center bg-amber-100 rounded-xl p-2 mt-4">
-                        <p class="text-slate-600 font-bold">{{ date('d',strtotime($seance->datetime_seance)) }}</p>
-                        <p class="text-slate-600 font-bold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
-                    </div>
-                </a>
+                <x-seance-link :seance="$seance"/>
             @endforeach
         </div>
     </div>

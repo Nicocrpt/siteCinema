@@ -61,8 +61,9 @@ class FilmController extends Controller
     public function index(): View
     {
         $films = Film::all();
+        $genres = Genre::all();
 
-        return view('films.index', compact('films'));
+        return view('films.indexV2', compact('films', 'genres'));
     }
 
     public function show($slug): View

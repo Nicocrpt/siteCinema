@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('ville')->nullable()->default(null);
             $table->foreignId('pays_id')->nullable()->constrained('payss');
             $table->boolean('statut_abo')->default(false);
+            $table->integer('points_fidelite')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->dateTime('created_at')->useCurrent();

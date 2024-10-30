@@ -333,7 +333,21 @@ class TmdbService
             $trailer = "https://www.youtube.com/embed/$trailer";
         }
 
-        $images = $movie['images']['backdrops'];
+        
+        $backdropCollection = [];
+        $count = 0 ;
+        foreach ($movie['images']['backdrops'] as $result)
+        {   
+            if ($count <= 8) {                
+                if ($result['iso_639_1'] == null) {
+                    $backdropCollection[] = "https://image.tmdb.org/t/p/original" . $result['file_path'];
+                    $count++;
+                }
+            }
+        }
+
+        $movie['images'] = implode(',', $backdropCollection);
+
 
 
         DB::table('films')->insert([
@@ -349,6 +363,7 @@ class TmdbService
             'url_backdrop' => $movie['backdrop_path'],
             'url_trailer' => $trailer,
             'url_logo' => $movie['logo_path'],
+            'images' => $movie['images'],
             'duree' => $movie['runtime'],   
         ]);
 
