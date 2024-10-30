@@ -36,9 +36,11 @@ class ReservationController extends Controller
         $request->validate([
             'seance' => 'required',
             'places' => 'required',
+            'prices' => 'required'
         ]);
 
         $places = explode(',', $request['places']);
+        $prices = explode(',', $request['prices']);
 
         Reservation::create([
             'seance_id' => $request['seance'],
@@ -50,7 +52,8 @@ class ReservationController extends Controller
         foreach($places as $place){
             Reservationligne::create([
                 'reservation_id' => Reservation::latest()->first()->id,
-                'place_id' => Place::where('rangee', substr($place, 0, 1))->where('numero', substr($place, 1))->where('salle_id', Seance::where('id', $request['seance'])->first()->salle_id)->first()->id
+                'place_id' => Place::where('rangee', substr($place, 0, 1))->where('numero', substr($place, 1))->where('salle_id', Seance::where('id', $request['seance'])->first()->salle_id)->first()->id,
+                'prix' => $prices[array_search($place, $places)]
             ]);
         };
         

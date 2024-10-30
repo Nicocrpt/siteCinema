@@ -13,6 +13,7 @@ class Reservationligne extends Model
     protected $fillable = [
         'reservation_id',
         'place_id',
+        'prix',
     ];
 
     public function reservation(): BelongsTo

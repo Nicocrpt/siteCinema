@@ -62,6 +62,7 @@
                         <div class=" mt-8 space-x-4">
                             
                             <form action="{{route('reservations.store')}}" method="POST" class="flex flex-col gap-1 md:gap-5" id="reservationForm">
+                                <input type="hidden" name="prices" id="prices" :value="totalArray">
                                 <input type="hidden" name="places" id="places" value="{{ implode(',', $places)}}">
                                 <input type="hidden" name="seance" id="seance" value="{{ $seance->id }}">
             

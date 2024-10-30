@@ -25,6 +25,7 @@ class ReservationligneFactory extends Factory
         return [
             'reservation_id' => $randId,
             'place_id' => $place->id,
+            'prix' => [9,6][rand(0,1)]
         ];
 
         

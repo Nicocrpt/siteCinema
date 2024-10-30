@@ -100,6 +100,8 @@ document.addEventListener('alpine:init', () => {
         placesMax: window.selectedPlaces.length,
         totalHTML: document.getElementById('total'),
         total: 0,
+        totalArray : [],
+        index: 0,
 
         updateValueSTD(e){
             const button = e.target
@@ -109,6 +111,7 @@ document.addEventListener('alpine:init', () => {
                     this.places = this.places - 1
 
                     this.total += 9
+                    this.totalArray.push(9)
                     this.totalHTML.innerHTML = this.total.toString()
 
                     console.log(this.places)
@@ -138,7 +141,13 @@ document.addEventListener('alpine:init', () => {
                 if (this.places != this.placesMax && document.getElementById('priceSTD').value != 0) {
                     document.getElementById('priceSTD').value = parseInt(document.getElementById('priceSTD').value) - 1
                     this.places = this.places + 1
+
                     this.total -= 9
+                    this.index = this.totalArray.indexOf(9)
+                    if (this.index > -1) {
+                        this.totalArray.splice(this.index, 1)
+                    }
+
                     this.totalHTML.innerHTML = this.total.toString()
                     document.getElementById('plusSTD').classList.remove('bg-gray-300')
                     document.getElementById('plusSTD').classList.add('bg-cyan-500')
@@ -157,7 +166,7 @@ document.addEventListener('alpine:init', () => {
                     document.getElementById('labelET').classList.remove('text-gray-200')
                 }
             }
-
+            console.log(this.totalArray)
             
         },
         updateValueET(e){
@@ -167,6 +176,7 @@ document.addEventListener('alpine:init', () => {
                     document.getElementById('priceET').value = parseInt(document.getElementById('priceET').value) + 1
                     this.places = this.places - 1
                     this.total += 6
+                    this.totalArray.push(6)
                     this.totalHTML.innerHTML = this.total.toString()
                     console.log(this.places)
                     if (this.places == 0) {
@@ -196,7 +206,13 @@ document.addEventListener('alpine:init', () => {
                 if (this.places != this.placesMax && document.getElementById('priceET').value != 0) {
                     document.getElementById('priceET').value = parseInt(document.getElementById('priceET').value) - 1
                     this.places = this.places + 1
+
                     this.total -= 6
+                    this.index = this.totalArray.indexOf(6)
+                    if (this.index > -1) {
+                        this.totalArray.splice(this.index, 1)
+                    }
+
                     this.totalHTML.innerHTML = this.total.toString()
                     document.getElementById('plusET').classList.remove('bg-gray-300')
                     document.getElementById('plusET').classList.add('bg-cyan-500')
@@ -215,7 +231,7 @@ document.addEventListener('alpine:init', () => {
                     document.getElementById('labelSTD').classList.remove('text-gray-200')
                 }
             }
-
+            console.log(this.totalArray)
             
         }
     }))

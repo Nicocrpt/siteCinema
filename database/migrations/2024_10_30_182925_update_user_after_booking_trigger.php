@@ -14,12 +14,16 @@ return new class extends Migration
     {
         DB::unprepared('
 
+
+
             CREATE TRIGGER delete_lines_after_booking_cancel
             BEFORE DELETE ON reservations
             FOR EACH ROW
             BEGIN
                 DELETE FROM reservationlignes WHERE reservation_id = OLD.id;
             END;
+
+
 
             CREATE TRIGGER update_user_after_booking
             AFTER INSERT ON reservationlignes
@@ -29,6 +33,9 @@ return new class extends Migration
                 SET points_fidelite = points_fidelite + 1
                 WHERE id = (SELECT user_id FROM reservations WHERE id = NEW.reservation_id);
             END;
+
+
+
 
             CREATE TRIGGER update_user_after_cancel_places
             AFTER DELETE ON reservationlignes
