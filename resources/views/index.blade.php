@@ -12,7 +12,7 @@
                 <div class="mt-16">
                     <div class="flex items-center gap-4">
                         <h1 class="text-2xl font-bold text-white ml-[2%]">Films à l'affiche</h1>
-                        <a href="{{ route('films.index') }}" class="underline text-xs text-white">Voir tout les films</a>
+                        <a href="{{ route('films.index') }}" class="underline text-xs text-white">Voir tous les films</a>
                     </div>
                     
                     {{-- <x-films-caroussel :films="$films"/> --}}

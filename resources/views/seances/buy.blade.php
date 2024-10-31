@@ -4,7 +4,7 @@
 @section('content')
 <div style="height: 100%; width: 100%"  class="relative" x-data="selectPrices()">
 
-    
+    <x-guest-modal/>
 
     <div class="fixed md:fixed md:w-80 xl:w-[26rem] w-full h-44 md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-black md:shadow-lg z-20 margin-0 overflow-hidden">
             <div class="h-full md:max-h-[620px] xl:max-h-[760px] w-full flex md:block relative">
@@ -62,6 +62,7 @@
                         <div class=" mt-8 space-x-4">
                             
                             <form action="{{route('reservations.store')}}" method="POST" class="flex flex-col gap-1 md:gap-5" id="reservationForm">
+                                <input type="email" class="hidden" name="email" id="email" value="" :disabled="user ? true : false">
                                 <input type="hidden" name="prices" id="prices" :value="totalArray">
                                 <input type="hidden" name="places" id="places" value="{{ implode(',', $places)}}">
                                 <input type="hidden" name="seance" id="seance" value="{{ $seance->id }}">
@@ -127,7 +128,7 @@
         dark:bg-green-700 bg-green-600 hover:bg-green-500 dark:hover:bg-green-600  text-white
         h-16
         "
-        @click="document.getElementById('reservationForm').submit()"
+        @click="console.log(user); user ? document.getElementById('reservationForm').submit() : guestModal = true"
         type="submit" :disabled="places != 0"
         x-show="places == 0"
         x-transition:enter="transition transform ease-out duration-200" 
@@ -144,6 +145,7 @@
 
 <script>
     window.selectedPlaces = @json($places);
+    window.user = @json(Auth::check())
 </script>
 
 @endsection

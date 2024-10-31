@@ -102,6 +102,8 @@ document.addEventListener('alpine:init', () => {
         total: 0,
         totalArray : [],
         index: 0,
+        guestModal: false,
+        user: window.user,
 
         updateValueSTD(e){
             const button = e.target

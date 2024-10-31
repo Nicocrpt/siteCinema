@@ -15,6 +15,7 @@ class Reservation extends Model
         'seance_id',
         'reference',
         'user_id',
+        'guest_mail'
     ];
 
     public function reservationlignes(): HasMany

@@ -17,7 +17,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -36,9 +36,11 @@ class ReservationController extends Controller
         $request->validate([
             'seance' => 'required',
             'places' => 'required',
-            'prices' => 'required'
+            'prices' => 'required',
+            'email' =>  ['email', 'max:255']
         ]);
 
+        
         $places = explode(',', $request['places']);
         $prices = explode(',', $request['prices']);
 
@@ -46,6 +48,7 @@ class ReservationController extends Controller
             'seance_id' => $request['seance'],
             'reference' => uniqid(),
             'user_id' => Auth::id() ?? null,
+            'guest_mail' => $request['email'] ?? null
         ]);
 
         
