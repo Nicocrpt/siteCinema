@@ -5,7 +5,7 @@
 
 
     
-    <div style="height: 100%; width: 100%" x-data="{sideMenu : true}" class="relative">
+    <div style="height: 100%; width: 100%" x-data="userPage()" x-init="init()" class="relative">
 
         <a @click="sideMenu = true" class="text-xl text-white p-3 px-4 rounded-r-xl bg-zinc-900 bg-opacity-90 hover:bg-opacity-100 transition-all ease-in-out duration-300 absolute md:top-24 top-16 left-0 cursor-pointer shadow-lg z-10"
         x-show="!sideMenu"
@@ -46,25 +46,17 @@
             {{-- Side Menu --}}
             
 
-        <div class=" overflow-hidden overflow-y-auto h-[100vh] transition-all ease-in-out duration-500 z-10 md:ml-80"
+        <div class=" overflow-hidden overflow-y-auto h-[100vh] w-auto transition-all ease-in-out duration-500 z-10 md:ml-80"
         :class="sideMenu ? 'md:ml-80' : 'ml-0 md:ml-0'">
+
+            <div x-show="formsStatus" x-transition:enter="transition transform ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-[-200%]" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition transform ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-[-200%]" class=" absolute top-16 w-full flex justify-around items-center z-40">
+                <p id="responseValue" class="bg-green-500 text-white p-4 w-fit rounded-lg"></p>
+            </div>
+
             <div id="infoPerso"  class="relative md:pl-24 px-4  w-full">
-                @if (session('success'))
-                    <div class="flex justify-center absolute top-4" 
-                        x-data="{show : true}"
-                        x-init="setTimeout(() => show = false, 3000)" 
-                        x-show="show"
-                        x-transition:leave="transition ease-in-out duration-500"
-                        x-transition:leave-start="opacity-100" 
-                        x-transition:leave-end="opacity-0">
-                        <p class="py-1 px-2 bg-green-500 border-2 border-green-700 rounded text-white shadow-lg">{{session('success')}}</p>
-                    </div>
-                @elseif (session('error'))
-                    <div class="flex justify-center absolute top-4">
-                        <p class="py-1 px-2 bg-red-500 rounded text-white shadow-sm">{{session('error')}}</p>
-                    </div>
-                @endif
-                <form action="{{route('users.update', $user->id)}}" method="POST" x-data="{active_form : false}" class="mt-32">
+
+
+                <form action="{{route('users.update', $user->id)}}" method="POST" class="mt-32">
                     @csrf
                     @method('PUT')
                     <div class="flex gap-4 w-full">
@@ -113,7 +105,7 @@
                                 <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Ville" id="Ville" value="{{ $user->ville ? $user->ville : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
                             </div>
                         </div>
-                        <button type="submit" class="text-md text-white w-fit p-2 px-3 mr-4 rounded-md bg-cyan-600 hover:bg-cyan-500 transition-all ease-in-out duration-300 cursor-pointer mt-6 shadow-sm" 
+                        <button type="submit" @click="onUpdateUserInfoClick($event)" class="text-md text-white w-fit p-2 px-3 mr-4 rounded-md bg-cyan-600 hover:bg-cyan-500 transition-all ease-in-out duration-300 cursor-pointer mt-6 shadow-sm" 
                         x-show="active_form"
                         x-transition:enter="transition transform ease-in-out duration-500"
                         x-transition:enter-start="transform opacity-0"
@@ -132,13 +124,29 @@
                     </div>
                     <h1 class="text-3xl font-semibold dark:text-white">Réservations</h1>
                 </div>  
-                @foreach ($user->reservations as $reservation)
-                    <div class="grid grid-cols-4 p-2 border border-zinc-400 shadow-md bg-zinc-600 hover:bg-zinc-500 rounded-lg mb-5 transition-all ease-in-out duration-300" style="max-width: 1000px">
+
+                @foreach ($user->reservations->where('is_active', true) as $reservation)
+                    <div class="reservationDisplay relative grid grid-cols-4 p-2 border border-zinc-400 shadow-md bg-zinc-600 hover:bg-zinc-500 rounded-lg mb-5 transition-all ease-in-out duration-300" style="max-width: 1000px">
+                        <form action="{{route('reservations.destroy', $reservation)}}" method="POST" class="absolute top-0 right-0 p-2" data-url="{{ route('reservations.destroy', $reservation) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button @click="onDeleteReservationClick($event)" id="deleteReservation" class="px-4 py-2 bg-red-500 rounded-md hover:bg-red-600">X</button>
+                        </form>
                         <img class="col-span-1 rounded-md w-full" src="{{$reservation->seance->film->url_affiche}}" alt="">
                         <div class="col-span-3 pl-5">
                             <h1 class="text-xl font-semibold dark:text-white">{{$reservation->seance->film->titre}}</h1>
                             <p class="dark:text-white" >{{$reservation->seance->datetime_seance}}</p>
                             <p class="dark:text-white">référence : {{$reservation->reference}}</p>
+                            <div class="mt-4 flex flex-col w-full gap-2">
+                                @foreach ($reservation->reservationlignes as $reservationLigne)
+                                    <form action="{{route('reservationlignes.destroy', $reservationLigne->id)}}" method="POST" class="flex justify-start items-center gap-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <p>{{$reservationLigne->place->rangee.$reservationLigne->place->numero}}</p>
+                                        <button @click="onDeleteLineClick($event)" class="px-2 py-1 h-full bg-red-500 rounded-md hover:bg-red-600">X</button>
+                                    </form>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -148,4 +156,5 @@
             {{-- Main Content --}}
              
     </div>
+
 @endsection

@@ -91,9 +91,16 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Request $request, Reservation $reservation)
+    {   
+        try {
+            $reservation->is_active = false;
+            $reservation->save();
+            return response()->json(['success' => 'Reservation supprimée avec succès !'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['erreur' => 'Une erreur s\'est produite lors de la suppression'], 500);
+        }
+        
     }
 
 

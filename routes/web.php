@@ -3,8 +3,10 @@
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReservationligneController;
 use App\Http\Controllers\SeanceController;
 use App\Http\Controllers\UserController;
+use App\Models\Reservationligne;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
@@ -20,6 +22,8 @@ Route::get('/seances/{id}/buy', [SeanceController::class, 'buy'])->name('seances
 
 Route::resource('/reservations', ReservationController::class);
 Route::get('/reservations/{id}/validated', [ReservationController::class, 'validated'])->name('reservations.validated');
+
+Route::delete('reservationlignes/{reservation}', [ReservationligneController::class, 'destroy'])->name('reservationlignes.destroy');
 
 Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
 Route::put('/my-account/{id}/update', [UserController::class, 'update'])->name('users.update');

@@ -265,6 +265,123 @@ document.addEventListener('alpine:init', () => {
 
     }))
        
+    Alpine.data('userPage', () => ({
+
+        sideMenu : true,
+        active_form : false,
+        formsStatus: false,
+
+        onUpdateUserInfoClick(event) {
+            event.preventDefault();
+            const url = event.target.closest('form').getAttribute('action');
+
+            fetch(url, {
+                method : 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('[name="_token"]').value
+                },
+                body: JSON.stringify({
+                    Nom: document.getElementById('Nom').value,
+                    Prenom: document.getElementById('Prenom').value,
+                    Mail: document.getElementById('Mail').value,
+                    Telephone: document.getElementById('Telephone').value,
+                    Adresse: document.getElementById('Adresse').value,
+                    CodePostal: document.getElementById('CodePostal').value,
+                    Ville: document.getElementById('Ville').value
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                document.getElementById('Nom').value = data.updated_data.Nom
+                document.getElementById('Prenom').value = data.updated_data.Prenom
+                document.getElementById('Mail').value = data.updated_data.Mail
+                document.getElementById('Telephone').value = data.updated_data.Telephone
+                document.getElementById('Adresse').value = data.updated_data.Adresse
+                document.getElementById('CodePostal').value = data.updated_data.CodePostal
+                document.getElementById('Ville').value = data.updated_data.Ville
+                this.active_form = false
+                document.getElementById('responseValue').innerHTML = data.message
+                this.formsStatus = true
+                setTimeout(() => {
+                    this.formsStatus = false
+                }, 3000)
+                
+
+
+            })
+                
+        },
+
+        onDeleteReservationClick(event) {
+            event.preventDefault();
+            const currentDiv = event.target.closest('.reservationDisplay');
+            const currentForm = event.target.closest('form');
+            const url = currentForm.getAttribute('data-url');
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('[name="_token"]').value
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    document.getElementById('responseValue').innerHTML = "Une erreur est survenue, veuillez recharger la page et reessayer."
+                    throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+                }
+                return response.json(); // Traiter la réponse comme JSON
+            })
+            .then(data => {
+                currentDiv.remove()
+                document.getElementById('responseValue').innerHTML = data.success
+                this.formsStatus = true
+                setTimeout(() => {
+                    this.formsStatus = false
+                }, 3000)
+            })
+        },
+
+        onDeleteLineClick(event) {
+            event.preventDefault();
+            const currentDiv = event.target.closest('.reservationDisplay');
+            const currentForm = event.target.closest('form');
+            const url = currentForm.getAttribute('action');
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('[name="_token"]').value
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+                }
+                return response.json(); // Traiter la réponse comme JSON
+            })
+            .then(data => {
+                if (data.success == 'Reservation supprimée avec succès !')
+                {
+                    document.getElementById('responseValue').innerHTML = data.success
+                    currentDiv.remove()
+                }else
+                {
+                    document.getElementById('responseValue').innerHTML = data.success
+                    currentForm.remove()
+                }
+            })
+        }
+
+    }))
 
 });
 

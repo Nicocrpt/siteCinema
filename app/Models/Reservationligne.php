@@ -14,6 +14,7 @@ class Reservationligne extends Model
         'reservation_id',
         'place_id',
         'prix',
+        'is_active'
     ];
 
     public function reservation(): BelongsTo

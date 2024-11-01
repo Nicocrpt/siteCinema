@@ -50,9 +50,24 @@ class UserController extends Controller
                 'telephone' => $request->Telephone,
             ]);
 
-            return redirect()->back()->with('success', 'Vos informations ont bien été mises à jour.');
+            $output = [
+                'message' => 'Vos informations ont bien été mises à jour.',
+                'updated_data' => [
+                    'Nom' => $user->nom,
+                    'Prenom' => $user->prenom,
+                    'Mail' => $user->email,
+                    'Telephone' => $user->telephone,
+                    'Adresse' => $user->adresse,
+                    'CodePostal' => $user->code_postal,
+                    'Ville' => $user->ville
+                ]
+            ];
+
+            // return redirect()->back()->with('success', 'Vos informations ont bien été mises à jour.');
+            return response()->json($output, 200);
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Une erreur est survenue.');
+            // return redirect()->back()->with('error', 'Une erreur est survenue.');
+            return response()->json(['error' => 'Une erreur est survenue.'], 500);
         }
     }
 

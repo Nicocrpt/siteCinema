@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('reservation_id')->constrained('reservations');
             $table->foreignId('place_id')->constrained('places');
             $table->decimal('prix');
+            $table->boolean('is_active')->default(true);
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 
