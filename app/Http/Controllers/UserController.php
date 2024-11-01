@@ -51,7 +51,7 @@ class UserController extends Controller
             ]);
 
             $output = [
-                'message' => 'Vos informations ont bien été mises à jour.',
+                'message' => 'Vos informations ont bien été mises à jour',
                 'updated_data' => [
                     'Nom' => $user->nom,
                     'Prenom' => $user->prenom,
@@ -67,7 +67,7 @@ class UserController extends Controller
             return response()->json($output, 200);
         } catch (\Throwable $th) {
             // return redirect()->back()->with('error', 'Une erreur est survenue.');
-            return response()->json(['error' => 'Une erreur est survenue.'], 500);
+            return response()->json(['error' => 'Une erreur est survenue'], 500);
         }
     }
 

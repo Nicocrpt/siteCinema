@@ -270,6 +270,7 @@ document.addEventListener('alpine:init', () => {
         sideMenu : true,
         active_form : false,
         formsStatus: false,
+        confirmModal: false,
 
         onUpdateUserInfoClick(event) {
             event.preventDefault();
@@ -322,6 +323,11 @@ document.addEventListener('alpine:init', () => {
         onDeleteReservationClick(event) {
             event.preventDefault();
             const currentDiv = event.target.closest('.reservationDisplay');
+            const img = currentDiv.querySelector('.imgResa');
+            const title = currentDiv.querySelector('h1');
+            const places = currentDiv.querySelector('h3');
+
+
             const currentForm = event.target.closest('form');
             const url = currentForm.getAttribute('data-url');
 
@@ -340,9 +346,12 @@ document.addEventListener('alpine:init', () => {
                 return response.json(); // Traiter la réponse comme JSON
             })
             .then(data => {
-                currentDiv.remove()
+                document.getElementById('actions').innerHTML = '<p class="text-lg text-gray-400 italic">Réservation annulée</p>'
                 document.getElementById('responseValue').innerHTML = data.success
                 this.formsStatus = true
+                img.classList.add('grayscale')
+                title.classList.add('text-gray-500')
+                places.classList.add('text-gray-500')
                 setTimeout(() => {
                     this.formsStatus = false
                 }, 3000)
@@ -378,8 +387,14 @@ document.addEventListener('alpine:init', () => {
                     document.getElementById('responseValue').innerHTML = data.success
                     currentForm.remove()
                 }
+                this.formsStatus = true
+                setTimeout(() => {
+                    this.formsStatus = false
+                }, 3000)
             })
-        }
+        },
+
+
 
     }))
 

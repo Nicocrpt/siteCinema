@@ -76,10 +76,10 @@
             @foreach ($films as $index => $film)
                     <div x-ref="slide{{$index}}" class=" flex-shrink-0 flex-grow transition-[width] ease-in-out duration-300 overflow-hidden h-[70vw] sm:h-[46vw] md:h-[35vw] lg:h-[27.5vw] 2xl:h-[17.2vw]"
                     :class="activeItem == {{$index}} ? 'w-full sm:w-2/3 md:w-1/2 lg:w-2/5 2xl:w-[25%]' : 'w-[50%] sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-[12.5%]'">
-                        <div class="relative mx-1 rounded h-full overflow-hidden">
+                        <div class="relative mx-1 h-full overflow-hidden">
                                 <div class="overflow-hidden">
                                     <img src="{{ $film->url_affiche }}" class="w-fit shadow-md" />
-                                <div @click="onPosterClick({{$index}})" class="absolute top-0 left-0 bg-zinc-900 bg-opacity-50 backdrop-blur w-full h-full transition-opacity ease-in-out duration-100" :class="activeItem == {{$index}} ? 'opacity-100' : 'opacity-0'">
+                                <div @click="onPosterClick({{$index}})" class="absolute top-0 left-0 bg-zinc-900 bg-opacity-50 backdrop-blur w-full h-full transition-opacity ease-in-out duration-200 delay-200" :class="activeItem == {{$index}} ? 'opacity-100' : 'opacity-0'">
                                     <h1 class="text-xl text-white font-semibold mt-3 mb-2 mx-3">{{$film->titre}}</h1>
                                         <div class="h-40 mx-2 overflow-hidden">
                                             <p class="text-white text-xs" style="text-overflow: ellipsis">{{$film->synopsis}}</p>

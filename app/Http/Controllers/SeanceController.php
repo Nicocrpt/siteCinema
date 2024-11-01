@@ -25,7 +25,7 @@ class SeanceController extends Controller
         $reservations = Reservation::where('seance_id', $seance->id)->with('reservationlignes')->get();
         $places = [];
         foreach($reservations as $reservation){
-            foreach($reservation->reservationlignes as $reservationLigne){
+            foreach($reservation->reservationlignes->where('is_active', true) as $reservationLigne){
                 $rangee = $reservationLigne->place->rangee;
                 $numero = $reservationLigne->place->numero;
                 $places[] = "$rangee$numero";
