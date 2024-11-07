@@ -71,6 +71,29 @@ class UserController extends Controller
         }
     }
 
+
+    public function destroy()
+    {
+        $user = Auth::user();
+        isset($user) ? $user->delete() : null;
+
+        Auth::logout();
+
+        return redirect()->route('users.destroyed');
+    }
+
+    public function destroyed()
+    {
+        if (Auth::user())
+        {
+            return redirect()->route('home');
+        }
+        else
+        {
+            return view('users.accountDeleted');
+        }
+    }
+
         
     
 }

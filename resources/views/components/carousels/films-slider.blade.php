@@ -3,21 +3,24 @@
     onPosterClick(index) {
         
         const ref = `slide${index}`
-
         if (this.activeItem == index) {
+            this.$el.classList.remove('delay-200')
             if ((this.activeItem-this.translation+2)%this.lastItem == 0 && this.count != 0)
             {
                 this.$refs[ref].classList.remove('delay-[275ms]')
                 
+                $el.classList.remove('delay-200')
                 this.translation--
                 console.log(this.translation)
                 
                 
+                
             }
+            
             this.activeItem = null
             this.count = 0
         } else {
-
+            
             this.activeItem = index
             if ((this.activeItem-this.translation+1)%this.lastItem == 0)
             {   

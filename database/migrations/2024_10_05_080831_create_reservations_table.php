@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('reference')->unique();
             $table->foreignId('seance_id')->constrained('seances')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('guest_mail')->nullable();
             $table->boolean('is_active')->default(true);
             $table->dateTime('created_at')->useCurrent();

@@ -2,7 +2,7 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 
-import $ from 'jquery';
+import $, { data } from 'jquery';
 import 'owl.carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'; // Importer le CSS d'Owl Carousel
 import 'owl.carousel/dist/assets/owl.theme.default.css'; // Importer le thème par défaut d'Owl Carousel
@@ -270,7 +270,8 @@ document.addEventListener('alpine:init', () => {
         sideMenu : true,
         active_form : false,
         formsStatus: false,
-        confirmModal: false,
+        skip : 2,
+
 
         onUpdateUserInfoClick(event) {
             event.preventDefault();
@@ -325,7 +326,7 @@ document.addEventListener('alpine:init', () => {
             const currentDiv = event.target.closest('.reservationDisplay');
             const img = currentDiv.querySelector('.imgResa');
             const title = currentDiv.querySelector('h1');
-            const places = currentDiv.querySelector('h3');
+            const subtitles = currentDiv.querySelectorAll('h3');
 
 
             const currentForm = event.target.closest('form');
@@ -346,12 +347,35 @@ document.addEventListener('alpine:init', () => {
                 return response.json(); // Traiter la réponse comme JSON
             })
             .then(data => {
-                document.getElementById('actions').innerHTML = '<p class="text-lg text-gray-400 italic">Réservation annulée</p>'
+                currentDiv.querySelector('#actions').innerHTML = '<p class="text-lg text-gray-400 italic">Réservation annulée</p>'
                 document.getElementById('responseValue').innerHTML = data.success
                 this.formsStatus = true
+                img.classList.remove('grayscale-0')
                 img.classList.add('grayscale')
-                title.classList.add('text-gray-500')
-                places.classList.add('text-gray-500')
+                title.classList.add('text-zinc-500', 'dark:text-zinc-300')
+                subtitles.forEach(subtitle => subtitle.classList.add('text-zinc-500', 'dark:text-zinc-300'))
+                currentDiv.querySelectorAll('.placesID').forEach(element => {
+                    element.classList.add('text-zinc-400', 'dark:text-zinc-300', 'dark:bg-zinc-500')
+                })
+                currentDiv.querySelectorAll('.language').forEach(element => {
+                    element.classList.add('text-zinc-500', 'dark:text-zinc-300', 'dark:bg-zinc-500', 'bg-zinc-300')
+                })
+                currentDiv.querySelector('.salleResa').classList.remove('bg-zinc-600')
+                currentDiv.querySelector('.salleResa').classList.add('text-zinc-300', 'dark:text-zinc-300', 'dark:bg-zinc-500', 'bg-zinc-400')
+
+                if (currentDiv.querySelector('.atmos')) {
+                    currentDiv.querySelector('.atmos').classList.remove('fill-black', 'dark:fill-white')
+                    currentDiv.querySelector('.atmos').classList.add('fill-zinc-500')
+                }
+                if (currentDiv.querySelector('.vision'))
+                {
+                    currentDiv.querySelector('.vision').classList.remove('fill-black', 'dark:fill-white')
+                    currentDiv.querySelector('.vision').classList.add('fill-zinc-500')
+                }
+                currentDiv.querySelectorAll('.txt').forEach(element => {
+                    element.classList.add('text-zinc-400', 'dark:text-zinc-300')
+                })
+
                 setTimeout(() => {
                     this.formsStatus = false
                 }, 3000)
@@ -394,7 +418,62 @@ document.addEventListener('alpine:init', () => {
             })
         },
 
+        loadMoreReservations() {
+            
+            const url = `/reservations/load-more?skip=${this.skip}`;
 
+            
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.reservations)
+                const container = document.getElementById('load-more-content');
+
+                document.getElementById('loadMoreButton').innerHTML = '<div class="flex justify-center items-center p-1"><svg class="mt-1 dark:fill-white" width="25"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" type="rotate" dur="1s" values="0 12 12;360 12 12" repeatCount="indefinite"/></path></svg></div>'
+
+                setTimeout(() => {
+
+                    if (data.reservations.length != 0) {
+                        this.skip += 2
+                        console.log(this.skip)
+                    }
+                    if (data.nbReservations <= this.skip) {
+                        document.getElementById('loadMoreButton').remove()
+                    }else
+                    {
+                        document.getElementById('loadMoreButton').innerHTML = `<a @click="loadMoreReservations()" class="flex justify-center font-medium items-center p-2 w-96 mx-auto rounded-md hover:bg-gray-100 dark:hover:bg-zinc-500 mb-4 hover:shadow-sm cursor-pointer transition-all ease-in-out duration-300 border border-zinc-50 hover:border-zinc-200 dark:border-zinc-700 dark:hover:border-zinc-400"><p class="dark:text-white" >Voir Plus</p></a>`
+                    }
+
+                    data.reservations.forEach(reservation => {
+                        container.insertAdjacentHTML('beforeend', reservation);
+                    })                    
+                }, 400)
+                
+            }
+                
+            )
+        },
+
+        init() {
+            const sideMenuAdapter = () => {
+                if (window.innerWidth < 768) 
+                    {
+                        this.sideMenu = false
+                    } 
+                    else 
+                    {
+                        this.sideMenu = true
+                    }
+            }
+            sideMenuAdapter()
+            window.addEventListener('resize', sideMenuAdapter)
+        }
 
     }))
 
@@ -403,11 +482,10 @@ document.addEventListener('alpine:init', () => {
 Alpine.start();
 
 
-$(window).on('load', function () {
-    console.log('domOK');
-    initCarousel();
-    initBanner();
-});
+// $(window).on('load', function () {
+//     console.log('domOK');
+//     initBanner();
+// });
 
 
 

@@ -6,15 +6,12 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class filmsCaroussel extends Component
+class toolTip extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public $films;
-    public function __construct($films)
+    public $toolTip;
+    public function __construct($toolTip)
     {
-        $this->films = $films;
+        $this->toolTip = $toolTip;
     }
 
     /**
@@ -22,6 +19,6 @@ class filmsCaroussel extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.films-caroussel');
+        return view('components.modals.tool-tip');
     }
 }

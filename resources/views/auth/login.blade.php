@@ -34,17 +34,17 @@
 
         <div class="flex flex-col gap-3 items-center justify-end mt-4">
             <div class="flex justify-center items-center gap-4">
-                <a href="{{route('register')}}" class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 dark:focus:ring-offset-zinc-800">{{ __('Je n\'ai pas de compte') }}</a>
+                <a href="{{route('register')}}" class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 dark:focus:ring-offset-zinc-800">{{ __('Don\'t have an account?') }}</a>
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 dark:focus:ring-offset-zinc-800" href="{{ route('password.request') }}">
-                        {{ __('J\'ai oublié mon mot de passe') }}
+                        {{ __('Forgot your password?') }}
                     </a>
                 @endif
             </div>
             
 
             <x-primary-button class="ms-3">
-                {{ __('Me connecter') }}
+                {{ __('Login') }}
             </x-primary-button>
         </div>
     </form>

@@ -4,7 +4,7 @@
         <p><span class="md:text-2xl text-lg font-bold dark:text-white">{{$film->titre}}</p>
         <div class="flex gap-4">
             @foreach ($film->seances as $seance)
-                <x-seance-link :seance="$seance"/>
+                <x-cards.seance-link :seance="$seance"/>
             @endforeach
         </div>
     </div>

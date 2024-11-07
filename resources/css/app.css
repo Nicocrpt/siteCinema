@@ -12,7 +12,7 @@
 
 
 .sideMenu {
-  @apply block text-xl text-white opacity-90 hover:bg-white hover:bg-opacity-20 hover:opacity-100  transition-all duration-300 ease-in-out py-5 pl-6;
+  @apply block text-xl text-white opacity-90 hover:bg-white hover:bg-opacity-20 hover:opacity-100  transition-all duration-300 ease-in-out py-5 px-6 text-end md:text-start;
 }
 
 .sideMenu.disconnect {

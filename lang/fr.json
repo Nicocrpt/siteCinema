@@ -1,0 +1,14 @@
+{
+    "Password" : "Mot de passe",
+    "Forgot your password?" : "Mot de passe oublié ?",
+    "Remember me" : "Se souvenir de moi",
+    "Login" : "Connexion",
+    "Don't have an account?" : "Pas de compte ?",
+    "Register" : "Inscription",
+    "Already registered?" : "Déja inscrit ?",
+    "Confirm password" : "Confirmer le mot de passe",
+    "Name" : "Nom",
+    "Firstname" : "Prénom",
+    "Phone" : "Téléphone",
+    "Reset password" : "Rénitialiser le mot de passe"
+}

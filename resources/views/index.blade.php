@@ -5,7 +5,7 @@
 
 @section('content')
         <div :class="open ? 'overflow-hidden' : ''">
-            <x-filmbanner :films="$films->where('est_favori', 1)" id="banniere"/>
+            <x-carousels.filmbanner :films="$films->where('est_favori', 1)" id="banniere"/>
             <div class=" h-full">
                 <div class="index-content transition-all ease-in-out duration-[0.75s] "></div>
             {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
@@ -16,7 +16,7 @@
                     </div>
                     
                     {{-- <x-films-caroussel :films="$films"/> --}}
-                    <x-films-slider :films="$films"/>
+                    <x-carousels.films-slider :films="$films"/>
                 </div>
             </div>  
         </div>

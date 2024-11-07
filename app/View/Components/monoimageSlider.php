@@ -21,6 +21,6 @@ class monoimageSlider extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.monoimage-slider');
+        return view('components.carousels.monoimage-slider');
     }
 }

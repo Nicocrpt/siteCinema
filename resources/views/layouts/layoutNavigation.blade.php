@@ -80,7 +80,7 @@ x-init="window.onload = () => loading = false; document.body.classList.remove('n
         @yield('content')
     </main>
 
-    <x-bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+    <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
     
     <footer>
 

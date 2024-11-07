@@ -13,10 +13,10 @@
                 <div class="flex justify-center items-center h-[44px] gap-2">
                     <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$reservation->seance->salle->id}}</p>
                     @if ($reservation->seance->dolby_atmos)
-                        <x-atmos-logo :width="35" :class="'fill-white'"/>  
+                        <x-assets.atmos-logo :width="35" :class="'fill-white'"/>  
                     @endif
                     @if ($reservation->seance->dolby_vision)    
-                        <x-vision-logo :width="35" :class="'fill-white'"/>
+                        <x-assets.vision-logo :width="35" :class="'fill-white'"/>
                     @endif
                     @if ($reservation->seance->vf)
                         <p class="text-sm md:text-lg text-center text-zinc-100 bg-slate-500 p-1 rounded px-2">VF</p>

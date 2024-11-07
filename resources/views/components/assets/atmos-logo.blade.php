@@ -12,7 +12,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   class="{{$class}}">
+   class="{{$class}} atmos">
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"

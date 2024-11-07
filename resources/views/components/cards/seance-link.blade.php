@@ -3,10 +3,10 @@
         <p class="dark:text-white font-semibold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
         <div class="flex justify-center items-center gap-2">
             @if($seance->dolby_atmos)
-                <x-atmos-logo :width="25" :class="'fill-black dark:fill-white'"/>
+                <x-assets.atmos-logo :width="25" :class="'fill-black dark:fill-white'"/>
             @endif
             @if($seance->dolby_vision)
-                <x-vision-logo :width="25" :class="'fill-black dark:fill-white'"/>
+                <x-assets.vision-logo :width="25" :class="'fill-black dark:fill-white'"/>
             @endif
             @if($seance->vf || (!$seance->vf && $seance->film->langue == 'FR'))
                 <p class="bg-slate-300 dark:text-white rounded px-1 dark:group-hover:bg-slate-500 transition-all ease-in-out duration-200" title="Francais">VF</p>

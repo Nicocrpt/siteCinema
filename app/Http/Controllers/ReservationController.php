@@ -96,7 +96,7 @@ class ReservationController extends Controller
         try {
             $reservation->is_active = false;
             $reservation->save();
-            return response()->json(['success' => 'Reservation supprimée avec succès !'], 200);
+            return response()->json(['success' => 'Reservation annulée avec succès !'], 200);
         } catch (\Exception $e) {
             return response()->json(['erreur' => 'Une erreur s\'est produite lors de la suppression'], 500);
         }
@@ -112,5 +112,27 @@ class ReservationController extends Controller
 
 
         return view('reservation.validated', compact('reservation', 'places'));
+    }
+
+    public function loadMore(Request $request)
+    {
+        $skip = $request->query('skip');
+        $user = Auth::user();
+        $reservations = Reservation::where('user_id', $user->id)->orderBy('created_at', 'desc')->skip($skip)->take(2)->get();
+        $reservationCount = Reservation::where('user_id', $user->id)->count();
+        
+        $renderedComponents = [];
+
+        foreach($reservations as $reservation){
+            $renderedComponents[] = view('components.cards.reservation-card', ['reservation' => $reservation, 'status' => $reservation->is_active ? '': 'grayscale'])->render();
+        }
+        $status = $reservations->count() > 0 ? 'OK' : 'KO';
+
+
+        return response()->json([
+            'status' => $status,
+            'reservations' => $renderedComponents,
+            'nbReservations' => $reservationCount
+        ], 200);
     }
 }

@@ -13,6 +13,7 @@ use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Pays;
 use App\Models\Realisateur;
+use App\Models\Reservation;
 use App\Models\Seance;
 use App\Services\TmdbService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,11 +33,9 @@ class FilmController extends Controller
 
     public function userQuery(Request $request)
     {   
-        
-
         $title = urldecode($request->query('research'));
 
-    // Si le paramètre n'est pas fourni, renvoie une erreur
+
         if (empty($title)) {
             return response()->json(['error' => 'Aucun terme de recherche fourni.'], 400);
         }
@@ -81,7 +80,6 @@ class FilmController extends Controller
 
         return view('films.showV2', compact('film', 'duration', 'datesSeances'));
     }
-
 
 
 }

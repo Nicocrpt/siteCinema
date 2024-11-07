@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-neutral-50 dark:bg-zinc-800 relative" 
+<body class=" bg-neutral-100 dark:bg-zinc-800 relative" 
     x-data="{
         open : false, 
         dropdown : false,
@@ -35,7 +35,7 @@
         @yield('content')
     </main>
 
-    <x-bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+    <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
     
     <footer>
 

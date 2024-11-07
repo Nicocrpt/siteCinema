@@ -16,10 +16,10 @@
                         <div class="flex justify-center items-center h-[44px] gap-2 sm:gap-5">
                             <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$seance->salle->id}}</p>
                             @if ($seance->dolby_atmos)
-                                <x-atmos-logo :width="35" :class="'fill-white'"/>  
+                                <x-assets.atmos-logo :width="35" :class="'fill-white'"/>  
                             @endif
                             @if ($seance->dolby_vision)    
-                                <x-vision-logo :width="35" :class="'fill-white'"/>
+                                <x-assets.vision-logo :width="35" :class="'fill-white'"/>
                             @endif
                             @if ($seance->vf)
                                 <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2">VF</p>
@@ -49,7 +49,7 @@
             <div class="px-2">
 
                 <div class="flex justify-center aspect-ratio-[16/9] m-auto sm:w-[75%] md:w-[90%] md: ">
-                    <x-seat-selector :salle="$seance->salle"/>
+                    <x-interfaces.seat-selector :salle="$seance->salle"/>
                 </div>
                 
                 <div class="flex flex-col justify-start items-center md:mt-20 mt-4 h-[44px] md:hidden  gap-2">

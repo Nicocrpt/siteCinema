@@ -4,7 +4,7 @@
 @section('content')
 <div style="height: 100%; width: 100%"  class="relative" x-data="selectPrices()">
 
-    <x-guest-modal/>
+    <x-modals.guest-modal/>
 
     <div class="fixed md:fixed md:w-80 xl:w-[26rem] w-full h-44 md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-black md:shadow-lg z-20 margin-0 overflow-hidden">
             <div class="h-full md:max-h-[620px] xl:max-h-[760px] w-full flex md:block relative">
@@ -15,10 +15,10 @@
                         <div class="flex justify-center items-center h-[44px] gap-2">
                             <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$seance->salle->id}}</p>
                             @if ($seance->dolby_atmos)
-                                <x-atmos-logo :width="35" :class="'fill-white'"/>  
+                                <x-assets.atmos-logo :width="35" :class="'fill-white'"/>  
                             @endif
                             @if ($seance->dolby_vision)    
-                                <x-vision-logo :width="35" :class="'fill-white'"/>
+                                <x-assets.vision-logo :width="35" :class="'fill-white'"/>
                             @endif
                             @if ($seance->vf)
                                 <p class="text-sm md:text-lg text-center text-zinc-300 bg-slate-500 p-1 rounded px-2">VF</p>
@@ -81,8 +81,15 @@
                                     
                                 </div>
 
-                                <div class="grid grid-cols-2 mb-3 justify-center items-center">
-                                    <p id="labelET" class="md:text-xl dark:text-white p-2 pr-6">Tarif étudiant (6,00 €)</p>
+                                <div class="grid grid-cols-2 mb-3 justify-center items-center relative">
+                                    <div class="flex gap-2 items-center">
+                                        <p id="labelET" class="md:text-lg dark:text-white pl-2 py-2">Tarif étudiant (6,00 €)</p>
+                                        <div x-data="{ visible: false }">
+                                            <svg @click="visible = !visible" @mouseleave="setTimeout(() => { visible = false }, 500)" class="cursor-pointer" viewBox="0 0 24 24" width="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11160)"> <circle cx="12" cy="11.9999" r="9" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></circle> <rect x="12" y="8" width="0.01" height="0.01" stroke="#292929" stroke-width="3.75" stroke-linejoin="round"></rect> <path d="M12 12V16" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11160"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+                                            <x-modals.tool-tip :toolTip="'un justificatif vous sera demandé à l\'entrée du cinéma'" />
+                                        </div>   
+                                    </div>
+                                    
                                     <div class="flex gap-2 h-12">
                                         <button @click="updateValueET" id="minusET" type="button" class="bg-gray-300 px-3 text-xl font-bold rounded-full">
                                             <svg class="pointer-events-none" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12L18 12" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
