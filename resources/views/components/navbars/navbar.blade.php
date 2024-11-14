@@ -43,10 +43,11 @@
         </div>
         
     @else
-    <div class=" items-center lg:gap-5 md:gap-2 md:flex hidden">
+    <div class=" items-center lg:gap-4 md:gap-1 md:flex hidden">
         <a href="{{ route('login')}}" class="navBar-account flex items-center gap-2 group" >
             Se connecter
         </a>
+        <div class="h-4 border-r-[0.5px] border-zinc-100 rounded-full"></div>
         <a href="{{ route('register')}}" class="navBar-account flex items-center gap-2 group" >
             S'inscire
         </a>
