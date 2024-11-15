@@ -85,7 +85,7 @@
                 <div class=" h-[0.18rem] w-auto 2xl:w-full mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
         
                 <div class="2xl:w-[100%] mx-2 h-auto rounded">
-                    <x-carousels.monoimage-slider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                    <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
                 </div>
 
 
