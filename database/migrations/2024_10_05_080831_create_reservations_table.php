@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();   
         });
 
-        DB::statement('ALTER TABLE reservations ADD CONSTRAINT check_user CHECK (guest_mail IS NOT NULL OR user_id IS NOT NULL)');
+        //DB::statement('ALTER TABLE reservations ADD CONSTRAINT check_user CHECK (guest_mail IS NOT NULL OR user_id IS NOT NULL)');
     }
 
     /**
