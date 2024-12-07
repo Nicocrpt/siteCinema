@@ -37,11 +37,9 @@
 
 
 
-    <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+    {{-- <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/> --}}
 
-    {{-- <x-floating-burger-menu/> --}}
-
-
+    
 
     <main>
         @yield('content')

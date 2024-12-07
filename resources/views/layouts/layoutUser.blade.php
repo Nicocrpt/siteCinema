@@ -20,7 +20,7 @@
     <header>
         <div class="fixed top-0 left-0 h-14  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
             <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
-
+            
             <ul class="row space-x-6 hidden md:flex">
                 <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
                 <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>

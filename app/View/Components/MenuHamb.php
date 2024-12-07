@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class dropdownMenuHamb extends Component
+class MenuHamb extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class dropdownMenuHamb extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dropdown-menu-hamb');
+        return view('components.menus.menu-hamb');
     }
 }

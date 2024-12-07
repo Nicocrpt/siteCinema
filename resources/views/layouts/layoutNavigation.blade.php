@@ -20,16 +20,18 @@ x-data="{
 x-init="window.onload = () => loading = false; document.body.classList.remove('no-transition');">
     
     <header class="z-30">
+        
         <nav class="fixed top-0 h-14  w-full z-2 shadow-lg flex items-center justify-between px-5" style="background : rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
+            <x-menus.menu-hamb/>
             <div class="flex md:gap-10 gap-3 items-center">
-                <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
+                <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="" class="hidden md:block">
                 <ul class="row  md:flex space-x-6 hidden">
                     <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
                     <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
                     <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
                     <li class="navBar-li"><a href="">Contact</a></li>
                 </ul>
-                <p class="text-white text-xl font-base md:hidden">La Pellicule</p>
+                <p class="text-white text-xl font-base md:hidden">Le Solaris</p>
             </div>
             
             @if (Auth::check())
@@ -80,7 +82,7 @@ x-init="window.onload = () => loading = false; document.body.classList.remove('n
         @yield('content')
     </main>
 
-    <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+    {{-- <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/> --}}
     
     <footer>
 
