@@ -11,8 +11,8 @@
             {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
                 <div class="mt-16">
                     <div class="flex items-center gap-4">
-                        <h1 class="text-2xl font-bold text-white ml-[2%]">Films à l'affiche</h1>
-                        <a href="{{ route('films.index') }}" class="underline text-xs text-white">Voir tous les films</a>
+                        <h1 class="text-2xl font-bold dark:text-white ml-[2%]">Films à l'affiche</h1>
+                        <a href="{{ route('films.index') }}" class="underline text-xs dark:text-white">Voir tous les films</a>
                     </div>
                     
                     {{-- <x-films-caroussel :films="$films"/> --}}

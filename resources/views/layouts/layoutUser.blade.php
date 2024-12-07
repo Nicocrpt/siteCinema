@@ -18,24 +18,14 @@
         scrolled: false 
     }">
     <header>
-        <div class="fixed top-0 left-0 h-14  w-full z-2 shadow-lg flex items-center px-6 gap-10" style="background : rgba(0,0,0,0.8); backdrop-filter: blur(8px);">
-            <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="">
-            
-            <ul class="row space-x-6 hidden md:flex">
-                <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
-                <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
-                <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
-                <li class="navBar-li"><a href="">Contact</a></li>
-            </ul>
-            <p class="text-white text-xl font-base md:hidden">La Pellicule</p>
-        </div>
+        <x-navbars.navbar background="bg-black" search="false"/>
     </header>
 
     <main class="absolute top-0 left-0 w-full">
         @yield('content')
     </main>
 
-    <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/>
+    {{-- <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/> --}}
     
     <footer>
 

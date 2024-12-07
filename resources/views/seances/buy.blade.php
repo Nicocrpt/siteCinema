@@ -126,8 +126,7 @@
         z-10
         shadow-lg
         fixed
-        md:bottom-0
-        bottom-[4.5rem]
+        bottom-0
         left-0
         w-full
         text-xl

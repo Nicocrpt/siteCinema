@@ -120,7 +120,7 @@
 
 
 <div x-data="filmsBanner" x-init="init" class=" block top-0 absolute max-w-full">
-    <div class="owl-carousel owl-theme carousel-1  border-b-2  border-b-neutral-300 max-h-fit" style="">
+    <div class="owl-carousel owl-theme carousel-1  border-b-2  dark:border-b-neutral-300 border-b-black max-h-fit" style="">
         @foreach ($films as $film)
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">
                 <div class="grid grid-rows-5 h-full w-full">
@@ -128,25 +128,7 @@
                     <div class="row-start-3 row-span-3 flex md:row-start-2 md:row-span-4 md:grid md:grid-cols-2">
                         <div class="p-10 flex flex-col-reverse justify-start items-center mb-5 gap-5 md:mb-24">
                             
-                            <a href="{{route('film.show', $film->slug)}}"><button class="
-                                font-bold
-                                text-white
-                                hover:before:bg-white-500
-                               
-                                relative h-[50px] 
-                                overflow-hidden 
-                                
-                                bg-black p-2 pl-4 pr-4
-                                rounded-full
-                                transition-all before:absolute 
-                                before:bottom-0 before:left-0 
-                                before:top-0 before:z-0 before:h-full before:w-0 
-                                before:bg-white before:transition-all
-                                before:duration-500 
-                                hover:text-black
-                                hover:before:left-0 hover:before:w-full
-                                mt-5
-                                "><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a>
+                            <a href="{{route('film.show', $film->slug)}}"><button class="bg-zinc-950 px-4 py-2 rounded-lg border border-zinc-600 md:hover:bg-zinc-800 transition-color ease-in-out duration-200"><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a>
                             <img src="{{ $film->url_logo }}" alt="">
                         </div>
                         

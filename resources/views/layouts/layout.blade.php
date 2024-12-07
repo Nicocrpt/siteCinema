@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition h-full w-full bg-zinc-800"
+<body class="relative no-transition h-full w-full dark:bg-zinc-800 bg-neutral-50"
     x-data="{
         open : false, 
         dropdown : false,
@@ -28,7 +28,7 @@
         x-init="$watch('scrolled', () => console.log(scrolled))"
         :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; backdrop-filter: blur(15px); padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
         @scroll.window="scrolled = (window.scrollY > window.innerHeight/8)">
-        <x-navbars.navbar/>
+        <x-navbars.navbar background="'bg-transparent'" search="true"/>
         
     </header>
     <x-loading-screen/>

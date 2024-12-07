@@ -76,7 +76,6 @@
             z-10
             shadow-lg
             fixed
-            bottom-[4.5rem]
             md:bottom-0
             left-0
             w-full
