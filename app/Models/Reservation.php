@@ -21,7 +21,7 @@ class Reservation extends Model
 
     public function reservationlignes(): HasMany
     {
-        return $this->hasMany(ReservationLigne::class);
+        return $this->hasMany(Reservationligne::class);
     }
 
     public function user(): BelongsTo
