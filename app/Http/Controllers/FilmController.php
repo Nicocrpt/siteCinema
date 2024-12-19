@@ -40,12 +40,64 @@ class FilmController extends Controller
             return response()->json(['error' => 'Aucun terme de recherche fourni.'], 400);
         }
 
-        // Effectue la requête pour récupérer les films correspondant au slug
+        
         try {
-            $films = Film::where('titre', 'like', '%' . $title . '%')->with('realisateurs')->get();
+            $films = [];
+
+            $moviesRequest = Film::where('titre', 'like', '%' . $title . '%')->with('realisateurs')->with('acteurs')->get();
+            if (!$moviesRequest->isEmpty()) {
+                foreach ($moviesRequest as $movie) {
+                    $check = false;
+                    if ($films) {
+                        foreach ($films as $film) {
+                            $check = $film->id == $movie->id ? true : false;
+                        }
+                    }
+                    if (!$check) {
+                        $films[] = $movie;
+                    }     
+                }
+            }
+
+            $actorsRequest = Acteur::where('nom', 'like', '%' . $title . '%')->with('films')->get();
+            if (!$actorsRequest->isEmpty()) {
+                foreach ($actorsRequest as $actor) {
+                    foreach ($actor->films as $movie) {
+                        $movie = Film::where('id', $movie->id)->with('realisateurs')->with('acteurs')->first();
+                        $check = false;
+                        if ($films) {
+                            foreach ($films as $film) {
+                                $check = $film->id == $movie->id ? true : false;
+                            }
+                        }
+                        if (!$check) {
+                            $films[] = $movie;
+                        }     
+                    }
+                }
+            }
+
+            $realisateursRequest = Realisateur::where('nom', 'like', '%' . $title . '%')->with('films')->get();
+            if (!$realisateursRequest->isEmpty()) {
+                foreach ($realisateursRequest as $realisateur) {
+                    foreach ($realisateur->films as $movie) {
+                        $movie = Film::where('id', $movie->id)->with('realisateurs')->with('acteurs')->first();
+                        $check = false;
+                        if ($films) {
+                            foreach ($films as $film) {
+                                $check = $film->id == $movie->id ? true : false;
+                            }
+                        }
+                        if (!$check) {
+                            $films[] = $movie;
+                        }     
+                        
+                    }
+                }
+            }
 
             // Si aucun film n'est trouvé, renvoie un message approprié
-            if ($films->isEmpty()) {
+            if (!$films) {
                 return response()->json(['message' => 'Aucun film trouvé.'], 404);
             }
 

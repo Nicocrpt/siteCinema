@@ -70,12 +70,34 @@ x-transition:leave-end="opacity-0">
             if (!response.ok) {
                 throw new Error(`Erreur HTTP ! statut : ${response.status}`);
             }
-                return response.json(); // Traiter la réponse comme JSON
+            return response.json(); // Traiter la réponse comme JSON
         })
         .then(films => 
         {
+            console.log(films)
             films.forEach(film => {
                 const filmItem = document.createElement('div');
+                let actorString = ''
+                let realString = ''
+                film.acteurs.forEach(acteur => {
+                    if (acteur == film.acteurs[film.acteurs.length - 1]) {
+                        actorString += `${acteur.nom}`
+                    } else {
+                        actorString += `${acteur.nom}, `
+                    }
+                })
+                film.realisateurs.forEach(realisateur => {
+                    if (realisateur == film.realisateurs[film.realisateurs.length - 1]) {
+                        realString += `${realisateur.nom}`
+                    } else {
+                        realString += `${realisateur.nom}, `
+                    }
+                })
+                console.log(inputContent)
+                actorString = actorString.split(SearchInput.value.toLowerCase()).join(`<mark>${SearchInput.value}</mark>`);
+                film.titre = film.titre.split(SearchInput.value).join(`<mark>${SearchInput.value}</mark>`);
+                realString = realString.split(SearchInput.value).join(`<mark>${SearchInput.value}</mark>`);
+                console.log(actorString)
                  // Assure-toi que 'titre' correspond à la clé dans ta réponse JSON
                 filmItem.innerHTML = 
                     `<a href="/films/${film.slug}">
@@ -83,8 +105,8 @@ x-transition:leave-end="opacity-0">
                         <img class="col-span-1 rounded-md h-56" src="${film.url_affiche}" alt="">
                         <div class="col-span-3 pl-5">
                             <h1 class="text-xl font-semibold dark:text-white">${film.titre}</h1>
-                            <p class="dark:text-white" >${film.realisateurs[0].nom}</p>
-                            
+                            <p class="dark:text-white" >De : ${realString}</p>
+                            <p class="dark:text-white" >Avec : ${actorString}</p>   
                         </div>
                     </div>
                     </a>`
