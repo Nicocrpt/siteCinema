@@ -349,6 +349,7 @@ document.addEventListener('alpine:init', () => {
             .then(data => {
                 currentDiv.querySelector('#actions').innerHTML = '<p class="text-lg text-gray-400 italic">Réservation annulée</p>'
                 document.getElementById('responseValue').innerHTML = data.success
+                document.getElementById('fidelityCount').innerHTML = data.content.fidelity
                 this.formsStatus = true
                 img.classList.remove('grayscale-0')
                 img.classList.add('grayscale')

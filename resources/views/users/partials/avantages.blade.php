@@ -6,8 +6,7 @@
     <h2 class="text-xl font-semibold dark:text-white">Points de fidélité</h2>
     <p class="font-normal text-sm -pt-2 mb-4  text-zinc-400 italic dark:text-zinc-400" >10 points vous confère une place gratuite !</p>
     <div class="relative mb-12">
-        <p class="text-base dark:text-white">Vous avez <span class="text-yellow-500 dark:text-yellow-300 px-2 font-semibold text-2xl">{{$user->points_fidelite}}</span> points de fidelité</p>
-
+        <p class="text-base dark:text-white">Vous avez <span class="text-yellow-500 dark:text-yellow-300 px-2 font-semibold text-2xl" id ="fidelityCount">{{$user->points_fidelite}}</span> points de fidelité</p>
     </div>
     <h2 class="text-xl font-semibold dark:text-white mb-2">Abonnement</h2>
     <div>

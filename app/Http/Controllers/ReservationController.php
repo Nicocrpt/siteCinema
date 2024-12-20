@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
+use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Reservationligne;
 use App\Models\Seance;
@@ -96,7 +97,8 @@ class ReservationController extends Controller
         try {
             $reservation->is_active = false;
             $reservation->save();
-            return response()->json(['success' => 'Reservation annulée avec succès !'], 200);
+            $newFidelityCount = $reservation->user->points_fidelite;
+            return response()->json(['success' => 'Reservation annulée avec succès !', 'content' => ['fidelity' => $newFidelityCount]], 200);
         } catch (\Exception $e) {
             return response()->json(['erreur' => 'Une erreur s\'est produite lors de la suppression'], 500);
         }
