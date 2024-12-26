@@ -1,6 +1,6 @@
 @if ($salle->id === 1)
 
-    <div class="w-full md:max-w-[95%] xl:max-w-[70%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
+    <div class="w-full max-h-1/2 md:max-w-[95%] xl:max-w-[70%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
         <h1 class="md:text-2xl text-lg mt-4 font-semibold text-center mb-6 dark:text-white">Disposition des Sièges</h1>
 
         <div class="grid grid-rows-12 gap-vw-2">

@@ -2,7 +2,7 @@
     <x-menus.menu-hamb/>
     <nav class="lg:mx-5 mx-2 md:mx-3 w-full flex justify-between items-center h-14 navigation {{$background}} md:flex-row flex-row-reverse">
         <div class="flex items-center md:gap-4 lg:gap-10 gap-5 md:flex-row flex-row-reverse ">
-            <a cursor="pointer" @click="open = true" class="{{$search == 'true' ? 'hidden' : ''}}">
+            <a cursor="pointer" @click="open = true" class="{{$search == 'true' ? 'block' : 'hidden'}}">
                 <svg class="w-[42px] h-[42px] md:w-10 md:h-10 p-2 rounded-md hover:bg-slate-300 hover:bg-opacity-40 cursor-pointer transition-all ease-in-out duration-300" fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M497.938,430.063l-126.914-126.91C389.287,272.988,400,237.762,400,200C400,89.719,310.281,0,200,0 C89.719,0,0,89.719,0,200c0,110.281,89.719,200,200,200c37.762,0,72.984-10.711,103.148-28.973l126.914,126.91 C439.438,507.313,451.719,512,464,512c12.281,0,24.563-4.688,33.938-14.063C516.688,479.195,516.688,448.805,497.938,430.063z M64,200c0-74.992,61.016-136,136-136s136,61.008,136,136s-61.016,136-136,136S64,274.992,64,200z"></path> </g> </g></svg>
             </a>
             <img width="35px" src="{{Storage::url('assets/mainLogo.png')}}" alt="" class="hidden md:block">

@@ -320,7 +320,7 @@ class TmdbService
 
 
     public function addCustomMovieToDb($movie)
-    {
+    {   
         $trailer = null;
         foreach ($movie['videos']['results'] as $video) {
             if ($video['type'] == 'Trailer') {
@@ -348,8 +348,6 @@ class TmdbService
 
         $movie['images'] = implode(',', $backdropCollection);
 
-
-
         DB::table('films')->insert([
             'tmdb_id' => $movie['id'],
             'slug' => Str::slug($movie['title']),
@@ -367,6 +365,9 @@ class TmdbService
             'duree' => $movie['runtime'],   
         ]);
 
+        var_dump('check films');
+
+        
         $countries = Pays::whereIn('alpha_2', $movie['origin_country'])->get();
 
         foreach ($countries as $country) {
@@ -375,6 +376,7 @@ class TmdbService
                 'pays_id' => $country->id
             ]);
         }
+        var_dump('check country');
 
         
         foreach ($movie['genres'] as $genre) {
@@ -391,6 +393,8 @@ class TmdbService
             ]);
         }
 
+        var_dump('check genre');
+
         foreach ($movie['credits']['crew'] as $crew) {
             if ($crew['job'] === "Director") {
                 if (!Realisateur::where('tmdb_id', $crew['id'])->exists()) {
@@ -406,6 +410,7 @@ class TmdbService
                 ]);
             }
         }
+        var_dump('check reals');
 
         foreach ($movie['credits']['cast'] as $actor) {
             if ($actor['order'] < 4) {
@@ -422,6 +427,8 @@ class TmdbService
                 ]);
             }
         }
+        var_dump('check_cast');
+
 
         foreach ($movie['credits']['crew'] as $crew) {
             if ($crew['job'] === "Original Music Composer") {
@@ -437,27 +444,29 @@ class TmdbService
                 ]);
             }
         }
+        var_dump('check_composers ?');
 
-        foreach ($movie['production_companies'] as $prod) {
-            if($prod['origin_country'] === ""){
-                $prod['origin_country'] = "XX";
-            }
-            if (!Production::where('tmdb_id', $prod['id'])->exists()) {
+        // foreach ($movie['production_companies'] as $prod) {
+        //     if($prod['origin_country'] === ""){
+        //         $prod['origin_country'] = "XX";
+        //     }
+        //     if (!Production::where('tmdb_id', $prod['id'])->exists()) {
                 
-                Production::create([
-                    'tmdb_id' => $prod['id'],
-                    'nom' => $prod['name'],
-                    'pays_id' => Pays::where('alpha_2', $prod['origin_country'])->first()->id
-                ]);
-            }
+        //         Production::create([
+        //             'tmdb_id' => $prod['id'],
+        //             'nom' => $prod['name'],
+        //             'pays_id' => Pays::where('alpha_2', $prod['origin_country'])->first()->id
+        //         ]);
+        //     }
 
-            DB::table('film_production')->insert([
-                'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
-                'production_id' => Production::where('tmdb_id', $prod['id'])->first()->id
-            ]);
+        //     DB::table('film_production')->insert([
+        //         'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
+        //         'production_id' => Production::where('tmdb_id', $prod['id'])->first()->id
+        //     ]);
+        //     var_dump("check {$prod}");
+        // }
 
-        }
-
+        // var_dump('check companies');
 
     }
 }

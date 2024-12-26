@@ -21,14 +21,14 @@
         <x-navbars.navbar background="bg-black" search="false"/>
     </header>
 
-    <main class="absolute top-0 left-0 w-full">
+    <main class="w-full">
         @yield('content')
     </main>
 
     {{-- <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/> --}}
     
     <footer>
-
+        
     </footer>
 </body>
 </html>

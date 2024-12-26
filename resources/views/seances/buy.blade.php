@@ -146,7 +146,7 @@
         >
         Je réserve !
     </button>       
-         
+    <x-footer/>
 </div>
 
 <script>

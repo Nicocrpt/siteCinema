@@ -45,9 +45,9 @@ class FilmSeeder extends Seeder
         //Blade Runner 2049
 
         $tmdbClient->addMovieToDb(335984);
-        $movie = Film::where('tmdb_id', 335984)->first()->get();
+        $movie = Film::where('tmdb_id', 335984)->first();
         $movie->update([
-            'url_backdrop' => 'https://image.tmdb.org/t/p/original/9AU3kxNMM6AGofeC1uOtm4etsNj.jpg',
+            'url_backdrop' => 'https://image.tmdb.org/t/p/original/ilRyazdMJwN05exqhwK4tMKBYZs.jpg',
             'url_logo' => 'https://image.tmdb.org/t/p/original/wa5oPNclj7ogyKJLpV8ADHxwy8b.png',
             'est_favori' => 1,
         ]);
@@ -55,7 +55,7 @@ class FilmSeeder extends Seeder
         // Princesse Mononoke
 
         $tmdbClient->addMovieToDb(128);
-        $movie = Film::where('tmdb_id', 128)->first()->get();
+        $movie = Film::where('tmdb_id', 128)->first();
         $movie->update([
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/wPwLLtHmtXS8JQ7wX9CeLoeW69Y.jpg',
             'url_logo' => 'https://image.tmdb.org/t/p/original/w29hHfCISGc0C82VgcOxKHTIBQZ.png',
@@ -66,7 +66,7 @@ class FilmSeeder extends Seeder
         // Spider-Man : Across the spider-verse
 
         $tmdbClient->addMovieToDb(569094);
-        $movie = Film::where('tmdb_id', 569094)->first()->get();
+        $movie = Film::where('tmdb_id', 569094)->first();
         $movie->update([
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/3IlBBELuZszOkGtPHVBTWlYzWqu.jpg',
             'url_logo' => 'https://image.tmdb.org/t/p/original/mZK6Gt9YUqXC8vUCcdIGFhIjuzr.png',

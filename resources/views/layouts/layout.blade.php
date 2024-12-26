@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition h-full w-full dark:bg-zinc-800 bg-neutral-50"
+<body class="relative no-transition h-full w-full bg-neutral-900"
     x-data="{
         open : false, 
         dropdown : false,
@@ -24,11 +24,11 @@
     :class="open ? 'overflow-hidden' : 'overflow-auto'"
     >
     <header  
-        class="transition-all ease-in-out duration-700 h-14 w-full z-40"
+        class="transition-all ease-in-out duration-700 h-14 w-full z-30 fixed"
         x-init="$watch('scrolled', () => console.log(scrolled))"
         :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; backdrop-filter: blur(15px); padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
         @scroll.window="scrolled = (window.scrollY > window.innerHeight/8)">
-        <x-navbars.navbar background="'bg-transparent'" search="'true'"/>
+        <x-navbars.navbar background="'bg-transparent'" search="true"/>
         
     </header>
     <x-loading-screen/>
@@ -41,12 +41,12 @@
 
     
 
-    <main>
+    <main class="bg-neutral-50 dark:bg-neutral-800">
         @yield('content')
     </main>
     
     <footer>
-
+        <x-footer class=""/>
     </footer>
 </body>
 </html>
