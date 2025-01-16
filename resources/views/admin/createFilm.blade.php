@@ -205,7 +205,6 @@
             if (this.checked){
                 if (parseInt(counter.innerHTML) >= max) {
                     this.checked = false
-                    this.dispatchEvent(new Event('change', { bubbles: true }));
                 } else {
                     counter.innerHTML = parseInt(counter.innerHTML) + 1
                     container.innerHTML += `
