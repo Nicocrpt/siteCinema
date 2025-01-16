@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => "flex flex-col justify-between bg-neutral-900 w-full h-48 px-4 py-2 sticky "]) }}>
+<div {{ $attributes->merge(['class' => "flex flex-col justify-between bg-neutral-900 w-full h-48 px-4 py-2  "]) }}>
 
     {{-- A propos/Infos Pratiques--}}
     <div class="pb-2 flex justify-around px-2">

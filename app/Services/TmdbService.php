@@ -42,6 +42,20 @@ class TmdbService
     //     return $data['genres'];
     // }
 
+
+    public function queryFilms($query)
+    {
+        $response = $this->client->request('GET', "https://api.themoviedb.org/3/search/movie?query=$query&include_adult=false&language=fr-FR&page=1&api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ]
+        ]);
+
+        $data = json_decode($response->getBody(), true); // json_decode()
+
+        return $data['results'];
+    }
+
     public function getFilmById($id)
     {
         $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=credits,videos&language=fr-FR&api_key=$this->apiKey", [
@@ -56,7 +70,7 @@ class TmdbService
             ],
         ]);
 
-        $responseIMG = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/images?include_image_language=fr,en,null&api_key=$this->apiKey", [
+        $responseIMG = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/images?include_image_language=fr,null&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
             ]

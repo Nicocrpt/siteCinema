@@ -13,5 +13,6 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('films', FilmController::class);
 Route::post('films/get-data', [FilmController::class, 'send']);
 Route::post('films/manual', [FilmController::class, 'adminAdd']);
+Route::get('tmdb/{id}',[FilmController::class, 'getFilm']);
 
 Route::apiResource('seances', SeanceController::class);

@@ -107,9 +107,9 @@
         
         }
 
-        .index-content {
+        /* .index-content {
             margin-top: 59vh
-        }
+        } */
     }
 
 
@@ -119,7 +119,7 @@
 
 
 
-<div x-data="filmsBanner" x-init="init" class=" block top-0 absolute max-w-full">
+<div x-data="filmsBanner" x-init="init" class=" block max-w-full">
     <div class="owl-carousel owl-theme carousel-1  border-b-2  dark:border-b-neutral-300 border-b-black max-h-fit" style="">
         @foreach ($films as $film)
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">

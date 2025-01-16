@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminFilmController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
+
+Route::get('/admin', [AdminFilmController::class, 'index'])->name('admin.index');
+Route::get('/admin/films/search', [AdminFilmController::class, 'searchFilms'])->name('admin.films.searchFilms');
+Route::get('/admin/films/create/{id}', [AdminFilmController::class, 'create'])->name('admin.films.create');
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
 Route::get('/films/{id}', [FilmController::class, 'show'])->name('film.show');

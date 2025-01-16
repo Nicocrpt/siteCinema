@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition h-full w-full bg-neutral-900"
+<body class="relative no-transition w-full bg-neutral-900 overscroll-none solaris"
     x-data="{
         open : false, 
         dropdown : false,
@@ -25,9 +25,9 @@
     >
     <header  
         class="transition-all ease-in-out duration-700 h-14 w-full z-30 fixed"
-        x-init="$watch('scrolled', () => console.log(scrolled))"
+        x-init="$watch('scrolled', () => {if(scrolled) {document.querySelector('main').classList.add('min-h-screen') }})"
         :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; backdrop-filter: blur(15px); padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
-        @scroll.window="scrolled = (window.scrollY > window.innerHeight/8)">
+        @scroll.window="scrolled = (window.scrollY > window.innerHeight/20)">
         <x-navbars.navbar background="'bg-transparent'" search="true"/>
         
     </header>
@@ -45,8 +45,8 @@
         @yield('content')
     </main>
     
-    <footer>
-        <x-footer class=""/>
+    <footer class=" h-48">
+        <x-footer/>
     </footer>
 </body>
 </html>

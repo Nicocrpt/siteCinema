@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+</head>
+<body class="bg-gray-900 h-screen flex flex-col">
+    <header class="h-16 w-full flex items-center p-4 md:px-6 lg:px-10 justify-between">
+        <div class="flex gap-4 items-center">
+            <svg fill="#ffffff" class="w-[40px]" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.002 512.002" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M255.998,120.138c-74.914,0-135.862,60.948-135.862,135.862s60.948,135.862,135.862,135.862S391.86,330.914,391.86,256 S330.912,120.138,255.998,120.138z M255.998,376.138c-66.244,0-120.138-53.894-120.138-120.138s53.894-120.138,120.138-120.138 S376.136,189.756,376.136,256S322.242,376.138,255.998,376.138z"></path> <rect x="248.132" width="15.723" height="104.004"></rect> <rect x="204.41" y="77.295" transform="matrix(0.1737 0.9848 -0.9848 0.1737 270.5177 -152.095)" width="42.967" height="15.723"></rect> <rect x="147.778" y="97.896" transform="matrix(0.5 0.866 -0.866 0.5 176.2168 -93.7057)" width="42.967" height="15.723"></rect> <rect x="101.628" y="136.626" transform="matrix(-0.766 -0.6428 0.6428 -0.766 124.5386 334.3051)" width="42.966" height="15.723"></rect> <rect x="85.111" y="175.186" transform="matrix(0.342 -0.9397 0.9397 0.342 -123.6348 216.775)" width="15.723" height="42.968"></rect> <rect x="61.036" y="248.134" width="42.966" height="15.723"></rect> <rect x="71.491" y="307.47" transform="matrix(-0.9397 0.342 -0.342 -0.9397 288.1874 579.851)" width="42.968" height="15.723"></rect> <rect x="101.599" y="359.634" transform="matrix(-0.7661 0.6428 -0.6428 -0.7661 453.5869 569.907)" width="42.969" height="15.724"></rect> <rect x="161.387" y="384.747" transform="matrix(0.866 0.5 -0.5 0.866 225.7961 -30.199)" width="15.723" height="42.967"></rect> <rect x="217.994" y="405.378" transform="matrix(-0.9848 -0.1736 0.1736 -0.9848 374.1774 886.4498)" width="15.723" height="42.966"></rect> <rect x="264.622" y="418.964" transform="matrix(-0.1737 -0.9848 0.9848 -0.1737 -84.5358 782.7211)" width="42.966" height="15.723"></rect> <rect x="321.241" y="398.39" transform="matrix(-0.5 -0.866 0.866 -0.5 162.268 906.1877)" width="42.967" height="15.723"></rect> <rect x="367.381" y="359.643" transform="matrix(0.766 0.6428 -0.6428 0.766 327.2243 -163.9794)" width="42.966" height="15.723"></rect> <rect x="397.539" y="307.477" transform="matrix(0.9397 0.342 -0.342 0.9397 133.1127 -124.2909)" width="42.968" height="15.723"></rect> <rect x="407.996" y="248.134" width="42.966" height="15.723"></rect> <rect x="397.536" y="188.819" transform="matrix(0.9397 -0.342 0.342 0.9397 -41.9979 155.1646)" width="42.968" height="15.723"></rect> <rect x="367.429" y="136.621" transform="matrix(0.7661 -0.6428 0.6428 0.7661 -1.8874 283.7811)" width="42.969" height="15.724"></rect> <rect x="334.886" y="84.276" transform="matrix(-0.866 -0.5 0.5 -0.866 586.6924 368.7268)" width="15.723" height="42.967"></rect> <rect x="278.258" y="63.66" transform="matrix(0.9848 0.1736 -0.1736 0.9848 19.126 -48.3792)" width="15.723" height="42.966"></rect> <rect x="134.216" y="56.443" transform="matrix(0.342 0.9397 -0.9397 0.342 182.959 -132.6761)" width="104.004" height="15.723"></rect> <rect x="72.871" y="91.866" transform="matrix(0.6428 0.766 -0.766 0.6428 120.9948 -60.0334)" width="104.001" height="15.723"></rect> <rect x="27.325" y="146.135" transform="matrix(0.866 0.5 -0.5 0.866 87.6282 -19.0312)" width="104.002" height="15.723"></rect> <rect x="3.086" y="212.716" transform="matrix(0.9848 0.1737 -0.1737 0.9848 39.1517 -6.2158)" width="104.004" height="15.723"></rect> <rect x="3.111" y="283.559" transform="matrix(0.9848 -0.1737 0.1737 0.9848 -49.7819 14.0032)" width="104.004" height="15.723"></rect> <rect x="27.32" y="350.131" transform="matrix(0.866 -0.5 0.5 0.866 -168.3728 87.6254)" width="104.002" height="15.723"></rect> <rect x="72.853" y="404.42" transform="matrix(0.6428 -0.766 0.766 0.6428 -271.2199 242.9003)" width="104.001" height="15.723"></rect> <rect x="178.378" y="395.687" transform="matrix(-0.9397 -0.342 0.342 -0.9397 208.1387 932.0757)" width="15.723" height="104.004"></rect> <rect x="248.132" y="407.998" width="15.723" height="104.004"></rect> <rect x="273.774" y="439.845" transform="matrix(-0.342 -0.9397 0.9397 -0.342 16.4819 906.9549)" width="104.004" height="15.723"></rect> <rect x="335.101" y="404.425" transform="matrix(-0.6428 -0.766 0.766 -0.6428 320.1168 973.8383)" width="104.001" height="15.723"></rect> <rect x="380.676" y="350.147" transform="matrix(-0.866 -0.5 0.5 -0.866 628.3762 884.394)" width="104.002" height="15.723"></rect> <rect x="449.052" y="239.404" transform="matrix(0.1737 -0.9848 0.9848 0.1737 90.5708 690.757)" width="15.723" height="104.004"></rect> <rect x="404.887" y="212.739" transform="matrix(-0.9848 0.1737 -0.1737 -0.9848 945.1505 358.4856)" width="104.004" height="15.723"></rect> <rect x="380.671" y="146.14" transform="matrix(-0.866 0.5 -0.5 -0.866 884.3768 71.0287)" width="104.002" height="15.723"></rect> <rect x="335.129" y="91.848" transform="matrix(-0.6428 0.766 -0.766 -0.6428 712.3632 -132.7443)" width="104.001" height="15.723"></rect> <rect x="317.909" y="12.304" transform="matrix(0.9397 0.342 -0.342 0.9397 41.6369 -107.5362)" width="15.723" height="104.004"></rect> </g> </g> </g> </g></svg>
+
+            <div class="flex items-end md:gap-6 lg:gap-10">
+                <h1 class="lg:text-2xl text-xl font-bold text-white"><a href="{{route('admin.index')}}">Solaris Panel</a></h1>
+                <ul class="hidden md:gap-3 md:flex lg:gap-5 justify-center">
+                    <li><a href="" class="text-white">Films</a></li>
+                    <li><a href="" class="text-white">Séances</a></li>
+                    <li><a href="" class="text-white">Statistiques du cinéma</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="flex md:gap-4 lg:gap-8">
+            <div class="flex md:gap-2 lg:gap-4">
+                <svg viewBox="0 0 48 48" class="lg:w-[26px] md:w-[22px]" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M33.843,26.914L24,36l-9.843-9.086C8.674,30.421,5,36.749,5,44h38C43,36.749,39.326,30.421,33.843,26.914z"></path> <path d="M24,28c3.55,0,6.729-1.55,8.926-4C34.831,21.876,36,19.078,36,16c0-6.627-5.373-12-12-12S12,9.373,12,16 c0,3.078,1.169,5.876,3.074,8C17.271,26.45,20.45,28,24,28z"></path> </g> </g></svg>
+
+
+                <svg viewBox="0 0 24 24" class="lg:w-[26px] md:w-[22px]" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#ffffff;stroke-miterlimit:10;stroke-width:2px;}</style></defs><polygon class="cls-1" points="17.2 3 6.8 3 1.61 12 6.8 21 17.2 21 22.39 12 17.2 3"></polygon><circle class="cls-1" cx="12" cy="12" r="4"></circle></g></svg>
+            </div>
+            
+            <div class="flex items-center">
+                <p class="text-white underline text-sm"><a href="{{route('index')}}">site web</a></p>
+            </div>
+        </div>
+        
+    </header>
+
+    <main class=" flex w-[98%]  mt-2 mx-auto bg-gray-50 dark:bg-gray-800 h-full rounded-t-md overflow-hidden flex-col">
+        @yield('content')
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

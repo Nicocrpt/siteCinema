@@ -180,6 +180,11 @@ class FilmController extends Controller
         }
     }
 
+    public function getFilm($id)
+    {
+        $client = new TmdbService;
+        return response()->json($client->getAllFilmById($id));
+    }
     /**
      * Show the form for editing the specified resource.
      */

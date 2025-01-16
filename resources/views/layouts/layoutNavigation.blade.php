@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-neutral-50 dark:bg-zinc-800 relative"
+<body class=" bg-neutral-50 dark:bg-zinc-800 overscroll-none solaris"
 x-data="{
     open : false, 
     dropdown : false,
@@ -25,14 +25,14 @@ x-init="window.onload = () => loading = false; document.body.classList.remove('n
 
     <x-loading-screen/>
     
-    <main class=" top-0 left-0 w-full h-[100%]">
+    <main class="w-full h-[100vh] relative">
         @yield('content')
     </main>
 
     {{-- <x-menus.bottom-navbar class="sm:hidden" :filmPage="View::getSection('title')"/> --}}
     
-    <footer>
-        <x-footer/>
+    <footer class="">
+        
     </footer>
 </body>
 </html>

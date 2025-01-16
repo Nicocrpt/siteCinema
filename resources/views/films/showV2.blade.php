@@ -19,8 +19,8 @@
     </div>
     
     {{-- Bannière Film --}}
-    <div class="fixed md:w-80 xl:w-[26rem] w-full md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-zinc-900 md:shadow-lg z-20 margin-0 overflow-hidden"
-    :style="isSmallScreen ? `height: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : `height: 100vh`">
+    <div class="fixed md:absolute md:w-80 xl:w-[26rem] w-full md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-zinc-900 md:shadow-lg z-20 margin-0 overflow-hidden"
+    :style="isSmallScreen ? `height: 12rem` : `height: 100vh`">
         <div class="h-full md:max-h-[630px] xl:max-h-[780px] w-full flex md:block relative">
             <img id="imageAffiche" src="{{ $film->url_affiche }}" alt="" class="h-full md:w-full md:h-auto w-auto flex-shrink">
             <div class="flex flex-col py-4 w-[92%] md:ml-[4%] md:mr-[4%] md:my-[4%] bg-zinc-900 bg-opacity-70 justify-evenly md:justify-start px-4 flex-grow overflow-hidden md:absolute md:bottom-0 md:h-auto backdrop-blur rounded-md">
@@ -54,12 +54,12 @@
 
 
     {{-- Contenu page --}}
-    <div class="w-auto h-screen">
+    <div class="w-auto h-full md:h-screen md:overflow-y-auto">
         <div class="2xl:grid 2xl:grid-cols-8 2xl:pl-[26rem] 2xl:mt-14 2xl:gap-2 2xl:mx-6" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
 
             {{-- Boutons de navigation --}}
             <div class="2xl:hidden w-full h-auto flex md:pl-80 xl:pl-[26rem] md:mt-14 bg-neutral-50 dark:bg-zinc-800 flex-col transition-all ease-in-out duration-100"
-            :style="isSmallScreen ? `margin-top: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : ``">
+            :style="isSmallScreen ? `margin-top: 12rem` : ``">
                 
                 <div class="flex w-full h-16">
                     <button @click="contentFilm = false" class="w-full h-full text-md font-semibold dark:text-white  transition-all ease-in-out duration-200" :class="contentFilm == true ? 'bg-neutral-300  shadow-inner-br dark:bg-neutral-700 rounded-br hover:bg-neutral-400 hover:dark:bg-neutral-500' : ''" :disabled="contentFilm == false">Informations</button>
@@ -70,54 +70,64 @@
             </div>
             
             {{-- Informations Film --}}
-            <div x-show="contentFilm == false || is2xlScreen == true " class="md:pt-10 pt-10 px-4 gap-2 flex flex-col md:ml-80 xl:ml-[26rem] 2xl:ml-0 rounded-xl bg-neutral-50 dark:bg-zinc-800 2xl:z-10 2xl:col-span-4 md:pb-8 pb-24">
-                <div x-data="{exist: '{{ $film->url_trailer ?? 'none'}}'}" class="w-full aspect-[16/9] 2xl:w-[100%]" :class="exist == 'none' ? 'hidden' : ''">
-                    <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded-md" ></iframe>
-                </div>
+            <div x-show="contentFilm == false || is2xlScreen == true " class=" gap-2 flex flex-col md:ml-80 xl:ml-[26rem] 2xl:ml-0 rounded-xl bg-neutral-50 dark:bg-zinc-800 2xl:z-10 2xl:col-span-4">
                 
-                <div class=" h-[0.18rem] w-auto 2xl:w-full mt-14 mb-4 mx-1 bg-neutral-300 rounded-full dark:bg-neutral-500"></div>
-        
-                <div class="flex flex-col gap-2 w-auto 2xl:w-[95%] ">
-                    <h1 class="text-2xl font-semibold dark:text-white">Synopsis</h1>
-                    <p class="dark:text-white text-sm">{{ $film->synopsis }}</p>
-                </div>
-                
-                <div class=" h-[0.18rem] w-auto 2xl:w-full mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
-        
-                <div class="2xl:w-[100%] mx-2 h-auto rounded">
-                    <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                <div class="pt-10 px-4 md:pb-8 pb-24">
+                    <div x-data="{exist: '{{ $film->url_trailer ?? 'none'}}'}" class="md:w-[70%] aspect-[16/9] 2xl:w-[100%] mx-auto" :class="exist == 'none' ? 'hidden' : ''">
+                        <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded-md" ></iframe>
+                    </div>
+                    
+                    <div class=" h-[0.18rem] w-auto 2xl:w-full mt-14 mb-4 mx-1 bg-neutral-300 rounded-full dark:bg-neutral-500"></div>
+            
+                    <div class="flex flex-col gap-2 w-auto 2xl:w-[95%] ">
+                        <h1 class="text-2xl font-semibold dark:text-white">Synopsis</h1>
+                        <p class="dark:text-white text-sm">{{ $film->synopsis }}</p>
+                    </div>
+                    
+                    <div class=" h-[0.18rem] w-auto 2xl:w-full mt-14 mb-4 mx-1 bg-neutral-300 dark:bg-neutral-500 rounded-full"></div>
+            
+                    <div class="md:w-[70%] mx-auto 2xl:w-[100%] h-auto rounded">
+                        <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                    </div>
                 </div>
 
+                
 
+                <x-footer/>
             </div>
         
             {{-- Seances Film --}}
-            <div x-show="contentFilm == true || is2xlScreen == true" class="pt-10  px-4 gap-2 flex flex-col pb-24 md:ml-80 xl:ml-[26rem] 2xl:ml-0 bg-neutral-50 dark:bg-zinc-800  2xl:z-0 2xl:col-span-4 ">
-                <h1 class="text-2xl font-semibold dark:text-white">Seances</h1>
+            <div x-show="contentFilm == true || is2xlScreen == true" class="relative min-h-screen gap-2 flex flex-col md:ml-80 xl:ml-[26rem] 2xl:ml-0 bg-neutral-50 dark:bg-zinc-800  2xl:z-0 2xl:col-span-4 ">
+
+                <div class="pt-10 px-4 pb-24">
+                    <h1 class="text-2xl font-semibold dark:text-white">Seances</h1>
         
-                <div class="flex gap-3 flex-col">
-                    @foreach ($datesSeances as $dateSeance)
-                        <div>
-                            @if($dateSeance == date('d/m/Y'))
-                                <p class=" dark:text-white rounded-xl p-1 pl-2 pr-2">Aujourd'hui</p>
-                            @else
-                                <p class="my-5 text-lg dark:text-white font-semibold">{{$dateSeance}}</p>
-                            @endif
-        
-                            <div class="flex gap-10 flex-wrap">
-                                @foreach ($film->seances as $seance)
-                                    @if(strftime('%A %d %B', strtotime($seance->datetime_seance)) == $dateSeance)
-                                        <x-cards.seance-link :seance="$seance" />
-                                    @endif
-                                @endforeach
+                    <div class="flex gap-3 flex-col">
+                        @foreach ($datesSeances as $dateSeance)
+                            <div>
+                                @if($dateSeance == date('d/m/Y'))
+                                    <p class=" dark:text-white rounded-xl p-1 pl-2 pr-2">Aujourd'hui</p>
+                                @else
+                                    <p class="my-5 text-lg dark:text-white font-semibold">{{$dateSeance}}</p>
+                                @endif
+            
+                                <div class="flex gap-10 flex-wrap">
+                                    @foreach ($film->seances as $seance)
+                                        @if(strftime('%A %d %B', strtotime($seance->datetime_seance)) == $dateSeance)
+                                            <x-cards.seance-link :seance="$seance" />
+                                        @endif
+                                    @endforeach
+                                </div>
+                                
                             </div>
-                            
-                        </div>
-        
-                        <div class="h-[0.10rem] w-full mt-4 bg-neutral-300 rounded-full"></div>
-                    @endforeach
-        
+            
+                            <div class="h-[0.10rem] w-full mt-4 bg-neutral-300 rounded-full"></div>
+                        @endforeach
+            
+                    </div>
                 </div>
+                
+                <x-footer class="absolute bottom-0" />    
             </div>
 
         </div>
@@ -128,7 +138,7 @@
 </div>
 
 
-<x-footer/>
+
 
 
 
