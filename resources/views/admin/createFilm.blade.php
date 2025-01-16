@@ -4,7 +4,9 @@
 @section('content')
 <div class="h-16 w-full border-b-2 border-gray-150 dark:border-gray-700 shadow-xs p-4 px-6 lg:px-8 bg-gray-100 flex justify-between items-center">
     <div class="flex gap-4 items-center">
-        <svg width="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M10,22v2c0,7.72,6.28,14,14,14s14-6.28,14-14s-6.28-14-14-14h-6.662l3.474-4.298l-3.11-2.515L10.577,12l7.125,8.813 l3.11-2.515L17.338,14H24c5.514,0,10,4.486,10,10s-4.486,10-10,10s-10-4.486-10-10v-2H10z"></path> </g> </g></svg>
+        <a href="{{route('admin.index')}}">
+            <svg width="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M10,22v2c0,7.72,6.28,14,14,14s14-6.28,14-14s-6.28-14-14-14h-6.662l3.474-4.298l-3.11-2.515L10.577,12l7.125,8.813 l3.11-2.515L17.338,14H24c5.514,0,10,4.486,10,10s-4.486,10-10,10s-10-4.486-10-10v-2H10z"></path> </g> </g></svg>
+        </a>
         <h1 class="font-semibold dark:text-white text-xl">{{$movie['title']}}</h1>
     </div>
     <h1 class="font-semibold dark:text-white text-large">Id TMDB : {{$movie['id']}}</h1>
@@ -152,10 +154,21 @@
                 </div>
 
 
-                <div x-show="imgSelector" class="fixed h-screen w-screen top-0 left-0 p-8 overflow-hidden flex justify-center items-center bg-black bg-opacity-70 border border-gray-500">
+                <div x-show="imgSelector" class="fixed h-screen w-screen top-0 left-0 p-8 overflow-hidden flex justify-center items-center bg-black bg-opacity-70 border border-gray-500 rounded pt-24">
                     
-                        <div class="w-[1200px] h-full my-auto flex flex-col relative">
-                            <div class="overflow-y-auto flex flex-wrap justify-evenly w-full h-full bg-gray-200 rounded-b rounded-tl gap-4 p-10">
+                        <div class="w-[1200px] h-full my-auto flex flex-col">
+                            <div class="w-full h-16 bg-gray-300 rounded-t shadow-sm z-20 border-b border-gray-400 flex justify-between px-4 items-center">
+                                <p class="font-semibold">Max 8 images autorisées</p>
+                                <p class="text-lg font-semibold"><span id="counter">0</span>/8</p>
+                                <button @click="imgSelector = false" class="bg-white rounded-full h-fit p-2">
+                                    <svg width="18" class="" viewBox="0 0 15 15" version="1.1" id="cross" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.64,1.27L7.5,6.13l4.84-4.84C12.5114,1.1076,12.7497,1.0029,13,1c0.5523,0,1,0.4477,1,1
+                                    c0.0047,0.2478-0.093,0.4866-0.27,0.66L8.84,7.5l4.89,4.89c0.1648,0.1612,0.2615,0.3796,0.27,0.61c0,0.5523-0.4477,1-1,1
+                                    c-0.2577,0.0107-0.508-0.0873-0.69-0.27L7.5,8.87l-4.85,4.85C2.4793,13.8963,2.2453,13.9971,2,14c-0.5523,0-1-0.4477-1-1
+                                    c-0.0047-0.2478,0.093-0.4866,0.27-0.66L6.16,7.5L1.27,2.61C1.1052,2.4488,1.0085,2.2304,1,2c0-0.5523,0.4477-1,1-1
+                                    C2.2404,1.0029,2.4701,1.0998,2.64,1.27z"></path> </g></svg>
+                                </button>
+                            </div>
+                            <div class="overflow-y-auto flex flex-wrap justify-evenly w-full h-full bg-gray-200 rounded-b gap-4 p-10">
                                 @foreach ($movie['images']['backdrops'] as $image)
                                     <div class="relative">
                                         <img src="https://image.tmdb.org/t/p/w500{{$image['file_path']}}" alt="" class="w-[30rem] border border-gray-400 rounded">
@@ -163,7 +176,6 @@
                                     </div>    
                                 @endforeach
                             </div>
-                            <button @click="imgSelector = false" class="absolute top-2 right-2 bg-white p-2 rounded-full">X</button>
                         </div>                
                 </div>
 
@@ -183,13 +195,20 @@
     let container = document.getElementById('imgReciever')
     let imagesString = document.getElementById('imagesString')
     const imagesList = document.querySelectorAll('.imgCheckbox')
+    const counter = document.getElementById('counter')
+    const max = 8
 
     imagesList.forEach(checkbox => {
         checkbox.classList.add(`cb-${Array.from(imagesList).indexOf(checkbox)}`)
         checkbox.addEventListener('change', function(){
             const img = this.previousElementSibling
             if (this.checked){
-                container.innerHTML += `
+                if (parseInt(counter.innerHTML) >= max) {
+                    this.checked = false
+                    this.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    counter.innerHTML = parseInt(counter.innerHTML) + 1
+                    container.innerHTML += `
                     <div class="relative w-48 img-${Array.from(imagesList).indexOf(checkbox)}">
                         <img src="${img.src}" class="border border-gray-400 w-48 rounded"/>
                         <button @click="$el.parentElement.remove(); removeSelectedImage(${Array.from(imagesList).indexOf(checkbox)})" class="absolute top-1 right-1 bg-white bg-opacity-70 rounded-full">
@@ -197,14 +216,17 @@
                         </button>
                     </div>`
 
-                if (imagesString.value == ""){
-                    imagesString.value = img.src.replace("https://image.tmdb.org/t/p/w500", "")
-                } else {
-                    imagesString.value += ',' + img.src.replace("https://image.tmdb.org/t/p/w500", "")
+                    if (imagesString.value == ""){
+                        imagesString.value = img.src.replace("https://image.tmdb.org/t/p/w500", "")
+                    } else {
+                        imagesString.value += ',' + img.src.replace("https://image.tmdb.org/t/p/w500", "")
+                    }
                 }
+                
                 
 
             } else {
+                counter.innerHTML = parseInt(counter.innerHTML) - 1
                 imgToRemove = document.querySelector(`.img-${Array.from(imagesList).indexOf(checkbox)}`)
                 if (imgToRemove != null) {
                     console.log(imgToRemove)

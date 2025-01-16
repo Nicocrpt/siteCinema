@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
+// Route::get('/redirect/back', function () {
+//     return redirect()->to(url()->previous());
+// })->name('redirect.back');
 
 Route::get('/admin', [AdminFilmController::class, 'index'])->name('admin.index');
 Route::get('/admin/films/search', [AdminFilmController::class, 'searchFilms'])->name('admin.films.searchFilms');
