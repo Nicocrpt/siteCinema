@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('statut_abo')->default(false);
             $table->integer('points_fidelite')->default(0);
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();

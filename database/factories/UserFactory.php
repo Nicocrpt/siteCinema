@@ -41,6 +41,7 @@ class UserFactory extends Factory
             'ville' => fake('fr_FR')->city(),
             'pays_id' => $pays,
             'statut_abo' => rand(0, 1),
+            'is_admin' => false,
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
