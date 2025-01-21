@@ -12,6 +12,11 @@ class Film extends Model
 {
     use HasFactory;
 
+    public function statut(): BelongsTo
+    {
+        return $this->belongsTo(Statut::class);
+    }
+
     public function seances(): HasMany
     {
         return $this->hasMany(Seance::class);

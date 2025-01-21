@@ -95,7 +95,7 @@
     
                 <div class="flex flex-col gap-2">
                     <label for="logo" class="text-zinc-800 dark:text-white font-semibold">Logo</label>
-                    <div class="relative w-[18rem] h-full border-zinc-400 dark:border-zinc-500 bg-zinc-300 dark:bg-zinc-500 border rounded overflow-hidden group" x-data="{translation : 0, logos: [...document.querySelectorAll('.imgLogo')].map(img => img.src)}">
+                    <div class="relative w-[18rem] h-[330px] border-zinc-400 dark:border-zinc-500 bg-zinc-300 dark:bg-zinc-500 border rounded overflow-hidden group" x-data="{translation : 0, logos: [...document.querySelectorAll('.imgLogo')].map(img => img.src)}">
                         <div x-bind:style="'transform: translateX(-' + translation + '%);'" class="h-full flex items-center">
                             @foreach ($movie['images']['logos'] as $logo )
                
@@ -114,13 +114,7 @@
                     </div>
                     
                 </div>
-            </section>
-        
-    
-        
-    
-        
-        
+            </section>        
             
             <div class="flex flex-col gap-2">
                 <label for="isFavorite" class="text-zinc-800 dark:text-white font-semibold">Le film sera-t-il en tête d'affiche ?</label>
@@ -137,19 +131,19 @@
             <div class="flex flex-col gap-2">
                 <label for="certification" class="text-zinc-800 dark:text-white font-semibold">Certification à appliquer :</label>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="certification" id="toutPublic" value="0">
+                    <input type="radio" name="certification" id="toutPublic" value="Touts publics" {{$movie['certification'] == "Touts publics" ? 'checked' : ''}}>
                     <label for="toutPublic" class="text-zinc-800 dark:text-white">Tout public</label>
                 </div>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="certification" id="-12" value="0">
+                    <input type="radio" name="certification" id="-12" value="12" {{$movie['certification'] == '12' ? 'checked' : ''}}>
                     <label for="-10" class="text-zinc-800 dark:text-white">interdit aux moins de 12 ans</label>
                 </div>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="certification" id="-16" value="0">
+                    <input type="radio" name="certification" id="-16" value="16" {{$movie['certification'] == '16' ? 'checked' : ''}}>
                     <label for="-16" class="text-zinc-800 dark:text-white">interdit aux moins de 16 ans</label>
                 </div>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="certification" id="-18" value="0">
+                    <input type="radio" name="certification" id="-18" value="18" {{$movie['certification'] == '18' ? 'checked' : ''}}>
                     <label for="-18" class="text-zinc-800 dark:text-white">interdit aux moins de 18 ans</label>
                 </div>
             </div>

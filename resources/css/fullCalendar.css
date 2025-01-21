@@ -1,0 +1,63 @@
+button.fc-prev-button, button.fc-next-button {
+    @apply !bg-zinc-700 hover:!bg-zinc-900 !border-zinc-700 hover:!border-zinc-950;
+}
+
+button.fc-dayGridMonth-button, button.fc-timeGridWeek-button, button.fc-timeGridDay-button {
+    @apply !bg-zinc-700 hover:!bg-zinc-900 !border-zinc-700 hover:!border-zinc-950;
+}
+
+button.fc-dayGridMonth-button.fc-button-active, button.fc-timeGridWeek-button.fc-button-active, button.fc-timeGridDay-button.fc-button-active {
+    @apply !bg-zinc-900 !border-zinc-950;
+}
+
+button.fc-today-button {
+    @apply !bg-zinc-800 !border-zinc-800 hover:!bg-zinc-950 disabled:!bg-zinc-600 disabled:!border-zinc-600;
+}
+
+.fc-toolbar-title {
+    @apply dark:!text-white
+}
+
+
+.fc-timegrid-slot {
+    height: 12px !important;
+}
+/* .fc-timegrid-slots table {
+    @apply  dark:bg-zinc-900
+} */
+
+table {
+    @apply !border-zinc-700 !border-b !border-r overflow-hidden
+}
+
+[role="grid"] {
+    @apply !rounded-md
+}
+
+.fc-theme-standard td, .fc-theme-standard th {
+    @apply  dark:!border-zinc-500 
+}
+
+.fc-day-past, .fc-day-future {
+    @apply dark:!bg-zinc-600
+}
+
+.fc-col-header, .fc-col-header-cell {
+    @apply !bg-zinc-300 dark:!bg-zinc-950 dark:!text-white
+
+}
+
+
+
+.fc-timegrid-col-events {
+    @apply !mx-1
+}
+
+.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
+    @apply !bg-zinc-200 dark:!bg-zinc-900 dark:!text-white h-full pt-2
+
+}
+
+
+
+

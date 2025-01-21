@@ -50,6 +50,7 @@ class FilmSeeder extends Seeder
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/ilRyazdMJwN05exqhwK4tMKBYZs.jpg',
             'url_logo' => 'https://image.tmdb.org/t/p/original/wa5oPNclj7ogyKJLpV8ADHxwy8b.png',
             'est_favori' => 1,
+            'statut_id' => 2,
         ]);
 
         // Princesse Mononoke
@@ -61,6 +62,7 @@ class FilmSeeder extends Seeder
             'url_logo' => 'https://image.tmdb.org/t/p/original/w29hHfCISGc0C82VgcOxKHTIBQZ.png',
             'url_trailer' => 'https://www.youtube.com/embed/cQq6aqTNUsA',
             'est_favori' => 1,
+            'statut_id' => 2,
         ]);
 
         // Spider-Man : Across the spider-verse
@@ -71,6 +73,7 @@ class FilmSeeder extends Seeder
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/3IlBBELuZszOkGtPHVBTWlYzWqu.jpg',
             'url_logo' => 'https://image.tmdb.org/t/p/original/mZK6Gt9YUqXC8vUCcdIGFhIjuzr.png',
             'est_favori' => 1,
+            'statut_id' => 2,
         ]);
         
 

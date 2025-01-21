@@ -5,27 +5,26 @@
 
 <x-admin.admin-film-heading/>
 
-<div class="max-h-full p-1 overflow-y-auto pb-[5rem]">
-    <section class="max-w-[54rem] mx-auto h-full mt-6">
+<div class="max-h-full px-4 overflow-y-auto pb-[5rem]">
+    <section class="lg:w-[63.125rem] 2xl:w-[88.25rem] mx-auto h-full mt-6">
         <form class="w-full flex justify-start items-center gap-2" id="queryFilmsForm">
             @csrf
             <input type="text" name="query" id="query" class="rounded w-72 bg-white dark:bg-zinc-600 dark:focus:bg-zinc-500 border border-zinc-500 dark:text-white dark:placeholder:text-zinc-300" placeholder="Rechercher un film">
-            <button type="submit" class="border border-zinc-600 bg-zinc-900 hover:bg-cyan-600 text-white  transition-all ease-in-out duration-200 rounded py-2 px-4">Rechercher</button>
+            <button type="submit" class="w-[10.25rem] border border-zinc-600 bg-zinc-900 hover:bg-cyan-600 text-white  transition-all ease-in-out duration-200 rounded py-2 px-4">Rechercher</button>
         </form>
-        <p class="text-xs italic text-zinc-600 dark:text-zinc-400 pl-2 pt-[0.15rem]">propulsé par <span class="font-semibold text-zinc-700 dark:text-zinc-300">T</span>he<span class="font-semibold text-zinc-700 dark:text-zinc-300">M</span>ovie<span class="font-semibold text-zinc-700 dark:text-zinc-300">D</span>ata<span class="font-semibold text-zinc-700 dark:text-zinc-300">B</span>ase</p>
 
         <div class="w-full h-full mt-4 rounded overflow-hidden flex flex-col">
             <div class="w-full flex h-8 bg-neutral-300 dark:bg-zinc-900 overflow-hidden border border-zinc-400 dark:border-zinc-500 rounded-t shadow">
-                <div class="w-[4.5rem]  flex justify-center items-center" >
+                <div class="w-[4.5rem] 2xl:w-[7.425rem]  flex justify-center items-center" >
                     <p class="px-auto font-semibold dark:text-white">Affiche</p>
                 </div>
-                <div class="w-[26rem] flex justify-center items-center">
+                <div class="w-[36.625rem] 2xl:w-[50rem] flex justify-center items-center">
                     <p class="px-auto font-semibold dark:text-white">Titre</p>
                 </div>
-                <div class="w-[12rem] flex justify-center items-center">
+                <div class="w-[12rem] 2xl:[16.8rem] flex justify-center items-center">
                     <p class="px-auto font-semibold dark:text-white">Date de sortie</p>
                 </div>
-                <div class="w-[10rem] flex justify-center items-center">
+                <div class="w-[10rem] 2xl:w-[14rem] flex justify-center items-center">
                     <p class="px-auto font-semibold dark:text-white">Action</p>
                 </div>
             </div>
@@ -37,20 +36,7 @@
                 </div>
             </div>
         </div>
-        
-            {{-- <table class="border-collapse w-full max-h-[400px]" border="1">
-                <thead>
-                    <tr>
-                        <th class="border-1 border black text-left p-2">affiche</th>
-                        <th class="border-1 border black text-left p-2">titre</th>
-                        <th class="border-1 border black text-left p-2">Date de sortie</th>
-                        <th class="border-1 border black text-center p-2">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="filmsTable" class="overflow-y-auto max-h-full">      
-                </tbody>
-            </table> --}}
-        
+        <p class="text-xs italic text-zinc-500 dark:text-zinc-400 pt-[0.5rem]">propulsé par <span class="font-semibold text-zinc-600 dark:text-zinc-300">T</span>he<span class="font-semibold text-zinc-600 dark:text-zinc-300">M</span>ovie<span class="font-semibold text-zinc-600 dark:text-zinc-300">D</span>ata<span class="font-semibold text-zinc-600 dark:text-zinc-300">B</span>ase</p>
     </section>
 </div>
 
@@ -96,32 +82,28 @@
                 const rowColorDark = count % 2 == 0 ? 'dark:bg-zinc-600' : 'dark:bg-zinc-700'
                 row.classList.add('w-full', 'flex', 'overflow-hidden', rowColor, rowColorDark, 'min-h-16', 'border-b', 'border-zinc-300', 'dark:border-zinc-500')
                 row.innerHTML = `
-                    <div class="w-[4.5rem] flex justify-center items-center">
+                    <div class="w-[4.5rem] 2xl:w-[7.425rem] flex justify-center items-center">
                         <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="" class="w-full"/>
                     </div>
-                    <div class="w-[26rem]  flex justify-center items-center">
+                    <div class="w-[36.625rem] 2xl:w-[50rem]  flex justify-center items-center">
                         <p class="dark:text-white">${film.title}</p>
                     </div>
-                    <div class="w-[12rem]  flex justify-center items-center">
+                    <div class="w-[12rem] 2xl:[16.8rem]  flex justify-center items-center">
                         <p class="dark:text-white">${film.release_date}</p>
                     </div>
 
 
                 `
-                // row.innerHTML = `
-                //     <td class="border-1 border black text-left p-2"><img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="" class="h-24"/></td>
-                //     <td class="border-1 border black text-left p-2">${film.title}</td>
-                //     <td class="border-1 border black text-left p-2">${film.release_date}</td>`
                 if (films_ids.includes(film.id)) {
                     let filmEditURI = `{{route('admin.films.edit', ':id')}}`
                     filmEditURI = filmEditURI.replace(':id', film.id)
                     row.innerHTML += `
-                    <div class="w-[10rem]  flex justify-center items-center">
+                    <div class="w-[10rem] 2xl:w-[14rem] flex justify-center items-center">
                         <a href="${filmEditURI}" class="border border-zinc-500 bg-zinc-800 hover:bg-yellow-500 text-white transition-all ease-in-out duration-200 rounded py-2 px-4">Modifier</a>
                     </div>`
                 } else {
                     row.innerHTML += `
-                    <div class="w-[10rem]  flex justify-center items-center">
+                    <div class="w-[10rem] 2xl:w-[14rem] flex justify-center items-center">
                         <a class="border border-zinc-500 bg-zinc-800 hover:bg-green-600 transition-all ease-in-out duration-200 rounded py-2 px-4 cursor-pointer text-white" href="${filmCreationURI}">Détails</a>
                     </div>`
                 }

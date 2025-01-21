@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId('certification_id')->constrained('certifications');
             $table->string('date_sortie');
             $table->boolean('a_laffiche')->default(true);
+            $table->foreignId('statut_id')->constrained('statuts');
             $table->boolean('est_favori')->default(false);
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();

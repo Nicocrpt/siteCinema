@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +44,7 @@
         
     </header>
 
-    <main class=" w-[98%]  mt-2 mx-auto bg-gray-50 dark:bg-zinc-800 h-full rounded-t-md overflow-hidden flex-col">
+    <main class=" w-[98%]  mt-2 mx-auto bg-gray-50 dark:bg-zinc-800 h-full rounded-t-md overflow-hidden flex-col relative">
         @yield('content')
     </main>
 

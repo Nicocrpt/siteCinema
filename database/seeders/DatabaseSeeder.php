@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CertificationSeeder::class);
 
+        $this->call(StatutSeeder::class);
+
         $this->call(UserSeeder::class);
 
         // Insertions des salles

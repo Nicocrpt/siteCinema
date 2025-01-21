@@ -89,6 +89,7 @@ class AdminFilmController extends Controller
                 'poster_path' => 'required',
                 'trailer' => 'required',
                 'isFavorite' => 'required',
+                'certification' => 'required',
             ]);
     
             $tmdbClient = new TmdbService;
@@ -101,10 +102,11 @@ class AdminFilmController extends Controller
             $movie['trailer'] = $request->trailer;
             $movie['images'] = $request->images_string;
             $movie['isFavorite'] = $request->isFavorite;
+            $movie['certification'] = $request->certification;
     
             $tmdbClient->addCustomMovieToDb($movie);
 
-            return redirect()->route('admin.films.manage');
+            return redirect()->route('admin.films.manage')->with('success', "Film ajouté avec succès !");
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

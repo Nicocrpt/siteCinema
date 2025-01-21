@@ -185,6 +185,7 @@ class TmdbService
             'images' => $movie['images'],
             'url_logo' => $movie['url_logo'],
             'duree' => $movie['runtime'],
+            'statut_id' => 1,
             
         ]);
 
@@ -311,7 +312,7 @@ class TmdbService
         {// json_decode()
             if ($result['iso_3166_1'] == "FR") {
                 $item = $result['release_dates'][0];
-                if($item['certification'] =='U' || $item['certification'] == 'TP' || $item['certification'] == '') {
+                if($item['certification'] =='U' || $item['certification'] == 'TP') {
                     $certification = 'Touts publics';
                 }else
                 {
@@ -325,7 +326,7 @@ class TmdbService
         
         
         
-        $data['certification'] = $certification ?? 'none';
+        $data['certification'] = $certification ?? null;
         $data['date_sortie'] = $dateSortie;
         $data['images'] = $dataIMG;
 
@@ -375,6 +376,7 @@ class TmdbService
             'images' => $movie['images'],
             'duree' => $movie['runtime'],
             'est_favori' => $movie['isFavorite'], 
+            'statut_id' => 2
         ]);
 
         var_dump('check films');

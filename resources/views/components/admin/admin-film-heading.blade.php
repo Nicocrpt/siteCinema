@@ -1,4 +1,4 @@
-<div x-data="{currentPage: document.title}" class="relative h-12 max-h-16 w-full border-zinc-150 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 shadow-xs">
+<div x-data="{currentPage: document.title}" class="relative h-12 max-h-16 w-full border-zinc-150 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 shadow-xs z-30">
     <ul class="flex dark:text-white h-full z-20">
         <li class="h-full w-fit p-2 px-4 z-30 flex items-center gap-2" :class="currentPage == 'Films - Gérer les films' ? 'border-b-2 border-zinc-950 dark:border-white' : ''">
             <svg width="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="fill-black dark:fill-white"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M17.928 9.628C17.837 9.399 15.611 4 10 4S2.162 9.399 2.07 9.628a1.017 1.017 0 000 .744C2.163 10.601 4.389 16 10 16c5.611 0 7.837-5.399 7.928-5.628a1.017 1.017 0 000-.744zM10 14a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 10.002 4.001A2 2 0 009.999 8z" class="fill-black dark:fill-white"></path></g></svg>
