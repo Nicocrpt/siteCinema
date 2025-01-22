@@ -191,6 +191,8 @@ document.addEventListener('alpine:init', () => {
         },
 
         queryMovies() {
+            const language = document.getElementById('language')
+
             let url = "/admin/seances/get-films"
             url += '?filter=' + encodeURIComponent(filmFilter.value)
             url += '&query=' + encodeURIComponent(filmQuery.value)
@@ -218,7 +220,7 @@ document.addEventListener('alpine:init', () => {
                         <div class="p-4 flex justify-between items-center ${films.indexOf(film)%2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600 hover:bg-yellow-50 dark:hover:bg-zinc-500' : 'bg-zinc-200 dark:bg-zinc-700 hover:bg-yellow-50 dark:hover:bg-zinc-500'}" id="${film.id}">
                             <div class="px-2 shadow-md py-1 bg-zinc-400 dark:bg-zinc-900 rounded flex gap-1 draggableElement max-w-[75%]" style="cursor: grab" data-title="${film.titre}" data-language="1" data-duration="${heures}:${minutes}:00" data-id="${film.id}">
                                 <svg width="14" fill="#ffffff" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M600 1440c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 720c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 0c132.36 0 240 107.64 240 240S732.36 480 600 480 360 372.36 360 240 467.64 0 600 0Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240S1187.64 0 1320 0Z" fill-rule="evenodd"></path> </g></svg>
-                                <p class="dark:text-white truncate ...">${film.titre} (VF)</p>
+                                <p class="dark:text-white truncate ...">${film.titre} ${language.checked ? ' (VO)' : ' (VF)'}</p>
                             </div>
 
                             <div class="flex gap-4 justify-between items-center">

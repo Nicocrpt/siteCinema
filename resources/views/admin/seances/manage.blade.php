@@ -34,7 +34,7 @@
                         <option value="upcoming">Prochainement</option>
                         <option value="archived">Archivé</option>
                     </select>
-                    <input type="text" name="query" id="filmQuery" class="rounded w-full dark:bg-zinc-500 border-zinc-400 dark:text-white dark:placeholder:text-zinc-300" placeholder="Rechercher un film">
+                    <input @input="queryMovies()" type="text" name="query" id="filmQuery" class="rounded w-full dark:bg-zinc-500 border-zinc-400 dark:text-white dark:placeholder:text-zinc-300" placeholder="Rechercher un film"/>
                     <div class="flex w-full justify-end mt-[0.95rem]">
                         <label class="inline-flex items-center cursor-pointer">
                             <span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">VF</span>
