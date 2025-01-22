@@ -36,51 +36,20 @@ document.addEventListener('alpine:init', () => {
         detailView: false,
         salle : "all",
         calendar: null,
+
         init() {
             const alpineContext = this;
-            // document.querySelectorAll('.draggableElement').forEach(element => {
-            //     console.log('1')
-            //     element.p.addEventListener('mousedown', function (event) {
-            //         console.log('works')
-            //         new Draggable(element, {
-            //             itemSelector: '.draggableElement',
-            //             mirror: {
-            //                 constrainDimensions: true,  // Ajuste la taille du ghost à l'élément original
-            //             },
-            //             eventData: function (eventEl) {
-            //                 const ref = faker.string.numeric(8);
-            //                 let salleId;
-            //                 switch (eventEl.getAttribute('datacolor')) {
-            //                     case '#bd0808':
-            //                         salleId = 1;
-            //                         break;
-            //                     case '#057a0d':
-            //                         salleId = 2;
-            //                         break;
-            //                     case '#2a82bd':
-            //                         salleId = 3;
-            //                         break;
-            //                 }
-            //                 return {
-            //                     title: eventEl.getAttribute('data-title'),
-            //                     duration: eventEl.getAttribute('data-duration'),
-            //                     color: eventEl.getAttribute('datacolor'),
-            //                     extendedProps: {
-            //                         id: parseInt(eventEl.getAttribute('data-id')),
-            //                         ref: ref,
-            //                         salle: salleId
-            //                     }
-            //                 };
-            //             }
-            //         });
-            //     })
-            // })
+
+
             document.addEventListener('DOMContentLoaded', function () {
 
-                new Draggable(document.getElementById('filmsContainer'), {
-                    itemSelector: '.draggableElement',
+                alpineContext.queryMovies();
+
+                const draggable = new Draggable(document.getElementById('filmsContainer'), {
+                    itemSelector: '.draggableElement.active',
                     eventData: function (eventEl) {
                         const ref = faker.string.numeric(8)
+                        const language = eventEl.getAttribute('data-language') == "1" ? " (VF)" : " (VO)"
                         let salleId;
                         switch (eventEl.getAttribute('datacolor')) {
                             case '#bd0808':
@@ -94,19 +63,21 @@ document.addEventListener('alpine:init', () => {
                                 break;  
                         }
                         return {
-                            title: eventEl.getAttribute('data-title'),
+                            title: eventEl.getAttribute('data-title') + language,
                             duration: eventEl.getAttribute('data-duration'),
                             color: eventEl.getAttribute('datacolor'),
                             extendedProps: {
                                 id : parseInt(eventEl.getAttribute('data-id')),
                                 ref : ref,
-                                salle : salleId
+                                salle : salleId,
+                                langue : parseInt(eventEl.getAttribute('data-language'))
                             }
                         };
                     }
-                  });
+                });
 
                 const calendarEl = document.getElementById('calendar');
+
                 
                 alpineContext.calendar = new Calendar(calendarEl, {
                     locale: 'FR-fr',
@@ -114,7 +85,7 @@ document.addEventListener('alpine:init', () => {
                     eventOverlap: false,
                     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                     initialView: 'timeGridWeek', // Vue initiale
-                    slotDuration: '00:10:00',
+                    slotDuration: '00:15:00',
                     allDaySlot: false,
                     headerToolbar: {
                         left: 'prev,next today', // Boutons de navigation
@@ -131,54 +102,18 @@ document.addEventListener('alpine:init', () => {
                         console.log(url)
                         fetch(url)
                             .then(response => response.json())
-                            .then(events => successCallback(events))
+                            .then(events => {
+                                successCallback(events)
+                                console.log(events)
+                            })
                             .catch(error => failureCallback(error));
+
                     },              // Permet de faire glisser et de modifier des événements
-                    selectable: true,
-                    editable: true, // Permet de déplacer les événements
-                    droppable: true, // Permet de déposer des événements externes
+                    selectable: true, // Permet de déplacer les événements
+                    droppable: true,
+                    editable: true, // Permet de déposer des événements externes
                     slotMinTime: '09:00:00', // Heure de début
                     slotMaxTime: '25:00:00', // Heure de fin
-                    select: function(info) {
-                        console.log(alpineContext.detailView)
-                        if (alpineContext.detailView == true) {
-                            let modal = document.createElement('div');
-                            let calendarContainer = document.querySelector('.fc-view-harness');
-                            calendarContainer.classList.add('!relative');
-                            modal.classList.add('modal', 'absolute', 'top-0', 'left-0', 'h-full', 'w-full', 'flex', 'justify-center', 'items-center', 'z-50');
-                            modal.innerHTML = `
-                                <div class="modal-content bg-white p-4 rounded-lg border border-zinc-300 shadow">
-                                    <h2 class="text-lg font-semibold mb-2">Ajouter une séance</h2>
-                                    <form>
-                                        <select name="title" id="title">
-                                            @foreach ($films as $film)
-                                                <option value="{{ $film->id }}">{{ $film->titre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-                                </div>
-                            `;
-                            calendarContainer.appendChild(modal);
-                            console.log('hello world')
-                        } else {
-                            alpineContext.calendar.unselect()
-                        }
-
-                        // var title = prompt('Titre de l\'événement:');
-                        // if (title) {
-                        //   // Ajouter l'événement au calendrier
-                        //   calendar.addEvent({
-                        //     title: title,
-                        //     start: info.startStr,
-                        //     end: info.endStr, // Vous pouvez également ajouter des données supplémentaires ici
-                        //   });
-                        // }
-                    },
-                    datesSet: function (info) {
-                        // La vue a changé, vous pouvez rafraîchir les événements
-                        alpineContext.salle = alpineContext.salle;  // On peut ajouter un autre contrôle ici si besoin
-                        alpineContext.calendar.refetchEvents();
-                    },
                     eventReceive: function(info) {
                         const existingEvents = alpineContext.calendar.getEvents().filter(e => 
                             e.title === info.event.title && e.startStr === info.event.startStr
@@ -198,7 +133,8 @@ document.addEventListener('alpine:init', () => {
                                 film: info.event.extendedProps.id,
                                 datetime_seance: info.event.start,
                                 salle: parseInt(info.event.extendedProps.salle),
-                                reference: info.event.extendedProps.ref
+                                reference: info.event.extendedProps.ref,
+                                langue: parseInt(info.event.extendedProps.langue)
                             })
                         })
                         .then(response => response.json())
@@ -210,12 +146,24 @@ document.addEventListener('alpine:init', () => {
                             console.error('Erreur lors de l\'ajout:', error);
                             info.revert();  // Annule le drop en cas d'échec
                         });
+                    },
+                    eventDrop: function(info) {
+                        fetch('/admin/seances/update', {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                            },
+                            body: JSON.stringify({
+                                reference: info.event.extendedProps.reference,
+                                datetime_seance: info.event.start,
+                            })
+                        })
+                        .then(response => response.json())
                     }
                 });
         
                 alpineContext.calendar.render();
-
-                
 
 
                 window.addEventListener('resize', function () {
@@ -225,39 +173,99 @@ document.addEventListener('alpine:init', () => {
                     }
                 })
 
-                
+                document.getElementById('language').addEventListener('change', function() {
+                    document.querySelectorAll('.draggableElement').forEach((film) => {
+                        let child = film.querySelector('p')
+                       if (document.getElementById('language').checked) {
+                           film.setAttribute('data-language', 0);
+                           child.textContent = child.textContent.replace(' (VF)', ' (VO)');
+                       }else{
+                           film.setAttribute('data-language', 1);
+                           child.textContent = child.textContent.replace(' (VO)', ' (VF)');
+                       }           
+                    })
+                })
             });
+
+            
         },
 
+        queryMovies() {
+            let url = "/admin/seances/get-films"
+            url += '?filter=' + encodeURIComponent(filmFilter.value)
+            url += '&query=' + encodeURIComponent(filmQuery.value)
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+                }
+                return response.json(); // Traiter la réponse comme JSON
+            })
+            .then(films => {
+                let filmContainer = document.getElementById('filmsContainer')
+                filmContainer.innerHTML = ''
+                films.forEach(film => {
+                    let heures = Math.floor((parseInt(film.duree)+30) / 60);
+                    let minutes = (parseInt(film.duree)+30) % 60;
+                    minutes = minutes.toString().padStart(2, '0');
+                    filmContainer.innerHTML += `
+                        <div class="p-4 flex justify-between items-center ${films.indexOf(film)%2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600 hover:bg-yellow-50 dark:hover:bg-zinc-500' : 'bg-zinc-200 dark:bg-zinc-700 hover:bg-yellow-50 dark:hover:bg-zinc-500'}" id="${film.id}">
+                            <div class="px-2 shadow-md py-1 bg-zinc-400 dark:bg-zinc-900 rounded flex gap-1 draggableElement max-w-[75%]" style="cursor: grab" data-title="${film.titre}" data-language="1" data-duration="${heures}:${minutes}:00" data-id="${film.id}">
+                                <svg width="14" fill="#ffffff" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M600 1440c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 720c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 0c132.36 0 240 107.64 240 240S732.36 480 600 480 360 372.36 360 240 467.64 0 600 0Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240S1187.64 0 1320 0Z" fill-rule="evenodd"></path> </g></svg>
+                                <p class="dark:text-white truncate ...">${film.titre} (VF)</p>
+                            </div>
+
+                            <div class="flex gap-4 justify-between items-center">
+                                <p class="dark:text-white cursor-default">${heures}h${minutes}</p>
+                                <svg @click="injectMovieInfos(${film.id})" width="26" viewBox="0 0 24 24" class="group cursor-pointer" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 18.5C12.5523 18.5 13 18.0523 13 17.5L13 10.5C13 9.94772 12.5523 9.5 12 9.5C11.4477 9.5 11 9.94772 11 10.5L11 17.5C11 18.0523 11.4477 18.5 12 18.5Z" class="dark:fill-zinc-200 dark:group-hover:fill-white fill-zinc-700 group-hover:fill-black"></path> <path d="M12 8.5C12.8284 8.5 13.5 7.82843 13.5 7C13.5 6.17157 12.8284 5.5 12 5.5C11.1716 5.5 10.5 6.17157 10.5 7C10.5 7.82843 11.1716 8.5 12 8.5Z" class="dark:fill-zinc-200 dark:group-hover:fill-white fill-zinc-700 group-hover:fill-black"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" class="dark:fill-zinc-200 dark:group-hover:fill-white fill-zinc-700 group-hover:fill-black"></path> </g></svg>
+                            </div>
+                        </div>
+                    `
+                });
+                this.changeDraggableItemColorByRoom(this.salle)
+            })
+
+        },
         filterEventsByRoom(room) {
 
             this.salle = room
+            this.changeDraggableItemColorByRoom(room)
+            this.calendar.removeAllEvents();
+            this.calendar.refetchEvents();
+        },
+        changeDraggableItemColorByRoom(room){
+            console.log("ntm")
             document.querySelectorAll('.draggableElement').forEach((film) => {
                 switch(room){
                     case '1':
-                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-green-600')
-                        film.classList.add('hover:bg-red-700')
+                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-green-600', 'salle2', 'salle3', 'pointer-events-none', 'cursor-default')
+                        film.classList.add('hover:bg-red-600', 'dark:bg-zinc-900', 'salle1', 'active')
                         film.setAttribute('datacolor', '#bd0808');
                         break;
                     case '2':
-                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-red-700')
-                        film.classList.add('hover:bg-green-600')
+                        console.log("ntm2")
+                        console.log(film)
+                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-red-600', 'salle1', 'salle3', 'dark:bg-zinc-500', 'pointer-events-none', 'cursor-default')
+                        film.classList.add('hover:bg-green-600', 'dark:bg-zinc-900', 'salle2', 'active')
                         film.setAttribute('datacolor', '#057a0d');
                         break;
                     case '3':
-                        film.classList.remove('hover:bg-green-600', 'hover:bg-red-700')
-                        film.classList.add('hover:bg-cyan-600')
+                        film.classList.remove('hover:bg-green-600', 'hover:bg-red-600', 'salle1', 'salle2', 'dark:bg-zinc-500', 'pointer-events-none', 'cursor-default')
+                        film.classList.add('hover:bg-cyan-600', 'dark:bg-zinc-900', 'salle3', 'active')
                         film.setAttribute('datacolor', '#2a82bd');
                         break;
                     case 'all':
-                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-green-600', 'hover:bg-red-700')
-                        film.classList.add('hover:bg-zinc-500', 'pointer-events-none', 'cursor-default')
+                        film.classList.remove('hover:bg-cyan-600', 'hover:bg-green-600', 'hover:bg-red-700', 'active')
+                        film.classList.add('pointer-events-none', 'cursor-default')
                         break;
                 }
             })
-    
-            this.calendar.removeAllEvents();
-            this.calendar.refetchEvents();
         },
 
         injectMovieInfos(id) {
@@ -268,13 +276,13 @@ document.addEventListener('alpine:init', () => {
             let minutes = film.duree % 60;
             minutes = minutes.toString().padStart(2, '0');
             div.innerHTML = `
-                <button @click="detailView = false" class="mx-2 mt-2 top-2 left-2 p-1 hover:bg-zinc-200 hover:border-zinc-300 dark:hover:bg-zinc-500  rounded transition-all ease-in-out duration-200">
-                    <svg width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="dark:fill-white fill-black"></path> </g></svg>
-                </button>
-                <div class="flex justify-end items-center w-full min-h-14 px-5 py-5 mb-6">
+                <div class="flex justify-between items-center w-full min-h-14 pl-4 pr-6 py-2 mb-4 bg-zinc-800 border-b border-zinc-500">
+                    <button @click="detailView = false" class="hover:bg-zinc-200 hover:border-zinc-300 dark:hover:bg-zinc-500 p-1 rounded transition-all ease-in-out duration-200">
+                        <svg width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="dark:fill-white fill-black"></path> </g></svg>
+                    </button>
                     <h1 class="font-semibold dark:text-white text-lg max-w-[80%]">${film.titre}</h1>
                 </div>
-                <div class="w-full px-4 flex gap-4">
+                <div class="w-full px-4 flex gap-4 mb-4">
                     <img src="${film.url_affiche}" alt="" class="w-[50%] rounded border dark:border-zinc-500"/>
                     <div class="w-auto flex flex-col gap-2">
                         <div>
@@ -284,37 +292,12 @@ document.addEventListener('alpine:init', () => {
                             <p class=" dark:text-white"><span class="font-semibold">Certification : </span>${film.certification.valeur}</p> 
                         </div>
                     </div>
-                </div> 
-                <div class="w-full flex flex-col gap-2 mt-16">
-                    <div class="flex justify-center items-center w-[50%] h-12 bg-red-600 hover:bg-red-700 border border-red-900 rounded shadow-lg mx-auto" draggable="true" style="cursor: grab;">
-                        <p class="font-semibold text-white">Insérer Salle 1</p>
-                    </div>
-                </div>  
+                </div>
+                
+                
+                
+                
             `
-            // div.innerHTML = `
-            //     <button @click="detailView = false" class="absolute mx-2 mt-2 top-2 left-2 p-1 hover:bg-zinc-200 hover:border-zinc-300 dark:hover:bg-zinc-500  rounded transition-all ease-in-out duration-200">
-            //         <svg width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="dark:fill-white fill-black"></path> </g></svg>
-            //     </button>
-            //     <div class="flex justify-end items-center w-full min-h-14 px-5 py-5 mb-6">
-            //         <h1 class="font-semibold dark:text-white text-lg max-w-[80%]">${film.titre}</h1>
-            //     </div>
-            //     <div class="w-full px-4 flex gap-4">
-            //         <img src="${film.url_affiche}" alt="" class="w-[50%] rounded border dark:border-zinc-500">
-            //         <div class="w-auto flex flex-col gap-2">
-            //             <div>
-            //                 <p class="dark:text-white"><span class="font-semibold">Durée : </span>${heures}h${minutes}</p>
-            //             </div>
-            //             <div>
-            //                 <p class=" dark:text-white"><span class="font-semibold">Certification : </span>${film.certification.valeur}</p> 
-            //             </div>
-            //         </div>
-            //     </div>
-            //     <div class="w-full flex flex-col gap-2 mt-16">
-            //         <div class="flex justify-center items-center w-[50%] h-12 bg-red-600 hover:bg-red-700 border border-red-900 rounded shadow-lg mx-auto cursor-pointer" draggable="true">
-            //             <p class="font-semibold text-white">Insérer Salle 1</p>
-            //         </div>
-            //     </div>                         
-            // `
         }
 
 

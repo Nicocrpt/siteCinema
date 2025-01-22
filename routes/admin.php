@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
 
-// Route::middleware('admin')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
     Route::get('/admin/films/add/search', [AdminFilmController::class, 'searchPage'])->name('admin.films.searchPage');
@@ -33,6 +33,6 @@ use App\Http\Middleware\AdminMiddleware;
     Route::get('/admin/seances/get-seances', [AdminSeanceController::class, 'getSeances']);
     Route::get('/admin/seances/get-films', [AdminSeanceController::class, 'getFilteredFilms'])->name('admin.seances.getFilteredFilms');
     Route::post('/admin/seances/add', [AdminSeanceController::class, 'store'])->name('admin.seances.store');
-    Route::patch('/admin/seances/{id}', [AdminSeanceController::class, 'update'])->name('admin.seances.update');
+    Route::patch('/admin/seances/update', [AdminSeanceController::class, 'update'])->name('admin.seances.update');
     // Fin requetes ajax
-// });
+});

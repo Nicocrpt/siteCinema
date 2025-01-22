@@ -4,12 +4,12 @@
     "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BZFVzyJu.css",
+    "file": "assets/app-CZNkIjvU.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BZjfrw_n.js",
+    "file": "assets/app-DD84z9yM.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,

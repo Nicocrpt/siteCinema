@@ -43,7 +43,10 @@ class AdminSeanceController extends Controller
             
             $events = [];
 
-            foreach($seances as $seance){     
+            foreach($seances as $seance){
+
+                $editable = $seance->reservations->count() == 0 ? true : false; 
+                $language = $seance->vf == 1 ? ' (VF)' : ' (VO)';
                 $startDatetime = Carbon::parse($seance->datetime_seance);
                 switch($seance->salle->id){
                     case 1:
@@ -66,12 +69,13 @@ class AdminSeanceController extends Controller
                 }
 
                 $events[] = [
-                    'title' => $seance->film->titre,
+                    'title' => $seance->film->titre . $language,
                     'start' => $startDatetime->toIso8601String(),
                     'end' => $startDatetime->copy()->addMinutes((int) $seance->film->duree + 30)->toIso8601String(),
-                    'description' => $seance->film->synopsis,
+                    'reference' => $seance->reference,
                     'salle' => $salle,
-                    'color' => $color
+                    'color' => $color,
+                    'editable' => $editable,
                 ];
 
             }
@@ -129,6 +133,7 @@ class AdminSeanceController extends Controller
                 'reference' => ['required', 'string', 'max:8'],
                 'salle' => ['required', 'integer'],
                 'datetime_seance' => ['required', 'date'],
+                'langue' => ['required', 'integer']
             ]);
 
             $datetime_seance = Carbon::parse($request->datetime_seance)->format('Y-m-d H:i:s');
@@ -138,7 +143,7 @@ class AdminSeanceController extends Controller
                 'reference' => $request->reference,
                 'salle_id' => $request->salle,
                 'datetime_seance' => $datetime_seance,
-                'vf' => 1,
+                'vf' => $request->langue,
                 'dolby_vision' => 0,
                 'dolby_atmos' => 0
             ]);
@@ -147,6 +152,25 @@ class AdminSeanceController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Une erreur s\'est produite lors de l\'ajout de la séance : ' . $e->getMessage()], 500);
         } 
+    }
+
+    public function update(Request $request) {
+        try {
+            $request->validate([
+                'reference' => ['required', 'string', 'max:8'],
+                'datetime_seance' => ['required', 'date'],
+            ]);
+
+            $datetime_seance = Carbon::parse($request->datetime_seance)->format('Y-m-d H:i:s');
+
+            Seance::where('reference', $request->reference)->update([
+                'datetime_seance' => $datetime_seance,
+            ]);
+
+            return response()->json(['success' => true, 'message' => 'La séance a bien été modifiée.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Une erreur s\'est produite lors de la modification de la séance : ' . $e->getMessage()], 500);
+        }
     }
 
 }
