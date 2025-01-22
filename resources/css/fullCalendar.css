@@ -1,13 +1,15 @@
 button.fc-prev-button, button.fc-next-button {
-    @apply !bg-zinc-700 hover:!bg-zinc-900 !border-zinc-700 hover:!border-zinc-950;
+    @apply !text-black !bg-zinc-300 hover:!bg-zinc-400 !border-zinc-300 hover:!border-zinc-500
+        dark:!text-white dark:!bg-zinc-700 dark:hover:!bg-zinc-900 dark:!border-zinc-700 dark:hover:!border-zinc-950;
 }
 
 button.fc-dayGridMonth-button, button.fc-timeGridWeek-button, button.fc-timeGridDay-button {
-    @apply !bg-zinc-700 hover:!bg-zinc-900 !border-zinc-700 hover:!border-zinc-950;
+    @apply !text-black !bg-zinc-300 hover:!bg-zinc-400 !border-zinc-300 hover:!border-zinc-500
+        dark:!text-white dark:!bg-zinc-700 dark:hover:!bg-zinc-900 dark:!border-zinc-700 dark:hover:!border-zinc-950;
 }
 
 button.fc-dayGridMonth-button.fc-button-active, button.fc-timeGridWeek-button.fc-button-active, button.fc-timeGridDay-button.fc-button-active {
-    @apply !bg-zinc-900 !border-zinc-950;
+    @apply !bg-zinc-400 !border-zinc-500 dark:!bg-zinc-900 dark:!border-zinc-950;
 }
 
 button.fc-today-button {
@@ -60,15 +62,19 @@ table {
 
 
 .fc-event-dragging.salle1 {
-    @apply !bg-red-700 dark:!bg-red-700
+    @apply !bg-red-500 dark:!bg-red-500
 }
 
 .fc-event-dragging.salle2 {
-    @apply !bg-green-600 dark:!bg-green-600
+    @apply !bg-green-500 dark:!bg-green-500
 }
 
 .fc-event-dragging.salle3 {
-    @apply !bg-cyan-600 dark:!bg-cyan-600
+    @apply !bg-sky-500 dark:!bg-sky-500
+}
+
+.fc-event-time, .fc-event-title, .fc-daygrid-day-number {
+    @apply dark:!text-white
 }
 
 

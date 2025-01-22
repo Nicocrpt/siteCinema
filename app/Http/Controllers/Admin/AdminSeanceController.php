@@ -50,17 +50,17 @@ class AdminSeanceController extends Controller
                 $startDatetime = Carbon::parse($seance->datetime_seance);
                 switch($seance->salle->id){
                     case 1:
-                        $color = '#bd0808';
+                        $color = '#ef4444';
                         $colorBreak = '#a15d5d';
                         $salle = 1;
                         break;
                     case 3:
-                        $color = '#2a82bd';
+                        $color = '#0ea5e9';
                         $colorBreak = '#5584a3';
                         $salle = 3;
                         break;
                     case 2:
-                        $color = '#057a0d';
+                        $color = '#22c55e';
                         $colorBreak = '#528756';
                         $salle = 2;
                         break;

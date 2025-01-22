@@ -14,10 +14,10 @@
             <div class="w-full flex justify-center items-center pt-4">
                 <div class="flex rounded overflow-hidden">
 
-                    <button @click="filterEventsByRoom('1')" class="px-2 py-1  text-white hover:bg-red-600 hover:border-red-700 transition-all ease-in-out duration-200 border rounded-l" :class="salle == '1' ? 'bg-red-600 border-red-700' : 'bg-zinc-700 border-zinc-700'" data-room="1" >Salle 1</button>
-                    <button @click="filterEventsByRoom('2')" class="px-2 py-1 text-white hover:bg-green-600 hover:border-green-700 transition-all ease-in-out duration-200 border" :class="salle == '2' ? 'bg-green-600 border-green-700' : 'bg-zinc-700 border-zinc-700'" data-room="2">Salle 2</button>
-                    <button @click="filterEventsByRoom('3')" class="px-2 py-1 text-white hover:bg-sky-500 hover:border-sky-600 transition-all ease-in-out duration-200 border" :class="salle == '3' ? 'bg-sky-500 border-sky-600' : 'bg-zinc-700 border-zinc-700'" data-room="3">Salle 3</button>
-                    <button @click="filterEventsByRoom('all')" class="px-2 py-1 text-white hover:bg-zinc-900 transition-all ease-in-out duration-200 border rounded-r hover:border-zinc-950" :class="salle == 'all' ? 'bg-zinc-900 border-zinc-950' : 'bg-zinc-700 border-zinc-700'" data-room="all">Toutes</button>
+                    <button @click="filterEventsByRoom('1')" class="px-2 py-1 dark:!text-white hover:text-white hover:bg-red-600 hover:border-red-700 transition-all ease-in-out duration-200 border rounded-l" :class="salle == '1' ? 'bg-red-600 border-red-700 text-white' : 'bg-zinc-300 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-700 text-black'" data-room="1" >Salle 1</button>
+                    <button @click="filterEventsByRoom('2')" class="px-2 py-1 dark:!text-white hover:text-white hover:bg-green-600 hover:border-green-700 transition-all ease-in-out duration-200 border" :class="salle == '2' ? 'bg-green-600 border-green-700 text-white' : 'bg-zinc-300 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-700 text-black'" data-room="2">Salle 2</button>
+                    <button @click="filterEventsByRoom('3')" class="px-2 py-1 dark:!text-white hover:text-white hover:bg-sky-500 hover:border-sky-600 transition-all ease-in-out duration-200 border" :class="salle == '3' ? 'bg-sky-500 border-sky-600 text-white' : 'bg-zinc-300 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-700 text-black'" data-room="3">Salle 3</button>
+                    <button @click="filterEventsByRoom('all')" class="px-2 py-1 dark:!text-white hover:text-white hover:bg-zinc-900 transition-all ease-in-out duration-200 border rounded-r hover:border-zinc-950" :class="salle == 'all' ? 'bg-zinc-900 border-zinc-950 text-white' : 'bg-zinc-300 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-700 text-black'" data-room="all">Toutes</button>
                 </div>
             </div>
             <div id="calendar" class="h-[calc(100vh-9rem)] px-4 pt-4 pb-10">
@@ -39,14 +39,14 @@
                         <label class="inline-flex items-center cursor-pointer">
                             <span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">VF</span>
                             <input type="checkbox" value="" id="language" class="sr-only peer">
-                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-yellow-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500"></div>
+                            <div class="relative w-11 h-6 bg-yellow-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-yellow-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-400 dark:peer-checked:bg-orange-500"></div>
                             <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">VO</span>
                         </label>
                     </div> 
                 <div class="overflow-y-auto h-[calc(100vh-18.5rem)] w-full flex flex-col mt-[0.95rem] border border-zinc-400 dark:border-zinc-500 rounded " id="filmsContainer">
                 </div>
             </div>
-            <div class="w-full h-full shrink-0 dark:bg-zinc-700 transition-all ease-in-out duration-[400ms]" id="filmDetails" :class="detailView ? '-translate-x-[100%]' : 'translate-x-0'">
+            <div class="w-full h-full shrink-0 dark:bg-zinc-700 bg-zinc-100 transition-all ease-in-out duration-[400ms]" id="filmDetails" :class="detailView ? '-translate-x-[100%]' : 'translate-x-0'">
 
             </div>
         </div>
