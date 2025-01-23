@@ -90,7 +90,9 @@ class AdminFilmController extends Controller
                 'trailer' => 'required',
                 'isFavorite' => 'required',
                 'certification' => 'required',
+                'publish' => ['required', 'integer'],
             ]);
+
     
             $tmdbClient = new TmdbService;
 
@@ -103,6 +105,7 @@ class AdminFilmController extends Controller
             $movie['images'] = $request->images_string;
             $movie['isFavorite'] = $request->isFavorite;
             $movie['certification'] = $request->certification;
+            $movie['publish'] = $request->publish;
     
             $tmdbClient->addCustomMovieToDb($movie);
 

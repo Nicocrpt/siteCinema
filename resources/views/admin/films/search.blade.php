@@ -80,7 +80,7 @@
                 const row = document.createElement('div')
                 const rowColor = count % 2 == 0 ? 'bg-zinc-100' : 'bg-zinc-200'
                 const rowColorDark = count % 2 == 0 ? 'dark:bg-zinc-600' : 'dark:bg-zinc-700'
-                row.classList.add('w-full', 'flex', 'overflow-hidden', rowColor, rowColorDark, 'min-h-16', 'border-b', 'border-zinc-300', 'dark:border-zinc-500')
+                row.classList.add('w-full', 'flex', 'overflow-hidden', rowColor, rowColorDark, 'min-h-16', 'border-b', 'border-zinc-300', 'dark:border-zinc-500', 'hover:bg-sky-100', 'dark:hover:bg-zinc-500', 'hover:cursor-pointer')
                 row.innerHTML = `
                     <div class="w-[4.5rem] 2xl:w-[7.425rem] flex justify-center items-center">
                         <img src="https://image.tmdb.org/t/p/w500${film.poster_path}" alt="" class="w-full"/>

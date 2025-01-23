@@ -7,7 +7,7 @@
     @csrf
 
     {{-- Header --}}
-    <div class="h-12 w-full border-b-2 border-zinc-150 dark:border-zinc-700 shadow-xs p-4 px-6 lg:px-8 bg-zinc-100 dark:bg-zinc-900 flex  items-center">
+    <div class="h-12 w-full border-b-2 border-zinc-150 dark:border-zinc-700 shadow-xs p-4 px-6 lg:px-8 bg-zinc-100 dark:bg-zinc-900 flex  items-center" x-data="{publish: 0}">
         <div class="flex w-full items-center justify-between">
             <div class="flex gap-4 items-center">
                 <a href="{{route('admin.films.searchPage')}}">
@@ -17,8 +17,12 @@
             </div>
             <h1 class="font-semibold dark:text-white text-md">Id TMDB : {{$movie['id']}}</h1>
         </div>
-        <button type="submit" class="ml-6 w-32 bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
+        <input type="hidden" name="publish" x-model="publish">
+        <button type="submit" @click="publish = 0" class="ml-6 w-[8.5rem] bg-amber-400 hover:bg-amber-500 rounded py-[0.10rem] text-white border border-yellow-600">
             Ajouter le film
+        </button>
+        <button type="submit" @click="publish = 1" class="ml-4 w-56 bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
+            Ajouter & publier le film
         </button>
     </div>
     

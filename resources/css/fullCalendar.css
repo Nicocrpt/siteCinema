@@ -33,7 +33,7 @@ table {
 }
 
 [role="grid"] {
-    @apply !rounded-md
+    @apply !rounded
 }
 
 .fc-theme-standard td, .fc-theme-standard th {

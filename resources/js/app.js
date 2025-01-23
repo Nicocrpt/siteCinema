@@ -82,6 +82,7 @@ document.addEventListener('alpine:init', () => {
                 alpineContext.calendar = new Calendar(calendarEl, {
                     locale: 'FR-fr',
                     firstDay: 3,
+                    timezone: 'UTC',
                     eventOverlap: false,
                     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                     initialView: 'timeGridWeek', // Vue initiale

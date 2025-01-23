@@ -336,29 +336,8 @@ class TmdbService
 
     public function addCustomMovieToDb($movie)
     {   
-        // $trailer = null;
-        // foreach ($movie['videos']['results'] as $video) {
-        //     if ($video['type'] == 'Trailer') {
-        //         if($video['iso_639_1'] == 'fr' && $video['site'] == 'YouTube' && preg_match('/\b(VF|VOST|VOSTF)\b/i', $video['name'])) {
-        //             $trailer = $video['key'];
-        //         }
-        //     }
-        // }
        $trailer = $movie['trailer'] ? $movie['trailer'] : null ;
-        
-        // $backdropCollection = [];
-        // $count = 0 ;
-        // foreach ($movie['images']['backdrops'] as $result)
-        // {   
-        //     if ($count <= 8) {                
-        //         if ($result['iso_639_1'] == null) {
-        //             $backdropCollection[] = "https://image.tmdb.org/t/p/original" . $result['file_path'];
-        //             $count++;
-        //         }
-        //     }
-        // }
-
-        // $movie['images'] = implode(',', $backdropCollection);
+       $statut_id = $movie['publish'] ? 3 : 2 ;
 
         DB::table('films')->insert([
             'tmdb_id' => $movie['id'],
@@ -376,7 +355,7 @@ class TmdbService
             'images' => $movie['images'],
             'duree' => $movie['runtime'],
             'est_favori' => $movie['isFavorite'], 
-            'statut_id' => 2
+            'statut_id' => $statut_id
         ]);
 
         var_dump('check films');
