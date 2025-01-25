@@ -462,4 +462,24 @@ class TmdbService
         // var_dump('check companies');
 
     }
+
+    public function getPerson($query) {
+        $response = $this->client->request('GET', "https://api.themoviedb.org/3/search/person?query=$query&include_adult=false&language=fr-FR&page=1&api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ],
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+        $data = $data['results'][0] ?? null;
+
+        if (!$data) {
+            return null;
+        }
+        return [
+            'id' => $data['id'],
+            'name' => $data['name'],
+        ];
+
+    }
 }

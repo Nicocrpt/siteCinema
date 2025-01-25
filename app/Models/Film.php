@@ -10,6 +10,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Film extends Model
 {
+    protected $fillable = [
+        'est_favori',
+        'images',
+        'titre',
+        'synopsis',
+        'url_trailer',
+        'url_backdrop',
+        'url_affiche',
+        'url_logo',
+    ];
+    
     use HasFactory;
 
     public function statut(): BelongsTo

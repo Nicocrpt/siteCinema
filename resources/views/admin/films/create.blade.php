@@ -3,8 +3,8 @@
 
 @section('content')
 <form action="{{route('admin.films.store')}}" method="POST" class="w-full h-full">
-    <input type="text" name="tmdb_id" value="{{$movie['id']}}" class="hidden">
     @csrf
+    <input type="text" name="tmdb_id" value="{{$movie['id']}}" class="hidden">
 
     {{-- Header --}}
     <div class="h-12 w-full border-b-2 border-zinc-150 dark:border-zinc-700 shadow-xs p-4 px-6 lg:px-8 bg-zinc-100 dark:bg-zinc-900 flex  items-center" x-data="{publish: 0}">
@@ -18,10 +18,10 @@
             <h1 class="font-semibold dark:text-white text-md">Id TMDB : {{$movie['id']}}</h1>
         </div>
         <input type="hidden" name="publish" x-model="publish">
-        <button type="submit" @click="publish = 0" class="ml-6 w-[8.5rem] bg-amber-400 hover:bg-amber-500 rounded py-[0.10rem] text-white border border-yellow-600">
+        <button type="submit" @click="publish = 0" class="ml-6 w-[9rem] bg-amber-400 hover:bg-amber-500 rounded py-[0.10rem] text-white border border-yellow-600">
             Ajouter le film
         </button>
-        <button type="submit" @click="publish = 1" class="ml-4 w-56 bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
+        <button type="submit" @click="publish = 1" class="ml-4 w-[14.5rem] bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
             Ajouter & publier le film
         </button>
     </div>
@@ -218,7 +218,8 @@
     imagesList.forEach(checkbox => {
         checkbox.classList.add(`cb-${Array.from(imagesList).indexOf(checkbox)}`)
         checkbox.addEventListener('change', function(){
-            const img = this.previousElementSibling
+            console.log(this.checked)
+            let img = this.previousElementSibling
             if (this.checked){
                 if (parseInt(counter.innerHTML) >= max) {
                     this.checked = false
@@ -232,7 +233,7 @@
                     container.innerHTML += `
                     <div class="relative w-[13.4rem] img-${Array.from(imagesList).indexOf(checkbox)}">
                         <img src="${img.src}" class="border border-zinc-400 w-[13.4rem] rounded"/>
-                        <button type="button"@click="$el.parentElement.remove(); removeSelectedImage(${Array.from(imagesList).indexOf(checkbox)})" class="absolute top-1 right-1 bg-white bg-opacity-70 rounded-full">
+                        <button type="button"@click="removeSelectedImage(${Array.from(imagesList).indexOf(checkbox)}); $el.parentElement.remove();" class="absolute top-1 right-1 bg-white bg-opacity-70 rounded-full">
                             <svg viewBox="0 0 24 24" width="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path> </g></svg>
                         </button>
                     </div>`
@@ -244,12 +245,20 @@
                     }
                 }
             } else {
+                console.log(img)
                 img.classList.remove('outline', 'outline-4', 'outline-green-600')
                 img.classList.add('border', 'border-zinc-400')
                 counter.innerHTML = parseInt(counter.innerHTML) - 1
-                imgToRemove = document.querySelector(`.img-${Array.from(imagesList).indexOf(checkbox)}`)
-                if (imgToRemove != null) {
+                let imgToRemove = document.querySelector(`.img-${Array.from(imagesList).indexOf(checkbox)}`)
+                if (imagesString.value.split(',').length == 1 ) {
+                    imagesString.value = ""
+                } else {
                     console.log(imgToRemove)
+                    img = imgToRemove.querySelector('img')
+                    imagesString.value = imagesString.value.replace(img.src.replace("w500", "original"), "")
+                    imagesString.value = imagesString.value.replace(/^,|,$/g, "");
+                }
+                if (imgToRemove != null) {
                     container.removeChild(imgToRemove)
                 }
                 if (counter.innerHTML == "0") {
@@ -257,19 +266,12 @@
                         <p class="text-zinc-300 italic">Aucune image selectionnée</p>
                     </div>`
                 }
-                
-                if (imagesString.value.split(',').length == 1 ) {
-                    imagesString.value = ""
-                } else {
-                    imagesString.value = imagesString.value.replace(/^,|,$/g, "");
-
-
-                }
             }
         })
     })
 
     function removeSelectedImage(integer){
+        console.log(document.querySelector(`.cb-${integer}`))
         document.querySelector(`.cb-${integer}`).checked = false
         document.querySelector(`.cb-${integer}`).dispatchEvent(new Event('change', { bubbles: true }));
     }

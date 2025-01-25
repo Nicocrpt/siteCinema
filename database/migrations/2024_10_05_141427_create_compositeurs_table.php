@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('compositeurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->unique();
-            $table->bigInteger('tmdb_id')->unique();
+            $table->bigInteger('tmdb_id')->unique()->nullable();
             $table->timestamps();
 
-            $table->unique(['nom', 'tmdb_id']);
+            //$table->unique(['nom', 'tmdb_id']);
         });
     }
 

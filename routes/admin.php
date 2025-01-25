@@ -22,9 +22,13 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/films/manage/{id}', [AdminFilmController::class, 'edit'])->name('admin.films.edit');
     // Requetes ajax
     Route::get('/admin/films/search-movie', [AdminFilmController::class, 'searchFilms'])->name('admin.films.searchFilms');
+    Route::patch('/admin/films/updateFavorite', [AdminFilmController::class, 'updateFavorite'])->name('admin.films.updateFavorite');
+    Route::get('/admin/films/get-person',[AdminFilmController::class, 'getPerson'])->name('admin.films.getPerson');
     // Fin requetes ajax
     Route::get('/admin/films/add/{id}', [AdminFilmController::class, 'create'])->name('admin.films.create');
     Route::post('/admin/films/add', [AdminFilmController::class, 'store'])->name('admin.films.store');
+    Route::put('/admin/films/update/{id}', [AdminFilmController::class, 'update'])->name('admin.films.update');
+    Route::delete('/admin/films/delete', [AdminFilmController::class, 'destroy'])->name('admin.films.destroy');
 
 
     Route::get('/admin/seances', [AdminSeanceController::class, 'index'])->name('admin.seances.index');

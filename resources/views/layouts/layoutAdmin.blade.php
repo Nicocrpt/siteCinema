@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
@@ -33,12 +33,33 @@
             <div class="flex md:gap-2 lg:gap-4">
                 <svg viewBox="0 0 48 48" class="lg:w-[26px] md:w-[22px] fill-zinc-200 hover:fill-white transition-all ease-in-out duration-300 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M33.843,26.914L24,36l-9.843-9.086C8.674,30.421,5,36.749,5,44h38C43,36.749,39.326,30.421,33.843,26.914z"></path> <path d="M24,28c3.55,0,6.729-1.55,8.926-4C34.831,21.876,36,19.078,36,16c0-6.627-5.373-12-12-12S12,9.373,12,16 c0,3.078,1.169,5.876,3.074,8C17.271,26.45,20.45,28,24,28z"></path> </g> </g></svg>
 
+                <div x-data="{dropdown : false}">
+                    <svg @click="dropdown = !dropdown; console.log('hello')" viewBox="0 0 24 24" class="lg:w-[26px] md:w-[22px] transition-all ease-in-out duration-300 group hover:cursor-pointer" id="Layer_1" :class="dropdown ? 'rotate-90' : 'rotate-0'" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="fill-zinc-200"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke-miterlimit:10;stroke-width:2px;}</style></defs><polygon class="cls-1 transition-all ease-in-out duration-300" :class="dropdown ? 'stroke-white' : 'stroke-zinc-200 group-hover:stroke-white'" points="17.2 3 6.8 3 1.61 12 6.8 21 17.2 21 22.39 12 17.2 3"></polygon><circle class="cls-1 transition-all ease-in-out duration-300" :class="dropdown ? 'stroke-white' : 'stroke-zinc-200 group-hover:stroke-white'" cx="12" cy="12" r="4"></circle></g></svg>
 
-                <svg viewBox="0 0 24 24" class="lg:w-[26px] md:w-[22px] hover:rotate-90 transition-all ease-in-out duration-500 group hover:cursor-pointer" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="fill-zinc-200"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke-miterlimit:10;stroke-width:2px;}</style></defs><polygon class="cls-1 stroke-zinc-200 group-hover:stroke-white transition-all ease-in-out duration-300" points="17.2 3 6.8 3 1.61 12 6.8 21 17.2 21 22.39 12 17.2 3"></polygon><circle class="cls-1 stroke-zinc-200 group-hover:stroke-white transition-all ease-in-out duration-300" cx="12" cy="12" r="4"></circle></g></svg>
+
+                    <div @click.away="dropdown = false" class=" z-0 min-h-32 p-1 absolute right-15 mt-3 w-[13.8rem] origin-top-right  rounded bg-zinc-950 border  border-zinc-500 bg-opacity-80 shadow-lg focus:outline-none backdrop-blur"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
+                    x-transition:enter="transition ease-in-out duration-200" 
+                    x-transition:enter-start="transform opacity-0 scale-y-50" 
+                    x-transition:enter-end="transform opacity-100 scale-y-100" 
+                    x-transition:leave="transition ease-in-out duration-150" 
+                    x-transition:leave-start="transform opacity-100 scale-y-100" 
+                    x-transition:leave-end="transform opacity-0 scale-y-50">
+                        <div class=" hover:bg-white hover:bg-opacity-30 rounded" role="none">
+                            <form action="{{route('logout')}}" method="POST" class="p-0 m-0">
+                                @csrf
+                                <button type="submit" class="block px-4 py-2 text-sm text-white hover:text-red-500" role="menuitem" tabindex="-1" id="menu-item-1">Me déconnecter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                
             </div>
             
             <div class="flex gap-2 items-center group">
-                <svg width="20" class="group-hover:translate-x-[20%] transition-all ease-in-out duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#ffffff"></path> </g></svg>
+                <svg width="20" class="group-hover:translate-x-[20%] transition-all ease-in-out duration-300 pointer-events-none" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#ffffff"></path> </g></svg>
+
+                
                 <a href="{{route('index')}}" class="flex items-center gap-2 group cursor-pointer text-white hover:underline" >Site web Solaris</a>
             </div>
         </div>
