@@ -25,7 +25,7 @@ class AdminSeanceController extends Controller
 
         return view('admin.seances.manage', [
             'seances' => Seance::all(),
-            'films' => Film::with('certification')->get()
+            'films' => Film::with('certification')->with('seances')->with('genres')->get()
         ]);
     }
 
@@ -68,6 +68,13 @@ class AdminSeanceController extends Controller
                         break;
                 }
 
+                $places = 0;
+                foreach($seance->reservations as $reservation){
+                    foreach($reservation->reservationlignes as $ligne){
+                        $places += 1;
+                    }
+                }
+
                 $events[] = [
                     'title' => $seance->film->titre . $language,
                     'start' => $startDatetime->toIso8601String(),
@@ -76,6 +83,8 @@ class AdminSeanceController extends Controller
                     'salle' => $salle,
                     'color' => $color,
                     'editable' => $editable,
+                    'filmId' => $seance->film->id,
+                    'nbPlaces' => $places
                 ];
 
             }

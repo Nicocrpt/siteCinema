@@ -25,19 +25,32 @@ class FilmSeeder extends Seeder
     {
         $tmdbClient = new TmdbService;
         
-        // $tmdbClient->addMovieToDb(335984);
-        // $tmdbClient->addMovieToDb(329);
-        // $tmdbClient->addMovieToDb(615777);
-        // $tmdbClient->addMovieToDb(313369);
-        // $tmdbClient->addMovieToDb(122);
-        // $tmdbClient->addMovieToDb(82507);
-        // $tmdbClient->addMovieToDb(586810);
-        $tmdbClient->addMovieToDb(1184918);
-        $tmdbClient->addMovieToDb(959604);
-        $tmdbClient->addMovieToDb(889737);
-        $tmdbClient->addMovieToDb(832964);
-        $tmdbClient->addMovieToDb(1158996);
-        $tmdbClient->addMovieToDb(974950);
+        // Perfect Blue
+        $tmdbClient->addMovieToDb(10494);
+
+        // D&D
+        $tmdbClient->addMovieToDb(493529);
+
+        // Contact
+        $tmdbClient->addMovieToDb(686);
+
+        // Nausicaa
+        $tmdbClient->addMovieToDb(81);
+
+        // Akira
+        $tmdbClient->addMovieToDb(149);
+
+        // Babylon
+        $tmdbClient->addMovieToDb(615777);
+
+        // La La Land
+        $tmdbClient->addMovieToDb(313369);
+
+        // Interstellar
+        $tmdbClient->addMovieToDb(157336);
+
+        // Le roi et l'oiseau
+        $tmdbClient->addMovieToDb(22504);
 
 
         // Films à l'affiche

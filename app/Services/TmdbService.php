@@ -58,11 +58,18 @@ class TmdbService
 
     public function getFilmById($id)
     {
-        $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=credits,videos&language=fr-FR&api_key=$this->apiKey", [
+        $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=videos&language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
             ],
         ]);
+
+        $responseCrew = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/credits?api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ]
+        ]);
+
 
         $responseRD = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/release_dates?language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
@@ -79,6 +86,7 @@ class TmdbService
 
         $data = json_decode($response->getBody(), true); // json_decode()
 
+        $dataCrew = json_decode($responseCrew->getBody(), true);
 
         $dataRD = json_decode($responseRD->getBody(), true); 
         foreach ($dataRD['results'] as $result)
@@ -146,6 +154,8 @@ class TmdbService
         $data['certification'] = $certification;
         $data['date_sortie'] = $dateSortie;
 
+        $data['credits'] = $dataCrew;
+
         return $data;
     }
 
@@ -166,9 +176,6 @@ class TmdbService
         if ($trailer) {
             $trailer = "https://www.youtube.com/embed/$trailer";
         }
-        
-
-        
 
         DB::table('films')->insert([
             'tmdb_id' => $movie['id'],
@@ -285,11 +292,17 @@ class TmdbService
 
     public function getAllFilmById($id)
     {
-        $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=credits,videos&language=fr-FR&api_key=$this->apiKey", [
+        $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=videos&language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
             ],
         ]);
+
+        $responseCrew = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/credits?api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ]
+            ]);
 
         $responseRD = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id/release_dates?language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
@@ -305,7 +318,7 @@ class TmdbService
 
 
         $data = json_decode($response->getBody(), true); // json_decode()
-
+        $dataCrew = json_decode($responseCrew->getBody(), true);
 
         $dataRD = json_decode($responseRD->getBody(), true); 
         foreach ($dataRD['results'] as $result)
@@ -329,6 +342,7 @@ class TmdbService
         $data['certification'] = $certification ?? null;
         $data['date_sortie'] = $dateSortie;
         $data['images'] = $dataIMG;
+        $data['credits'] = $dataCrew;
 
         return $data;
     }
@@ -481,5 +495,16 @@ class TmdbService
             'name' => $data['name'],
         ];
 
+    }
+
+    public function getGenres() {
+        $response = $this->client->request('GET', "https://api.themoviedb.org/3/genre/movie/list?language=fr-FR&api_key=$this->apiKey", [
+            'headers' => [
+                'accept' => 'application/json',
+            ],
+        ]);
+
+        $data = json_decode($response->getBody(), true); // json_decode()
+        return $data['genres'];
     }
 }

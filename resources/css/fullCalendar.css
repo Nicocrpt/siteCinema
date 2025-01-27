@@ -4,12 +4,12 @@ button.fc-prev-button, button.fc-next-button {
 }
 
 button.fc-dayGridMonth-button, button.fc-timeGridWeek-button, button.fc-timeGridDay-button {
-    @apply !text-black !bg-zinc-300 hover:!bg-zinc-400 !border-zinc-300 hover:!border-zinc-500
+    @apply !text-black !bg-zinc-200 hover:!bg-zinc-300 !border-zinc-300 hover:!border-zinc-500
         dark:!text-white dark:!bg-zinc-700 dark:hover:!bg-zinc-900 dark:!border-zinc-700 dark:hover:!border-zinc-950;
 }
 
 button.fc-dayGridMonth-button.fc-button-active, button.fc-timeGridWeek-button.fc-button-active, button.fc-timeGridDay-button.fc-button-active {
-    @apply !bg-zinc-400 !border-zinc-500 dark:!bg-zinc-900 dark:!border-zinc-950;
+    @apply !bg-zinc-300 !border-zinc-400 dark:!bg-zinc-900 dark:!border-zinc-950;
 }
 
 button.fc-today-button {

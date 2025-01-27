@@ -78,9 +78,6 @@ class Film extends Model
         return $this->hasMany(Image::class);
     }
 
-
-
-
     public function formatDuration()
     {
         if ($this->duree > 60) {

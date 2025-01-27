@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
+use App\Models\Genre;
 use App\Models\Realisateur;
 use App\Models\Seance;
 use App\Services\TmdbService;
@@ -31,10 +32,16 @@ class AdminFilmController extends Controller
         return view('admin.films.manage', compact('films'));
     }
 
-    public function edit($id): View
+    public function edit($id)
     {
         try {
             $film = Film::find($id);
+            $genres = Genre::all();
+            foreach ($genres as $key => $genre) {
+                if ($film->genres->contains($genre->id)) {
+                    $genres->forget($key);
+                }
+            }
 
             $backdrop = str_replace('https://image.tmdb.org/t/p/original', '', $film->url_backdrop);
             $poster = str_replace('https://image.tmdb.org/t/p/original', '', $film->url_affiche);
@@ -43,6 +50,50 @@ class AdminFilmController extends Controller
 
             $tmdbClient = new TmdbService;
             $movie = $tmdbClient->getAllFilmById($film->tmdb_id);
+            
+            $actors = collect($movie['credits']['cast']);
+            foreach ($actors as $key => $actor) {
+                foreach ($film->acteurs as $currentActor) {
+                    if ($currentActor->tmdb_id == $actor['id']) {
+                        $actors->forget($key);
+                    }
+                }
+            }
+
+            $directors = [];
+            $composers = [];
+            
+            foreach ($movie['credits']['crew'] as $job) {
+                switch ($job['job']) {
+                    case 'Director' :
+                        $directors[] = $job;
+                        break;
+                    case 'Music' :
+                        $composers[] = $job;
+                        break;
+                    case 'Original Music Composer' :
+                        $composers[] = $job;
+                        break;
+                }
+            }
+
+            $directors = collect($directors);
+            foreach ($directors as $key => $director) {
+                foreach ($film->realisateurs as $currentRealisateur) {
+                    if ($currentRealisateur->tmdb_id == $director['id']) {
+                        $directors->forget($key);
+                    }
+                }
+            }
+
+            $composers = collect($composers);
+            foreach ($composers as $key => $composer) {
+                foreach ($film->compositeurs as $currentCompositeur) {
+                    if ($currentCompositeur->tmdb_id == $composer['id']) {
+                        $composers->forget($key);
+                    }
+                }
+            }
 
             $tmdb_backdrops = collect($movie['images']['backdrops']);
             $index = $tmdb_backdrops->search(fn($item) => $item['file_path'] === $backdrop);
@@ -71,7 +122,7 @@ class AdminFilmController extends Controller
                 }
             }
 
-            return view('admin.films.edit', compact('film', 'booked', 'tmdb_backdrops', 'tmdb_posters', 'tmdb_logos'));
+            return view('admin.films.edit', compact('film', 'booked', 'tmdb_backdrops', 'tmdb_posters', 'tmdb_logos', 'genres', 'actors', 'directors', 'composers'));
             
         } catch (\Exception $e) {
             return response()->json([
@@ -87,9 +138,14 @@ class AdminFilmController extends Controller
 
             $request->validate([
                 'titre' => ['required', 'string', 'max:255'],
-                'acteurs' => ['required', 'string'],
-                'realisateurs' => ['required', 'string'],
-                'compositeurs' => ['required', 'string'],
+                'genres.*.name' => ['required', 'string', 'max:255'],
+                'genres.*.id' => ['required', 'integer'],
+                'acteurs.*.name' => ['required', 'string', 'max:255'],
+                'acteurs.*.id' => ['required', 'integer'],
+                'realisateurs.*.name' => ['required', 'string', 'max:255'],
+                'realisateurs.*.id' => ['required', 'integer'],
+                'compositeurs.*.name' => ['required', 'string', 'max:255'],
+                'compositeurs.*.id' => ['required', 'integer'],
                 'synopsis' => ['required', 'string'],
                 'backdrop_path' => ['required', 'string'],
                 'logo_path' => ['required', 'string'],
@@ -128,53 +184,57 @@ class AdminFilmController extends Controller
                 'url_logo' => $request->logo_path,
             ]);
 
-            // foreach(explode(',', $request->acteurs) as $actor) {
-            //     if (!Acteur::where('nom', $actor)->exists()) {
-            //         Acteur::create([
-            //             'nom' => $actor,
-            //         ]);
+            $genreIds = [];
+            foreach($request->genres as $genre) {
+                $exist = Genre::where('tmdb_id', $genre['id'])->first();
+                if(!$exist) {
+                    $exist = Genre::create([
+                        'nom' => $genre['name'],
+                        'tmdb_id' => $genre['id']
+                    ]);
+                }
+                $genreIds[] = $exist->id;
+            }
+            $film->genres()->sync($genreIds);
 
-            //     }
+            $actorIds = [];
+            foreach($request->acteurs as $actor) {
+                $exist = Acteur::where('tmdb_id', $actor['id'])->first();
+                if(!$exist) {
+                    $exist = Acteur::create([
+                        'nom' => $actor['name'],
+                        'tmdb_id' => $actor['id']
+                    ]);
+                }
+                $actorIds[] = $exist->id;
+            }
+            $film->acteurs()->sync($actorIds);
 
-            //     if (!DB::table('film_acteur')->where('film_id', $film->id)->where('acteur_id', Acteur::where('nom', $actor)->first()->id)->exists()) {
-            //         $order = DB::table('film_acteur')->where('film_id', $film->id)->count() + 1;
-            //         DB::table('film_acteur')->insert([
-            //             'film_id' => $film->id,
-            //             'acteur_id' => Acteur::where('nom', $actor)->first()->id,
-            //             'ordre' => $order
-            //         ]);
-            //     }
-            // }
+            $directorIds = [];
+            foreach($request->realisateurs as $director) {
+                $exist = Realisateur::where('tmdb_id', $director['id'])->first();
+                if(!$exist) {
+                    $exist = Realisateur::create([
+                        'nom' => $director['name'],
+                        'tmdb_id' => $director['id']
+                    ]);
+                }
+                $directorIds[] = $exist->id;
+            }
+            $film->realisateurs()->sync($directorIds);
 
-            // foreach(explode(',', $request->compositeurs) as $composer) {
-            //     if (!Compositeur::where('nom', $composer)->exists()) {
-            //         Compositeur::create([
-            //             'nom' => $composer,
-            //         ]);
-            //     }
-
-            //     if (!DB::table('film_compositeur')->where('film_id', $film->id)->where('compositeur_id', Compositeur::where('nom', $composer)->first()->id)->exists()) {
-            //         DB::table('film_compositeur')->insert([
-            //             'film_id' => $film->id,
-            //             'compositeur_id' => Compositeur::where('nom', $composer)->first()->id,
-            //         ]);
-            //     }
-            // }
-
-            // foreach(explode(',', $request->realisateurs) as $director) {
-            //     if (!Realisateur::where('nom', $director)->exists()) {
-            //         Realisateur::create([
-            //             'nom' => $director,
-            //         ]);
-            //     }
-
-            //     if (!DB::table('film_realisateur')->where('film_id', $film->id)->where('realisateur_id', Compositeur::where('nom', $director)->first()->id)->exists()) {
-            //         DB::table('film_realisateur')->insert([
-            //             'film_id' => $film->id,
-            //             'realisateur_id' => Compositeur::where('nom', $director)->first()->id,
-            //         ]);
-            //     }
-            // }
+            $composerIds = [];
+            foreach($request->compositeurs as $composer) {
+                $exist = Compositeur::where('tmdb_id', $composer['id'])->first();
+                if(!$exist) {
+                    $exist = Compositeur::create([
+                        'nom' => $composer['name'],
+                        'tmdb_id' => $composer['id']
+                    ]);
+                }
+                $composerIds[] = $exist->id;
+            }
+            $film->compositeurs()->sync($composerIds);
 
             return response()->json([
                 'success' => true,

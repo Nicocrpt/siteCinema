@@ -34,6 +34,7 @@ document.addEventListener('alpine:init', () => {
 
     Alpine.data('seanceManager', () => ({
         detailView: false,
+        seanceOverview: false,
         salle : "all",
         calendar: null,
 
@@ -67,7 +68,7 @@ document.addEventListener('alpine:init', () => {
                             duration: eventEl.getAttribute('data-duration'),
                             color: eventEl.getAttribute('datacolor'),
                             extendedProps: {
-                                id : parseInt(eventEl.getAttribute('data-id')),
+                                filmId : parseInt(eventEl.getAttribute('data-id')),
                                 ref : ref,
                                 salle : salleId,
                                 langue : parseInt(eventEl.getAttribute('data-language'))
@@ -137,7 +138,7 @@ document.addEventListener('alpine:init', () => {
                                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                             },
                             body: JSON.stringify({
-                                film: info.event.extendedProps.id,
+                                film: info.event.extendedProps.filmId,
                                 datetime_seance: info.event.start,
                                 salle: parseInt(info.event.extendedProps.salle),
                                 reference: info.event.extendedProps.ref,
@@ -167,6 +168,48 @@ document.addEventListener('alpine:init', () => {
                             })
                         })
                         .then(response => response.json())
+                    },
+                    eventClick: function(info) {
+                        console.log(info.event)
+                        const film = films.find(film => film.id == info.event.extendedProps.filmId);
+                        const start = new Date(info.event.start)
+                        const end = new Date(info.event.end)
+                        const totalMinutes = end.getHours() * 60 + end.getMinutes()
+                        start.setMinutes(start.getMinutes() + totalMinutes);
+                        alpineContext.seanceOverview = true
+                        let container = document.getElementById('overviewContainer')
+                        container.innerHTML = `
+                        <div class="h-full flex flex-col gap-1 md:col-span-2 items-center justify-between" @click.away="seanceOverview = false">
+                            <div class="flex text-lg gap-4 justify-start items-center w-full">
+                                <img src="${film.url_affiche}" class="w-24 h-36 rounded border border-zinc-400">
+                                <div class="flex flex-col justify-between h-full w-full gap-2">
+                                    <div>
+                                        <p class="pb-1"><span class="font-semibold">${film.titre}</span></p>
+                                        <div class="flex gap-1">
+                                            <p class="${info.event.extendedProps.salle == 1 ? 'bg-red-500 border-red-600' : info.event.extendedProps.salle == 2 ? 'bg-green-500 border-green-600' : 'bg-sky-500 border-sky-600' } w-fit text-white p-1 rounded text-sm box-border border">Salle ${info.event.extendedProps.salle}</p>
+                                            <p class="text-sm rounded p-1 px-2 bg-zinc-900 text-white">${info.event.title.replace(film.titre + " (", '').replace(")", '')}</p>
+                                            <div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-slate-500 rounded">
+                                                <svg class="fill-white w-[20px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
+                                            </div>
+                                            <div class="bg-slate-400 flex items-center rounded pr-1">
+                                                <svg class="fill-white w-[18px]" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M 16.5156 49.5742 L 39.2734 49.5742 C 41.6640 49.5742 43.0937 48.2617 43.0937 45.7305 L 43.0937 45.1211 C 43.1172 38.6523 36.2266 33.4023 33.2031 30.5430 C 32.3593 29.7461 31.9140 29.0196 31.9140 27.9649 C 31.9140 26.9102 32.3593 26.2071 33.2031 25.3867 C 36.2031 22.4805 43.0937 17.5586 43.0937 10.8320 L 43.0937 10.2696 C 43.0937 7.7383 41.6640 6.4258 39.2734 6.4258 L 16.5156 6.4258 C 14.1718 6.4258 12.8828 7.7383 12.8828 10.0586 L 12.8828 10.8320 C 12.8828 17.5586 19.7734 22.4805 22.7969 25.3867 C 23.6406 26.2071 24.0859 26.9102 24.0859 27.9649 C 24.0859 29.0196 23.6406 29.7461 22.7969 30.5430 C 19.7734 33.4023 12.8828 38.6523 12.8828 45.1211 L 12.8828 45.9414 C 12.8828 48.2617 14.1718 49.5742 16.5156 49.5742 Z M 18.9531 46.3633 C 17.8281 46.3633 17.4766 45.1211 18.5781 44.3008 L 26.5937 38.3242 C 26.8515 38.1133 26.9922 37.9727 26.9922 37.6211 L 26.9922 26.3477 C 26.9922 25.0820 26.7344 24.4492 25.8437 23.6992 C 24.5078 22.5742 21.9766 20.7930 20.8281 19.1758 C 20.3593 18.5196 20.4062 17.9805 20.9922 17.9805 L 34.9844 17.9805 C 35.5703 17.9805 35.6172 18.5196 35.1484 19.1758 C 34.0000 20.7930 31.4922 22.5742 30.1328 23.6992 C 29.2422 24.4492 28.9844 25.0820 28.9844 26.3477 L 28.9844 37.6211 C 28.9844 37.9727 29.125 38.1133 29.3828 38.3242 L 37.4218 44.3008 C 38.5234 45.1211 38.1484 46.3633 37.0469 46.3633 Z"></path></g></svg>
+                                                <p class="text-white text-sm">${Math.floor((parseInt(film.duree)+30) / 60)}h${(parseInt(film.duree)+30) % 60}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <p class="text-sm"><span class="font-semibold">Séance : </span>Le ${new Date(info.event.start).toLocaleString('fr-FR', { day: 'numeric', month: 'numeric', year: 'numeric'})} à ${new Date(info.event.start).toLocaleTimeString('fr-FR', { hour: 'numeric', minute: 'numeric' })}</p>
+                                        <p class="text-sm"><span class="font-semibold text-slate-800">${info.event.extendedProps.nbPlaces}/${info.event.extendedProps.salle == 1 ? '280' : info.event.extendedProps.salle == 2 ? '162' : '112'}</span> Places réservées</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end items-center w-full">
+                                <button class="text-sm  ${info.event.extendedProps.nbPlaces > 0 ? 'bg-zinc-200 border-zinc-300 pointer-events-none': 'bg-zinc-800 border-black hover:bg-red-600'}  border  px-2 py-1 text-white rounded transition-color ease-linear duration-100">
+                                    Annuler la séance
+                                </button>
+                            </div>
+                        </div>
+                        `
                     }
                 });
         
@@ -226,7 +269,7 @@ document.addEventListener('alpine:init', () => {
                     filmContainer.innerHTML += `
                         <div class="p-4 flex justify-between items-center ${films.indexOf(film)%2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600 hover:bg-sky-100 dark:hover:bg-zinc-500' : 'bg-zinc-200 dark:bg-zinc-700 hover:bg-sky-100 dark:hover:bg-zinc-500'}" id="${film.id}">
                             <div class="px-2 py-1 bg-zinc-600 dark:bg-zinc-900 rounded flex gap-1 draggableElement max-w-[67%]" style="cursor: grab" data-title="${film.titre}" data-language="1" data-duration="${heures}:${minutes}:00" data-id="${film.id}">
-                                <svg width="14" class="fill-white" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M600 1440c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 720c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 0c132.36 0 240 107.64 240 240S732.36 480 600 480 360 372.36 360 240 467.64 0 600 0Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240S1187.64 0 1320 0Z" fill-rule="evenodd"></path> </g></svg>
+                                <svg class="fill-white !w-[14px] shrink-0" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M600 1440c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 720c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 0c132.36 0 240 107.64 240 240S732.36 480 600 480 360 372.36 360 240 467.64 0 600 0Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240S1187.64 0 1320 0Z" fill-rule="evenodd"></path> </g></svg>
                                 <p class="text-white truncate ...">${film.titre} ${language.checked ? ' (VO)' : ' (VF)'}</p>
                             </div>
 
@@ -276,7 +319,6 @@ document.addEventListener('alpine:init', () => {
                 }
             })
         },
-
         injectMovieInfos(id) {
             this.detailView = true
             const film = films.find(film => film.id == id)
@@ -299,6 +341,12 @@ document.addEventListener('alpine:init', () => {
                         </div>
                         <div>
                             <p class=" dark:text-white"><span class="font-semibold">Certification : </span>${film.certification.valeur}</p> 
+                        </div>
+                        <div>
+                            <p class=" dark:text-white"><span class="font-semibold">Nombre de séances : </span>${Object.keys(film.seances).length}</p> 
+                        </div>
+                        <div>
+                            <p class=" dark:text-white"><span class="font-semibold">Genres : </span>${film.genres.map(genre => genre.nom).join(', ')}</p> 
                         </div>
                     </div>
                 </div>

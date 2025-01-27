@@ -38,6 +38,13 @@
         </div>
         <p class="text-xs italic text-zinc-500 dark:text-zinc-400 pt-[0.5rem]">propulsé par <span class="font-semibold text-zinc-600 dark:text-zinc-300">T</span>he<span class="font-semibold text-zinc-600 dark:text-zinc-300">M</span>ovie<span class="font-semibold text-zinc-600 dark:text-zinc-300">D</span>ata<span class="font-semibold text-zinc-600 dark:text-zinc-300">B</span>ase</p>
     </section>
+    <div class="!w-[100%] !p-0 !m-0 bg-zinc-950  shadow-none z-0 absolute bottom-0 left-0">
+        <div class="w-full !h-2 rounded-b bg-zinc-50 dark:bg-zinc-800">
+        </div>
+        <div class="flex items-center justify-center h-8 w-full">
+            <p class="text-zinc-300 text-[0.7rem]">Copyright © Nicolas Carpita 2025 - All Rights Reserved</p>
+        </div>
+    </div> 
 </div>
 
 <script defer>

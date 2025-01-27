@@ -10,7 +10,7 @@
 <x-admin.admin-seance-heading/>
 <div class="h-full w-full flex flex-col gap-14" x-data="seanceManager()" x-init="init()" id="seanceManager">
     <section class=" flex calendar-container relative h-full w-full">
-        <div class="w-[70%] h-full flex flex-col">
+        <div class="w-[70%] h-full flex flex-col relative">
             <div class="w-full flex justify-center items-center pt-4">
                 <div class="flex rounded overflow-hidden">
 
@@ -20,8 +20,12 @@
                     <button @click="filterEventsByRoom('all')" class="px-2 py-1 dark:!text-white hover:text-white hover:bg-zinc-900 transition-all ease-in-out duration-200 border rounded-r hover:border-zinc-950" :class="salle == 'all' ? 'bg-zinc-900 border-zinc-950 text-white' : 'bg-zinc-300 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-700 text-black'" data-room="all">Toutes</button>
                 </div>
             </div>
-            <div id="calendar" class="h-[calc(100vh-9rem)] px-4 pt-4 pb-10">
-
+            <div id="calendar" class="h-[calc(100vh-11.1rem)] px-4 pt-4 pb-10">
+                
+            </div>
+                    {{-- SeanceOverview Modal --}}
+            <div x-show="seanceOverview" class="absolute top-0 left-0 w-full h-full flex justify-center items-center  z-20">
+                <div class="max-w-[26rem] h-56 bg-zinc-50 dark:bg-zinc-100 border border-zinc-400 dark:border-zinc-600 rounded p-2 shadow-md" id="overviewContainer"></div>
             </div>
         </div>
 
@@ -34,23 +38,37 @@
                         <option value="upcoming">Prochainement</option>
                         <option value="archived">Archivé</option>
                     </select>
-                    <input @input="queryMovies()" type="text" name="query" id="filmQuery" class="rounded w-full dark:bg-zinc-500 border-zinc-400 dark:text-white dark:placeholder:text-zinc-300" placeholder="Rechercher un film"/>
-                    <div class="flex w-full justify-end mt-[0.95rem]">
-                        <label class="inline-flex items-center cursor-pointer">
-                            <span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">VF</span>
-                            <input type="checkbox" value="" id="language" class="sr-only peer">
-                            <div class="relative w-11 h-6 bg-yellow-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-yellow-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-400 dark:peer-checked:bg-orange-500"></div>
-                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">VO</span>
-                        </label>
-                    </div> 
-                <div class="overflow-y-auto h-[calc(100vh-18.5rem)] w-full flex flex-col mt-[0.95rem] border border-zinc-400 dark:border-zinc-500 rounded " id="filmsContainer">
+                    <div class="flex w-full gap-6 items-center pb-2">
+                        <input @input="queryMovies()" type="text" name="query" id="filmQuery" class="rounded w-full dark:bg-zinc-500 border-zinc-400 dark:text-white dark:placeholder:text-zinc-300" placeholder="Rechercher un film"/>
+                        <div class="flex justify-end">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">VF</span>
+                                <input type="checkbox" value="" id="language" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-yellow-400 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-yellow-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-400 dark:peer-checked:bg-orange-500"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">VO</span>
+                            </label>
+                        </div>
+                    </div>
+                     
+                <div class="overflow-y-auto h-[calc(100vh-18.7rem)] w-full flex flex-col mt-[0.95rem] border border-zinc-400 dark:border-zinc-500 rounded " id="filmsContainer">
                 </div>
             </div>
             <div class="w-full h-full shrink-0 dark:bg-zinc-700 bg-zinc-100 transition-all ease-in-out duration-[400ms]" id="filmDetails" :class="detailView ? '-translate-x-[100%]' : 'translate-x-0'">
 
             </div>
         </div>
+
+
     </section>
+    <div class="!w-[100%] !p-0 !m-0 bg-zinc-950  shadow-none z-0 absolute bottom-0 left-0">
+        <div class="w-full !h-2 rounded-b dark:bg-zinc-800 flex overflow-hidden">
+            <div class="h-full w-[70%] bg-zinc-50 dark:bg-zinc-800"></div>
+            <div class="h-full min-w-[380px] w-[30%] bg-zinc-100 dark:bg-zinc-700 border-l-2 border-zinc-200 dark:border-zinc-600"></div>
+        </div>
+        <div class="flex items-center justify-center h-8 w-full">
+            <p class="text-zinc-300 text-[0.7rem]">Copyright © Nicolas Carpita 2025 - All Rights Reserved</p>
+        </div>
+    </div>
 </div>
 
 <script defer>

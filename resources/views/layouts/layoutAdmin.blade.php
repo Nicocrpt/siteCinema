@@ -22,9 +22,9 @@
             <div class="flex gap-6 items-center">
                 <h1 class="lg:text-2xl text-xl font-bold text-white"><a href="{{route('admin.index')}}">Solaris Panel</a></h1>
                 <ul class="hidden md:gap-3 md:flex lg:gap-5 justify-center">
-                    <li class="hover:bg-white hover:bg-opacity-20 px-2 p-[0.1rem] rounded transition-all ease-in-out duration-200"><a class="text-white" href="{{route('admin.films.manage')}}">Films</a></li>
-                    <li class="hover:bg-white hover:bg-opacity-20 px-2 p-[0.1rem] rounded transition-all ease-in-out duration-200"><a href="{{route('admin.seances.manage')}}" class="text-white">Séances</a></li>
-                    <li class="hover:bg-white hover:bg-opacity-20 px-2 p-[0.1rem] rounded transition-all ease-in-out duration-200"><a href="" class="text-white">Statistiques du cinéma</a></li>
+                    <li class="hover:bg-white hover:bg-opacity-10 px-2 p-[0.2rem] rounded-b rounded-tr transition-all ease-in-out duration-200"><a class="text-white" href="{{route('admin.films.manage')}}">Films</a></li>
+                    <li class="hover:bg-white hover:bg-opacity-10 px-2 p-[0.2rem] rounded-b rounded-tr transition-all ease-in-out duration-200"><a href="{{route('admin.seances.manage')}}" class="text-white">Séances</a></li>
+                    <li class="hover:bg-white hover:bg-opacity-10 px-2 p-[0.2rem] rounded-b rounded-tr transition-all ease-in-out duration-200"><a href="" class="text-white">Statistiques du cinéma</a></li>
                 </ul>
             </div>
         </div>
@@ -39,11 +39,11 @@
 
                     <div @click.away="dropdown = false" class=" z-0 min-h-32 p-1 absolute right-15 mt-3 w-[13.8rem] origin-top-right  rounded bg-zinc-950 border  border-zinc-500 bg-opacity-80 shadow-lg focus:outline-none backdrop-blur"  role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="dropdown"
                     x-transition:enter="transition ease-in-out duration-200" 
-                    x-transition:enter-start="transform opacity-0 scale-y-50" 
+                    x-transition:enter-start="transform opacity-50 scale-y-0" 
                     x-transition:enter-end="transform opacity-100 scale-y-100" 
                     x-transition:leave="transition ease-in-out duration-150" 
                     x-transition:leave-start="transform opacity-100 scale-y-100" 
-                    x-transition:leave-end="transform opacity-0 scale-y-50">
+                    x-transition:leave-end="transform opacity-50 scale-y-0">
                         <div class=" hover:bg-white hover:bg-opacity-30 rounded" role="none">
                             <form action="{{route('logout')}}" method="POST" class="p-0 m-0">
                                 @csrf
@@ -66,7 +66,7 @@
         
     </header>
 
-    <main class=" w-[98%]  mt-2 mx-auto bg-gray-50 dark:bg-zinc-800 h-full rounded-t-md overflow-hidden flex-col relative">
+    <main class=" mt-2 mx-[8px] bg-gray-50 dark:bg-zinc-800 h-full border-none rounded-t-md overflow-hidden flex-col relative">
         @yield('content')
     </main>
 

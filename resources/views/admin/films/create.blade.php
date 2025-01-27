@@ -7,28 +7,28 @@
     <input type="text" name="tmdb_id" value="{{$movie['id']}}" class="hidden">
 
     {{-- Header --}}
-    <div class="h-12 w-full border-b-2 border-zinc-150 dark:border-zinc-700 shadow-xs p-4 px-6 lg:px-8 bg-zinc-100 dark:bg-zinc-900 flex  items-center" x-data="{publish: 0}">
-        <div class="flex w-full items-center justify-between">
+    <div class="h-12 w-full border-b-2 border-zinc-150 dark:border-zinc-700 shadow-xs p-4 px-2 lg:px-2 bg-zinc-100 dark:bg-zinc-900 flex  items-center" x-data="{publish: 0}">
+        <div class="flex w-full items-center justify-between ">
             <div class="flex gap-4 items-center">
-                <a href="{{route('admin.films.searchPage')}}">
-                    <svg width="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="fill-black dark:fill-white"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0 0h48v48H0z" fill="none"></path> <g id="Shopicon"> <path d="M10,22v2c0,7.72,6.28,14,14,14s14-6.28,14-14s-6.28-14-14-14h-6.662l3.474-4.298l-3.11-2.515L10.577,12l7.125,8.813 l3.11-2.515L17.338,14H24c5.514,0,10,4.486,10,10s-4.486,10-10,10s-10-4.486-10-10v-2H10z"></path> </g> </g></svg>
+                <a href="{{route('admin.films.searchPage')}}" class="dark:hover:bg-zinc-700 px-1 py-[0.10rem] rounded transition-all ease-in-out duration-150 hover:-translate-x-[10%] ml-1">
+                    <svg width="28" viewBox="0 -6.5 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>left-arrow</title> <desc>Created with Sketch.</desc> <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ui-gambling-website-lined-icnos-casinoshunter" transform="translate(-1641.000000, -158.000000)" class="fill-black dark:fill-white" fill-rule="nonzero"> <g id="1" transform="translate(1350.000000, 120.000000)"> <path d="M317.812138,38.5802109 L328.325224,49.0042713 L328.41312,49.0858421 C328.764883,49.4346574 328.96954,49.8946897 329,50.4382227 L328.998248,50.6209428 C328.97273,51.0514917 328.80819,51.4628128 328.48394,51.8313977 L328.36126,51.9580208 L317.812138,62.4197891 C317.031988,63.1934036 315.770571,63.1934036 314.990421,62.4197891 C314.205605,61.6415481 314.205605,60.3762573 314.990358,59.5980789 L322.274264,52.3739093 L292.99947,52.3746291 C291.897068,52.3746291 291,51.4850764 291,50.3835318 C291,49.2819872 291.897068,48.3924345 292.999445,48.3924345 L322.039203,48.3917152 L314.990421,41.4019837 C314.205605,40.6237427 314.205605,39.3584519 314.990421,38.5802109 C315.770571,37.8065964 317.031988,37.8065964 317.812138,38.5802109 Z" id="left-arrow" transform="translate(310.000000, 50.500000) scale(-1, 1) translate(-310.000000, -50.500000) "> </path> </g> </g> </g> </g></svg>
                 </a>
                 <h1 class="font-semibold dark:text-white text-lg">{{$movie['title']}}</h1>
             </div>
             <h1 class="font-semibold dark:text-white text-md">Id TMDB : {{$movie['id']}}</h1>
         </div>
         <input type="hidden" name="publish" x-model="publish">
-        <button type="submit" @click="publish = 0" class="ml-6 w-[9rem] bg-amber-400 hover:bg-amber-500 rounded py-[0.10rem] text-white border border-yellow-600">
+        <button type="submit" @click="publish = 0" class="ml-6 min-w-[7.1rem] bg-amber-400 hover:bg-amber-500 rounded py-[0.10rem] text-white border border-yellow-600">
             Ajouter le film
         </button>
-        <button type="submit" @click="publish = 1" class="ml-4 w-[14.5rem] bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
+        <button type="submit" @click="publish = 1" class="ml-2 min-w-[11.5rem] bg-green-600 hover:bg-green-700 rounded py-[0.10rem] text-white border border-green-800">
             Ajouter & publier le film
         </button>
     </div>
     
     {{-- Form --}}
-    <div class="overflow-y-auto h-full w-full  p-10 pb-48 flex flex-col gap-14" x-data="{posterChange : false, preview : false, videoUrl : document.getElementById('trailer').value }">
-        <section class="max-w-[900px] mx-auto flex flex-col gap-14">
+    <div class="overflow-y-auto h-full w-full flex flex-col gap-14" x-data="{posterChange : false, preview : false, videoUrl : document.getElementById('trailer').value }">
+        <section class="max-w-[900px] mx-auto flex flex-col gap-14 pt-10 pb-16">
             <div class="flex gap-6" >
                 <div class="hidden md:flex-col gap-1 md:flex" x-data="{translation : 0, images: [...document.querySelectorAll('.imgPoster')].map(img => img.src)}">
                     <label for="poster" class="text-zinc-800 dark:text-white font-semibold">Poster</label>
@@ -202,7 +202,14 @@
                 </div>
                 <input type="text"  id="imagesString" name="images_string" class="w-[1000px] hidden">
             </div>
-        </section>       
+        </section>
+        <div class="!w-[100%] !h-42 !p-0 !m-0 bg-zinc-950  shadow-none z-0">
+            <div class="w-full !h-16 rounded-b bg-zinc-50 dark:bg-zinc-800">
+            </div>
+            <div class="flex items-center justify-center h-8 mb-12 w-full">
+                <p class="text-zinc-300 text-[0.7rem]">Copyright © Nicolas Carpita 2025 - All Rights Reserved</p>
+            </div>
+        </div>       
     </div>
 </form>
 
