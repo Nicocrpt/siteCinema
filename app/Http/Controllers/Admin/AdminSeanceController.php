@@ -10,7 +10,7 @@ use App\Models\Seance;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use FFI;
 
 class AdminSeanceController extends Controller
 {
@@ -105,9 +105,9 @@ class AdminSeanceController extends Controller
         $filter = urldecode($request->query('filter'));
 
         if (empty($title) && $filter == 'all') {
-            return response()->json(Film::all());
+            return response()->json(Film::with(['genres', 'seances', 'certification'])->get());
         } else if (!empty($title) && $filter == 'all') {
-            return response()->json(Film::where('titre', 'like', '%' . $title . '%')->get());
+            return response()->json(Film::where('titre', 'like', '%' . $title . '%')->with(['genres', 'seances', 'certification'])->get());
         }
 
         switch ($filter) {
@@ -128,7 +128,7 @@ class AdminSeanceController extends Controller
                 break;
         }
 
-        $films = Film::where('titre', 'like', '%' . $title . '%')->where('statut_id', $filter)->get();
+        $films = Film::where('titre', 'like', '%' . $title . '%')->where('statut_id', $filter)->with(['genres', 'seances', 'certification'])->get();
 
 
         return response()->json($films);
@@ -156,8 +156,14 @@ class AdminSeanceController extends Controller
                 'dolby_vision' => 0,
                 'dolby_atmos' => 0
             ]);
+
+            $films = Film::with(['genres', 'seances'])->get();
     
-            return response()->json(['success' => true, 'message' => 'La séance a bien été ajoutée.']);
+            return response()->json([
+                'success' => true, 
+                'message' => 'La séance a bien été ajoutée.',
+                'films' => $films
+            ]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Une erreur s\'est produite lors de l\'ajout de la séance : ' . $e->getMessage()], 500);
         } 

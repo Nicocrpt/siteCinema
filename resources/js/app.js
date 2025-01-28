@@ -5,7 +5,7 @@ import Alpine from 'alpinejs';
 import $, { data, event } from 'jquery';
 
 //Faker.js
-import { faker } from '@faker-js/faker';
+import { faker, ne } from '@faker-js/faker';
 //FullCalendar
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -37,6 +37,7 @@ document.addEventListener('alpine:init', () => {
         seanceOverview: false,
         salle : "all",
         calendar: null,
+        films: movies,
 
         init() {
             const alpineContext = this;
@@ -83,7 +84,6 @@ document.addEventListener('alpine:init', () => {
                 alpineContext.calendar = new Calendar(calendarEl, {
                     locale: 'FR-fr',
                     firstDay: 3,
-                    timezone: 'UTC',
                     eventOverlap: false,
                     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                     initialView: 'timeGridWeek', // Vue initiale
@@ -108,7 +108,6 @@ document.addEventListener('alpine:init', () => {
                         const startFormatted = start.toISOString().split('.')[0]; // Supprime la partie millisecondes et fuseau horaire
                         const endFormatted = end.toISOString().split('.')[0];
                         const url = `/admin/seances/get-seances?salle=${alpineContext.salle}&start=${startFormatted}&end=${endFormatted}`
-                        console.log(url)
                         fetch(url)
                             .then(response => response.json())
                             .then(events => {
@@ -147,7 +146,7 @@ document.addEventListener('alpine:init', () => {
                         })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('Événement ajouté avec succès:', data);
+                            alpineContext.queryMovies()
                             //info.event.setExtendedProp('id', data.id); // Mettre à jour l'ID depuis la réponse serveur
                         })
                         .catch(error => {
@@ -170,8 +169,7 @@ document.addEventListener('alpine:init', () => {
                         .then(response => response.json())
                     },
                     eventClick: function(info) {
-                        console.log(info.event)
-                        const film = films.find(film => film.id == info.event.extendedProps.filmId);
+                        const film = alpineContext.films.find(film => film.id == info.event.extendedProps.filmId);
                         const start = new Date(info.event.start)
                         const end = new Date(info.event.end)
                         const totalMinutes = end.getHours() * 60 + end.getMinutes()
@@ -217,7 +215,6 @@ document.addEventListener('alpine:init', () => {
 
 
                 window.addEventListener('resize', function () {
-                    console.log(alpineContext.calendar)
                     if (alpineContext.calendar) {
                         alpineContext.calendar.refetchEvents(); // Recharger l'affichage
                     }
@@ -235,9 +232,91 @@ document.addEventListener('alpine:init', () => {
                        }           
                     })
                 })
+
+                document.querySelector('.fc-next-button').addEventListener('click', function(e) {
+                    if (alpineContext.detailView) {
+                        alpineContext.injectMovieInfos(document.getElementById('filmDetails').getAttribute('data-id'))
+                    }
+                })
+    
+                document.querySelector('.fc-prev-button').addEventListener('click', function(e) {
+                    if (alpineContext.detailView) {
+                        alpineContext.injectMovieInfos(document.getElementById('filmDetails').getAttribute('data-id'))
+                    }
+                })
             });
 
-            
+        },
+
+        injectMovieInfos(id) {
+            const startDate = this.calendar.view.currentStart
+            const startDateStr = startDate.toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }).split(' ')[0].split('/').slice(0,2).join('/')
+            const endDate = this.calendar.view.currentEnd
+            const endDateStr = endDate.toISOString().split('T')[0].split('-').reverse().slice(0,2).join('/')
+            const daysOfWeek = ['Mer.', 'Jeu.', 'Ven.', 'Sam.', 'Dim.', 'Lun.', 'Mar.']
+            this.detailView = true
+            const film = this.films.find(film => film.id == id)
+            let div = document.getElementById('filmDetails')
+            div.setAttribute('data-id', film.id)
+            const heures = Math.floor(film.duree / 60);
+            let minutes = film.duree % 60;
+            minutes = minutes.toString().padStart(2, '0');           
+            div.innerHTML = `
+                <div class="flex justify-between items-center w-full min-h-14 pl-4 pr-6 py-2 mb-4 dark:bg-zinc-800 bg-[rgb(238,238,240)] border-b dark:border-zinc-500 border-[rgb(220,220,225)]">
+                    <button @click="detailView = false" class="hover:bg-zinc-300 hover:border-zinc-300 dark:hover:bg-zinc-500 p-1 rounded transition-all ease-in-out duration-200">
+                        <svg width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="dark:fill-white fill-black"></path> </g></svg>
+                    </button>
+                    <h1 class="font-semibold dark:text-white text-lg max-w-[80%]">${film.titre}</h1>
+                </div>
+                <div class="w-full px-4 flex gap-4 mb-4">
+                    <img src="${film.url_affiche}" alt="" class="w-[40%] rounded border dark:border-zinc-500 border-zinc-800"/>
+                    <div class="w-auto flex flex-col gap-2">
+                        <div>
+                            <p class="dark:text-white"><span class="font-semibold">Durée : </span>${heures}h${minutes}</p>
+                        </div>
+                        <div>
+                            <p class=" dark:text-white"><span class="font-semibold">Certification : </span>${film.certification.valeur}</p> 
+                        </div>
+                        <div>
+                            <p class=" dark:text-white"><span class="font-semibold">Nombre de séances : </span>${Object.keys(film.seances).length}</p> 
+                        </div>
+                        <div>
+                            <p class=" dark:text-white"><span class="font-semibold">Genres : </span>${film.genres.map(genre => genre.nom).join(', ')}</p> 
+                        </div>
+                    </div>
+                </div>
+                <p class="dark:text-white mx-4 mt-1 mb-2 font-semibold">Séances programmées du ${startDateStr} au ${endDateStr} :</p>
+            `
+            let seancesList = document.createElement('div')
+            seancesList.className = 'max-h-[calc(100vh-33.5rem)] mx-4 overflow-y-scroll dark:bg-zinc-500 rounded border dark:border-zinc-300 border-zinc-300 bg-zinc-100 dark:border-zinc-400 shadow-inner'
+            daysOfWeek.forEach(day => {
+                let dayDate = new Date(startDate)
+                dayDate.setDate(dayDate.getDate() + daysOfWeek.indexOf(day))
+                let month = String(dayDate.getMonth() + 1).padStart(2, '0')
+                let dayNumeric = String(dayDate.getDate()).padStart(2, '0')
+                seancesList.innerHTML += `
+                    <div class="flex gap-2 justify-start p-[0.68rem] items-center border-b border-zinc-300/20 w-full min-h-10 ${daysOfWeek.indexOf(day) % 2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600/60' : 'bg-zinc-50 dark:bg-zinc-500'} ${day}">
+                        <div class="flex w-[5.95rem] justify-between">
+                            <p class="dark:text-zinc-200 text-zinc-600 font-semibold">${day}</p>
+                            <p class="dark:text-white text-black font-semibold">${dayNumeric}/${month} :</p>
+                        </div>
+                    </div>
+                `
+            })
+
+            // film.seances.forEach(seance => {
+            //     const date = new Date(seance.datetime_seance.replace(' ', 'T'))
+            //     const month = date.getMonth() + 1
+            //     seancesList.innerHTML += `
+            //         <div class="flex gap-2 justify-start p-2 items-center border-b border-zinc-300/20 w-full min-h-10 ${film.seances.indexOf(seance) % 2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600/60' : 'bg-zinc-50 dark:bg-zinc-500'}">
+            //             <p class="dark:text-white font-semibold mr-2">${date.toLocaleDateString('fr-FR', { weekday: 'long' })} ${date.getDate()}/${month.toString().padStart(2, '0')} :</p>
+            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
+            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
+            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
+            //         </div>
+            //     `
+            // })
+            div.appendChild(seancesList)
         },
 
         queryMovies() {
@@ -260,6 +339,7 @@ document.addEventListener('alpine:init', () => {
                 return response.json(); // Traiter la réponse comme JSON
             })
             .then(films => {
+                this.films = films
                 let filmContainer = document.getElementById('filmsContainer')
                 filmContainer.innerHTML = ''
                 films.forEach(film => {
@@ -267,7 +347,7 @@ document.addEventListener('alpine:init', () => {
                     let minutes = (parseInt(film.duree)+30) % 60;
                     minutes = minutes.toString().padStart(2, '0');
                     filmContainer.innerHTML += `
-                        <div class="p-4 flex justify-between items-center ${films.indexOf(film)%2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600 hover:bg-sky-100 dark:hover:bg-zinc-500' : 'bg-zinc-200 dark:bg-zinc-700 hover:bg-sky-100 dark:hover:bg-zinc-500'}" id="${film.id}">
+                        <div class="p-4 flex justify-between items-center ${films.indexOf(film)%2 == 0 ? 'bg-zinc-50 dark:bg-zinc-600 hover:bg-sky-100 dark:hover:bg-zinc-500' : 'bg-zinc-100 dark:bg-zinc-700 hover:bg-sky-100 dark:hover:bg-zinc-500'}" id="${film.id}">
                             <div class="px-2 py-1 bg-zinc-600 dark:bg-zinc-900 rounded flex gap-1 draggableElement max-w-[67%]" style="cursor: grab" data-title="${film.titre}" data-language="1" data-duration="${heures}:${minutes}:00" data-id="${film.id}">
                                 <svg class="fill-white !w-[14px] shrink-0" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M600 1440c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 720c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240 107.64-240 240-240ZM600 0c132.36 0 240 107.64 240 240S732.36 480 600 480 360 372.36 360 240 467.64 0 600 0Zm720 0c132.36 0 240 107.64 240 240s-107.64 240-240 240-240-107.64-240-240S1187.64 0 1320 0Z" fill-rule="evenodd"></path> </g></svg>
                                 <p class="text-white truncate ...">${film.titre} ${language.checked ? ' (VO)' : ' (VF)'}</p>
@@ -292,7 +372,6 @@ document.addEventListener('alpine:init', () => {
             this.calendar.refetchEvents();
         },
         changeDraggableItemColorByRoom(room){
-            console.log("ntm")
             document.querySelectorAll('.draggableElement').forEach((film) => {
                 switch(room){
                     case '1':
@@ -301,8 +380,6 @@ document.addEventListener('alpine:init', () => {
                         film.setAttribute('datacolor', '#ef4444');
                         break;
                     case '2':
-                        console.log("ntm2")
-                        console.log(film)
                         film.classList.remove('hover:bg-sky-500','dark:hover:bg-sky-500', 'hover:bg-red-500','dark:hover:bg-red-500', 'salle1', 'salle3', 'dark:bg-zinc-500', 'pointer-events-none', 'cursor-default')
                         film.classList.add('hover:bg-green-500', 'dark:bg-zinc-900', 'salle2', 'active')
                         film.setAttribute('datacolor', '#22c55e');
@@ -318,46 +395,7 @@ document.addEventListener('alpine:init', () => {
                         break;
                 }
             })
-        },
-        injectMovieInfos(id) {
-            this.detailView = true
-            const film = films.find(film => film.id == id)
-            let div = document.getElementById('filmDetails')
-            const heures = Math.floor(film.duree / 60);
-            let minutes = film.duree % 60;
-            minutes = minutes.toString().padStart(2, '0');
-            div.innerHTML = `
-                <div class="flex justify-between items-center w-full min-h-14 pl-4 pr-6 py-2 mb-4 dark:bg-zinc-800 bg-[rgb(238,238,240)] border-b dark:border-zinc-500 border-[rgb(220,220,225)]">
-                    <button @click="detailView = false" class="hover:bg-zinc-300 hover:border-zinc-300 dark:hover:bg-zinc-500 p-1 rounded transition-all ease-in-out duration-200">
-                        <svg width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="dark:fill-white fill-black"></path> </g></svg>
-                    </button>
-                    <h1 class="font-semibold dark:text-white text-lg max-w-[80%]">${film.titre}</h1>
-                </div>
-                <div class="w-full px-4 flex gap-4 mb-4">
-                    <img src="${film.url_affiche}" alt="" class="w-[50%] rounded border dark:border-zinc-500 border-zinc-800"/>
-                    <div class="w-auto flex flex-col gap-2">
-                        <div>
-                            <p class="dark:text-white"><span class="font-semibold">Durée : </span>${heures}h${minutes}</p>
-                        </div>
-                        <div>
-                            <p class=" dark:text-white"><span class="font-semibold">Certification : </span>${film.certification.valeur}</p> 
-                        </div>
-                        <div>
-                            <p class=" dark:text-white"><span class="font-semibold">Nombre de séances : </span>${Object.keys(film.seances).length}</p> 
-                        </div>
-                        <div>
-                            <p class=" dark:text-white"><span class="font-semibold">Genres : </span>${film.genres.map(genre => genre.nom).join(', ')}</p> 
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
-                
-            `
         }
-
-
     }))
 
 

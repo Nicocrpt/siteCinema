@@ -72,9 +72,7 @@
 </div>
 
 <script defer>
-    const films = @json($films)
-
-
+    const movies = @json($films)
 </script>
 
 @endsection
