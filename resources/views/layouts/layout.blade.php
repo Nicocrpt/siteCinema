@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="relative no-transition w-full bg-neutral-900 overscroll-none solaris"
+<body class="relative no-transition w-full bg-zinc-900 overscroll-none solaris"
     x-data="{
         open : false, 
         dropdown : false,
@@ -41,12 +41,12 @@
 
     
 
-    <main class="bg-neutral-50 dark:bg-neutral-800">
+    <main class="bg-neutral-50 dark:bg-zinc-900">
         @yield('content')
     </main>
     
-    <footer class=" h-48">
-        <x-footer/>
+    <footer>
+        <x-footer class="pb-4"/>
     </footer>
 </body>
 </html>

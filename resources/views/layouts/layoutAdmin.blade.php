@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class="bg-zinc-950 h-screen flex flex-col">
+<body class="bg-zinc-950 h-screen flex flex-col" x-data="{loading : true}" x-init="window.onload = () => loading = false; document.body.classList.remove('no-transition');">
     <header class="h-16 w-full flex items-center p-4 md:px-6 lg:px-10 justify-between">
         <div class="flex gap-6 items-center" x-data="{rotation : 0}">
             <svg
@@ -65,6 +65,7 @@
         </div>
         
     </header>
+    <x-loading-screen/>
 
     <main class=" mt-2 mx-[8px] bg-gray-50 dark:bg-zinc-800 h-full border-none rounded-t-md overflow-hidden flex-col relative">
         @yield('content')

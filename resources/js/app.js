@@ -295,28 +295,26 @@ document.addEventListener('alpine:init', () => {
                 let month = String(dayDate.getMonth() + 1).padStart(2, '0')
                 let dayNumeric = String(dayDate.getDate()).padStart(2, '0')
                 seancesList.innerHTML += `
-                    <div class="flex gap-2 justify-start p-[0.68rem] items-center border-b border-zinc-300/20 w-full min-h-10 ${daysOfWeek.indexOf(day) % 2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600/60' : 'bg-zinc-50 dark:bg-zinc-500'} ${day}">
+                    <div class="flex gap-2 justify-start p-[0.68rem] items-center border-b border-zinc-300/20 w-full min-h-10 ${daysOfWeek.indexOf(day) % 2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600/60' : 'bg-zinc-50 dark:bg-zinc-500'} ${day.replace('.', '')}">
                         <div class="flex w-[5.95rem] justify-between">
                             <p class="dark:text-zinc-200 text-zinc-600 font-semibold">${day}</p>
                             <p class="dark:text-white text-black font-semibold">${dayNumeric}/${month} :</p>
                         </div>
                     </div>
                 `
+                div.appendChild(seancesList)
+                film.seances.forEach(seance => {
+                    console.log(seance.film_id, film.id)
+                    if (seance.datetime_seance.split(' ')[0] == dayDate.toISOString().split('T')[0] && seance.film_id == film.id) {
+                        let dayDiv = document.querySelector('.' + day.replace('.', ''))
+                        //console.log(dayDiv)
+                        let divHoraire = document.createElement('p')
+                        divHoraire.className = 'p-1 border dark:border-zinc-500 border-zinc-500 bg-zinc-600 dark:bg-zinc-900 text-white rounded'
+                        divHoraire.innerHTML = `${seance.datetime_seance.split(' ')[1].split(':').slice(0, 2).join(':')}`
+                        dayDiv.appendChild(divHoraire)
+                    }
+                })
             })
-
-            // film.seances.forEach(seance => {
-            //     const date = new Date(seance.datetime_seance.replace(' ', 'T'))
-            //     const month = date.getMonth() + 1
-            //     seancesList.innerHTML += `
-            //         <div class="flex gap-2 justify-start p-2 items-center border-b border-zinc-300/20 w-full min-h-10 ${film.seances.indexOf(seance) % 2 == 0 ? 'bg-zinc-100 dark:bg-zinc-600/60' : 'bg-zinc-50 dark:bg-zinc-500'}">
-            //             <p class="dark:text-white font-semibold mr-2">${date.toLocaleDateString('fr-FR', { weekday: 'long' })} ${date.getDate()}/${month.toString().padStart(2, '0')} :</p>
-            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
-            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
-            //             <p class="p-1 bg-zinc-200 dark:bg-zinc-800 rounded text-sm dark:text-white border border-zinc-600">18:45</p>
-            //         </div>
-            //     `
-            // })
-            div.appendChild(seancesList)
         },
 
         queryMovies() {
@@ -624,7 +622,7 @@ document.addEventListener('alpine:init', () => {
         minSize: 11, 
         scrollLimit: 100,
         isSmallScreen: window.innerWidth < 768,
-        is2xlScreen: window.innerWidth >= 1536,
+        is2xlScreen: window.innerWidth >= 1280,
         fullscreenImage: false,
         translation: 0,
 
@@ -632,7 +630,7 @@ document.addEventListener('alpine:init', () => {
             window.addEventListener('resize', () => {
                 this.isSmallScreen = window.innerWidth < 768 
                 console.log(this.isSmallScreen)
-                this.is2xlScreen = window.innerWidth >= 1536
+                this.is2xlScreen = window.innerWidth >= 1280
             })
 
             window.addEventListener('scroll', () => { 
