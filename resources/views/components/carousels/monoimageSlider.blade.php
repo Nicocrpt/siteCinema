@@ -12,7 +12,7 @@
 
    
 
-    <div class="w-full rounded-md overflow-hidden h-fit">
+    <div class="w-full rounded overflow-hidden h-fit">
         <div class="flex ease-in-out duration-500 gap-auto justify-between rounded-md w-full h-auto" :style="`transform: translateX(calc(-100% * ${translation}));`">
             @foreach ($images as $image)
                     <div class="w-[100%] flex-shrink-0 h-auto">

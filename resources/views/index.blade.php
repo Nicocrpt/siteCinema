@@ -6,10 +6,10 @@
 @section('content')
         <div :class="open ? 'overflow-hidden' : ''">
             <x-carousels.filmBanner :films="$films->where('est_favori', 1)" id="banniere"/>
-            <div class=" h-full pb-24">
+            <div class=" h-full md:mx-[0.42rem] md:mt-2 mx-2 mt-1">
                 {{-- <div class="index-content transition-all ease-in-out duration-[0.75s] "></div> --}}
             {{-- <x-film-card :films="$films->where('est_favori', 1)"/> --}}
-                <div class="mt-24 pb-72">
+                <div class="pt-24 pb-72 rounded bg-zinc-50 dark:bg-zinc-900">
                     <div class="flex items-center gap-4">
                         <h1 class="text-2xl font-bold dark:text-white ml-[2%]">Films à l'affiche</h1>
                         <a href="{{ route('films.index') }}" class="underline text-xs dark:text-white">Voir tous les films</a>

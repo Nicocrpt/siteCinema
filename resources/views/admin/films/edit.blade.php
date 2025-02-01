@@ -210,7 +210,7 @@
                         <div x-bind:style="'transform: translateX(-' + translation + '%);'" class="h-full flex items-center">
                             @foreach ($tmdb_logos as $logo )
                 
-                                <img src="https://image.tmdb.org/t/p/w500{{$logo}}" alt="" class="imgLogo p-4 rounded w-full h-auto">     
+                                <img src="https://image.tmdb.org/t/p/w500{{$logo}}" alt="" class="imgLogo p-2 w-full h-auto bg-zinc-400">     
             
                             @endforeach
                         </div>

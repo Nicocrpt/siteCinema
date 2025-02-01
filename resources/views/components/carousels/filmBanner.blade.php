@@ -42,19 +42,20 @@
         bottom: 20px; /* Ajuster la distance du bas */
         left: 50%; /* Centrer horizontalement */
         transform: translateX(-50%); /* Ajuster pour centrer précisément */
-        z-index: 10; /* Assurer que les dots sont au-dessus des autres éléments */
+        z-index: 50 ; /* Assurer que les dots sont au-dessus des autres éléments */
         opacity: 0; /* Opacité à 0% par défaut */
         transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Transition douce pour l'opacité */
         transition-delay: 1s;
     }
     
     .owl-dots .owl-dot {
-        background: rgba(255, 255, 255, 0.5); /* Couleur des dots */
+        background: rgb(255, 255, 255); /* Couleur des dots */
         width: 12px; /* Largeur des dots */
         height: 12px; /* Hauteur des dots */
         margin: 0 5px; /* Espacement entre les dots */
         border-radius: 50%; /* Faire des dots ronds */
         opacity: 0.5; /* Opacité des dots */
+
         transition: opacity 0.5s ease-in-out; /* Transition douce pour l'opacité */
     }
 
@@ -65,10 +66,10 @@
     .owl-dots .owl-dot.active {
         opacity: 1;
         margin-bottom: 2px;
-        
-        
+              
         span {
             margin-bottom: 5px;
+            z-index: 20;
         border: solid 5px white;
         opacity: 1; /* Opacité à 100% pour le dot actif */
         
@@ -119,17 +120,16 @@
 
 
 
-<div x-data="filmsBanner" x-init="init" class=" block max-w-full">
-    <div class="owl-carousel owl-theme carousel-1  border-b-2  dark:border-b-neutral-300 border-b-black max-h-fit" style="">
+<div x-data="filmsBanner" x-init="init" class=" block max-w-full relative z-20">
+    <div class="owl-carousel owl-theme carousel-1 border-none border-zinc-950 max-h-fit" style="">
         @foreach ($films as $film)
             <div class="item bg-center bg-cover bg-no-repeat" style="background-image: url('{{ $film->url_backdrop }}'); ">
                 <div class="grid grid-rows-5 h-full w-full">
                     <div></div>
                     <div class="row-start-3 row-span-3 flex md:row-start-2 md:row-span-4 md:grid md:grid-cols-2">
-                        <div class="p-10 flex flex-col-reverse justify-start items-center mb-5 gap-5 md:mb-24">
-                            
-                            <a href="{{route('film.show', $film->slug)}}"><button class="bg-zinc-950 px-4 py-2 rounded-lg border border-zinc-600 md:hover:bg-zinc-800 transition-color ease-in-out duration-200"><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a>
-                            <img src="{{ $film->url_logo }}" alt="">
+                        <div class="p-10 flex flex-col justify-end items-center mb-5 md:pb-24 h-full">
+                            {{-- <a href="{{route('film.show', $film->slug)}}"><button class="bg-zinc-950 px-4 py-2 rounded-lg border border-zinc-600 md:hover:bg-zinc-800 transition-color ease-in-out duration-200"><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a> --}}
+                            <img src="{{ $film->url_logo }}" alt="" class="max-w-[40rem] md:pb-0 pb-10 !relative !z-10">
                         </div>
                         
                     </div>
@@ -139,7 +139,26 @@
             </div>
         @endforeach
     </div>
-    
+    {{-- <div class="w-full block absolute bottom-0 h-[6rem] z-[1] pointer-events-none" style="background: linear-gradient(
+  0deg,
+  rgba(9, 9, 11, 1) 1%,
+  rgba(9, 9, 11, 0.9) 5%,        /* #09090b 100% opaque */
+  rgba(9, 9, 11, 0.738) 19%,   /* 73.8% opaque */
+  rgba(9, 9, 11, 0.541) 34%,   /* 54.1% opaque */
+  rgba(9, 9, 11, 0.382) 47%,   /* 38.2% opaque */
+  rgba(9, 9, 11, 0.278) 56.5%, /* 27.8% opaque */
+  rgba(9, 9, 11, 0.194) 65%,   /* 19.4% opaque */
+  rgba(9, 9, 11, 0.126) 73%,   /* 12.6% opaque */
+  rgba(9, 9, 11, 0.075) 80.2%, /* 7.5% opaque */
+  rgba(9, 9, 11, 0.042) 86.1%, /* 4.2% opaque */
+  rgba(9, 9, 11, 0.021) 91%,   /* 2.1% opaque */
+  rgba(9, 9, 11, 0.008) 95.2%, /* 0.8% opaque */
+  rgba(9, 9, 11, 0.002) 98.2%, /* 0.2% opaque */
+  rgba(9, 9, 11, 0) 100%       /* transparent */
+);" 
+    >--}}
+
+    </div>
 </div>
 
 

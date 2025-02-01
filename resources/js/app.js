@@ -5,7 +5,7 @@ import Alpine from 'alpinejs';
 import $, { data, event } from 'jquery';
 
 //Faker.js
-import { faker, ne } from '@faker-js/faker';
+import { da, faker, fi, ne, th } from '@faker-js/faker';
 //FullCalendar
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -31,6 +31,7 @@ window.$ =window.jQuery = $;
 
 
 document.addEventListener('alpine:init', () => {
+
 
     Alpine.data('seanceManager', () => ({
         detailView: false,
@@ -186,10 +187,10 @@ document.addEventListener('alpine:init', () => {
                                         <div class="flex gap-1">
                                             <p class="${info.event.extendedProps.salle == 1 ? 'bg-red-500 border-red-600' : info.event.extendedProps.salle == 2 ? 'bg-green-500 border-green-600' : 'bg-sky-500 border-sky-600' } w-fit text-white p-1 rounded text-sm box-border border">Salle ${info.event.extendedProps.salle}</p>
                                             <p class="text-sm rounded p-1 px-2 bg-zinc-900 text-white">${info.event.title.replace(film.titre + " (", '').replace(")", '')}</p>
-                                            <div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-slate-500 rounded">
+                                            <div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-zinc-500 rounded">
                                                 <svg class="fill-white w-[20px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
                                             </div>
-                                            <div class="bg-slate-400 flex items-center rounded pr-1">
+                                            <div class="bg-zinc-400 flex items-center rounded pr-1">
                                                 <svg class="fill-white w-[18px]" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M 16.5156 49.5742 L 39.2734 49.5742 C 41.6640 49.5742 43.0937 48.2617 43.0937 45.7305 L 43.0937 45.1211 C 43.1172 38.6523 36.2266 33.4023 33.2031 30.5430 C 32.3593 29.7461 31.9140 29.0196 31.9140 27.9649 C 31.9140 26.9102 32.3593 26.2071 33.2031 25.3867 C 36.2031 22.4805 43.0937 17.5586 43.0937 10.8320 L 43.0937 10.2696 C 43.0937 7.7383 41.6640 6.4258 39.2734 6.4258 L 16.5156 6.4258 C 14.1718 6.4258 12.8828 7.7383 12.8828 10.0586 L 12.8828 10.8320 C 12.8828 17.5586 19.7734 22.4805 22.7969 25.3867 C 23.6406 26.2071 24.0859 26.9102 24.0859 27.9649 C 24.0859 29.0196 23.6406 29.7461 22.7969 30.5430 C 19.7734 33.4023 12.8828 38.6523 12.8828 45.1211 L 12.8828 45.9414 C 12.8828 48.2617 14.1718 49.5742 16.5156 49.5742 Z M 18.9531 46.3633 C 17.8281 46.3633 17.4766 45.1211 18.5781 44.3008 L 26.5937 38.3242 C 26.8515 38.1133 26.9922 37.9727 26.9922 37.6211 L 26.9922 26.3477 C 26.9922 25.0820 26.7344 24.4492 25.8437 23.6992 C 24.5078 22.5742 21.9766 20.7930 20.8281 19.1758 C 20.3593 18.5196 20.4062 17.9805 20.9922 17.9805 L 34.9844 17.9805 C 35.5703 17.9805 35.6172 18.5196 35.1484 19.1758 C 34.0000 20.7930 31.4922 22.5742 30.1328 23.6992 C 29.2422 24.4492 28.9844 25.0820 28.9844 26.3477 L 28.9844 37.6211 C 28.9844 37.9727 29.125 38.1133 29.3828 38.3242 L 37.4218 44.3008 C 38.5234 45.1211 38.1484 46.3633 37.0469 46.3633 Z"></path></g></svg>
                                                 <p class="text-white text-sm">${Math.floor((parseInt(film.duree)+30) / 60)}h${(parseInt(film.duree)+30) % 60}</p>
                                             </div>
@@ -197,7 +198,7 @@ document.addEventListener('alpine:init', () => {
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <p class="text-sm"><span class="font-semibold">Séance : </span>Le ${new Date(info.event.start).toLocaleString('fr-FR', { day: 'numeric', month: 'numeric', year: 'numeric'})} à ${new Date(info.event.start).toLocaleTimeString('fr-FR', { hour: 'numeric', minute: 'numeric' })}</p>
-                                        <p class="text-sm"><span class="font-semibold text-slate-800">${info.event.extendedProps.nbPlaces}/${info.event.extendedProps.salle == 1 ? '280' : info.event.extendedProps.salle == 2 ? '162' : '112'}</span> Places réservées</p>
+                                        <p class="text-sm"><span class="font-semibold text-zinc-800">${info.event.extendedProps.nbPlaces}/${info.event.extendedProps.salle == 1 ? '280' : info.event.extendedProps.salle == 2 ? '162' : '112'}</span> Places réservées</p>
                                     </div>
                                 </div>
                             </div>
@@ -395,8 +396,6 @@ document.addEventListener('alpine:init', () => {
             })
         }
     }))
-
-
     // Seat Selector :
 
     Alpine.data('seats', () => ({
@@ -496,23 +495,23 @@ document.addEventListener('alpine:init', () => {
                     console.log(this.places)
                     if (this.places == 0) {
                         button.classList.remove('bg-cyan-500')
-                        button.classList.add('bg-gray-200')
-                        button.classList.add('text-gray-400')
+                        button.classList.add('bg-zinc-200')
+                        button.classList.add('text-zinc-400')
                         document.getElementById('plusET').classList.remove('bg-cyan-500')
-                        document.getElementById('plusET').classList.add('bg-gray-200')
-                        document.getElementById('plusET').classList.add('text-gray-400')
+                        document.getElementById('plusET').classList.add('bg-zinc-200')
+                        document.getElementById('plusET').classList.add('text-zinc-400')
                         if (document.getElementById('priceET').value == 0) {
                             let other = document.getElementById('plusET')
                             other.classList.remove('bg-cyan-500')
-                            other.classList.add('bg-gray-200')
+                            other.classList.add('bg-zinc-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusET').setAttribute('disabled', 'true')
-                            document.getElementById('minusET').classList.add('bg-gray-200')
-                            document.getElementById('minusET').classList.add('text-gray-400')
-                            document.getElementById('minusET').classList.remove('bg-gray-300')
-                            document.getElementById('priceET').classList.add('text-gray-200')
+                            document.getElementById('minusET').classList.add('bg-zinc-200')
+                            document.getElementById('minusET').classList.add('text-zinc-400')
+                            document.getElementById('minusET').classList.remove('bg-zinc-300')
+                            document.getElementById('priceET').classList.add('text-zinc-200')
                             document.getElementById('priceET').setAttribute('disabled', 'true')
-                            document.getElementById('labelET').classList.add('text-gray-200')
+                            document.getElementById('labelET').classList.add('text-zinc-200')
                         }
                     }
                 }
@@ -528,21 +527,21 @@ document.addEventListener('alpine:init', () => {
                     }
 
                     this.totalHTML.innerHTML = this.total.toString()
-                    document.getElementById('plusSTD').classList.remove('bg-gray-300')
+                    document.getElementById('plusSTD').classList.remove('bg-zinc-300')
                     document.getElementById('plusSTD').classList.add('bg-cyan-500')
-                    document.getElementById('plusSTD').classList.remove('text-gray-400')
+                    document.getElementById('plusSTD').classList.remove('text-zinc-400')
 
                     document.getElementById('plusET').classList.add('bg-cyan-500')
-                    document.getElementById('plusET').classList.remove('bg-gray-200')
-                    document.getElementById('plusET').classList.remove('text-gray-400')
+                    document.getElementById('plusET').classList.remove('bg-zinc-200')
+                    document.getElementById('plusET').classList.remove('text-zinc-400')
                     document.getElementById('plusET').removeAttribute('disabled')
                     document.getElementById('minusET').removeAttribute('disabled')
-                    document.getElementById('minusET').classList.remove('bg-gray-200')
-                    document.getElementById('minusET').classList.remove('text-gray-400')
-                    document.getElementById('minusET').classList.add('bg-gray-300')
-                    document.getElementById('priceET').classList.remove('text-gray-200')
+                    document.getElementById('minusET').classList.remove('bg-zinc-200')
+                    document.getElementById('minusET').classList.remove('text-zinc-400')
+                    document.getElementById('minusET').classList.add('bg-zinc-300')
+                    document.getElementById('priceET').classList.remove('text-zinc-200')
                     document.getElementById('priceET').removeAttribute('disabled')
-                    document.getElementById('labelET').classList.remove('text-gray-200')
+                    document.getElementById('labelET').classList.remove('text-zinc-200')
                 }
             }
             console.log(this.totalArray)
@@ -560,24 +559,24 @@ document.addEventListener('alpine:init', () => {
                     console.log(this.places)
                     if (this.places == 0) {
                         button.classList.remove('bg-cyan-500')
-                        button.classList.add('bg-gray-200')
-                        button.classList.add('text-gray-400')
-                        document.getElementById('plusSTD').classList.add('bg-gray-200')
-                        document.getElementById('plusSTD').classList.remove('bg-gray-300')
+                        button.classList.add('bg-zinc-200')
+                        button.classList.add('text-zinc-400')
+                        document.getElementById('plusSTD').classList.add('bg-zinc-200')
+                        document.getElementById('plusSTD').classList.remove('bg-zinc-300')
                         document.getElementById('plusSTD').classList.remove('bg-cyan-500')
-                        document.getElementById('plusSTD').classList.add('text-gray-400')
+                        document.getElementById('plusSTD').classList.add('text-zinc-400')
                         if (document.getElementById('priceSTD').value == 0) {
                             let other = document.getElementById('plusSTD')
                             other.classList.remove('bg-cyan-500')
-                            other.classList.add('bg-gray-200')
+                            other.classList.add('bg-zinc-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusSTD').setAttribute('disabled', 'true')
-                            document.getElementById('minusSTD').classList.add('bg-gray-200')
-                            document.getElementById('minusSTD').classList.add('text-gray-400')
-                            document.getElementById('minusSTD').classList.remove('bg-gray-300')
-                            document.getElementById('priceSTD').classList.add('text-gray-200')
+                            document.getElementById('minusSTD').classList.add('bg-zinc-200')
+                            document.getElementById('minusSTD').classList.add('text-zinc-400')
+                            document.getElementById('minusSTD').classList.remove('bg-zinc-300')
+                            document.getElementById('priceSTD').classList.add('text-zinc-200')
                             document.getElementById('priceSTD').setAttribute('disabled', 'true')
-                            document.getElementById('labelSTD').classList.add('text-gray-200')
+                            document.getElementById('labelSTD').classList.add('text-zinc-200')
                         }
                     }
                 }
@@ -593,21 +592,21 @@ document.addEventListener('alpine:init', () => {
                     }
 
                     this.totalHTML.innerHTML = this.total.toString()
-                    document.getElementById('plusET').classList.remove('bg-gray-300')
+                    document.getElementById('plusET').classList.remove('bg-zinc-300')
                     document.getElementById('plusET').classList.add('bg-cyan-500')
-                    document.getElementById('plusET').classList.remove('text-gray-400')
+                    document.getElementById('plusET').classList.remove('text-zinc-400')
 
                     document.getElementById('plusSTD').classList.add('bg-cyan-500')
-                    document.getElementById('plusSTD').classList.remove('bg-gray-200')
-                    document.getElementById('plusSTD').classList.remove('text-gray-400')
+                    document.getElementById('plusSTD').classList.remove('bg-zinc-200')
+                    document.getElementById('plusSTD').classList.remove('text-zinc-400')
                     document.getElementById('plusSTD').removeAttribute('disabled')
                     document.getElementById('minusSTD').removeAttribute('disabled')
-                    document.getElementById('minusSTD').classList.remove('bg-gray-200')
-                    document.getElementById('minusSTD').classList.remove('text-gray-400')
-                    document.getElementById('minusSTD').classList.add('bg-gray-300')
-                    document.getElementById('priceSTD').classList.remove('text-gray-200')
+                    document.getElementById('minusSTD').classList.remove('bg-zinc-200')
+                    document.getElementById('minusSTD').classList.remove('text-zinc-400')
+                    document.getElementById('minusSTD').classList.add('bg-zinc-300')
+                    document.getElementById('priceSTD').classList.remove('text-zinc-200')
                     document.getElementById('priceSTD').removeAttribute('disabled')
-                    document.getElementById('labelSTD').classList.remove('text-gray-200')
+                    document.getElementById('labelSTD').classList.remove('text-zinc-200')
                 }
             }
             console.log(this.totalArray)
@@ -724,12 +723,12 @@ document.addEventListener('alpine:init', () => {
                 return response.json(); // Traiter la réponse comme JSON
             })
             .then(data => {
-                currentDiv.querySelector('#actions').innerHTML = '<p class="text-lg text-gray-400 italic">Réservation annulée</p>'
+                currentDiv.querySelector('#actions').innerHTML = '<p class="text-lg text-zinc-400 italic">Réservation annulée</p>'
                 document.getElementById('responseValue').innerHTML = data.success
                 document.getElementById('fidelityCount').innerHTML = data.content.fidelity
                 this.formsStatus = true
-                img.classList.remove('grayscale-0')
-                img.classList.add('grayscale')
+                img.classList.remove('zincscale-0')
+                img.classList.add('zincscale')
                 title.classList.add('text-zinc-500', 'dark:text-zinc-300')
                 subtitles.forEach(subtitle => subtitle.classList.add('text-zinc-500', 'dark:text-zinc-300'))
                 currentDiv.querySelectorAll('.placesID').forEach(element => {
@@ -825,7 +824,7 @@ document.addEventListener('alpine:init', () => {
                         document.getElementById('loadMoreButton').remove()
                     }else
                     {
-                        document.getElementById('loadMoreButton').innerHTML = `<a @click="loadMoreReservations()" class="flex justify-center font-medium items-center p-2 w-96 mx-auto rounded-md hover:bg-gray-100 dark:hover:bg-zinc-500 mb-4 hover:shadow-sm cursor-pointer transition-all ease-in-out duration-300 border border-zinc-50 hover:border-zinc-200 dark:border-zinc-700 dark:hover:border-zinc-400"><p class="dark:text-white" >Voir Plus</p></a>`
+                        document.getElementById('loadMoreButton').innerHTML = `<a @click="loadMoreReservations()" class="flex justify-center font-medium items-center p-2 w-96 mx-auto rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-500 mb-4 hover:shadow-sm cursor-pointer transition-all ease-in-out duration-300 border border-zinc-50 hover:border-zinc-200 dark:border-zinc-700 dark:hover:border-zinc-400"><p class="dark:text-white" >Voir Plus</p></a>`
                     }
 
                     data.reservations.forEach(reservation => {
@@ -854,6 +853,218 @@ document.addEventListener('alpine:init', () => {
         }
 
     }))
+
+    Alpine.data('seancesPage', () => ({
+        container : document.getElementById('dateContainer'),
+        today: new Date(),
+        firstDate : new Date(),
+        lastDate : null,
+        activeDay : new Date().toISOString(),
+        translation : 0,
+        translateValue : 42,
+        dateItems : 7,
+        films : films_php,
+        seancesContainer : document.getElementById('seancesContainer'),
+
+        init() {
+
+            this.setOnLoadCarousel()
+
+            window.addEventListener('resize', () => {
+                switch (window.innerWidth) {
+                    case 768:
+                    case 767:
+                    case 672:
+                    case 671:
+                    case 576:
+                    case 575:
+                    case 480:
+                    case 479:
+                        this.container.innerHTML = ''
+                        this.setOnLoadCarousel()
+                        console.log(window.innerWidth)
+                        break;
+                }
+                
+                this.injectRequiredSeances(this.activeDay.split('T')[0])
+            })
+
+        },
+
+        setOnLoadCarousel() {
+            if (window.innerWidth >= 768)
+            {
+                while (this.firstDate.getDay() != 3) {
+                    this.firstDate.setDate(this.firstDate.getDate() - 1)
+                }
+            }
+
+            switch (true) {
+                case (window.innerWidth < 768 && window.innerWidth >= 672):
+                    this.dateItems = 6
+                    this.translateValue = 36
+                    break;
+                case (window.innerWidth < 672 && window.innerWidth >= 576):
+                    this.dateItems = 5
+                    console.log('hello')
+                    this.translateValue = 30
+                    break;
+                case (window.innerWidth < 576 && window.innerWidth >= 480):
+                    this.dateItems = 4
+                    this.translateValue = 24
+                    break;
+                case (window.innerWidth < 480):
+                    this.dateItems = 3
+                    this.translateValue = 18
+                    break;
+                case (window.innerWidth >= 768):
+                    this.dateItems = 7
+                    this.translateValue = 42
+                    break;
+            }
+            console.log(this.translateValue)
+
+            this.lastDate = new Date(this.firstDate)
+            this.lastDate.setDate(this.lastDate.getDate() + (this.dateItems - 1))
+
+            for (let i = 0; i < this.dateItems; i++) {
+                const date = new Date(this.firstDate)
+                date.setDate(date.getDate() + i) 
+                this.container.appendChild(this.insertNewDate(date))
+            }
+
+            this.injectRequiredSeances(this.today.toISOString().split('T')[0])
+        },
+
+        prev(){
+            this.translation += this.translateValue
+            this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() - this.dateItems))   
+            this.lastDate.setDate(this.lastDate.getDate() - this.dateItems)
+        },
+
+        next(){
+            console.log(this.dateItems)
+            console.log(this.translateValue)
+            this.translation -= this.translateValue,
+            this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() + this.dateItems))
+            for (let i = 0; i < this.dateItems; i++) {
+                this.lastDate.setDate(this.lastDate.getDate() + 1)
+                console.log(this.lastDate)
+                this.container.appendChild(this.insertNewDate(this.lastDate)) 
+            }
+            
+        },
+
+        insertNewDate(date) {
+            const formatedDate = date.toISOString().split('T')[0].split('-').reverse().splice(0,2).join('/')
+            const dayName = date.toLocaleString('fr-FR', { weekday: 'long' })
+            let dateDiv = document.createElement('div')
+            dateDiv.className = " h-full w-24 min-w-24 px-2 dateDiv"
+            dateDiv.innerHTML = `
+                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay) ;console.log(activeDay)" class="flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 rounded-full h-full transition-all transform ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200' : 'dark:bg-zinc-600/70 bg-zinc-200/60 hover:bg-zinc-300/60'">
+                    <p class=" -mt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${dayName.substring(0,3) + '.'}</p>
+                    <p class="pt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${formatedDate}</p>
+                </div>
+            `
+            return dateDiv
+        },
+
+        injectRequiredSeances(date) {
+
+            this.seancesContainer.innerHTML = ''
+            let globalCount = 0
+            this.films.forEach(film => {
+                let count = 0
+                let seances = []
+                film.seances.forEach(seance => {
+                    if (seance.datetime_seance.split(' ')[0] == date.split('T')[0]) {
+                        count ++
+                        let seanceP = document.createElement('p')
+                        seanceP.innerHTML += `                                
+                            <a href="/seances/${seance.reference}">
+                                <div class="flex justify-center items-center w-fit rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-1 px-1 gap-2 transition-all ease-in-out duration-200 group border border-zinc-300 dark:border-zinc-400/50">
+                                    <p class="dark:text-white">${seance.datetime_seance.split(' ')[1].split(':').splice(0,2).join(':')}</p>
+                                    ${seance.vf == 1 ? '<p class="text-sm bg-zinc-700 text-white rounded px-1 dark:group-hover:bg-zinc-500 transition-all ease-in-out duration-200" title="Francais">VF</p>' : '<p class="bg-zinc-900 text-white rounded px-1 text-sm">VO</p>'}
+                                    ${seance.dolby_vision || seance.dolby_atmos ? 
+                                        `<div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-zinc-500 rounded">
+                                            <svg class="fill-white w-[12px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
+                                        </div>` 
+                                    : ''}
+                                </div>
+                            </a>
+                        `
+                        seances.push(seanceP)
+                    }
+                })
+                if (count > 0) {
+                    globalCount ++
+                    let filmDiv = document.createElement('div')
+                    filmDiv.className = "pb-10 mt-10 border-b-2 border-zinc-400/60 flex flex-col w-full"
+
+                    let infosDiv = document.createElement('div')
+                    infosDiv.className = "flex flex gap-2 xl:gap-4 w-full h-[9rem] sm:h-72"
+                    infosDiv.innerHTML = `
+                            <a href="/films/${film.slug}" class="h-full shrink-0">
+                                <img src="${film.url_affiche}" alt="" class="h-full rounded border border-zinc-400 dark:border-zinc-400/40 shrink-0">
+                            </a>
+                    `
+                    let content = document.createElement('div')
+                    content.className = "flex flex-col"
+                    content.innerHTML = `
+                        <p class="font-semibold dark:text-white text-xl sm:text-3xl">${film.titre}<span class="text-sm font-normal text-zinc-600 dark:text-zinc-400 pl-2">${Math.floor(parseInt(film.duree) / 60)}h${(parseInt(film.duree) % 60).toString().padStart(2, '0')}</span></p>
+                        <div class="mt-2 flex flex-col gap-1">
+                            <p class="dark:text-white max-sm:text-sm">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
+                            <p class="dark:text-white max-sm:text-sm max-sm:line-clamp-1">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
+                            <p class="dark:text-white max-sm:text-sm">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
+                        </div>
+                    `
+                    if (window.innerWidth >= 640) {
+                        content.innerHTML += `
+                            <div class="border-b-2 dark:border-zinc-700 mt-6 mb-2 xl:w-[32rem]"/>
+                        `
+                    }
+
+                    let hoursContent = document.createElement('div')
+                    hoursContent.className = "flex gap-2"
+
+                    seances.forEach(seanceP => {
+                        hoursContent.appendChild(seanceP)
+                    })
+
+                    infosDiv.appendChild(content)
+                    
+                    if (window.innerWidth >= 640) {
+                        content.appendChild(hoursContent)
+                        filmDiv.appendChild(infosDiv)
+                    } else {
+                        filmDiv.appendChild(infosDiv)
+                        filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700 mt-2 mb-2 w-[90%]"/>'
+                        filmDiv.appendChild(hoursContent)
+                    }
+
+                    this.seancesContainer.appendChild(filmDiv)
+                }
+            })
+
+            if (globalCount == 0) {
+                this.seancesContainer.innerHTML = `
+                <div class="h-[calc(100vh-200px)] w-full flex gap-2 justify-center items-center">
+                    <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                    <div class="w-fit">
+                        <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
+                        <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
+                    </div>
+                </div>
+                `
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Pour un effet fluide
+            });
+        }
+    }))
+
 
 });
 

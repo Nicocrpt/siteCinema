@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-neutral-50 dark:bg-zinc-800 solaris"
+<body class=" bg-neutral-100 dark:bg-zinc-900/90 solaris w-screen overflow-x-hidden"
 x-data="{
     open : false, 
     dropdown : false,
@@ -25,7 +25,7 @@ x-init="window.onload = () => loading = false; document.body.classList.remove('n
 
     <x-loading-screen/>
     
-    <main class="w-full">
+    <main class="w-full max-w-full">
         @yield('content')
     </main>
 

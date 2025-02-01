@@ -14,7 +14,15 @@ class SeanceController extends Controller
 {
     public function index(): View
     {
-        $films = Film::all();
+        $today = now()->format('Y-m-d H:i:s');
+        $seances = Seance::where('datetime_seance', '!=', $today)->with('film')->get()->pluck('film_id');
+        $films = [];
+        foreach($seances as $seance){
+            $film = Film::where('id', $seance)->with('seances')->with('acteurs')->with('realisateurs')->with('genres')->first();
+            if(!in_array($film, $films)){
+                $films[] = $film;
+            }
+        }
 
         return view('seances.index', compact('films'));
     }
