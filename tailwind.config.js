@@ -21,10 +21,9 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             screens: {
-                '6-items': '672px',
-                '5-items': '576px',
-                '4-items': '480px',
-                '3-items': '384px',
+                'xs': '530px',
+                'xxs' : '400px',
+
             }
         },
     },

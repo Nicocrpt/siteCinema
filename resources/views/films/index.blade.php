@@ -3,7 +3,7 @@
 @section('content')
 <div class="h-full bg-zinc-100 dark:bg-zinc-900 relative w-full">
     <div class="fixed top-0 w-full">
-        <section class="w-full !h-[5.5rem] bg-zinc-100 dark:bg-zinc-900 mt-[56px] flex items-center justify-center gap-2 relative">
+        <section class="w-full !h-[4rem] bg-zinc-100 dark:bg-zinc-900 mt-[56px] flex items-center justify-center gap-2 relative">
             <input type="text" placeholder="Rechercher un film" class=" bg-zinc-50 dark:bg-zinc-700 placeholder:text-zinc-500 text-white px-4 rounded-md">
             <select name="" id="" class="rounded-md dark:bg-zinc-800 dark:text-zinc-300">
                 <option value="">Genres</option>

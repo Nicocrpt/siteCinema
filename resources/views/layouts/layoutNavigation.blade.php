@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body class=" bg-neutral-100 dark:bg-zinc-900/90 solaris w-screen overflow-x-hidden"
+<body class=" bg-neutral-100 dark:bg-zinc-900 solaris w-screen overflow-x-hidden"
 x-data="{
     open : false, 
     dropdown : false,

@@ -861,107 +861,103 @@ document.addEventListener('alpine:init', () => {
         lastDate : null,
         activeDay : new Date().toISOString(),
         translation : 0,
-        translateValue : 42,
-        dateItems : 7,
+        translateValue : null,
+        dateItems : null,
         films : films_php,
         seancesContainer : document.getElementById('seancesContainer'),
 
         init() {
 
-            this.setOnLoadCarousel()
+            this.setupMediaQueries()
 
-            window.addEventListener('resize', () => {
-                switch (window.innerWidth) {
-                    case 768:
-                    case 767:
-                    case 672:
-                    case 671:
-                    case 576:
-                    case 575:
-                    case 480:
-                    case 479:
-                        this.container.innerHTML = ''
-                        this.setOnLoadCarousel()
-                        console.log(window.innerWidth)
-                        break;
-                }
-                
-                this.injectRequiredSeances(this.activeDay.split('T')[0])
-            })
+            this.setOnLoadCarousel(this.activeDay)
 
         },
 
-        setOnLoadCarousel() {
-            if (window.innerWidth >= 768)
-            {
-                while (this.firstDate.getDay() != 3) {
-                    this.firstDate.setDate(this.firstDate.getDate() - 1)
+        setupMediaQueries() {
+            const queries = [
+                { query: "(max-width: 399px)", value: 4, translate: 16 },
+                { query: "(min-width: 400px) and (max-width: 529px)", value: 4, translate: 20 },
+                { query: "(min-width: 530px) and (max-width: 639px)", value: 7, translate: 28 },
+                { query: "(min-width: 640px)", value: 7, translate: 35 }
+            ];
+    
+            queries.forEach(q => {
+                let mediaQuery = window.matchMedia(q.query);
+                mediaQuery.addEventListener("change", (e) => {
+                    console.log(this.firstDate)
+                    if (e.matches) {
+                        
+                        this.dateItems = q.value;
+                        this.translateValue = q.translate;
+
+                        
+                        let active = document.querySelector('.activeDay').parentElement
+                        let index = Array.from(active.parentElement.children).indexOf(active)
+
+                        let count = this.dateItems
+                        this.translation = 0
+                        this.firstDate = new Date(this.today)
+
+                        while (index > count) {
+                            this.translation -= this.translateValue
+                            this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() + this.dateItems))
+                            count += this.dateItems
+
+                        }
+                        
+
+                        //this.setOnLoadCarousel(this.activeDay); // Recréer le carrousel en cas de changement
+                    }
+                });
+    
+                if (mediaQuery.matches) {
+                    this.dateItems = q.value;
+                    this.translateValue = q.translate;
                 }
-            }
+            });
+        },
 
-            switch (true) {
-                case (window.innerWidth < 768 && window.innerWidth >= 672):
-                    this.dateItems = 6
-                    this.translateValue = 36
-                    break;
-                case (window.innerWidth < 672 && window.innerWidth >= 576):
-                    this.dateItems = 5
-                    console.log('hello')
-                    this.translateValue = 30
-                    break;
-                case (window.innerWidth < 576 && window.innerWidth >= 480):
-                    this.dateItems = 4
-                    this.translateValue = 24
-                    break;
-                case (window.innerWidth < 480):
-                    this.dateItems = 3
-                    this.translateValue = 18
-                    break;
-                case (window.innerWidth >= 768):
-                    this.dateItems = 7
-                    this.translateValue = 42
-                    break;
-            }
-            console.log(this.translateValue)
+        setOnLoadCarousel(dateToDisplay) {
+            this.lastDate = new Date(this.today)
+            this.lastDate.setDate(this.lastDate.getDate() + 27)
+            console.log(this.lastDate)
 
-            this.lastDate = new Date(this.firstDate)
-            this.lastDate.setDate(this.lastDate.getDate() + (this.dateItems - 1))
-
-            for (let i = 0; i < this.dateItems; i++) {
-                const date = new Date(this.firstDate)
+            for (let i = 0; i < 28; i++) {
+                const date = new Date(this.today)
                 date.setDate(date.getDate() + i) 
                 this.container.appendChild(this.insertNewDate(date))
             }
 
-            this.injectRequiredSeances(this.today.toISOString().split('T')[0])
+            this.injectRequiredSeances(dateToDisplay.split('T')[0])
         },
 
         prev(){
             this.translation += this.translateValue
-            this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() - this.dateItems))   
-            this.lastDate.setDate(this.lastDate.getDate() - this.dateItems)
+            this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() - this.dateItems))
         },
 
         next(){
-            console.log(this.dateItems)
-            console.log(this.translateValue)
-            this.translation -= this.translateValue,
+            this.translation -= this.translateValue
             this.firstDate = new Date(this.firstDate.setDate(this.firstDate.getDate() + this.dateItems))
-            for (let i = 0; i < this.dateItems; i++) {
-                this.lastDate.setDate(this.lastDate.getDate() + 1)
-                console.log(this.lastDate)
-                this.container.appendChild(this.insertNewDate(this.lastDate)) 
-            }
-            
+            if (this.lastDate.getTime()/86400000 - this.firstDate.getTime()/86400000 <= 7) {
+                console.log(this.lastDate.getTime()/86400000 - this.firstDate.getTime()/86400000)
+                for (let i = 1; i < 29; i++) {
+                    const date = new Date(this.lastDate)
+                    date.setDate(date.getDate() + i)
+                    this.container.appendChild(this.insertNewDate(date))
+                }
+                this.lastDate = new Date(this.lastDate.setDate(this.lastDate.getDate() + 28))
+            } 
         },
 
         insertNewDate(date) {
             const formatedDate = date.toISOString().split('T')[0].split('-').reverse().splice(0,2).join('/')
             const dayName = date.toLocaleString('fr-FR', { weekday: 'long' })
             let dateDiv = document.createElement('div')
-            dateDiv.className = " h-full w-24 min-w-24 px-2 dateDiv"
+            dateDiv.className = " h-full w-16 xxs:w-20 shrink-0 xs:w-16 sm:w-20 dateDiv flex justify-center items-center transition-none"
             dateDiv.innerHTML = `
-                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay) ;console.log(activeDay)" class="flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 rounded-full h-full transition-all transform ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200' : 'dark:bg-zinc-600/70 bg-zinc-200/60 hover:bg-zinc-300/60'">
+                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay) ;" class=" py-1 px-2 xxs:px-4 xs:px-2 sm:px-4 rounded-lg flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 transition-color ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200 activeDay' : 'dark:bg-zinc-800/70 bg-zinc-200/60 hover:bg-zinc-300/60 dark:hover:bg-zinc-700/80'">
                     <p class=" -mt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${dayName.substring(0,3) + '.'}</p>
                     <p class="pt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${formatedDate}</p>
                 </div>
@@ -970,7 +966,6 @@ document.addEventListener('alpine:init', () => {
         },
 
         injectRequiredSeances(date) {
-
             this.seancesContainer.innerHTML = ''
             let globalCount = 0
             this.films.forEach(film => {
@@ -1069,12 +1064,6 @@ document.addEventListener('alpine:init', () => {
 });
 
 Alpine.start();
-
-
-// $(window).on('load', function () {
-//     console.log('domOK');
-//     initBanner();
-// });
 
 
 
