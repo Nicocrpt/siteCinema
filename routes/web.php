@@ -16,17 +16,26 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FilmController::class, 'welcomePage'])->name('index');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
-Route::get('/films/{id}', [FilmController::class, 'show'])->name('film.show');
+Route::get('/film/{id}', [FilmController::class, 'show'])->name('film.show');
 Route::get('/query-films', [FilmController::class, 'userQuery'])->name('films.query');
+//ajax films
+Route::get('/films/get-films', [FilmController::class, 'getFilms']);
+//fin ajax
 
 
 Route::get('/seances', [SeanceController::class, 'index'])->name('seances.index');
-Route::get('/seances/{id}', [SeanceController::class, 'show'])->name('seances.show');
-Route::post('/seances/{id}', [SeanceController::class, 'transfer'])->name('seances.transfer');
-Route::get('/seances/{id}/buy', [SeanceController::class, 'buy'])->name('seances.buy');
+Route::get('/seance/{id}', [SeanceController::class, 'show'])->name('seances.show');
+Route::post('/seance/{id}', [SeanceController::class, 'transfer'])->name('seances.transfer');
+Route::get('/seance/{id}/buy', [SeanceController::class, 'buy'])->name('seances.buy');
+//ajax seances
+Route::get('/seances/get-seances-by-date', [SeanceController::class, 'getFilmsByDate'])->name('seances.getFilmsByDate');
+// fin ajax
 
 Route::get('/reservations/load-more', [ReservationController::class, 'loadMore'])->name('reservations.loadmore');
 Route::resource('/reservations', ReservationController::class);

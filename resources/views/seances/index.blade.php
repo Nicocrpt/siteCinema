@@ -35,7 +35,7 @@
         <section class="min-h-screen bg-zinc-50 dark:bg-zinc-800 mx-2 rounded px-2 pt-16">
             <div class="mx-auto lg:w-[50rem] md:w-[45rem] py-12">
                 <h1 id="longDay" class="text-2xl font-semibold dark:text-white"></h1>
-                <div id="seancesContainer" class=" mx-auto flex flex-col gap-2 pt-10 w-full">
+                <div id="seancesContainer" class=" mx-auto flex flex-col gap-2 pt-10 w-full transition-opacity ease-in-out duration-300">
 
                 </div>
             </div>

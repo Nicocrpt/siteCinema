@@ -10,7 +10,7 @@
                 <li class="navBar-li"><a href="{{ route('index') }}">Accueil</a></li>
                 <li class="navBar-li"><a href="{{ route('films.index') }}">Films</a></li>
                 <li class="navBar-li"><a href="{{ route('seances.index') }}">Seances</a></li>
-                <li class="navBar-li"><a href="">Contact</a></li>
+                <li class="navBar-li"><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </div>
         

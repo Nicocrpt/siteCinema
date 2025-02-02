@@ -6,6 +6,7 @@ use App\Models\Film;
 use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\Seance;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -71,11 +72,27 @@ class SeanceController extends Controller
     }
 
 
-//     public function clearSeats(Request $request)
-// {
-//     // Efface les sièges de la session
-//     $request->session()->forget('seats');
+    public function getFilmsByDate(Request $request)
+    {
+        try {
+            $request->validate([
+                'date' => 'required'
+            ]);
 
-//     return redirect()->route('selection'); // Redirige vers la page de sélection
-//}
+            $filmsIds = Seance::whereDate('datetime_seance', $request->query('date'))->with('film')->get()->pluck('film_id');
+            $films = [];
+            foreach($filmsIds as $filmId){
+                $film = Film::where('id', $filmId)->with('seances')->with('acteurs')->with('realisateurs')->with('genres')->first();
+                if (!in_array($film, $films)) {
+                    $films[] = $film;
+                }
+            }
+            return response()->json($films);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur s\'est produite lors de la recherche : ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

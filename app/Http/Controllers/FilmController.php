@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
+use App\Models\Filmgenre;
 use App\Models\Genre;
 use App\Models\Pays;
 use App\Models\Realisateur;
 use App\Models\Reservation;
 use App\Models\Seance;
 use App\Services\TmdbService;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -133,5 +136,36 @@ class FilmController extends Controller
         return view('films.showV2', compact('film', 'duration', 'datesSeances'));
     }
 
+    public function getFilms(Request $request)
+    {
+        try {
+            $name = $request->query('name') ?? '';
+            $filmsIdsWithGenre = [];
+            if ($request->query('genre')) {
+                $genre = Genre::where('nom', $request->query('genre'))->first();
+                $filmsIdsWithGenre = array_unique(Filmgenre::where('genre_id', $genre->id)->pluck('film_id')->toArray());
+            }
 
+
+            $filmsAvailable = array_unique(Seance::whereRaw('DATE(datetime_seance) >= ?', [Carbon::today()->toDateString()])->pluck('film_id')->toArray());
+
+
+            $filmsIds = $filmsIdsWithGenre ? array_intersect($filmsAvailable, $filmsIdsWithGenre) : $filmsAvailable ;
+
+            $forthcomingFilmsIds = $filmsIdsWithGenre ? array_diff($filmsIdsWithGenre, $filmsAvailable) : [];
+
+            $availableFilms = $request->query('genre') == null ? Film::whereIn('statut_id', [1])->where('titre', 'like', '%'.$name.'%')->whereIn('id', $filmsIds)->with('realisateurs')->with('acteurs')->with('genres')->get() : Film::whereIn('statut_id', [1])->whereIn('id', $filmsIds)->where('titre', 'like', '%'.$name.'%')->with('realisateurs')->with('acteurs')->with('genres')->get();
+
+
+            $forthcomingFilms = $request->query('genre') == null ? Film::whereIn('statut_id', [3])->where('titre', 'like', '%'.$name.'%')->with('realisateurs')->with('acteurs')->with('genres')->get() : Film::whereIn('statut_id', [3])->whereIn('id', $filmsIdsWithGenre)->where('titre', 'like', '%'.$name.'%')->with('realisateurs')->with('acteurs')->with('genres')->get();
+
+            return response()->json([
+                'availableFilms' => $availableFilms, 
+                'forthcomingFilms' => $forthcomingFilms
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

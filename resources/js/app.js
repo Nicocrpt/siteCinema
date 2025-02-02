@@ -867,11 +867,8 @@ document.addEventListener('alpine:init', () => {
         seancesContainer : document.getElementById('seancesContainer'),
 
         init() {
-
             this.setupMediaQueries()
-
             this.setOnLoadCarousel(this.activeDay)
-
         },
 
         setupMediaQueries() {
@@ -887,11 +884,15 @@ document.addEventListener('alpine:init', () => {
                 mediaQuery.addEventListener("change", (e) => {
                     console.log(this.firstDate)
                     if (e.matches) {
+
+                        if (e.media == "(min-width: 640px)" || e.media == "(min-width: 530px) and (max-width: 639px)"){
+                            this.injectRequiredSeances(this.activeDay.split('T')[0])
+                        }
+                        
                         
                         this.dateItems = q.value;
                         this.translateValue = q.translate;
 
-                        
                         let active = document.querySelector('.activeDay').parentElement
                         let index = Array.from(active.parentElement.children).indexOf(active)
 
@@ -905,9 +906,6 @@ document.addEventListener('alpine:init', () => {
                             count += this.dateItems
 
                         }
-                        
-
-                        //this.setOnLoadCarousel(this.activeDay); // Recréer le carrousel en cas de changement
                     }
                 });
     
@@ -957,7 +955,7 @@ document.addEventListener('alpine:init', () => {
             let dateDiv = document.createElement('div')
             dateDiv.className = " h-full w-16 xxs:w-20 shrink-0 xs:w-16 sm:w-20 dateDiv flex justify-center items-center transition-none"
             dateDiv.innerHTML = `
-                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay) ;" class=" py-1 px-2 xxs:px-4 xs:px-2 sm:px-4 rounded-lg flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 transition-color ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200 activeDay' : 'dark:bg-zinc-800/70 bg-zinc-200/60 hover:bg-zinc-300/60 dark:hover:bg-zinc-700/80'">
+                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay.split('T')[0])" class=" py-1 px-2 xxs:px-4 xs:px-2 sm:px-4 rounded-lg flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 transition-color ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200 activeDay' : 'dark:bg-zinc-800/70 bg-zinc-200/60 hover:bg-zinc-300/60 dark:hover:bg-zinc-700/80'">
                     <p class=" -mt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${dayName.substring(0,3) + '.'}</p>
                     <p class="pt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${formatedDate}</p>
                 </div>
@@ -965,99 +963,316 @@ document.addEventListener('alpine:init', () => {
             return dateDiv
         },
 
-        injectRequiredSeances(date) {
-            this.seancesContainer.innerHTML = ''
-            let globalCount = 0
-            this.films.forEach(film => {
-                let count = 0
-                let seances = []
-                film.seances.forEach(seance => {
-                    if (seance.datetime_seance.split(' ')[0] == date.split('T')[0]) {
-                        count ++
-                        let seanceP = document.createElement('p')
-                        seanceP.innerHTML += `                                
-                            <a href="/seances/${seance.reference}">
-                                <div class="flex justify-center items-center w-fit rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-1 px-1 gap-2 transition-all ease-in-out duration-200 group border border-zinc-300 dark:border-zinc-400/50">
-                                    <p class="dark:text-white">${seance.datetime_seance.split(' ')[1].split(':').splice(0,2).join(':')}</p>
-                                    ${seance.vf == 1 ? '<p class="text-sm bg-zinc-700 text-white rounded px-1 dark:group-hover:bg-zinc-500 transition-all ease-in-out duration-200" title="Francais">VF</p>' : '<p class="bg-zinc-900 text-white rounded px-1 text-sm">VO</p>'}
-                                    ${seance.dolby_vision || seance.dolby_atmos ? 
-                                        `<div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-zinc-500 rounded">
-                                            <svg class="fill-white w-[12px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
-                                        </div>` 
-                                    : ''}
-                                </div>
-                            </a>
-                        `
-                        seances.push(seanceP)
-                    }
-                })
-                if (count > 0) {
-                    globalCount ++
-                    let filmDiv = document.createElement('div')
-                    filmDiv.className = "pb-10 mt-10 border-b-2 border-zinc-400/60 flex flex-col w-full"
+        // injectRequiredSeances(date) {
+        //     this.seancesContainer.innerHTML = ''
+        //     let globalCount = 0
+        //     this.films.forEach(film => {
+        //         let count = 0
+        //         let seances = []
+        //         film.seances.forEach(seance => {
+        //             if (seance.datetime_seance.split(' ')[0] == date.split('T')[0]) {
+        //                 count ++
+        //                 let seanceP = document.createElement('p')
+        //                 seanceP.innerHTML += `                                
+        //                     <a href="/seances/${seance.reference}">
+        //                         <div class="flex justify-center items-center w-fit rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-1 px-1 gap-2 transition-all ease-in-out duration-200 group border border-zinc-300 dark:border-zinc-400/50">
+        //                             <p class="dark:text-white">${seance.datetime_seance.split(' ')[1].split(':').splice(0,2).join(':')}</p>
+        //                             ${seance.vf == 1 ? '<p class="text-sm bg-zinc-700 text-white rounded px-1 dark:group-hover:bg-zinc-500 transition-all ease-in-out duration-200" title="Francais">VF</p>' : '<p class="bg-zinc-900 text-white rounded px-1 text-sm">VO</p>'}
+        //                             ${seance.dolby_vision || seance.dolby_atmos ? 
+        //                                 `<div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-zinc-500 rounded">
+        //                                     <svg class="fill-white w-[12px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
+        //                                 </div>` 
+        //                             : ''}
+        //                         </div>
+        //                     </a>
+        //                 `
+        //                 seances.push(seanceP)
+        //             }
+        //         })
+        //         if (count > 0) {
+        //             globalCount ++
+        //             let filmDiv = document.createElement('div')
+        //             filmDiv.className = "pb-10 mt-10 border-b-2 border-zinc-400/60 flex flex-col w-full"
 
-                    let infosDiv = document.createElement('div')
-                    infosDiv.className = "flex flex gap-2 xl:gap-4 w-full h-[9rem] sm:h-72"
-                    infosDiv.innerHTML = `
-                            <a href="/films/${film.slug}" class="h-full shrink-0">
-                                <img src="${film.url_affiche}" alt="" class="h-full rounded border border-zinc-400 dark:border-zinc-400/40 shrink-0">
-                            </a>
-                    `
-                    let content = document.createElement('div')
-                    content.className = "flex flex-col"
-                    content.innerHTML = `
-                        <p class="font-semibold dark:text-white text-xl sm:text-3xl">${film.titre}<span class="text-sm font-normal text-zinc-600 dark:text-zinc-400 pl-2">${Math.floor(parseInt(film.duree) / 60)}h${(parseInt(film.duree) % 60).toString().padStart(2, '0')}</span></p>
-                        <div class="mt-2 flex flex-col gap-1">
-                            <p class="dark:text-white max-sm:text-sm">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
-                            <p class="dark:text-white max-sm:text-sm max-sm:line-clamp-1">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
-                            <p class="dark:text-white max-sm:text-sm">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
-                        </div>
-                    `
-                    if (window.innerWidth >= 640) {
-                        content.innerHTML += `
-                            <div class="border-b-2 dark:border-zinc-700 mt-6 mb-2 xl:w-[32rem]"/>
-                        `
-                    }
+        //             let infosDiv = document.createElement('div')
+        //             infosDiv.className = "flex flex gap-2 xl:gap-4 w-full h-[9rem] sm:h-72"
+        //             infosDiv.innerHTML = `
+        //                     <a href="/films/${film.slug}" class="h-full shrink-0">
+        //                         <img src="${film.url_affiche}" alt="" class="h-full rounded border border-zinc-400 dark:border-zinc-400/40 shrink-0">
+        //                     </a>
+        //             `
+        //             let content = document.createElement('div')
+        //             content.className = "flex flex-col"
+        //             content.innerHTML = `
+        //                 <p class="font-semibold dark:text-white text-xl sm:text-3xl">${film.titre}<span class="text-sm font-normal text-zinc-600 dark:text-zinc-400 pl-2">${Math.floor(parseInt(film.duree) / 60)}h${(parseInt(film.duree) % 60).toString().padStart(2, '0')}</span></p>
+        //                 <div class="mt-2 flex flex-col gap-1">
+        //                     <p class="dark:text-white max-sm:text-sm">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
+        //                     <p class="dark:text-white max-sm:text-sm max-sm:line-clamp-1">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
+        //                     <p class="dark:text-white max-sm:text-sm">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
+        //                 </div>
+        //             `
+        //             if (window.innerWidth >= 640) {
+        //                 content.innerHTML += `
+        //                     <div class="border-b-2 dark:border-zinc-700 mt-6 mb-2 xl:w-[32rem]"/>
+        //                 `
+        //             }
 
-                    let hoursContent = document.createElement('div')
-                    hoursContent.className = "flex gap-2"
+        //             let hoursContent = document.createElement('div')
+        //             hoursContent.className = "flex gap-2"
 
-                    seances.forEach(seanceP => {
-                        hoursContent.appendChild(seanceP)
-                    })
+        //             seances.forEach(seanceP => {
+        //                 hoursContent.appendChild(seanceP)
+        //             })
 
-                    infosDiv.appendChild(content)
+        //             infosDiv.appendChild(content)
                     
-                    if (window.innerWidth >= 640) {
-                        content.appendChild(hoursContent)
-                        filmDiv.appendChild(infosDiv)
-                    } else {
-                        filmDiv.appendChild(infosDiv)
-                        filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700 mt-2 mb-2 w-[90%]"/>'
-                        filmDiv.appendChild(hoursContent)
-                    }
+        //             if (window.innerWidth >= 640) {
+        //                 content.appendChild(hoursContent)
+        //                 filmDiv.appendChild(infosDiv)
+        //             } else {
+        //                 filmDiv.appendChild(infosDiv)
+        //                 filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700 mt-2 mb-2 w-[90%]"/>'
+        //                 filmDiv.appendChild(hoursContent)
+        //             }
 
-                    this.seancesContainer.appendChild(filmDiv)
+        //             this.seancesContainer.appendChild(filmDiv)
+        //         }
+        //     })
+
+        //     if (globalCount == 0) {
+        //         this.seancesContainer.innerHTML = `
+        //         <div class="h-[calc(100vh-200px)] w-full flex gap-2 justify-center items-center">
+        //             <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+        //             <div class="w-fit">
+        //                 <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
+        //                 <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
+        //             </div>
+        //         </div>
+        //         `
+        //     }
+
+        //     window.scrollTo({
+        //         top: 0,
+        //         behavior: 'smooth' // Pour un effet fluide
+        //     });
+        // },
+
+        injectRequiredSeances(date) {
+            this.seancesContainer.classList.remove('opacity-100')
+            this.seancesContainer.classList.add('opacity-0')
+            setTimeout(() => {
+                this.seancesContainer.innerHTML = ''
+            }, 200)
+            console.log(date)
+            const url = '/seances/get-seances-by-date' + '?date=' + encodeURIComponent(date)
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
-
-            if (globalCount == 0) {
-                this.seancesContainer.innerHTML = `
-                <div class="h-[calc(100vh-200px)] w-full flex gap-2 justify-center items-center">
-                    <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
-                    <div class="w-fit">
-                        <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
-                        <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
-                    </div>
-                </div>
-                `
-            }
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setTimeout(() => {
+                    if (data.length == 0) {
+                        console.log("pas de seances")
+                        this.seancesContainer.innerHTML = `
+                        <div class="h-[calc(100vh-200px)] w-full flex gap-2 justify-center items-center">
+                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                            <div class="w-fit">
+                                <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
+                                <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
+                            </div>
+                        </div>
+                        `
+                    } else {
+                        data.forEach(film => {
+                            let seances = []
+                            film.seances.forEach(seance => {
+                                if (seance.datetime_seance.split(' ')[0] == date.split('T')[0]) {
+                                    let seanceP = document.createElement('p')
+                                    seanceP.innerHTML += `                                
+                                        <a href="/seance/${seance.reference}">
+                                            <div class="flex justify-center items-center w-fit rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-1 px-1 gap-2 transition-all ease-in-out duration-200 group border border-zinc-300 dark:border-zinc-400/50">
+                                                <p class="dark:text-white">${seance.datetime_seance.split(' ')[1].split(':').splice(0,2).join(':')}</p>
+                                                ${seance.vf == 1 ? '<p class="text-sm bg-zinc-700 text-white rounded px-1 dark:group-hover:bg-zinc-500 transition-all ease-in-out duration-200" title="Francais">VF</p>' : '<p class="bg-zinc-900 text-white rounded px-1 text-sm">VO</p>'}
+                                                ${seance.dolby_vision || seance.dolby_atmos ? 
+                                                    `<div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-zinc-500 rounded">
+                                                        <svg class="fill-white w-[12px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
+                                                    </div>` 
+                                                : ''}
+                                            </div>
+                                        </a>
+                                    `
+                                    seances.push(seanceP)
+                                }
+                            })
+    
+                            let filmDiv = document.createElement('div')
+                            filmDiv.className = "pb-10 mt-10 border-b-2 border-zinc-400/60 flex flex-col w-full"
+    
+                            let infosDiv = document.createElement('div')
+                            infosDiv.className = "flex flex gap-2 xl:gap-4 w-full h-[9rem] sm:h-72"
+                            infosDiv.innerHTML = `
+                                    <a href="/film/${film.slug}" class="h-full shrink-0">
+                                        <img src="${film.url_affiche}" alt="" class="h-full rounded border border-zinc-400 dark:border-zinc-400/40 shrink-0">
+                                    </a>
+                            `
+                            
+                            let content = document.createElement('div')
+                            content.className = "flex flex-col"
+                            content.innerHTML = `
+                                <p class="font-semibold dark:text-white text-xl sm:text-3xl">${film.titre}<span class="text-sm font-normal text-zinc-600 dark:text-zinc-400 pl-2">${Math.floor(parseInt(film.duree) / 60)}h${(parseInt(film.duree) % 60).toString().padStart(2, '0')}</span></p>
+                                <div class="mt-2 flex flex-col gap-1">
+                                    <p class="dark:text-white max-sm:text-sm max-sm:line-clamp-1">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
+                                    <p class="dark:text-white max-sm:text-sm max-sm:line-clamp-1">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
+                                    <p class="dark:text-white max-sm:text-sm">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
+                                </div>
+                            `
+                            
+                            if (window.innerWidth >= 640) {
+                                content.innerHTML += `
+                                    <div class="border-b-2 dark:border-zinc-700 mt-6 mb-2 xl:w-[32rem]"/>
+                                `
+                            }
+    
+                            let hoursContent = document.createElement('div')
+                            hoursContent.className = "flex gap-2"
+    
+                            seances.forEach(seanceP => {
+                                hoursContent.appendChild(seanceP)
+                            })
+    
+                            infosDiv.appendChild(content)
+                            
+                            if (window.innerWidth >= 640) {
+                                content.appendChild(hoursContent)
+                                filmDiv.appendChild(infosDiv)
+                            } else {
+                                filmDiv.appendChild(infosDiv)
+                                filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700 mt-2 mb-2 w-[90%]"/>'
+                                filmDiv.appendChild(hoursContent)
+                            }
+    
+                            this.seancesContainer.appendChild(filmDiv) 
+                        })     
+                    }  
+                    this.seancesContainer.classList.remove('opacity-0')
+                    this.seancesContainer.classList.add('opacity-100') 
+                },200)
+      
+            })
 
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth' // Pour un effet fluide
             });
         }
+
+    }))
+
+    Alpine.data('filmsPage', () => ({
+        forthComing : false,
+        availableContainer: document.getElementById('availableContainer'),
+        forthcomingContainer : document.getElementById('forthcomingContainer'),
+
+
+        init() { 
+            this.getFilteredFilms()
+            window.addEventListener('resize', () => {
+                this.adaptBody()
+            })
+        },
+
+
+        getFilteredFilms() {            
+
+            const url = `/films/get-films?name=${encodeURIComponent(document.getElementById('nameQuery').value)}&genre=${encodeURIComponent(document.getElementById('genreQuery').value)}`
+            console.log(url)
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                this.availableContainer.innerHTML = ''
+                this.forthcomingContainer.innerHTML = ''
+                document.getElementById('availableCount').innerHTML = data.availableFilms.length
+                document.getElementById('forthcomingCount').innerHTML = data.forthcomingFilms.length
+                if (data.availableFilms.length == 0) {
+                    this.availableContainer.innerHTML = `
+                        <div class="h-96 w-full flex gap-2 justify-center items-center">
+                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                            <div class="w-fit">
+                                <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
+                                <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                            </div>
+                        </div>
+                    `
+                }
+                data.availableFilms.forEach(film => {
+                    
+                    this.availableContainer.innerHTML += `
+                        <div class="flex items-center justify-center max-w-[49%] xs:max-w-[32.4%] sm:max-w-[24.25%] lg:max-w-[19%] relative group mb-2 sm:mb-[0.35rem] md:mb-2 z-1 border dark:border-zinc-600" >
+                            <a href="/film/${film.slug}"><img src="${film.url_affiche}" alt="" class="transition-all ease-in-out duration-300"></a>
+                            <div class="w-full h-full absolute top-0 left-0 bg-black bg-opacity-50 backdrop-blur-[1px] flex flex-col justify-center items-center p-2 px-4 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-500 pointer-events-none gap-1"> 
+                                <p class="w-full text-white text-center font-semibold text-lg mb-4">${film.titre}</p>
+                                <!-- <div class="w-full flex flex-col gap-2">
+                                    <p class=" text-white text-start line-clamp-2">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
+                                    <p class=" text-white text-start line-clamp-2">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
+                                    <p class=" text-white text-start line-clamp-2">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
+                                </div> -->
+                            </div>
+                        </div>
+                    `
+                })
+
+                if (data.forthcomingFilms.length == 0) {
+                    this.forthcomingContainer.innerHTML = `
+                        <div class="h-96 w-full flex gap-2 justify-center items-center">
+                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                            <div class="w-fit">
+                                <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
+                                <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                            </div>
+                        </div>
+                    `
+                }
+                data.forthcomingFilms.forEach(film => {
+                    this.forthcomingContainer.innerHTML += `
+                        <div class="flex items-center justify-center max-w-[49%] xs:max-w-[32.4%] sm:max-w-[24.25%] lg:max-w-[19%] relative group mb-2 sm:mb-[0.35rem] md:mb-2 z-1 border dark:border-zinc-600" >
+                            <a href="/film/${film.slug}"><img src="${film.url_affiche}" alt="" class=" rounded  dark:border-neutral-600 shadom-md transition-all ease-in-out duration-300"></a>
+                            <div class="w-full h-full absolute top-0 left-0 bg-black bg-opacity-50 backdrop-blur-[1px] flex flex-col justify-center items-center p-2 px-4 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-500 pointer-events-none gap-1"> 
+                                <p class="w-full text-white text-center font-semibold text-lg mb-4">${film.titre}</p>
+                                <!-- <div class="w-full flex flex-col gap-2">
+                                    <p class=" text-white text-start line-clamp-2">Réalisateur(s) : <span class="font-light">${film.realisateurs.map(realisateur => realisateur.nom).join(', ')}</span></p>
+                                    <p class=" text-white text-start line-clamp-2">Avec : <span class="font-light">${film.acteurs.map(acteur => acteur.nom).join(', ')}</span></p>
+                                    <p class=" text-white text-start line-clamp-2">Genre(s) : <span class="font-light">${film.genres.map(genre => genre.nom).join(', ')}</span></p>
+                                </div> -->
+                            </div>
+                        </div>
+                    `
+                })
+                this.adaptBody()
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Pour un effet fluide
+                });
+            })
+
+        },
+
+        adaptBody() {
+            let heightToApply = this.availableContainer.clientHeight > this.forthcomingContainer.clientHeight ? this.availableContainer.clientHeight : this.forthcomingContainer.clientHeight
+            document.getElementById('filmsContainer').style.height = heightToApply + 'px'
+        }
+
     }))
 
 
