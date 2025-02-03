@@ -55,7 +55,7 @@
 
     {{-- Contenu page --}}
     <div class="w-auto h-full">
-        <div class="xl:flex 2xl:pl-[26rem] xl:pt-14 h-full relative xl:mb-12 bg-[#efeff2] xl:bg-zinc-50 dark:bg-zinc-800" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
+        <div class="xl:flex 2xl:ml-[26rem] xl:pt-14 h-full relative xl:mb-12 bg-[#efeff2] xl:bg-zinc-50 dark:bg-zinc-800" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
 
                 {{-- Boutons de navigation --}}
                 <div class="xl:hidden w-full h-auto flex md:pl-80 xl:pl-[26rem] md:mt-14 bg-[#efeff2]  dark:bg-zinc-800 flex-col transition-all ease-in-out duration-100 sticky top-[192px] md:top-[56px] pb-2 z-[8]"
@@ -89,6 +89,15 @@
                         <div class="md:w-full mx-auto xl:w-[100%] h-auto rounded md:max-w-[52rem] xl:max-w-full">
                             <h1 class="text-2xl font-semibold dark:text-white mb-4">Gallerie</h1>
                             <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                        </div>
+
+                        <div class="md:pl-[20rem] 2xl:pl-[26rem] mt-8 border p-1 rounded dark:border-zinc-700 dark:bg-zinc-600/50 md:hidden block">
+                            <div class="m-1 rounded">
+                                <h1 class="text-xl font-semibold mb-4 dark:text-white">L'avis du Solaris</h1>
+                                <p class="font-thin text-sm dark:text-white italic">
+                                    Perfect Blue de Satoshi Kon est un chef-d'œuvre troublant qui brouille brillamment la frontière entre réalité et illusion. Ce thriller psychologique explore la descente aux enfers de Mima, une idole pop reconvertie en actrice, confrontée à l’obsession de ses fans et à sa propre perte d’identité. À travers une mise en scène virtuose et un montage hallucinant, Kon plonge le spectateur dans une paranoïa oppressante, questionnant la célébrité, l’aliénation et la construction de soi. Avec une tension maîtrisée et une narration éclatée, Perfect Blue reste un film culte, puissant et terrifiant, qui continue d’influencer le cinéma contemporain.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <x-footer class="xl:hidden"/> 
@@ -132,13 +141,11 @@
                     <x-footer class="xl:hidden"/>  
                 </div>
         </div>
-        <div class=" h-[0.15rem] ml-[22rem] mr-8 mt-8 mb-4 bg-zinc-300 dark:bg-zinc-700 opacity-40 rounded-full"></div>
-        <div class="md:pl-[20rem] 2xl:pl-[26rem]">
-            <div class="m-8 p-2 rounded">
-
-                <h1 class="text-2xl font-semibold mb-4 dark:text-white">Avis utilisateurs</h1>
-                <p class="font-thin dark:text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus numquam sunt atque explicabo dignissimos corporis expedita, voluptatem quo. Inventore repudiandae ut iure fuga facilis culpa quia accusantium id, optio praesentium, minus quidem enim facere provident error quas! Earum sed, consequatur perferendis placeat nisi nihil repellendus odio? Aperiam itaque adipisci iusto accusantium voluptatibus eum non, quasi tenetur magni excepturi, molestias consequatur nostrum mollitia sint. Beatae maiores, id nam repellat accusantium ducimus vitae magnam. Doloribus voluptates minus dignissimos quisquam quae tenetur magni asperiores quia ut consectetur ipsam reiciendis incidunt enim, perferendis eligendi sequi quos assumenda! Aliquam reiciendis perferendis nobis commodi! Ipsam nobis, dicta tempore in veniam eaque, ex provident voluptate consequuntur accusantium quam, sunt laboriosam et corporis dolores quisquam aperiam nostrum. Inventore nostrum quia deserunt ipsum labore sunt rem perferendis? Beatae perferendis explicabo amet voluptates saepe quia debitis perspiciatis eius consectetur necessitatibus, error autem, maxime officia iure magni! Quibusdam aut quisquam officiis illo explicabo sed incidunt? Voluptas numquam unde temporibus suscipit. Officia dignissimos corporis rem in veniam ullam tempore nihil voluptatum quaerat necessitatibus temporibus voluptate magni aliquid, neque possimus ratione officiis magnam eum, distinctio ab, voluptas laboriosam error recusandae eos! Cumque ipsa suscipit atque tempora ad error iure esse sed laborum quae distinctio eum aut ab officiis, sint doloribus aliquam quas cupiditate velit molestiae. Omnis aliquam corporis veritatis error! Natus aliquam animi quam libero laudantium aliquid voluptatum cumque inventore velit.
+        <div class="md:pl-[20rem] 2xl:pl-[26rem] mt-8 mb-24 md:block hidden">
+            <div class="m-1 rounded border p-4 dark:border-zinc-700 dark:bg-zinc-600/50 ml-8 mr-[6.5rem]">
+                <h1 class="text-xl font-semibold mb-4 dark:text-white">L'avis du Solaris</h1>
+                <p class="font-thin dark:text-white italic">
+                    Perfect Blue de Satoshi Kon est un chef-d'œuvre troublant qui brouille brillamment la frontière entre réalité et illusion. Ce thriller psychologique explore la descente aux enfers de Mima, une idole pop reconvertie en actrice, confrontée à l’obsession de ses fans et à sa propre perte d’identité. À travers une mise en scène virtuose et un montage hallucinant, Kon plonge le spectateur dans une paranoïa oppressante, questionnant la célébrité, l’aliénation et la construction de soi. Avec une tension maîtrisée et une narration éclatée, Perfect Blue reste un film culte, puissant et terrifiant, qui continue d’influencer le cinéma contemporain.
                 </p>
             </div>
         </div>
