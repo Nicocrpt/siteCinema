@@ -26,6 +26,12 @@
   letter-spacing: 0.6px;
 }
 
+.preventScrollWhenModal {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
 
 
 header {

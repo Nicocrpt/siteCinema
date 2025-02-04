@@ -618,8 +618,8 @@ document.addEventListener('alpine:init', () => {
         contentFilm: false, 
         scrollState: 0, 
         maxSize: 14, 
-        minSize: 11, 
-        scrollLimit: 100,
+        minSize: 10.5, 
+        scrollLimit: 50,
         isSmallScreen: window.innerWidth < 768,
         is2xlScreen: window.innerWidth >= 1280,
         fullscreenImage: false,
@@ -1182,7 +1182,7 @@ document.addEventListener('alpine:init', () => {
         init() { 
             this.getFilteredFilms()
             window.addEventListener('resize', () => {
-                this.adaptBody()
+                this.adaptBody(this.availableContainer)
             })
         },
 
@@ -1259,7 +1259,8 @@ document.addEventListener('alpine:init', () => {
                         </div>
                     `
                 })
-                this.adaptBody()
+
+                this.forthComing ? this.adaptBody(this.forthcomingContainer) : this.adaptBody(this.availableContainer)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth' // Pour un effet fluide
@@ -1268,9 +1269,12 @@ document.addEventListener('alpine:init', () => {
 
         },
 
-        adaptBody() {
-            let heightToApply = this.availableContainer.clientHeight > this.forthcomingContainer.clientHeight ? this.availableContainer.clientHeight : this.forthcomingContainer.clientHeight
-            document.getElementById('filmsContainer').style.height = heightToApply + 'px'
+        adaptBody(container) {
+            setTimeout(() => {
+                let heightToApply = container.clientHeight
+                document.getElementById('filmsContainer').style.height = heightToApply + 'px'
+            },500)
+
         }
 
     }))

@@ -21,7 +21,7 @@
             <div class="w-full px-2 h-20 fixed top-[116px] left-0 z-10 flex items-center justify-center ">
                 <div class="w-full h-full flex items-center justify-center gap-2 sm:gap-10 mt-2 bg-zinc-50/80 dark:bg-zinc-700/30 bg-opacity-80 dark:bg-opacity-70 backdrop-blur-[10px]">
                     <div class="h-full flex justify-center items-center">
-                        <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ; forthComing = false" id="longDay" class="text-xl xxs:text-2xl py-2 pl-4 rounded font-semibold transition-all ease-in-out duration-300 flex group" :class="forthComing ? 'dark:text-zinc-200/60 hover:dark:text-zinc-50/80 text-zinc-600/40 hover:text-zinc-950/60' : 'dark:text-white'">
+                        <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ; forthComing = false; adaptBody(availableContainer)" id="longDay" class="text-xl xxs:text-2xl py-2 pl-4 rounded font-semibold transition-all ease-in-out duration-300 flex group" :class="forthComing ? 'dark:text-zinc-200/60 hover:dark:text-zinc-50/80 text-zinc-600/40 hover:text-zinc-950/60' : 'dark:text-white'">
                             A l'affiche
                         </button>
                         <div class="h-[42px] flex items-start">
@@ -30,7 +30,7 @@
                     </div>
                     
                     <div class="h-full flex justify-center items-center">
-                        <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ; forthComing = true;" id="longDay" class="text-xl xxs:text-2xl py-2 pl-4 rounded font-semibold transition-all ease-in-out duration-300 flex group" :class="forthComing ? 'dark:text-white' : 'text-zinc-600/40 hover:text-zinc-950/60 dark:text-zinc-200/60 hover:dark:text-zinc-50/80'">
+                        <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ; forthComing = true; adaptBody(forthcomingContainer)" id="longDay" class="text-xl xxs:text-2xl py-2 pl-4 rounded font-semibold transition-all ease-in-out duration-300 flex group" :class="forthComing ? 'dark:text-white' : 'text-zinc-600/40 hover:text-zinc-950/60 dark:text-zinc-200/60 hover:dark:text-zinc-50/80'">
                             Prochainement     
                         </button>
                         <div class="h-[42px] flex items-start pr-4">
@@ -40,7 +40,7 @@
 
                 </div>
             </div>
-            <div class="h-full w-full mt-12 !relative max-w-[1192px]" id="filmsContainer">
+            <div class="h-full w-full mt-12 !relative max-w-[1192px] mx-auto" id="filmsContainer">
                 <div id="availableContainer" x-show="!forthComing" class="absolute top-0 left-0 px-1 w-full mx-auto flex flex-wrap gap-[2%] xs:gap-[1.4%] sm:gap-[1%] lg:gap-[1.25%] pt-2"
                 x-transition:enter="delay-100 transition linear duration-300"
                 x-transition:enter-start="opacity-0"

@@ -12,12 +12,12 @@
             <h1 class="text-3xl font-semibold dark:text-white mb-4">Nous contacter</h1>
             <p class="dark:text-white">Pour toute question, remarque ou demande spécifique, vous pouvez nous contacter par mail (cinema@solaris.fr) ou directement via le formulaire ci-dessous :</p>
 
-            <form action="" class="my-6 flex flex-col gap-4 w-full">
+            <form action="" class="my-6 flex flex-col gap-4 w-full mb-20">
                 <div class="flex gap-4 w-full">                    
                     <input name="prenom" placeholder="Prénom" type="text" class="dark:bg-zinc-700 dark:text-white rounded w-full placeholder:text-zinc-300 placeholder:dark:text-zinc-500">
                     <input name="nom" placeholder="Nom" type="text" class="dark:bg-zinc-700 dark:text-white rounded w-full placeholder:text-zinc-300 placeholder:dark:text-zinc-500"">
                 </div>
-                
+                <input type="text" name="email" placeholder="Email" class="dark:bg-zinc-700 dark:text-white rounded w-full placeholder:text-zinc-300 placeholder:dark:text-zinc-500">
                 <textarea name="message" id="" placeholder="Ecrivez votre message..." class="dark:bg-zinc-700 dark:text-white rounded min-h-64 max-h-64 w-full placeholder:text-zinc-300 placeholder:dark:text-zinc-500"></textarea>
 
 
@@ -27,7 +27,7 @@
                 
             </form>
 
-            <p class="dark:text-white">Vous pouvez également nous retrouver sur nos réseaux sociaux :</p>
+            {{-- <p class="dark:text-white">Vous pouvez également nous retrouver sur nos réseaux sociaux :</p>
             <div class="w-full flex justify-start gap-8 mt-4 my-24">
                 <a href="https://instagram.com/" class="flex flex-col items-center justify-center">
                     <svg class="dark:fill-neutral-300 dark:hover:fill-neutral-50 fill-zinc-700 hover:fill-zinc-950 transition-colors ease-in-out duration-100" viewBox="0 0 256 256" width="72" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M128,84a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,128,84Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,164ZM172,32H84A52.059,52.059,0,0,0,32,84v88a52.059,52.059,0,0,0,52,52h88a52.059,52.059,0,0,0,52-52V84A52.059,52.059,0,0,0,172,32Zm44,140a44.04978,44.04978,0,0,1-44,44H84a44.04978,44.04978,0,0,1-44-44V84A44.04978,44.04978,0,0,1,84,40h88a44.04978,44.04978,0,0,1,44,44ZM188,76a8,8,0,1,1-8-8A8.00917,8.00917,0,0,1,188,76Z"></path> </g></svg>
@@ -44,7 +44,7 @@
                     <p class="text-sm font-light -mt-2">Bluesky</p>
                 </a>
                 
-            </div>
+            </div> --}}
         </div>
         
         

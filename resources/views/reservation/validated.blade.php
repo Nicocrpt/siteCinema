@@ -2,48 +2,50 @@
 @section('title' , 'Réservation validée')
 
 @section('content')
-<div class="flex flex-col items-center justify-center gap-5 my-auto">
-    <h1 class="text-xl md:text-3xl text-center pt-24 md:my-auto mb-0 font-bold dark:text-white">Merci pour votre Réservation ! </h1>
-    <div class=" md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%] w-full overflow-hidden flex-col items-center justify-center border-zinc-400 border-y-2 md:border-2 dark:bg-zinc-600   dark:border-zinc-500 bg-stone-300 md:rounded-lg my-auto">
-        <div class="flex items-center justify-start border-b-2 dark:border-zinc-500 border-zinc-400 dark:bg-zinc-700 bg-zinc-300 md: gap-4">
-            <img src="{{$reservation->seance->film->url_affiche}}" alt="" class="h-52 md:h-96 md:grid-col-1">
-            <div class="flex flex-col gap-4  justify-center items-center h-full m-auto md:grid-col-2 col-span-2">
+<div class="gap-5 my-auto h-full w-full bg-zinc-50 dark:bg-zinc-800 min-h-[calc(100vh-0px)]">
+    <div class="h-16 w-full dark:text-white bg-zinc-100/90 dark:bg-zinc-700/30 bg-opacity-80 backdrop-blur fixed top-[56px] z-20 flex justify-between items-center px-6">
+        <h1 class="text-xl md:text-2xl font-semibold">Merci pour votre Réservation ! </h1>
+
+    </div>
+
+    <div class="w-full flex-col items-center justify-center pt-48 z-20">
+        <div class="flex justify-center md:gap-4 max-w-[50rem] mx-auto">
+            <img src="{{$reservation->seance->film->url_affiche}}" alt="" class="h-64 md:grid-col-1">
+            <div class="flex flex-col gap-4 h-full md:grid-col-2 col-span-2">
                 <p class="text-xl md:text-3xl font-bold dark:text-white">{{$reservation->seance->film->titre}}</p>
-                <p class="text-base md:text-2xl dark:text-white">Séance du {{ date('d/m',strtotime($reservation->seance->datetime_seance)) }} à {{ date('H:i',strtotime($reservation->seance->datetime_seance)) }}</p>
-                <div class="flex justify-center items-center h-[44px] gap-2">
-                    <p class="text-sm md:text-lg text-center text-zinc-300 bg-zinc-600 p-1 rounded px-2">Salle {{$reservation->seance->salle->id}}</p>
-                    @if ($reservation->seance->dolby_atmos)
-                        <x-assets.atmos-logo :width="35" :class="'fill-white'"/>  
-                    @endif
-                    @if ($reservation->seance->dolby_vision)    
-                        <x-assets.vision-logo :width="35" :class="'fill-white'"/>
-                    @endif
-                    @if ($reservation->seance->vf)
-                        <p class="text-sm md:text-lg text-center text-zinc-100 bg-slate-500 p-1 rounded px-2">VF</p>
-                    @else
-                        <p class="text-sm md:text-lg text-center text-zinc-100 bg-slate-500 p-1 rounded px-2" title="{{$reservation->seance->film->langue->langue}}">VOST</p>
-                    @endif
-                </div> 
+                <div class="flex gap-2">
+                    <p class="text-base md:text-xl dark:text-white">Séance du {{ date('d/m',strtotime($reservation->seance->datetime_seance)) }} à {{ date('H:i',strtotime($reservation->seance->datetime_seance)) }}</p>
+                    <p class="text-sm text-center text-white bg-zinc-900 p-1 rounded px-2">Salle {{$reservation->seance->salle->id}}</p>
+                    <p class="text-sm text-zinc-100 bg-slate-500 p-1 rounded px-2 text-center">{{$reservation->seance->vf == 1 ? 'VF' : 'VO'}}</p>
+                        <div class="p-1 px-[0.3rem] -pb-[0.1rem] bg-sky-800 rounded">
+                            <svg class="fill-white w-[20px]" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>Dolby icon</title><path d="M24,20.352V3.648H0v16.704H24z M18.433,5.806h2.736v12.387h-2.736c-2.839,0-5.214-2.767-5.214-6.194S15.594,5.806,18.433,5.806z M2.831,5.806h2.736c2.839,0,5.214,2.767,5.214,6.194s-2.374,6.194-5.214,6.194H2.831V5.806z"></path></g></svg>
+                        </div> 
+
+
+                </div>
+                
+                <div class="mt-4">
+                    <div class="flex items-center gap-2">
+                        <p><span class=" dark:text-white">Place(s) réservée(s) :</span></p>
+                        <div class="flex justify-center gap-1 flex-wrap">
+                            @foreach ($places as $place)
+                                    <p class=" p-1 rounded bg-slate-300 border border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white text-xs">{{$place->rangee.$place->numero}}</p>
+                            @endforeach
+                        </div>  
+                    </div>
+                    <p class="mt-24 dark:text-white text-sm">ID de réservation : {{$reservation->reference}}</p>
+                </div>
+
             </div>
         </div>
         
-        <div class="flex flex-col gap-1 md:col-span-2 p-2 items-center justify-center bg-zinc-200 dark:bg-zinc-600">
-            
-                <div class="flex flex-col md:flex-row text-lg gap-2 justify-center items-center">
-                    <p><span class="font-semibold dark:text-white">Place(s) réservée(s) :</span></p>
-                    <div class="flex justify-center gap-1 flex-wrap">
-                        @foreach ($places as $place)
-                                <p class=" p-1 rounded bg-slate-300 border-2 border-slate-600 dark:border-zinc-400 dark:bg-slate-500 dark:text-white shadow-sm">{{$place->rangee.$place->numero}}</p>
-                        @endforeach
-                    </div>  
-                </div>
-                <p class="mt-3 dark:text-white text-sm">ID de réservation : {{$reservation->reference}}</p>
-        </div>
+        
     </div>
-    <p class="text-center dark:text-white px-2 mb-20" >un email va vous être envoyé avec un QR Code à présenter à votre arrivée au cinéma.</p>
+    <p class="text-center dark:text-white text-sm px-2 mt-12 font-light" >un email va vous être envoyé avec un QR Code à présenter à votre arrivée au cinéma.</p>
+    <p class="text-center dark:text-white text-sm px-2 -mt-2 font-light pb-24">Vous pouvez également retrouver votre billet dans votre espace personnel</p>
     <div class="fixed bottom-0 w-full grid grid-cols-2 h-16">
-        <a type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white border-r border-r-cyan-900 text-center transition-all ease-in-out duration-300" href="{{route('index')}}" class="py-2 px-4">Retour à l'accueil</a>
-        <a type="button" class="bg-cyan-700 hover:bg-cyan-600 text-white py-2 px-4 border-l border-l-cyan-900 transition-all ease-in-out duration-300" href="{{route('home')}}" class="">Accéder à mon compte</a>
+        <a type="button" class="bg-sky-700 hover:bg-sky-600 text-white border-r border-r-sky-900 text-center transition-all ease-in-out duration-300 flex justify-center items-center" href="{{route('index')}}" class="py-2 px-4">Retour à l'accueil</a>
+        <a type="button" class="bg-sky-700 hover:bg-sky-600 text-white py-2 px-4 border-l border-l-sky-900 transition-all ease-in-out duration-300 flex justify-center items-center" href="{{route('home')}}" class="">Accéder à mon compte</a>
     </div>
 </div>
 @endsection
