@@ -617,8 +617,8 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('filmShow', () => ({
         contentFilm: false, 
         scrollState: 0, 
-        maxSize: 14, 
-        minSize: 10.5, 
+        maxSize: 11.5, 
+        minSize: 11.5, 
         scrollLimit: 50,
         isSmallScreen: window.innerWidth < 768,
         is2xlScreen: window.innerWidth >= 1280,

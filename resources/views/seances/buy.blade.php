@@ -51,7 +51,7 @@
            
             <div class="flex items-center w-full justify-center px-6" x-data="seats()">
             
-                <div class="mx-1 mt-1 md:mt-24 w-full max-w-[700px] md:m-auto block mb-1 pt-2 pb-6 md:shadow-inner rounded md:border md:dark:border-zinc-700 md:dark:bg-zinc-700/10">
+                <div class="mx-1 mt-16 md:mt-24 w-full max-w-[700px] md:m-auto block mb-1 pt-2 pb-6 md:shadow-inner rounded md:border md:dark:border-zinc-700 md:dark:bg-zinc-700/10">
                     <div class=" flex flex-col p-3 justify-center items-center">
                         <div class="flex gap-2 items-center">
                             <p class="text-2xl md:text-4xl text-center dark:text-white font-bold">{{$seance->film->titre}}</p>
@@ -87,7 +87,7 @@
                                     
                                 </div>
 
-                                <div class="flex mb-12 md:mb-2 justify-between gap-4 w-full items-center xxs:w-[22rem] mx-auto">
+                                <div class="flex mb-4 md:mb-2 justify-between gap-4 w-full items-center xxs:w-[22rem] mx-auto">
                                     <div class="flex items-center">
                                         <p id="labelET" class="md:text-xl dark:text-white">Tarif étudiant (6,00 €)</p>
                                         {{-- <div x-data="{ visible: false }">
@@ -107,9 +107,10 @@
                                     </div>
                                     
                                 </div>
-                 
+                                <p class="text-center text-xs md:text-sm italic font-light dark:text-zinc-300 text-zinc-700">Pour le tarif étudiant, un justificatif vous sera demandé à l'entrée du cinéma</p>
                                 @csrf
                             </form>
+                            
                               
                         </div>
                     </div>

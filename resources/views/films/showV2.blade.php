@@ -58,24 +58,29 @@
         <div class="xl:flex md:ml-[20rem] 2xl:ml-[26rem] xl:pt-14 h-full relative xl:mb-12 bg-[#efeff2] xl:bg-zinc-50 dark:bg-zinc-800" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
                 <div class="w-full h-full xl:flex md:ml- max-w-[72rem] mx-auto">
                 {{-- Boutons de navigation --}}
-                    <div class="xl:hidden w-full h-auto flex xl:pl-[26rem] md:mt-14 bg-[#efeff2]  dark:bg-zinc-800 flex-col transition-all ease-in-out duration-300 max-md:fixed sticky top-0 md:!top-[56px] pb-2 z-[8]">
-                        <div class="w-full md:hidden" :style="isSmallScreen ? `height: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : ``">
-
-                        </div>
-                        <div class="flex w-full h-16">
-                            <button @click="contentFilm = false" class="w-full h-full text-md font-semibold dark:text-white  transition-all ease-in-out duration-200" :class="contentFilm == true ? 'bg-zinc-300  shadow-inner-br dark:bg-zinc-700 rounded-br hover:bg-zinc-400 hover:dark:bg-zinc-500' : ''" :disabled="contentFilm == false">Informations</button>
-                            <button @click="contentFilm = true" class="w-full h-full text-md font-semibold   dark:text-white transition-all ease-in-out duration-200" :class="contentFilm == false ? 'bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400 hover:dark:bg-zinc-500  shadow-inner-bl rounded-bl ' : ''">Seances</button>
+                    <div class="xl:hidden w-full max-md:!mx-0 max-md:px-2 h-auto flex xl:pl-[26rem] md:mt-14 flex-col transition-all ease-in-out duration-300 max-md:fixed sticky top-[184px] md:!top-[56px] z-[8]">
+                        {{-- <div class="w-full md:hidden" :style="isSmallScreen ? `height: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : ``">
+                        </div> --}}
+                        <div class="flex w-full h-[4.5rem] md:h-20 bg-zinc-100/90  dark:bg-zinc-700/30 bg-opacity-80 backdrop-blur">
+                            <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ;contentFilm = false" class="w-full h-full text-lg xxs:text-2xl font-semibold dark:text-white transition-color ease-in-out duration-300" :class="contentFilm ? 'dark:text-zinc-200/60 hover:dark:text-zinc-50/80 text-zinc-600/40 hover:text-zinc-950/60' : 'dark:text-white'" :disabled="contentFilm == false">Informations</button>
+                            <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ;contentFilm = true; " class="w-full h-full text-lg xxs:text-2xl font-semibold   dark:text-white transition-color ease-in-out duration-300" :class="!contentFilm ? 'dark:text-zinc-200/60 hover:dark:text-zinc-50/80 text-zinc-600/40 hover:text-zinc-950/60' : 'dark:text-white'">Seances</button>
                         </div>
                         
                         
                     </div>
 
                     {{-- Informations Film --}}
-                    <div x-show="contentFilm == false || is2xlScreen == true " class="bg-transparent xl:border-0 ml-2 mr-2 md:mx-0 mt-0 xl:mr-0 xl:my-2 flex flex-col  xl:ml-0 xl:items-center xl:w-full">
-                        <div class="min-h-[calc(100vh-128px)] xl:min-h-full pt-6 px-4 pb-4 md:pb-2 w-full md:px-auto bg-zinc-50 dark:bg-[#2d2d33] xl:dark:bg-transparent xl:max-w-[55rem] xl:mx-auto xl:px-6 rounded max-md:pt-[20rem]">
+                    <div x-show="contentFilm == false || is2xlScreen == true " class="bg-transparent xl:border-0 ml-2 mr-2 md:mx-0 mt-0 xl:mr-0 xl:my-2 flex flex-col  xl:ml-0 xl:items-center xl:w-full"
+                    x-transition:enter="transition linear duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition linear duration-300"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+                        <div class="min-h-[calc(100vh-128px)] xl:min-h-full pt-6 px-4 pb-4 md:pb-2 w-full md:px-auto bg-zinc-50 dark:bg-[#2d2d33] xl:dark:bg-transparent xl:max-w-[55rem] xl:mx-auto xl:px-6 max-md:rounded max-md:pt-[20rem]">
                             <div x-data="{exist: '{{ $film->url_trailer ?? 'none'}}'}" class="md:max-w-[52rem] xl:max-w-full md:w-full aspect-[16/9] xl:w-[100%] mx-auto" :class="exist == 'none' ? 'hidden' : ''">
                                 <h1 class="text-2xl font-semibold dark:text-white mb-4">Trailer</h1>
-                                <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded" ></iframe>
+                                <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded border dark:border-zinc-600" ></iframe>
                             </div>
                             
                             <div class=" md:max-w-[52rem] xl:max-w-full h-[0.15rem] md:w-full mt-12 mb-4 bg-zinc-300 dark:bg-zinc-700 opacity-40 rounded-full mx-auto"></div>
@@ -89,7 +94,10 @@
                     
                             <div class="md:w-full mx-auto xl:w-[100%] h-auto rounded md:max-w-[52rem] xl:max-w-full">
                                 <h1 class="text-2xl font-semibold dark:text-white mb-4">Gallerie</h1>
-                                <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                                <div class="p-[0.1rem] rounded border dark:border-zinc-600">
+                                    <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                                </div>
+                                
                             </div>
 
                             <div class="mt-8 mb-12 rounded border dark:border-zinc-700 dark:bg-zinc-600/50 p-4 bg-zinc-100 xl:hidden block">
@@ -108,8 +116,14 @@
                     </div>
 
                     {{-- Seances Film --}}
-                    <div x-show="contentFilm == true || is2xlScreen == true " class="xl:sticky top-[64px] md:min-w-[26rem] xl:w-[40%] xl:max-w-[50rem]  md:min-h-[calc(100vh-130px)]  xl:m-2 xl:ml-0 xl:mb-0 xl:pr-2 md:mx-0 parent xl:h-fit h-full">
-                        <div class="min-h-[calc(100vh)] xl:min-h-full h-fit dark:bg-[#2d2d33] xl:dark:bg-transparent bg-zinc-50 rounded xl:sticky top-[64px] xl:w-full w-auto m-2 md:mx-0 mb-0 mt-0 px-10 pt-10 pb-20 xl:p-4 max-md:pt-80">
+                    <div x-show="contentFilm == true || is2xlScreen == true " class="xl:sticky top-[64px] md:min-w-[26rem] xl:w-[40%] xl:max-w-[50rem]  md:min-h-[calc(100vh-130px)]  xl:m-2 xl:ml-0 xl:mb-0 xl:pr-2 md:mx-0 parent xl:h-fit h-full"
+                    x-transition:enter="transition linear duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition linear duration-300"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+                        <div class="min-h-[calc(100vh)] xl:min-h-full h-fit dark:bg-[#2d2d33] xl:dark:bg-transparent bg-zinc-50 max-md:rounded xl:sticky top-[64px] xl:w-full w-auto m-2 md:mx-0 mb-0 mt-0 px-10 pt-10 pb-20 xl:p-4 max-md:pt-80">
                             <div class="h-full w-full">
                                 <div class=" z-20 hidden xl:block">
                                     <div class="h-2 w-full dark:bg-zinc-800 bg-zinc-50"></div>
@@ -117,7 +131,7 @@
                                 </div>
                                 
                 
-                                <div class="flex gap-2 px-4 flex-col pt-2 pb-3 border-l-2 border-b-2 dark:border-zinc-600">
+                                <div class="flex gap-2 px-4 flex-col pt-2 pb-3 border-l-2 dark:border-zinc-600">
                                     @if (count($datesSeances) > 0)
                                         @foreach ($datesSeances as $dateSeance)
                                             <div class="border-b dark:border-zinc-700 pb-2 xl:w-[95%] {{ $loop->last ? 'border-b-0' : ''}}">

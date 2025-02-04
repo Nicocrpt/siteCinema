@@ -12,13 +12,13 @@
 
    
 
-    <div class="w-full rounded overflow-hidden h-fit">
-        <div class="flex ease-in-out duration-500 gap-auto justify-between rounded-md w-full h-auto" :style="`transform: translateX(calc(-100% * ${translation}));`">
+    <div class="w-full rounded-sm overflow-hidden h-fit">
+        <div class="flex ease-in-out duration-500 gap-auto justify-between rounded w-full h-auto" :style="`transform: translateX(calc(-100% * ${translation}));`">
             @foreach ($images as $image)
-                    <div class="w-[100%] flex-shrink-0 h-auto rounded">
+                    <div class="w-[100%] flex-shrink-0 h-auto rounded-sm">
                         <img  @click="fullscreenImage = true; document.querySelector('.solaris').classList.add(''); "
                         src="{{ $image }}"
-                        class="w-full shadow-md h-auto" />
+                        class="w-full shadow-md h-auto rounded-sm" />
                     </div>
             @endforeach   
         </div>

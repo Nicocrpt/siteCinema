@@ -691,12 +691,10 @@
 
     </div>
 @else
-    <div class="w-full md:max-w-[95%] xl:max-w-[70%] 2xl:max-w-[70%]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
+    <div class="w-full max-w-[50rem] max-h-[45rem]  border-solid border md:border-2 border-gray-300 dark:border-zinc-500 rounded-md px-3 bg-neutral-200 dark:bg-[#3d3d3d]">
         <h1 class="md:text-2xl text-lg mt-2 font-bold text-center mb-6">Disposition des Sièges</h1>
 
-        <div class="grid grid-rows-8 gap-vw-2">
-        
-        
+        <div class="grid grid-rows-8 gap-vw-2">  
         <!-- Exemple pour une rangée -->
             <div class="space-y-2">
             <!-- 1ère rangée -->

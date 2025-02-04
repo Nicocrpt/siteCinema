@@ -2,8 +2,8 @@
 @section('title' , 'Films')
 @section('content')
 <div x-data="filmsPage()" class="h-full bg-zinc-100 dark:bg-zinc-900 w-full px-2">
-    <div class="fixed top-0 w-full z-20">
-        <section class="w-full !h-[4rem] bg-zinc-100 dark:bg-zinc-900 mt-[56px] flex items-center justify-center gap-2 relative px-2">
+    <div class="fixed top-0 w-full left-0 px-2 z-20">
+        <section class="w-full !h-[4rem] bg-zinc-100 dark:bg-zinc-900 mt-[56px] flex items-center justify-center gap-2 relative">
             <input id="nameQuery" type="text" placeholder="Rechercher un film" class=" bg-zinc-50 dark:bg-zinc-700 placeholder:text-zinc-500 dark:text-white px-4 rounded-md max-xs:w-[70%] xs:w-[22rem]">
             <select name="" id="genreQuery" class="rounded-md dark:bg-zinc-800 dark:text-zinc-300 max-xs:min-w-[6.5rem]">
                 <option value="">Genres</option>
