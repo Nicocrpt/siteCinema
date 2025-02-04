@@ -11,4 +11,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+            // Active le tree shaking via des options Rollup personnalisées
+            treeshake: true, // Assure-toi que le tree shaking est activé (par défaut, il l'est)
+        } // 1MB par exemple, ajuste selon tes besoins
+    },
 });

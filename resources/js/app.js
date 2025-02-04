@@ -2,16 +2,16 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 
-import $, { data, event } from 'jquery';
+import $ from 'jquery';
 
 //Faker.js
-import { da, faker, fi, ne, th } from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 //FullCalendar
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
+
 
 
 
