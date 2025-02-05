@@ -1,8 +1,8 @@
 @extends('layouts.layoutNavigation')
 @section('title' , 'Films')
 @section('content')
-<div x-data="filmsPage()" class="h-full bg-zinc-100 dark:bg-zinc-900 w-full px-1">
-    <div class="fixed top-0 w-full left-0 px-1 z-20">
+<div x-data="filmsPage()" class="h-full bg-zinc-100 dark:bg-zinc-900 w-full px-1 xxs:px-2">
+    <div class="fixed top-0 w-full left-0 px-1 xxs:px-2 z-20">
         <section class="w-full !h-[4rem] bg-zinc-100 dark:bg-zinc-900 mt-[56px] flex items-center justify-center gap-2 relative px-1">
             <input id="nameQuery" type="text" placeholder="Rechercher un film" class=" bg-zinc-50 dark:bg-zinc-700 placeholder:text-zinc-500 dark:text-white px-4 rounded-md max-xs:w-[70%] xs:w-[22rem]">
             <select name="" id="genreQuery" class="rounded-md dark:bg-zinc-800 dark:text-zinc-300 max-xs:min-w-[6.5rem]">
@@ -18,7 +18,7 @@
     </div>
     <section class="min-h-screen bg-zinc-50 dark:bg-zinc-800 rounded pt-[128px] w-full relative">
         <div class="mx-auto w-full xs:px-2 lg:px-6 py-12">
-            <div class="w-full px-1 h-20 fixed top-[116px] left-0 z-10 flex items-center justify-center ">
+            <div class="w-full px-1 xxs:px-2 h-20 fixed top-[116px] left-0 z-10 flex items-center justify-center ">
                 <div class="w-full h-full flex items-center justify-center xs:gap-10 mt-2 bg-zinc-50/80 dark:bg-zinc-700/30 bg-opacity-80 dark:bg-opacity-70 backdrop-blur-[10px]">
                     <div class="h-full flex justify-center items-center max-xs:w-full">
                         <button @click="window.scrollTo({top: 0, behavior: 'smooth'}) ; forthComing = false; adaptBody(availableContainer)" id="longDay" class="text-xl xxs:text-2xl py-2 pl-4 rounded font-semibold transition-all ease-in-out duration-300 flex group" :class="forthComing ? 'dark:text-zinc-200/60 hover:dark:text-zinc-50/80 text-zinc-600/40 hover:text-zinc-950/60' : 'dark:text-white'">
