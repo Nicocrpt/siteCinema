@@ -2,10 +2,11 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 
-import $ from 'jquery';
+import Swiper from 'swiper/bundle';
+import { Pagination } from 'swiper/modules';
 
-//Faker.js
-import {faker} from '@faker-js/faker';
+
+
 //FullCalendar
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -15,15 +16,9 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 
 
 
-//Owl Carousel
-import 'owl.carousel'
-import 'owl.carousel/dist/assets/owl.carousel.css'; // Importer le CSS d'Owl Carousel
-import 'owl.carousel/dist/assets/owl.theme.default.css'; // Importer le thème par défaut d'Owl Carousel
-
-
 
 window.Alpine = Alpine;
-window.$ =window.jQuery = $;
+
 
 
 
@@ -51,7 +46,7 @@ document.addEventListener('alpine:init', () => {
                 const draggable = new Draggable(document.getElementById('filmsContainer'), {
                     itemSelector: '.draggableElement.active',
                     eventData: function (eventEl) {
-                        const ref = faker.string.numeric(8)
+                        const ref = alpineContext.generateNumeric(8)
                         const language = eventEl.getAttribute('data-language') == "1" ? " (VF)" : " (VO)"
                         let salleId;
                         switch (eventEl.getAttribute('datacolor')) {
@@ -394,6 +389,15 @@ document.addEventListener('alpine:init', () => {
                         break;
                 }
             })
+        },
+
+        generateNumeric (length) {
+            let result = '';
+            const characters = '0123456789';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
         }
     }))
     // Seat Selector :
@@ -444,27 +448,53 @@ document.addEventListener('alpine:init', () => {
 
     Alpine.data('filmsBanner', () => ({
         init() {
-            $(document).ready(function() {
-                var owl = $('.carousel-1');
-                owl.owlCarousel({
-                    items: 1, // Un élément à la fois
-                    loop: true, // Défilement infini
-                    dots: true, // Dots pour la navigation
-                    autoplay: true, // Démarrer le défilement automatique
-                    autoplayTimeout: 10000,
-                    smartSpeed: 5000,
-                    //autoplaySpeed: 2000, // Temps entre les défilements
-                    autoplayHoverPause: true,
-                    animateOut: 'fadeOut',
-                    animateIn: 'fadeIn',
-                });
+            // $(document).ready(function() {
+            //     var owl = $('.carousel-1');
+            //     owl.owlCarousel({
+            //         items: 1, // Un élément à la fois
+            //         loop: true, // Défilement infini
+            //         dots: true, // Dots pour la navigation
+            //         autoplay: true, // Démarrer le défilement automatique
+            //         autoplayTimeout: 10000,
+            //         smartSpeed: 5000,
+            //         //autoplaySpeed: 2000, // Temps entre les défilements
+            //         autoplayHoverPause: true,
+            //         animateOut: 'fadeOut',
+            //         animateIn: 'fadeIn',
+            //     });
             
-                // Force Owl Carousel à redimensionner les éléments en temps réel
-                $(window).on('resize', function() {
-                    owl.trigger('refresh.owl.carousel'); // Recalculer les dimensions
-                });
+            //     // Force Owl Carousel à redimensionner les éléments en temps réel
+            //     $(window).on('resize', function() {
+            //         owl.trigger('refresh.owl.carousel'); // Recalculer les dimensions
+            //     });
+            // });
+
+            console.log('init')
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                speed: 2000,
+                parallax: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: true,
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+                modules: [Pagination ],
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'bullets',
+                    clickable: true,
+                },
+                resizeReInit: true
             });
 
+            console.log('init2')
+            window.addEventListener('resize', function () {
+                swiper.update();
+            });
 
         },
 

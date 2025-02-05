@@ -5,10 +5,53 @@
 @import url('./homePage.css');
 @import url('./seatSelector.css');
 @import url('./fullCalendar.css');
+@import 'swiper/css/bundle';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Swiper Carousel */
+
+.swiper{
+  width: 100vw;
+  height: 65vh;
+  min-height: 500px !important;
+  position: relative;
+  overflow: hidden;
+  transition: height 0.8s ease-in-out;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-zinc-400 dark:bg-zinc-500/90 backdrop-blur-md size-[0.6rem] opacity-60;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-white;
+}
+
+@media (max-width: 109em) {
+  .swiper {
+      height: 50vh;
+      min-height: 500px !important;
+  }
+
+  .swiper {
+  
+      height: 50vh; /* Hauteur de chaque slide */
+      min-height: 500px !important;
+  
+  }
+
+  /* .index-content {
+      margin-top: 59vh
+  } */
+}
+
+
+
 
 
 
