@@ -19,7 +19,7 @@
     </div>
     
     {{-- Bannière Film --}}
-    <div class="fixed md:w-80 2xl:w-[26rem] w-full md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 shadow shadow-zinc-900 md:shadow-lg z-20 margin-0 overflow-hidden"
+    <div class="fixed md:w-80 2xl:w-[26rem] w-full md:h-screen top-0 left-0 pt-14 bg-zinc-900  gap-4 md:gap-10 md:shadow-lg z-20 margin-0 overflow-hidden"
     :style="isSmallScreen ? `height: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : `height: 100vh`">
         <div class="h-full md:max-h-[630px] 2xl:max-h-[780px] w-full flex md:block relative">
             <img id="imageAffiche" src="{{ $film->url_affiche }}" alt="" class="h-full md:w-full md:h-auto w-auto flex-shrink">
@@ -55,10 +55,10 @@
 
     {{-- Contenu page --}}
     <div class="w-auto h-full">
-        <div class="xl:flex md:ml-[20rem] 2xl:ml-[26rem] xl:pt-14 h-full relative xl:mb-12 bg-[#efeff2] xl:bg-zinc-50 dark:bg-zinc-800" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
+        <div class="xl:flex md:ml-[20rem] 2xl:ml-[26rem] xl:pt-14 h-full relative xl:mb-12 bg-[#efeff2] xl:bg-zinc-50 dark:bg-zinc-900 md:dark:bg-zinc-800" :class="fullscreenImage ? 'overflow-hidden fixed' : ''">
                 <div class="w-full h-full xl:flex md:ml- max-w-[72rem] mx-auto">
                 {{-- Boutons de navigation --}}
-                    <div class="xl:hidden w-full max-md:!mx-0 max-md:px-2 h-auto flex xl:pl-[26rem] md:mt-14 flex-col transition-all ease-in-out duration-300 max-md:fixed sticky top-[184px] md:!top-[56px] z-[8]">
+                    <div class="xl:hidden w-full max-md:!mx-0 max-md:px-1 h-auto flex xl:pl-[26rem] md:mt-14 flex-col transition-all ease-in-out duration-300 max-md:fixed sticky top-[184px] md:!top-[56px] z-[8]">
                         {{-- <div class="w-full md:hidden" :style="isSmallScreen ? `height: ${maxSize - ((maxSize - minSize) * (scrollState / scrollLimit))}rem` : ``">
                         </div> --}}
                         <div class="flex w-full h-[4.5rem] md:h-20 bg-zinc-100/90  dark:bg-zinc-700/30 bg-opacity-80 backdrop-blur">
@@ -70,14 +70,14 @@
                     </div>
 
                     {{-- Informations Film --}}
-                    <div x-show="contentFilm == false || is2xlScreen == true " class="bg-transparent xl:border-0 ml-2 mr-2 md:mx-0 mt-0 xl:mr-0 xl:my-2 flex flex-col  xl:ml-0 xl:items-center xl:w-full"
+                    <div x-show="contentFilm == false || is2xlScreen == true " class="bg-transparent xl:border-0 mx-1 md:mx-0 mt-0 xl:mr-0 xl:my-2 flex flex-col  xl:ml-0 xl:items-center xl:w-full"
                     x-transition:enter="transition linear duration-300"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
                     x-transition:leave="transition linear duration-300"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0">
-                        <div class="min-h-[calc(100vh-128px)] xl:min-h-full pt-6 px-4 pb-4 md:pb-2 w-full md:px-auto bg-zinc-50 dark:bg-[#2d2d33] xl:dark:bg-transparent xl:max-w-[55rem] xl:mx-auto xl:px-6 max-md:rounded max-md:pt-[20rem]">
+                        <div class="min-h-[calc(100vh-128px)] xl:min-h-full pt-6 px-2 pb-4 md:pb-2 w-full md:px-auto bg-zinc-50 dark:bg-zinc-800 xl:max-w-[55rem] xl:mx-auto xl:px-6 max-md:rounded max-md:pt-[17rem]">
                             <div x-data="{exist: '{{ $film->url_trailer ?? 'none'}}'}" class="md:max-w-[52rem] xl:max-w-full md:w-full aspect-[16/9] xl:w-[100%] mx-auto" :class="exist == 'none' ? 'hidden' : ''">
                                 <h1 class="text-2xl font-semibold dark:text-white mb-4">Trailer</h1>
                                 <iframe src="{{ $film->url_trailer.'?modestbranding=1&controls=20&showinfo=0&rel=0' }}" frameborder="0" allowfullscreen class="w-full h-full rounded border dark:border-zinc-600" ></iframe>
@@ -100,7 +100,7 @@
                                 
                             </div>
 
-                            <div class="mt-8 mb-12 rounded border dark:border-zinc-700 dark:bg-zinc-600/50 p-4 bg-zinc-100 xl:hidden block">
+                            <div class="mt-8 xl:mb-12 rounded border dark:border-zinc-700 dark:bg-zinc-600/50 p-4 bg-zinc-100 xl:hidden block">
                                 <div class="m-1 rounded">
                                     <div class="flex items-center justify-center gap-4 w-fit mb-4">
                                         <svg class="size-[1.2rem] fill-black dark:fill-white" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M3,16c-0.1,0-0.3,0-0.4-0.1c-0.2-0.1-0.4-0.3-0.5-0.6l-1.4-3.8C0.4,10.8,0.5,10,0.8,9.3C1.1,8.6,1.7,8,2.5,7.7l20.7-7.5 l0,0c0.8-0.3,1.6-0.2,2.3,0.1C26.2,0.6,26.7,1.2,27,2l1.4,3.8c0.1,0.2,0.1,0.5,0,0.8C28.2,6.8,28,6.9,27.8,7L3.3,15.9 C3.2,16,3.1,16,3,16z"></path> </g> <g> <path d="M30,20v-4c0-0.6-0.4-1-1-1H3c-0.6,0-1,0.4-1,1v4H30z"></path> <path d="M2,22v7c0,1.7,1.3,3,3,3h22c1.7,0,3-1.3,3-3v-7H2z"></path> </g> </g></svg>
@@ -112,18 +112,18 @@
                                 </div>
                             </div>
                         </div>
-                        <x-footer class="xl:hidden"/> 
+                        <x-footer class="xl:hidden md:bg-zinc-900/80"/> 
                     </div>
 
                     {{-- Seances Film --}}
-                    <div x-show="contentFilm == true || is2xlScreen == true " class="xl:sticky top-[64px] md:min-w-[26rem] xl:w-[40%] xl:max-w-[50rem]  md:min-h-[calc(100vh-130px)]  xl:m-2 xl:ml-0 xl:mb-0 xl:pr-2 md:mx-0 parent xl:h-fit h-full"
+                    <div x-show="contentFilm == true || is2xlScreen == true " class="xl:sticky top-[64px] md:min-w-[26rem] xl:w-[40%] xl:max-w-[50rem]  md:min-h-[calc(100vh-130px)]  xl:m-2 xl:ml-0 xl:mb-0 xl:pr-2 md:mx-0 parent xl:h-fit h-full mx-1"
                     x-transition:enter="transition linear duration-300"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
                     x-transition:leave="transition linear duration-300"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0">
-                        <div class="min-h-[calc(100vh)] xl:min-h-full h-fit dark:bg-[#2d2d33] xl:dark:bg-transparent bg-zinc-50 max-md:rounded xl:sticky top-[64px] xl:w-full w-auto m-2 md:mx-0 mb-0 mt-0 px-10 pt-10 pb-20 xl:p-4 max-md:pt-80">
+                        <div class="min-h-[calc(100vh)] md:min-h-[calc(100vh-136px)] xl:min-h-full h-fit dark:bg-zinc-800 bg-zinc-50 max-md:rounded xl:sticky top-[64px] xl:w-full w-auto md:mx-0 mb-0 mt-0 max-md:px-6 px-10 pt-10 pb-4 xl:p-4 max-md:pt-[17rem]">
                             <div class="h-full w-full">
                                 <div class=" z-20 hidden xl:block">
                                     <div class="h-2 w-full dark:bg-zinc-800 bg-zinc-50"></div>
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                         </div>
-                        <x-footer class="xl:hidden"/>  
+                        <x-footer class="xl:hidden md:dark:bg-zinc-900/80"/>  
                     </div>
 
                 </div>
@@ -181,7 +181,7 @@
                     
                 </div>
             </div>
-        <x-footer class="md:pl-[20rem] 2xl:pl-[26rem] border-t dark:border-zinc-700 dark:bg-zinc-900/60 bg-zinc-100" x-show="is2xlScreen == true"/>
+        <x-footer class="md:pl-[20rem] 2xl:pl-[26rem] border-t dark:border-zinc-700 dark:bg-zinc-900/80 bg-zinc-100" x-show="is2xlScreen == true"/>
     </div>
     
     

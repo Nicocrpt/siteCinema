@@ -19,7 +19,7 @@
             </section>
 
         </div>
-        <section class="min-h-screen bg-zinc-50 dark:bg-zinc-800 mx-2 rounded pt-16 px-2">
+        <section class="min-h-screen bg-zinc-50 dark:bg-zinc-800 mx-1 rounded pt-16 px-2">
             <div class="mx-auto lg:w-[50rem] md:w-[45rem] py-12">
                 <h1 id="longDay" class="text-2xl font-semibold dark:text-white"></h1>
                 <div id="seancesContainer" class=" mx-auto flex flex-col gap-2 pt-10 w-full transition-opacity ease-in-out duration-300">

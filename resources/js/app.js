@@ -1079,11 +1079,13 @@ document.addEventListener('alpine:init', () => {
                     if (data.length == 0) {
                         console.log("pas de seances")
                         this.seancesContainer.innerHTML = `
-                        <div class="h-[calc(100vh-200px)] w-full flex gap-2 justify-center items-center">
-                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
-                            <div class="w-fit">
-                                <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
-                                <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
+                        <div class="h-fit mt-10 md:mt-16 w-full mx-auto">
+                            <div class="flex gap-2 items-center justify-center w-fit mx-auto max-w-[95%]">
+                                <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400 shrink-0" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                                <div class="w-fit">
+                                    <p class="text-zinc-400 text-xl w-fit">Aucune seance programmée pour l'instant !</p>
+                                    <p class="text-zinc-400 w-fit">Veuillez choisir une autre date ou revenir plus tard.</p>
+                                </div>
                             </div>
                         </div>
                         `
@@ -1152,7 +1154,7 @@ document.addEventListener('alpine:init', () => {
                                 filmDiv.appendChild(infosDiv)
                             } else {
                                 filmDiv.appendChild(infosDiv)
-                                filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700 mt-2 mb-2 w-[90%]"/>'
+                                filmDiv.innerHTML += '<div class="border-b-2 dark:border-zinc-700/40 mt-2 mb-2 w-full"/>'
                                 filmDiv.appendChild(hoursContent)
                             }
     
@@ -1207,11 +1209,13 @@ document.addEventListener('alpine:init', () => {
                 document.getElementById('forthcomingCount').innerHTML = data.forthcomingFilms.length
                 if (data.availableFilms.length == 0) {
                     this.availableContainer.innerHTML = `
-                        <div class="h-96 w-full flex gap-2 justify-center items-center">
-                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
-                            <div class="w-fit">
-                                <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
-                                <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                        <div class="h-fit mt-10 md:mt-16 w-full mx-auto">
+                            <div class="flex gap-2 items-center justify-center w-fit mx-auto max-w-[90%]">
+                                <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400 shrink-0" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                                <div class="w-fit">
+                                    <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
+                                    <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                                </div>
                             </div>
                         </div>
                     `
@@ -1235,11 +1239,13 @@ document.addEventListener('alpine:init', () => {
 
                 if (data.forthcomingFilms.length == 0) {
                     this.forthcomingContainer.innerHTML = `
-                        <div class="h-96 w-full flex gap-2 justify-center items-center">
-                            <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
-                            <div class="w-fit">
-                                <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
-                                <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                        <div class="h-fit mt-10 md:mt-16 w-full mx-auto">
+                            <div class="flex gap-2 items-center justify-center w-fit mx-auto max-w-[90%]">
+                                <svg viewBox="0 0 24 24" class="w-14 h-14 stroke-zinc-400 shrink-0" xmlns="http://www.w3.org/2000/svg" aria-labelledby="sadFaceIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="sadFaceIconTitle">sad Face</title> <line stroke-linecap="round" x1="9" y1="9" x2="9" y2="9"></line> <line stroke-linecap="round" x1="15" y1="9" x2="15" y2="9"></line> <path d="M8,16 C9.33333333,15.3333333 10.6656028,15.0003822 11.9968085,15.0011466 C13.3322695,15.0003822 14.6666667,15.3333333 16,16"></path> <circle cx="12" cy="12" r="10"></circle> </g></svg>
+                                <div class="w-fit">
+                                    <p class="text-zinc-400 text-xl w-fit">Aucun film trouvé !</p>
+                                    <p class="text-zinc-400 w-fit">Veuillez effectuer une autre rechercher ou rééssayer plus tard.</p>
+                                </div>
                             </div>
                         </div>
                     `
