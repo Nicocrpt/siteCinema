@@ -448,34 +448,13 @@ document.addEventListener('alpine:init', () => {
 
     Alpine.data('filmsBanner', () => ({
         init() {
-            // $(document).ready(function() {
-            //     var owl = $('.carousel-1');
-            //     owl.owlCarousel({
-            //         items: 1, // Un élément à la fois
-            //         loop: true, // Défilement infini
-            //         dots: true, // Dots pour la navigation
-            //         autoplay: true, // Démarrer le défilement automatique
-            //         autoplayTimeout: 10000,
-            //         smartSpeed: 5000,
-            //         //autoplaySpeed: 2000, // Temps entre les défilements
-            //         autoplayHoverPause: true,
-            //         animateOut: 'fadeOut',
-            //         animateIn: 'fadeIn',
-            //     });
-            
-            //     // Force Owl Carousel à redimensionner les éléments en temps réel
-            //     $(window).on('resize', function() {
-            //         owl.trigger('refresh.owl.carousel'); // Recalculer les dimensions
-            //     });
-            // });
-
             console.log('init')
             const swiper = new Swiper('.swiper', {
                 loop: true,
                 speed: 2000,
                 parallax: true,
                 autoplay: {
-                    delay: 5000,
+                    delay: 8000,
                     disableOnInteraction: true,
                 },
                 effect: 'fade',
@@ -488,9 +467,18 @@ document.addEventListener('alpine:init', () => {
                     type: 'bullets',
                     clickable: true,
                 },
-                resizeReInit: true
+                resizeReInit: true,
+                on: {
+                    slideChangeTransitionStart: function () {
+                        let activeSlide = document.querySelector(".swiper-slide-active");
+            
+                        // Supprime et réajoute la classe uniquement à la slide active
+                        activeSlide.classList.add("parallax-active");
+                        void activeSlide.offsetWidth; // Trick pour forcer le recalcul CSS
+                    }
+                }
             });
-
+            document.querySelector(".swiper-slide-active").classList.add("parallax-active");
             console.log('init2')
             window.addEventListener('resize', function () {
                 swiper.update();
