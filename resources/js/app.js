@@ -448,6 +448,7 @@ document.addEventListener('alpine:init', () => {
 
     Alpine.data('filmsBanner', () => ({
         init() {
+
             console.log('init')
             const swiper = new Swiper('.swiper', {
                 loop: true,
@@ -455,12 +456,13 @@ document.addEventListener('alpine:init', () => {
                 parallax: true,
                 autoplay: {
                     delay: 8000,
-                    disableOnInteraction: true,
+                    disableOnInteraction: true
                 },
                 effect: 'fade',
                 fadeEffect: {
                     crossFade: true,
                 },
+
                 modules: [Pagination ],
                 pagination: {
                     el: '.swiper-pagination',
@@ -470,10 +472,13 @@ document.addEventListener('alpine:init', () => {
                 resizeReInit: true,
                 on: {
                     slideChangeTransitionStart: function () {
+                        resetAllParallax(); // Reset propre à chaque slide
+                    },
+                    slideChangeTransitionStart: function () {
                         let activeSlide = document.querySelector(".swiper-slide-active");
-            
+                        let img = activeSlide.querySelector('.imgBanner')
                         // Supprime et réajoute la classe uniquement à la slide active
-                        activeSlide.classList.add("parallax-active");
+                        startParallax()
                         void activeSlide.offsetWidth; // Trick pour forcer le recalcul CSS
                     }
                 }
@@ -481,8 +486,54 @@ document.addEventListener('alpine:init', () => {
             document.querySelector(".swiper-slide-active").classList.add("parallax-active");
             console.log('init2')
             window.addEventListener('resize', function () {
+
                 swiper.update();
+                // const activeSlide = document.querySelector('.swiper-slide-active');
+                // const img = activeSlide.querySelector('.imgBanner');
+                // const containerHeight = activeSlide.offsetHeight;
+                // const imgHeight = img.offsetHeight;
+                // if (imgHeight > containerHeight+96) {
+                //     img.classList.remove('bottom-0');
+                //     img.classList.add('-bottom-20');
+                // } else {
+                //     img.classList.remove('-bottom-20');
+                //     img.classList.add('bottom-0');
+                // }
+                resetAllParallax();
+
+                startParallax();
             });
+
+            function startParallax() {
+                const activeSlide = document.querySelector('.swiper-slide-active');
+                const img = activeSlide.querySelector('.imgBanner');
+    
+                if (img) {
+                    const containerHeight = activeSlide.offsetHeight;
+                    const imgHeight = img.offsetHeight;
+
+    
+                    // Calcul de la distance maximale sans dépasser le haut
+                    const maxTranslateY = imgHeight - containerHeight;
+    
+                    if (maxTranslateY > 0) {
+                        const animationDuration = 45; // durée en secondes
+                        img.style.transitionDuration = `${animationDuration}s`;
+                        img.style.transitionTimingFunction = 'linear';
+                        img.style.transform = `translateY(${maxTranslateY}px)`;
+                    }
+                }
+            }
+
+            function resetAllParallax() {
+                const allImages = document.querySelectorAll('.imgBanner');
+                allImages.forEach(img => {
+                    img.style.transitionDuration = '0s';
+                    img.style.transform = 'translateY(0)';
+                });
+            }
+            resetAllParallax()
+            startParallax()
 
         },
 

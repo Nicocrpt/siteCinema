@@ -20,21 +20,17 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: all ease-in-out 0.1s;
 }
 
-.parallax-active {
-  animation: parallaxMove 40s linear forwards;
-}
 
-@keyframes parallaxMove {
+/* @keyframes parallaxMove {
   0% {
-      background-position: center;
-  }
+    transform: translateY(0);
+  }  
   100% {
-      background-position: top; /* Fait défiler vers le bas */
+    transform: translateY(100%);
   }
-}
+} */
 
 .swiper{
   width: 100vw;
