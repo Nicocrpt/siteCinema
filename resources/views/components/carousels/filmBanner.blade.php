@@ -16,12 +16,11 @@
                     <div style="" class=" w-full h-full">
                         <img src="{{ $film->url_backdrop}}" alt="" class="absolute bottom-0 object-cover object-center min-h-full min-w-full !z-0 imgBanner transition-transform linear duration-[30s]">
                     </div>
-                    <a href="{{route('film.show', $film->slug)}}" class="grid grid-rows-5 h-full w-full absolute top-0 left-0">
-                        <div></div>
-                        <div class="row-start-3 row-span-3 flex md:row-start-2 md:row-span-4 md:grid md:grid-cols-2">
+                    <a href="{{route('film.show', $film->slug)}}" class="grid grid-cols-2 h-full w-full absolute top-0 left-0">
+                        <div class="col-0 max-md:col-span-2 flex">
                             <div class="p-10 flex flex-col justify-end items-center mb-5 md:pb-24 h-full">
                                 {{-- <a href="{{route('film.show', $film->slug)}}"><button class="bg-zinc-950 px-4 py-2 rounded-lg border border-zinc-600 md:hover:bg-zinc-800 transition-color ease-in-out duration-200"><span class="relative z-10" type="submit">Je réserve ma séance !</span></button></a> --}}
-                                <img src="{{ $film->url_logo }}" alt="" class="w-full max-w-[40rem] md:pb-0 pb-10 !relative !z-20">
+                                <img src="{{ $film->url_logo }}" alt="" class=" w-full xs:w-[80%] md:w-full max-w-[36rem] md:pb-0 pb-10 !relative !z-20">
                             </div>
                             
                         </div>

@@ -44,7 +44,7 @@
         {{-- Side Menu --}}
         
 
-    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 2xl:ml-[26rem] z-10 pt-48 md:pt-32">
+    <div class=" overflow-hidden overflow-y-auto h-[100vh] md:ml-80 2xl:ml-[26rem] z-10 pt-48 md:pt-32 dark:bg-zinc-800">
            
             <div class="px-2">
 

@@ -447,15 +447,16 @@ document.addEventListener('alpine:init', () => {
 
 
     Alpine.data('filmsBanner', () => ({
+        offsetValue: 0,
         init() {
-
+            const self = this
             console.log('init')
             const swiper = new Swiper('.swiper', {
                 loop: true,
                 speed: 2000,
                 parallax: true,
                 autoplay: {
-                    delay: 8000,
+                    delay: 12000,
                     disableOnInteraction: true
                 },
                 effect: 'fade',
@@ -486,7 +487,7 @@ document.addEventListener('alpine:init', () => {
             document.querySelector(".swiper-slide-active").classList.add("parallax-active");
             console.log('init2')
             window.addEventListener('resize', function () {
-
+                
                 swiper.update();
                 // const activeSlide = document.querySelector('.swiper-slide-active');
                 // const img = activeSlide.querySelector('.imgBanner');
@@ -514,10 +515,11 @@ document.addEventListener('alpine:init', () => {
 
     
                     // Calcul de la distance maximale sans dépasser le haut
-                    const maxTranslateY = imgHeight - containerHeight;
+                    const maxTranslateY = imgHeight - containerHeight - self.offsetValue;
     
                     if (maxTranslateY > 0) {
-                        const animationDuration = 45; // durée en secondes
+
+                        const animationDuration = maxTranslateY/6; // durée en secondes
                         img.style.transitionDuration = `${animationDuration}s`;
                         img.style.transitionTimingFunction = 'linear';
                         img.style.transform = `translateY(${maxTranslateY}px)`;
@@ -526,10 +528,16 @@ document.addEventListener('alpine:init', () => {
             }
 
             function resetAllParallax() {
+                if (document.querySelector('.swiper-slide-active').offsetHeight > (document.querySelector('.swiper-slide-active').querySelector('.imgBanner').offsetHeight-100 )) {
+                    self.offsetValue = 0
+                } else {
+                    self.offsetValue = 5
+                }
+                console.log(self.offsetValue)
                 const allImages = document.querySelectorAll('.imgBanner');
                 allImages.forEach(img => {
                     img.style.transitionDuration = '0s';
-                    img.style.transform = 'translateY(0)';
+                    img.style.transform = `translateY(${self.offsetValue}rem)`;
                 });
             }
             resetAllParallax()

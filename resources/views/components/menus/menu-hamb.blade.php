@@ -1,11 +1,11 @@
 <div {{ $attributes->merge(['class' => 'block md:hidden']) }} x-data="{ burgerMenu: false }">
     <div class="md:hidden flex items-center gap-4">
-        <svg @click="burgerMenu = !burgerMenu" class="w-[50px] h-[50px] md:w-10 md:h-10 p-1 rounded-md  cursor-pointer transition-all ease-in-out duration-300" fill="#ffffff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>icn/menu</title><path d="M2 3h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z" id="a"></path></g></svg>
+        <svg @click="burgerMenu = !burgerMenu; document.body.classList.toggle('overflow-hidden')" class="w-[50px] h-[50px] md:w-10 md:h-10 p-1 rounded-md  cursor-pointer transition-all ease-in-out duration-300" fill="#ffffff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>icn/menu</title><path d="M2 3h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 1 1 0-2zm0 4h12a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2z" id="a"></path></g></svg>
     </div>
     <div x-show="burgerMenu" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-[92%] backdrop-blur-md z-40"
         x-transition:enter="transform ease-in-out duration-300" x-transition:enter-start="translate-x-[-100%]" x-transition:enter-end="translate-x-0" x-transition:leave="transform ease-in-out duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-[-100%]">
         <div class="w-full h-full relative">
-            <button class="absolute top-5 right-5" @click="burgerMenu = false" x-show="burgerMenu" x-transition:enter="transition transform ease-in-out duration-[420ms] delay-100"
+            <button class="absolute top-5 right-5" @click="burgerMenu = false; document.body.classList.remove('overflow-hidden')" x-show="burgerMenu" x-transition:enter="transition transform ease-in-out duration-[420ms] delay-100"
             x-transition:enter-start="opacity-0 rotate-90"
             x-transition:enter-end="opacity-100 rotate-0"
             x-transition:leave="transition transform ease-in-out duration-300"
