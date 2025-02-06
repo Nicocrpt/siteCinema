@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
+use App\Models\Seance;
 use App\Models\User;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,6 +83,25 @@ class UserController extends Controller
         Auth::logout();
 
         return redirect()->route('users.destroyed');
+    }
+
+    public function showReservation($reference)
+    {   
+        try {
+            $reservation = Reservation::where('reference',$reference)->with('reservationlignes')->first();
+            if ($reservation->user != Auth::user())
+            {
+                return redirect()->back()->with('error', 'Cette reservation n\'existe pas.');
+            }
+            $seance = Seance::where('id', $reservation->seance_id)->with('film')->first();
+
+            return view('reservation.details', compact('reservation', 'seance'));
+
+        } catch (\Exception $e) {
+            // return redirect()->back()->with('error', 'Une erreur est survenue.');
+            return response()->json(['error' => $e], 500);
+        }
+
     }
 
     public function destroyed()

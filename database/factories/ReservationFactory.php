@@ -7,6 +7,7 @@ use App\Models\Reservationligne;
 use App\Models\Seance;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reservation>
@@ -21,7 +22,7 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            'reference' => fake('fr_FR')->ean8(),
+            'reference' => (string) Str::uuid(),
             'seance_id' => Seance::all()->random()->id,
             'user_id' => User::all()->random()->id,
         ];

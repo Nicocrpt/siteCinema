@@ -62,6 +62,7 @@
                     <h3 class="text-xs md:text-md font-semibold dark:text-white {{$status ? 'text-zinc-500 dark:text-zinc-300' : ''}} transition-all ease-in-out duration-200">Informations</h3>
                     <p class="text-[0.4rem] md:text-base txt dark:text-white {{$status ? 'text-gray-400' : ''}} transition-all ease-in-out duration-200">Date de la séance : {{$reservation->seance->datetime_seance}}</p>
                     <p class="text-[0.4rem] md:text-base txt dark:text-white {{$status ? 'text-gray-400' : ''}} transition-all ease-in-out duration-200">Prix payé : {{$reservation->reservationlignes->sum('prix')}} €</p>
+                    <a href="{{route('users.show.reservation', $reservation->reference)}}" class="underline dark:text-white">Voir les détails/QR-Code</a>
                 </div>
             </div>  
 
@@ -73,6 +74,7 @@
         <h3 class="text-xs md:text-md font-semibold dark:text-white {{$status ? 'text-zinc-500 dark:text-zinc-300' : ''}} transition-all ease-in-out duration-200">Informations</h3>
         <p class="text-[0.6rem] md:text-base txt dark:text-white {{$status ? 'text-gray-400' : ''}} transition-all ease-in-out duration-200">Date de la séance : {{$reservation->seance->datetime_seance}}</p>
         <p class="text-[0.6rem] md:text-base txt dark:text-white {{$status ? 'text-gray-400' : ''}} transition-all ease-in-out duration-200">Prix payé : {{$reservation->reservationlignes->sum('prix')}} €</p>
+        <a href="{{route('users.show.reservation', $reservation->reference)}}" class="underline text-[0.6rem] md:text-base txt dark:text-white">Voir les détails/QR-Code</a>
     </div>
     
 </div>  

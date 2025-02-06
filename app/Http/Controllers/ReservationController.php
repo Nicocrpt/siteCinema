@@ -10,6 +10,7 @@ use App\Models\Seance;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
@@ -44,10 +45,11 @@ class ReservationController extends Controller
         
         $places = explode(',', $request['places']);
         $prices = explode(',', $request['prices']);
+        $reference = (string) Str::uuid();
 
         Reservation::create([
             'seance_id' => $request['seance'],
-            'reference' => uniqid(),
+            'reference' => $reference,
             'user_id' => Auth::id() ?? null,
             'guest_mail' => $request['email'] ?? null
         ]);

@@ -48,6 +48,7 @@ Route::get('/my-account', [UserController::class, 'homepage'])->name('home');
 Route::put('/my-account/{id}/update', [UserController::class, 'update'])->name('users.update');
 Route::delete('/my-account/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('/my-account/destroyed', [UserController::class, 'destroyed'])->name('users.destroyed');
+Route::get('/my-account/reservation/{id}', [UserController::class, 'showReservation'])->name('users.show.reservation');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
