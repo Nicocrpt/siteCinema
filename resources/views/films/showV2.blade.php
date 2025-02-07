@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <x-footer class="xl:hidden md:bg-zinc-900/80"/> 
+                        <x-footer class="xl:hidden md:dark:bg-zinc-900/80"/> 
                     </div>
 
                     {{-- Seances Film --}}

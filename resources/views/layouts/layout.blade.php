@@ -29,8 +29,9 @@
     >
     <header  
         class="transition-all ease-in-out duration-700 h-14 w-full z-30 fixed"
+        :class="scrolled ? 'backdrop-blur-[15px]' : ''"
         x-init="$watch('scrolled', () => {if(scrolled) {document.querySelector('main').classList.add('min-h-screen') }})"
-        :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; backdrop-filter: blur(15px); padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
+        :style="scrolled ? 'background : rgba(20,20,20,0.3); height : 3.5rem; padding-bottom: 2px' : 'background : linear-gradient(180deg,rgba(0, 0, 0, 0.3) 5%,rgba(0, 0, 0, 0) 100%)'"
         @scroll.window="scrolled = (window.scrollY > window.innerHeight/20)">
         <x-navbars.navbar background="'bg-transparent'" search="true"/>
         
