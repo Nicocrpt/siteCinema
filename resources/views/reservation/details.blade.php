@@ -19,24 +19,28 @@
     }
 </style>
 
-<div class="w-full min-h-[calc(100vh-56px)] h-full mt-[56px] flex max-xs:pt-6 items-start justify-center xs:items-center px-6">
-    <div class="flex justify-center items-center h-[12rem] max-w-[40rem] max-xs:hidden ">
-        <div class=" h-[12rem] py-[4.75rem] w-[4rem] rounded-l-lg border-l border-y flex justify-center items-center bg-zinc-700/30">
-            <p class="-rotate-90 dark:text-zinc-500 text-2xl font-light">Solaris</p>
+<div class="w-full min-h-[calc(100vh-56px)] h-full mt-[56px] flex flex-col max-xs:pt-6 pt-24 items-center justify-start xs:items-center px-6 gap-6">
+    <div class="flex flex-col gap-2 xs:hidden">
+        <h1 class="text-2xl text-center dark:text-white">{{$seance->film->titre}}</h1>
+        <p class="text-center font-light dark:text-white">{{date('d/m/Y h:i', strtotime($seance->datetime_seance))}}</p>
+    </div>
+    <div class="flex justify-center items-center h-[12rem] max-w-[40rem]">
+        <div class=" h-[12rem] py-[4.75rem] w-[4rem] rounded-l-lg border-l border-y flex justify-center items-center bg-zinc-200 dark:bg-zinc-700/30 border-zinc-300">
+            <p class="-rotate-90 dark:text-zinc-500 text-zinc-400 text-2xl font-light ">Solaris</p>
         </div>
-        <div class="h-[12rem] w-[1rem] flex flex-col gap-[0.9rem] justify-between bg-zinc-700/30">
-            <div class="h-[1rem] w-full border-x border-b rounded-b-lg bg-zinc-900"></div>
-            <div class="h-[2rem] w-full border rounded-lg bg-zinc-900"></div>
-            <div class="h-[2rem] w-full border rounded-lg bg-zinc-900"></div>
-            <div class="h-[2rem] w-full border rounded-lg bg-zinc-900"></div>
-            <div class="h-[1rem] w-full border-x border-t rounded-t-lg bg-zinc-900"></div>
+        <div class="h-[12rem] w-[1rem] flex flex-col gap-[0.9rem] justify-between bg-zinc-200 dark:bg-zinc-700/30">
+            <div class="h-[1rem] w-full border-x border-b border-zinc-300 rounded-b-lg bg-zinc-50 dark:bg-zinc-900"></div>
+            <div class="h-[2rem] w-full border border-zinc-300 rounded-lg bg-zinc-50 dark:bg-zinc-900"></div>
+            <div class="h-[2rem] w-full border border-zinc-300 rounded-lg bg-zinc-50 dark:bg-zinc-900"></div>
+            <div class="h-[2rem] w-full border border-zinc-300 rounded-lg bg-zinc-50 dark:bg-zinc-900"></div>
+            <div class="h-[1rem] w-full border-x border-t border-zinc-300 rounded-t-lg bg-zinc-50 dark:bg-zinc-900"></div>
         </div>
-        <div class="h-[12rem] p-4 pl-4 flex justify-center items-center gap-4 border-y border-r rounded-r-lg bg-zinc-700/30">
+        <div class="h-[12rem] p-4 pl-4 flex justify-center items-center gap-4 border-y border-r rounded-r-lg bg-zinc-200 dark:bg-zinc-700/30 border-zinc-300">
             <div class="h-fit">
-                <div class="qrCode">
+                <div class="qrCode max-xs:mx-6">
                     {{
                         QrCode::format('svg')
-                            ->size(150)
+                            ->size(160)
                             ->color(0, 0, 0)
                             ->style('round')  // styles possibles : square, dot, round
                             ->eye('square')   // forme des "yeux" du QR code
@@ -44,23 +48,24 @@
                     }}
                 </div>
             </div>
-            <div class="!h-[9rem] my-1 border"></div>
-            <div class="flex flex-col justify-start h-full">
+            <div class="!h-[9rem] my-1 border border-zinc-300 max-xs:hidden"></div>
+            <div class="flex flex-col justify-start h-full max-xs:hidden">
                 <h1 class="dark:text-white text-xl font-semibold">{{ $seance->film->titre }}</h1>
                 <p class="dark:text-white font-light">{{$reservation->reference}}</p>
                 <div class="mt-2">
-                    <h2 class="dark:text-white text-xl">places réservées :</h2>
+                    <h2 class="dark:text-white text-lg mb-1">places réservées :</h2>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($reservation->reservationlignes as $place)
-                            <p class="dark:text-white bg-slate-500 size-6 text-center rounded">{{$place->place->rangee . $place->place->numero}}</p>
+                            <p class="dark:text-white dark:bg-slate-500 bg-zinc-400/60 size-6 text-center rounded text-sm flex justify-center items-center">{{$place->place->rangee . $place->place->numero}}</p>
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <p class="text-sm font-light italic text-zinc-500">Ce QR code est à présenter à l'entrée du cinéma.</p>
 
-    <div class="flex flex-col justify-center items-center h-fit w-[18rem] mb-6 xs:hidden">
+    {{-- <div class="flex flex-col justify-center items-center h-fit w-[18rem] mb-6 xs:hidden">
         <div class=" h-[4rem] w-full rounded-t-lg border-t border-x flex justify-center items-center bg-zinc-700/30">
             <p class=" dark:text-zinc-500 text-2xl font-light">Solaris</p>
         </div>
@@ -99,6 +104,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection
