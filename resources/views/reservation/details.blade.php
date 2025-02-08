@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <p class="text-sm font-light italic text-zinc-500">Ce QR code est à présenter à l'entrée du cinéma.</p>
+    <p class="text-sm font-light italic text-zinc-500 text-center">Ce QR code est à présenter à l'entrée du cinéma.</p>
 
     {{-- <div class="flex flex-col justify-center items-center h-fit w-[18rem] mb-6 xs:hidden">
         <div class=" h-[4rem] w-full rounded-t-lg border-t border-x flex justify-center items-center bg-zinc-700/30">

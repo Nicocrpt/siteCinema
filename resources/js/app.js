@@ -1032,7 +1032,7 @@ document.addEventListener('alpine:init', () => {
             let dateDiv = document.createElement('div')
             dateDiv.className = " h-full w-16 xxs:w-20 shrink-0 xs:w-16 sm:w-20 dateDiv flex justify-center items-center transition-none"
             dateDiv.innerHTML = `
-                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay.split('T')[0])" class=" py-1 px-2 xxs:px-4 xs:px-2 sm:px-4 rounded-lg flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 transition-color ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200 activeDay' : 'dark:bg-zinc-800/70 bg-zinc-200/60 hover:bg-zinc-300/60 dark:hover:bg-zinc-700/80'">
+                <div @click="activeDay = '${date.toISOString()}'; injectRequiredSeances(activeDay.split('T')[0])" class=" py-1 w-[60px] xxs:w-[74px] xs:w-[60px] sm:w-[74px] rounded-lg flex flex-col justify-center items-center border border-zinc-100 dark:border-zinc-800 transition-color ease-in-out duration-200 cursor-pointer dayDiv" :class="activeDay == '${date.toISOString()}' ? 'bg-zinc-800 dark:bg-zinc-200 activeDay' : 'dark:bg-zinc-800/70 bg-zinc-200/60 hover:bg-zinc-300/60 dark:hover:bg-zinc-700/80'">
                     <p class=" -mt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${dayName.substring(0,3) + '.'}</p>
                     <p class="pt-1 text-sm" :class="activeDay == '${date.toISOString()}' ? 'text-white dark:text-black' : 'dark:text-white'">${formatedDate}</p>
                 </div>

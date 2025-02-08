@@ -5,16 +5,16 @@
     <div x-show="burgerMenu" class="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-[92%] backdrop-blur-md z-40"
         x-transition:enter="transform ease-in-out duration-300" x-transition:enter-start="translate-x-[-100%]" x-transition:enter-end="translate-x-0" x-transition:leave="transform ease-in-out duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-[-100%]">
         <div class="w-full h-full relative">
-            <button class="absolute top-5 right-5" @click="burgerMenu = false; document.body.classList.remove('overflow-hidden')" x-show="burgerMenu" x-transition:enter="transition transform ease-in-out duration-[420ms] delay-100"
+            <button class="absolute top-2 right-2" @click="burgerMenu = false; document.body.classList.remove('overflow-hidden')" x-show="burgerMenu" x-transition:enter="transition transform ease-in-out duration-[420ms] delay-100"
             x-transition:enter-start="opacity-0 rotate-90"
             x-transition:enter-end="opacity-100 rotate-0"
             x-transition:leave="transition transform ease-in-out duration-300"
             x-transition:leave-start="opacity-100 rotate-0" x-transition:leave-end="opacity-0 rotate-90">
-                <svg viewBox="0 0 24 24" width="70" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#ffffff"></path> </g></svg>
+                <svg viewBox="0 0 24 24" width="56" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#ffffff"></path> </g></svg>
             </button>
 
-            <div class="justify-center items-center flex h-full">
-                <ul class="text-white text-4xl sm:text-5xl flex flex-col gap-10 font-semibold">
+            <div class="justify-center items-center flex h-full pb-24">
+                <ul class="text-white text-4xl sm:text-5xl flex flex-col items-center gap-10 font-semibold">
                     <x-animated-li href="{{route('index')}}" content="Accueil" show="burgerMenu" delay="delay-[125ms]"/>
                     <x-animated-li href="{{route('films.index')}}" content="Films" show="burgerMenu" delay="delay-[150ms]"/>
                     <x-animated-li href="{{route('seances.index')}}" content="Seances" show="burgerMenu" delay="delay-[200ms]"/>

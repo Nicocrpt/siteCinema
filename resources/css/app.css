@@ -36,11 +36,11 @@
 
 .swiper{
   width: 100vw;
-  height: 65vh;
-  min-height: 500px !important;
+  height: 70vh;
+  min-height: 400px !important;
   position: relative;
   overflow: hidden;
-  transition: height 0.8s ease-in-out;
+  
 }
 
 .swiper-pagination-bullet {
@@ -51,7 +51,7 @@
   @apply bg-white;
 }
 
-@media (max-width: 109em) {
+@media (max-width: 768px) {
   .swiper {
       height: 50vh;
       min-height: 500px !important;

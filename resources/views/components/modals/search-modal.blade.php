@@ -5,18 +5,18 @@
 </style>
 
 
-<div class="fixed bg-stone-950 bg-opacity-80 !top-0 !left-0 transition-all ease-in-out duration-300 z-40"  style="width: 100%; max-height: 100% ;min-height: 100% !important; backdrop-filter: blur(15px);" x-show="open" x-transition:enter="transition ease-out duration-300" 
+<div class="fixed bg-stone-950 bg-opacity-80 !top-0 !left-0 transition-all ease-in-out duration-300 z-40 backdrop-blur-md"  style="width: 100%; max-height: 100% ;min-height: 100% !important;" x-show="open" x-transition:enter="transition ease-out duration-300" 
 x-transition:enter-start="opacity-0 " 
 x-transition:enter-end="opacity-100" 
 x-transition:leave="transition ease-in duration-300" 
 x-transition:leave-start="opacity-100" 
 x-transition:leave-end="opacity-0">
     <div class="w-full h-full relative flex justify-center">
-        <button @click="open = false" id="exitBtn" class="absolute top-2 md:left-5 md:right-auto right-2 text-white rounded-full font-bold hover:bg-slate-200 hover:bg-opacity-20 transition-all ease-in-out duration-300 p-2"><svg class="h-6 w-6 hover:opacity-90 opacity-70 font-bold" fill="white" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M512.481 421.906L850.682 84.621c25.023-24.964 65.545-24.917 90.51.105s24.917 65.545-.105 90.51L603.03 512.377 940.94 850c25.003 24.984 25.017 65.507.033 90.51s-65.507 25.017-90.51.033L512.397 602.764 174.215 940.03c-25.023 24.964-65.545 24.917-90.51-.105s-24.917-65.545.105-90.51l338.038-337.122L84.14 174.872c-25.003-24.984-25.017-65.507-.033-90.51s65.507-25.017 90.51-.033L512.48 421.906z"></path></g></svg></button>
+        <button @click="open = false" id="exitBtn" class="absolute top-2 md:left-5 lg:left-7 md:right-auto right-2 text-white rounded-full font-bold transition-all ease-in-out duration-300 p-2"><svg class="h-6 w-6 hover:opacity-90 opacity-70 font-bold" fill="white" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M512.481 421.906L850.682 84.621c25.023-24.964 65.545-24.917 90.51.105s24.917 65.545-.105 90.51L603.03 512.377 940.94 850c25.003 24.984 25.017 65.507.033 90.51s-65.507 25.017-90.51.033L512.397 602.764 174.215 940.03c-25.023 24.964-65.545 24.917-90.51-.105s-24.917-65.545.105-90.51l338.038-337.122L84.14 174.872c-25.003-24.984-25.017-65.507-.033-90.51s65.507-25.017 90.51-.033L512.48 421.906z"></path></g></svg></button>
 
         
 
-        <div class="pt-24 flex flex-col w-full max-w-full items-center overflow-hidden overflow-y-scroll" style="max-height: 100vh">
+        <div @click.away="open = false" class="mt-24 flex flex-col w-fit max-w-full items-center overflow-hidden overflow-y-scroll" style="max-height: 100vh">
             <h1 class="text-2xl md:text-3xl font-bold text-white mb-12 ">Que souhaitez vous voir ?</h1>
             <form action="" class="flex justify-center gap-2">
                 @csrf
