@@ -64,7 +64,7 @@
 
     </div>       
 
-    <form action="{{route('seances.transfer', $seance->reference)}}" method="POST" class="fixed bottom-0 left-0 w-full h-16 items-center justify-center">
+    <form action="{{route('seances.transfer', $seance->id)}}" method="POST" class="fixed bottom-0 left-0 w-full h-16 items-center justify-center">
         @csrf
         <input name="seats" type="hidden" x-model="getAllSelected">
         {{-- @error('seats')

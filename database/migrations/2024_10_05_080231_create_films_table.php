@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('url_backdrop')->nullable();
             $table->string('url_trailer')->nullable();
             $table->string('url_logo')->nullable();
-            $table->text('images')->nullable();
             $table->string('duree');
             $table->text('synopsis');
             $table->string('tagline')->nullable();
             $table->foreignId('langue_id')->constrained('langues');
             $table->foreignId('certification_id')->constrained('certifications');
+            $table->boolean('dolby_compatible');
             $table->string('date_sortie');
             $table->boolean('a_laffiche')->default(true);
             $table->foreignId('statut_id')->constrained('statuts');

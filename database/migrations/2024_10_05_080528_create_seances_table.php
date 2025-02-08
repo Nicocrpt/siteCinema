@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->string('reference')->unique();
+            // $table->string('reference')->unique();
             $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade');
             $table->foreignId('film_id')->constrained('films')->onDelete('cascade');
             $table->boolean('vf')->default(true);
-            $table->boolean('dolby_atmos')->default(false);
-            $table->boolean('dolby_vision')->default(false);
+            // $table->boolean('dolby_atmos')->default(false);
+            // $table->boolean('dolby_vision')->default(false);
             $table->dateTime('datetime_seance');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();

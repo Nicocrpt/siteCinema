@@ -12,7 +12,7 @@ class Seance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'film_id', 'salle_id', 'datetime_seance', 'vf', 'dolby_atmos', 'dolby_vision', 'reference'
+        'film_id', 'salle_id', 'datetime_seance', 'vf'
     ];
 
     public function reservations(): HasMany

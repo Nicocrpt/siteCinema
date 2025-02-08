@@ -30,7 +30,8 @@ class SeanceController extends Controller
 
     public function show($reference): View
     {
-        $seance = Seance::where('reference', $reference)->with('film')->with('salle')->first();
+        // $seance = Seance::where('reference', $reference)->with('film')->with('salle')->first();
+        $seance = Seance::where('id', $reference)->with('film')->with('salle')->first();
         $reservations = Reservation::where('seance_id', $seance->id)->with('reservationlignes')->get();
         $places = [];
         foreach($reservations as $reservation){
@@ -56,7 +57,8 @@ class SeanceController extends Controller
 
         session([
             'places' => explode(',', $request->seats),
-            'seance' => Seance::where('reference', $reference)->with('salle')->with('film')->first()
+            // 'seance' => Seance::where('reference', $reference)->with('salle')->with('film')->first()
+            'seance' => Seance::where('id', $reference)->with('salle')->with('film')->first()
         ]);
         
         

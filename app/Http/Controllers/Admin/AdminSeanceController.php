@@ -79,7 +79,7 @@ class AdminSeanceController extends Controller
                     'title' => $seance->film->titre . $language,
                     'start' => $startDatetime->toIso8601String(),
                     'end' => $startDatetime->copy()->addMinutes((int) $seance->film->duree + 30)->toIso8601String(),
-                    'reference' => $seance->reference,
+                    'reference' => $seance->id,
                     'salle' => $salle,
                     'color' => $color,
                     'editable' => $editable,
@@ -139,22 +139,22 @@ class AdminSeanceController extends Controller
         try {
             $request->validate([
                 'film' => ['required', 'integer'],
-                'reference' => ['required', 'string', 'max:8'],
+                // 'reference' => ['required', 'integer'],
                 'salle' => ['required', 'integer'],
                 'datetime_seance' => ['required', 'date'],
                 'langue' => ['required', 'integer']
             ]);
+            
 
             $datetime_seance = Carbon::parse($request->datetime_seance)->format('Y-m-d H:i:s');
+            
 
             Seance::create([
                 'film_id' => $request->film,
-                'reference' => $request->reference,
+                // 'reference' => $request->reference,
                 'salle_id' => $request->salle,
                 'datetime_seance' => $datetime_seance,
-                'vf' => $request->langue,
-                'dolby_vision' => 0,
-                'dolby_atmos' => 0
+                'vf' => $request->langue
             ]);
 
             $films = Film::with(['genres', 'seances'])->get();
@@ -172,13 +172,13 @@ class AdminSeanceController extends Controller
     public function update(Request $request) {
         try {
             $request->validate([
-                'reference' => ['required', 'string', 'max:8'],
+                'reference' => ['required', 'integer'],
                 'datetime_seance' => ['required', 'date'],
             ]);
 
             $datetime_seance = Carbon::parse($request->datetime_seance)->format('Y-m-d H:i:s');
 
-            Seance::where('reference', $request->reference)->update([
+            Seance::where('id', $request->reference)->update([
                 'datetime_seance' => $datetime_seance,
             ]);
 

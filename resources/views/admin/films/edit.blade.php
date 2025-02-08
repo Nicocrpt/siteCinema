@@ -230,12 +230,24 @@
             <div class="flex flex-col gap-2">
                 <label for="isFavorite" class="text-zinc-800 dark:text-white font-semibold">Le film sera-t-il en tête d'affiche ?</label>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="isFavorite" id="isFavorite" value="1">
+                    <input type="radio" name="isFavorite" id="isFavorite" value="1" {{$film->est_favori == 1 ? 'checked' : ''}}>
                     <label for="isFavorite" class="text-zinc-800 dark:text-white">Oui</label>
                 </div>
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="isFavorite" id="isNotFavorite" value="0" checked>
+                    <input type="radio" name="isFavorite" id="isNotFavorite" value="0" {{$film->est_favori == 0 ? 'checked' : ''}}>
                     <label for="isNotFavorite" class="text-zinc-800 dark:text-white">Non</label>
+                </div> 
+            </div>
+            {{-- Dolby Compatible --}}
+            <div class="flex flex-col gap-2">
+                <label for="isFavorite" class="text-zinc-800 dark:text-white font-semibold">Le film est il compatible Dolby Atmos et Dolby Vision ?</label>
+                <div class="flex items-center gap-2">
+                    <input type="radio" name="dolbyCompatible" id="isDolbyCompatible" value="1" {{$film->dolby_compatible == 1 ? 'checked' : ''}}>
+                    <label for="isDolbyCompatible" class="text-zinc-800 dark:text-white">Oui</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="radio" name="dolbyCompatible" id="isNotDolbyCompatible" value="0" {{$film->dolby_compatible == 0 ? 'checked' : ''}}>
+                    <label for="isNotDolbyCompatible" class="text-zinc-800 dark:text-white">Non</label>
                 </div> 
             </div>
             {{-- Certification --}}
@@ -273,7 +285,7 @@
             <div class="flex-col gap-2 flex" x-data="{imgSelector: false}">
                 <label for="images" class="text-zinc-800 dark:text-white font-semibold">Images</label>
                 <div class="border border-zinc-400 rounded items-start h-auto bg-white dark:bg-zinc-500 flex flex-wrap p-2 gap-2 min-w-[8rem] w-auto" id="imgReciever">
-                        @foreach (explode(',', $film->images) as $image)
+                        @foreach ($film->images->pluck('url_image') as $image)
                             <div class="relative w-[13.4rem] img-{{$tmdb_backdrops->search(str_replace('https://image.tmdb.org/t/p/original', '', $image))}}" id="img-{{$tmdb_backdrops->search(str_replace('https://image.tmdb.org/t/p/original', '', $image))}}">
                                 <img src="{{$image}}" class="border border-zinc-400 w-[13.4rem] rounded"/>
                                 <button type="button"@click="$el.parentElement.remove(); removeSelectedImage({{$tmdb_backdrops->search(str_replace('https://image.tmdb.org/t/p/original', '', $image))}})" class="absolute top-1 right-1 bg-white bg-opacity-70 rounded-full">
@@ -286,7 +298,7 @@
                         
                     <div class="w-[1018px] h-full my-auto flex flex-col border-zinc-600 border rounded">
                         <div class="w-full h-16 bg-zinc-300 dark:bg-zinc-800 rounded-t shadow-sm z-20 border-b dark:border-zinc-600 border-zinc-400 flex justify-between px-4 items-center">
-                            <p class="text-lg font-semibold dark:text-white"><span id="counter">{{count(explode(',', $film->images))}}</span>/8</p>
+                            <p class="text-lg font-semibold dark:text-white"><span id="counter">{{$film->images->count()}}</span>/8</p>
                             <button type="button"@click="imgSelector = false" class="bg-zinc-700 rounded-md h-fit p-2">
                                 <svg width="18" class="fill-white" viewBox="0 0 15 15" version="1.1" id="cross" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.64,1.27L7.5,6.13l4.84-4.84C12.5114,1.1076,12.7497,1.0029,13,1c0.5523,0,1,0.4477,1,1
                                 c0.0047,0.2478-0.093,0.4866-0.27,0.66L8.84,7.5l4.89,4.89c0.1648,0.1612,0.2615,0.3796,0.27,0.61c0,0.5523-0.4477,1-1,1
@@ -308,7 +320,7 @@
                 <div class="w-full h-full flex justify-start items-center">
                     <button type="button"class="border border-zinc-500 py-1 px-2 rounded bg-zinc-100 dark:bg-zinc-600 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-500 text-zinc-600" @click="imgSelector = true">Séléctionner/ajouter une image</button>
                 </div>
-                <input type="text" value="{{$film->images}}" id="imagesString" name="images_string" class="hidden">
+                <input type="text" value="{{implode(',', $film->images->pluck('url_image')->toArray())}}" id="imagesString" name="images_string" class="hidden">
             </div>
         </section>
         <div class="!w-[100%] !h-42 !p-0 !m-0 bg-zinc-950  shadow-none z-0">
@@ -602,8 +614,9 @@
                 'logo_path': document.querySelector('[name="logo_path"]').value,
                 'poster_path': document.querySelector('[name="poster_path"]').value,
                 'trailer_path': document.querySelector('[name="trailer"]').value,
-                'is_favorite' : document.querySelector('[name="isFavorite"]').value,
-                'certification': document.querySelector('[name="certification"]').value,
+                'is_favorite' : document.querySelector('[name="isFavorite"]:checked')?.value,
+                'isDolbyCompatible': document.querySelector('[name="dolbyCompatible"]:checked')?.value,
+                'certification': document.querySelector('[name="certification"]:checked')?.value,
                 'images_string': imagesString.value
             })
         })

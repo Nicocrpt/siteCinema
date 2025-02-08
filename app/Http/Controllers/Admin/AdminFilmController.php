@@ -7,6 +7,7 @@ use App\Models\Acteur;
 use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Image;
 use App\Models\Realisateur;
 use App\Models\Seance;
 use App\Services\TmdbService;
@@ -152,6 +153,7 @@ class AdminFilmController extends Controller
                 'poster_path' => ['required', 'string'],
                 'trailer_path' => ['required', 'string'],
                 'is_favorite' => ['required', 'boolean'],
+                'isDolbyCompatible' => ['required', 'boolean'],
                 'certification' => ['required'],
                 'images_string' => ['required', 'string'],
             ]);
@@ -177,12 +179,21 @@ class AdminFilmController extends Controller
                 'titre' => $request->titre,
                 'synopsis' => $request->synopsis,
                 'certification_id' => $certification,
-                'images' => $request->images_string,
+                'dolby_compatible' => $request->isDolbyCompatible,
                 'est_favori' => $request->is_favorite,
                 'url_backdrop' => $request->backdrop_path,
                 'url_affiche' => $request->poster_path,
                 'url_logo' => $request->logo_path,
             ]);
+
+            $film->images()->delete();
+
+            foreach (explode(',', $request->images_string) as $image) {
+                Image::create([
+                    'film_id' => $film->id,
+                    'url_image' => $image
+                ]);
+            }
 
             $genreIds = [];
             foreach($request->genres as $genre) {
@@ -345,6 +356,7 @@ class AdminFilmController extends Controller
                 'poster_path' => 'required',
                 'trailer' => 'required',
                 'isFavorite' => 'required',
+                'dolbyCompatible' => 'required',
                 'certification' => 'required',
                 'publish' => ['required', 'integer'],
             ]);
@@ -358,10 +370,11 @@ class AdminFilmController extends Controller
             $movie['logo_path'] = $request->logo_path;
             $movie['poster_path'] = $request->poster_path;
             $movie['trailer'] = $request->trailer;
-            $movie['images'] = $request->images_string;
+            $movie['images'] = explode(',', $request->images_string);
             $movie['isFavorite'] = $request->isFavorite;
             $movie['certification'] = $request->certification;
             $movie['publish'] = $request->publish;
+            $movie['isDolbyCompatible'] = $request->dolbyCompatible;
     
             $tmdbClient->addCustomMovieToDb($movie);
 

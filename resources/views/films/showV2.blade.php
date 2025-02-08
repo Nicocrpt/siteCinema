@@ -95,9 +95,8 @@
                             <div class="md:w-full mx-auto xl:w-[100%] h-auto rounded md:max-w-[52rem] xl:max-w-full">
                                 <h1 class="text-2xl font-semibold dark:text-white mb-4">Gallerie</h1>
                                 <div class="p-[0.1rem] rounded border dark:border-zinc-600">
-                                    <x-carousels.monoimageSlider :images="explode(',', $film->images)" x-ref="imgSrc"/>
+                                    <x-carousels.monoimageSlider :images="$film->images->pluck('url_image')->toArray()" x-ref="imgSrc"/>
                                 </div>
-                                
                             </div>
 
                             <div class="mt-8 xl:mb-12 rounded border dark:border-zinc-700 dark:bg-zinc-600/50 p-4 bg-zinc-100 xl:hidden block">

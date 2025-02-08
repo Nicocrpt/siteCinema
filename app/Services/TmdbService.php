@@ -110,7 +110,7 @@ class TmdbService
         $count = 0 ;
         foreach ($dataIMG['backdrops'] as $result)
         {   
-            if ($count <= 8) {                
+            if ($count < 8) {                
                 if ($result['iso_639_1'] == null) {
                     $backdropCollection[] = "https://image.tmdb.org/t/p/original" . $result['file_path'];
                     $count++;
@@ -118,7 +118,7 @@ class TmdbService
             }
         }
 
-        $data['images'] = implode(',', $backdropCollection);
+        $data['images'] = $backdropCollection;
 
 
         $frCount = 0 ;
@@ -189,12 +189,19 @@ class TmdbService
             'url_affiche' => 'https://image.tmdb.org/t/p/original' . $movie['poster_path'],
             'url_backdrop' => 'https://image.tmdb.org/t/p/original' . $movie['backdrop_path'],
             'url_trailer' => $trailer,
-            'images' => $movie['images'],
+            'dolby_compatible' => rand(0, 1),
             'url_logo' => $movie['url_logo'],
             'duree' => $movie['runtime'],
             'statut_id' => 1,
             
         ]);
+
+        foreach ($movie['images'] as $image) {
+            DB::table('images')->insert([
+                'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
+                'url_image' => $image,
+            ]);
+        }
 
         $countries = Pays::whereIn('alpha_2', $movie['origin_country'])->get();
 
@@ -366,13 +373,21 @@ class TmdbService
             'url_backdrop' => $movie['backdrop_path'],
             'url_trailer' => $trailer,
             'url_logo' => $movie['logo_path'],
-            'images' => $movie['images'],
             'duree' => $movie['runtime'],
             'est_favori' => $movie['isFavorite'], 
+            'dolby_compatible' => $movie['isDolbyCompatible'],
             'statut_id' => $statut_id
         ]);
 
         var_dump('check films');
+
+        foreach ($movie['images'] as $image) {
+            DB::table('images')->insert([
+                'film_id' => Film::where('tmdb_id', $movie['id'])->first()->id,
+                'url_image' => $image
+            ]);
+        }
+        var_dump('check images');
 
         
         $countries = Pays::whereIn('alpha_2', $movie['origin_country'])->get();

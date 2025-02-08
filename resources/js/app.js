@@ -46,7 +46,7 @@ document.addEventListener('alpine:init', () => {
                 const draggable = new Draggable(document.getElementById('filmsContainer'), {
                     itemSelector: '.draggableElement.active',
                     eventData: function (eventEl) {
-                        const ref = alpineContext.generateNumeric(8)
+                        // const ref = document.querySelectorAll('.fc-event').length + 1
                         const language = eventEl.getAttribute('data-language') == "1" ? " (VF)" : " (VO)"
                         let salleId;
                         switch (eventEl.getAttribute('datacolor')) {
@@ -66,7 +66,7 @@ document.addEventListener('alpine:init', () => {
                             color: eventEl.getAttribute('datacolor'),
                             extendedProps: {
                                 filmId : parseInt(eventEl.getAttribute('data-id')),
-                                ref : ref,
+                                // ref : ref,
                                 salle : salleId,
                                 langue : parseInt(eventEl.getAttribute('data-language'))
                             }
@@ -125,6 +125,7 @@ document.addEventListener('alpine:init', () => {
                         if (existingEvents.length > 1) {
                             info.event.remove();  // Supprime l'événement en double
                         }
+                        console.log(info.event)
 
                         fetch('/admin/seances/add', {
                             method: 'POST',
@@ -136,7 +137,7 @@ document.addEventListener('alpine:init', () => {
                                 film: info.event.extendedProps.filmId,
                                 datetime_seance: info.event.start,
                                 salle: parseInt(info.event.extendedProps.salle),
-                                reference: info.event.extendedProps.ref,
+                                // reference: info.event.extendedProps.ref,
                                 langue: parseInt(info.event.extendedProps.langue)
                             })
                         })
@@ -144,6 +145,7 @@ document.addEventListener('alpine:init', () => {
                         .then(data => {
                             alpineContext.queryMovies()
                             //info.event.setExtendedProp('id', data.id); // Mettre à jour l'ID depuis la réponse serveur
+                            console.log(data)
                         })
                         .catch(error => {
                             console.error('Erreur lors de l\'ajout:', error);
@@ -1173,7 +1175,7 @@ document.addEventListener('alpine:init', () => {
                                 if (seance.datetime_seance.split(' ')[0] == date.split('T')[0]) {
                                     let seanceP = document.createElement('p')
                                     seanceP.innerHTML += `                                
-                                        <a href="/seance/${seance.reference}">
+                                        <a href="/seance/${seance.id}">
                                             <div class="flex justify-center items-center w-fit rounded-sm bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-1 px-1 gap-2 transition-all ease-in-out duration-200 group border border-zinc-300 dark:border-zinc-400/50">
                                                 <p class="dark:text-white">${seance.datetime_seance.split(' ')[1].split(':').splice(0,2).join(':')}</p>
                                                 ${seance.vf == 1 ? '<p class="text-sm bg-zinc-700 text-white rounded px-1 dark:group-hover:bg-zinc-500 transition-all ease-in-out duration-200" title="Francais">VF</p>' : '<p class="bg-zinc-900 text-white rounded px-1 text-sm">VO</p>'}

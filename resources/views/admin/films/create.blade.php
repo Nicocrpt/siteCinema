@@ -133,6 +133,18 @@
             </div>
 
             <div class="flex flex-col gap-2">
+                <label for="isFavorite" class="text-zinc-800 dark:text-white font-semibold">Le film est il compatible Dolby Atmos et Dolby Vision ?</label>
+                <div class="flex items-center gap-2">
+                    <input type="radio" name="dolbyCompatible" id="isDolbyCompatible" value="1">
+                    <label for="isFavorite" class="text-zinc-800 dark:text-white">Oui</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="radio" name="dolbyCompatible" id="isNotDolbyCompatible" value="0" checked>
+                    <label for="isNotFavorite" class="text-zinc-800 dark:text-white">Non</label>
+                </div> 
+            </div>
+
+            <div class="flex flex-col gap-2">
                 <label for="certification" class="text-zinc-800 dark:text-white font-semibold">Certification à appliquer :</label>
                 <div class="flex items-center gap-2">
                     <input type="radio" name="certification" id="toutPublic" value="Touts publics" {{$movie['certification'] == "Touts publics" ? 'checked' : ''}}>

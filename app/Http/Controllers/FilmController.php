@@ -12,6 +12,7 @@ use App\Models\Compositeur;
 use App\Models\Film;
 use App\Models\Filmgenre;
 use App\Models\Genre;
+use App\Models\Image;
 use App\Models\Pays;
 use App\Models\Realisateur;
 use App\Models\Reservation;
@@ -122,7 +123,7 @@ class FilmController extends Controller
 
     public function show($slug): View
     {
-        $film = Film::where('slug', $slug)->first();
+        $film = Film::where('slug', $slug)->with('images')->first();
         $duration = $film->formatDuration();
 
         $datesSeances = [];

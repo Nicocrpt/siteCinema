@@ -20,18 +20,14 @@ class SeanceFactory extends Factory
     {
         $salle = Salle::all()->random();
 
-        if($salle->id === 1){
-            $dolby_atmos = rand(0, 1);
-            $dolby_vision = rand(0, 1);
-        }
         return [
-            'reference' => fake('fr_FR')->ean8(),
+            // 'reference' => fake('fr_FR')->ean8(),
             'salle_id' => $salle->id,
             'film_id' => Film::all()->random()->id,
             'datetime_seance' => fake('fr_FR')->dateTimeBetween('now', '+1 week'),
             'vf' => rand(0, 1),
-            'dolby_atmos' => $dolby_atmos ?? false,
-            'dolby_vision' => $dolby_vision ?? false,
+            // 'dolby_atmos' => $dolby_atmos ?? false,
+            // 'dolby_vision' => $dolby_vision ?? false,
         ];
     }
 }

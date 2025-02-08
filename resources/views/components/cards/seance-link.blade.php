@@ -1,4 +1,4 @@
-<a href="{{ route('seances.show', $seance->reference)}}">
+<a href="{{ route('seances.show', $seance->id)}}">
     <div class="flex justify-center items-center rounded bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-500 dark:hover:bg-zinc-400 py-2 px-2 shadow gap-2 transition-all ease-in-out duration-200 group">
         <p class="dark:text-white font-semibold">{{ date('H:i', strtotime($seance->datetime_seance))}}</p>
             @if($seance->dolby_atmos)
