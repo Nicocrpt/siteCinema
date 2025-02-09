@@ -23,16 +23,20 @@ class AdminLoginController extends Controller
                     $user = User::find(Auth::user()->id);
                     $success['token'] =  $user->createToken('MyApp')->plainTextToken; 
                     $success['name'] =  $user->nom;
-                    return response()->json(['success' => $success], 200);
+                    return response()->json(['success' => true,
+                    'user' => $success], 200);
                 } else {
-                    return response()->json(['error' => 'User find but Not Admin'], 401);
+                    return response()->json(['success' => false,
+                        'error' => 'User find but Not Admin'], 401);
                 }
             
             } else {
-                return response()->json(['error' => 'User not found'], 401);
+                return response()->json(['success' => false,
+                    'error' => 'User not found'], 401);
             }
         }catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 401);
+            return response()->json(['success' => false,
+                'error' => $e->getMessage()], 401);
         }
     }
 
