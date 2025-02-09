@@ -14,10 +14,16 @@ class AdminReservationController extends Controller
 
         try {
             $request->validate([
-                'reference' => 'required|exists:reservations,reference'
+                'reference' => 'required'
             ]);
 
             $reservation = Reservation::where('reference', $request['reference'])->with('reservationlignes')->first();
+
+            if (!$reservation) {
+                return response()->json([
+                    'Error' => 'Reservation introuvable'
+                ]);
+            }
 
             if ($reservation->is_active) {
 
@@ -26,16 +32,18 @@ class AdminReservationController extends Controller
                 $seance = Seance::where('id', $reservation->seance_id)->with('film')->with('salle')->first();
                 
                 return response()->json([
-                    'success' => 'Opération effecutée',
+                    'success' => 'Réservation Validée',
                     'data' => [
-                        'status' => 'Reservation validée',
-                        'reservation' => $reservation,
-                        'seance' => $seance,
+                        'film' => [
+                            'titre' => $seance->film->titre,
+                            'image' => $seance->film->url_affiche,        
+                        ],
+                        'salle' => 'Salle ' . $seance->salle->id,
                     ]
-                ], 200);
+                ]);
             } else {
                 return response()->json([
-                    'error' => 'Opération non effecutée'
+                    'error' => 'Réservation déjà validée'
                 ]);
             }
 
