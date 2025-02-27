@@ -30,6 +30,7 @@ class AdminReservationController extends Controller
                 $reservation->is_active = false;
                 $reservation->save();
                 $seance = Seance::where('id', $reservation->seance_id)->with('film')->with('salle')->first();
+
                 
                 return response()->json([
                     'success' => 'Réservation Validée',
@@ -39,6 +40,7 @@ class AdminReservationController extends Controller
                             'image' => $seance->film->url_affiche,        
                         ],
                         'salle' => 'Salle ' . $seance->salle->id,
+                        'places' => $reservation->reservationlignes->count()
                     ]
                 ]);
             } else {
