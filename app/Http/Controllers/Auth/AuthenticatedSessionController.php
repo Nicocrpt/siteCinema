@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->is_admin) {
             return redirect()->route('admin.films.manage');
         }
-        return redirect()->intended(route('home', absolute: false));
+        return redirect()->back();
     }
 
     /**

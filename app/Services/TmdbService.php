@@ -23,28 +23,11 @@ class TmdbService
 
     public function __construct()
     {
-        // Crée une instance du client Guzzle
         $this->client = new Client();
-        // Remplace par ta clé API TMDB
         $this->apiKey = env('TMDB_API_KEY'); 
     }
 
-    // public function getGenres()
-    // {
-    //     $response = $this->client->request('GET', "https://api.themoviedb.org/3/genre/movie/list?language=fr-FR&api_key=$this->apiKey", [
-    //         'headers' => [
-    //             'accept' => 'application/json',
-    //         ],
-    //     ]);
-
-    //     $data = json_decode($response->getBody(), true); // json_decode()
-
-    //     return $data['genres'];
-    // }
-
-
-    public function queryFilms($query)
-    {
+    public function queryFilms($query) {
         $response = $this->client->request('GET', "https://api.themoviedb.org/3/search/movie?query=$query&include_adult=false&language=fr-FR&page=1&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
@@ -56,8 +39,7 @@ class TmdbService
         return $data['results'];
     }
 
-    public function getFilmById($id)
-    {
+    public function getFilmById($id) {
         $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=videos&language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
@@ -159,8 +141,7 @@ class TmdbService
         return $data;
     }
 
-    public function addMovieToDb($id): void
-    {
+    public function addMovieToDb($id, $statut_id) {
         $tmdbClient = new TmdbService;
 
         $movie = $tmdbClient->getFilmById($id);
@@ -192,7 +173,7 @@ class TmdbService
             'dolby_compatible' => rand(0, 1),
             'url_logo' => $movie['url_logo'],
             'duree' => $movie['runtime'],
-            'statut_id' => 1,
+            'statut_id' => $statut_id,
             
         ]);
 
@@ -296,9 +277,7 @@ class TmdbService
     
     }
 
-
-    public function getAllFilmById($id)
-    {
+    public function getAllFilmById($id) {
         $response = $this->client->request('GET', "https://api.themoviedb.org/3/movie/$id?append_to_response=videos&language=fr-FR&api_key=$this->apiKey", [
             'headers' => [
                 'accept' => 'application/json',
@@ -354,9 +333,7 @@ class TmdbService
         return $data;
     }
 
-
-    public function addCustomMovieToDb($movie)
-    {   
+    public function addCustomMovieToDb($movie) {   
        $trailer = $movie['trailer'] ? $movie['trailer'] : null ;
        $statut_id = $movie['publish'] ? 3 : 2 ;
 
@@ -511,7 +488,6 @@ class TmdbService
         ];
 
     }
-
     public function getGenres() {
         $response = $this->client->request('GET', "https://api.themoviedb.org/3/genre/movie/list?language=fr-FR&api_key=$this->apiKey", [
             'headers' => [

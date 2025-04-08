@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reservationlignes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservation_id')->constrained('reservations');
+            $table->foreignId('seance_id')->constrained('seances');
             $table->foreignId('place_id')->constrained('places');
             $table->decimal('prix');
             $table->boolean('is_active')->default(true);
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             $table->unique(['reservation_id', 'place_id']);
+            $table->unique(['seance_id', 'place_id']);
             $table->index('reservation_id');
         });
     }

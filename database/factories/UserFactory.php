@@ -35,13 +35,6 @@ class UserFactory extends Factory
             'prenom' => $prenom,
             'email' => fake('fr_FR')->safeEmail(),
             'email_verified_at' => now(),
-            'telephone' => fake('fr_FR')->phoneNumber(),
-            'adresse' => fake('fr_FR')->streetAddress(),
-            'code_postal' => fake('fr_FR')->postcode(),
-            'ville' => fake('fr_FR')->city(),
-            'pays_id' => $pays,
-            'statut_abo' => rand(0, 1),
-            'is_admin' => false,
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

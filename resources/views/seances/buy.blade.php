@@ -44,7 +44,7 @@
 
                 <div class="flex gap-2 justify-center md:hidden">
                     <p class="text-xl dark:text-white">Total :</p>
-                    <p class="text-xl font-bold dark:text-white"><span id="total" class="font-bold"> 0</span>€</p>
+                    <p class="text-xl font-bold dark:text-white"><span class="font-bold total"> 0</span>€</p>
                 </div>
             </div>
             
@@ -107,7 +107,7 @@
                                     </div>
                                     
                                 </div>
-                                <p class="text-center text-xs md:text-sm italic font-light dark:text-zinc-300 text-zinc-700">Pour le tarif étudiant, un justificatif vous sera demandé à l'entrée du cinéma</p>
+                                <p class="text-center text-xs md:text-sm italic font-light dark:text-zinc-300 text-zinc-700">Pour le tarif étudiant, un justificatif vous sera demandé à l'entrée du cinéma.</p>
                                 @csrf
                             </form>
                             
@@ -116,7 +116,7 @@
                     </div>
                     <div class="hidden gap-2 justify-center md:flex mt-10">
                         <p class="text-xl dark:text-white">Total :</p>
-                        <p class="text-xl font-bold dark:text-white"><span id="total" class="font-bold"> 0</span>€</p>
+                        <p class="text-xl font-bold dark:text-white"><span class="font-bold total"> 0</span>€</p>
                     </div>
                 </div>
                 

@@ -12,6 +12,7 @@ class Reservationligne extends Model
 
     protected $fillable = [
         'reservation_id',
+        'seance_id',
         'place_id',
         'prix',
         'is_active'
@@ -25,5 +26,10 @@ class Reservationligne extends Model
     public function place(): BelongsTo
     {
         return $this->belongsTo(Place::class);
+    }
+
+    public function seance(): BelongsTo
+    {
+        return $this->belongsTo(Seance::class);
     }
 }

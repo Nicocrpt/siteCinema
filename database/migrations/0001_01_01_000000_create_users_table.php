@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,15 +18,9 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('telephone');
-            $table->string('adresse')->nullable()->default(null);
-            $table->string('code_postal')->nullable()->default(null);
-            $table->string('ville')->nullable()->default(null);
-            $table->foreignId('pays_id')->nullable()->constrained('payss');
-            $table->boolean('statut_abo')->default(false);
             $table->integer('points_fidelite')->default(0);
             $table->string('password');
-            $table->boolean('is_admin')->default(false);
+            $table->enum('role', array_column(Role::cases(), 'value'))->default(Role::Utilisateur->value);
             $table->rememberToken();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -33,12 +28,7 @@ return new class extends Migration
 
             //Indexes et contraintes
             $table->unique('email');
-            $table->unique('telephone');
-            $table->unique(['nom', 'prenom']);
-            $table->index('code_postal');
-            $table->index('pays_id');
-            $table->index('statut_abo');
-            $table->index('ville');
+            $table->unique(['nom', 'prenom', 'email']);
 
         });
 

@@ -67,6 +67,8 @@
 
                 @include('users.partials.infosPerso')
 
+                @include('users.partials.password')
+
 
                 {{-- Avantages --}}
 

@@ -35,14 +35,11 @@ class UserController extends Controller
             'Nom' => ['required', 'string', 'max:255'],
             'Prenom' => ['required', 'string', 'max:255',],
             'Mail' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'Telephone' => ['required', 'string', 'max:255'],
         ],
         [
             'Nom.required' => 'Ce nom n\'est pas valide.',
             'Prenom.required' => 'Ce prénom n\'est pas valide.',
             'Mail.required' => 'Cet email n\'est pas valide.',
-            'Telephone.required' => 'Ce téléphone n\'est pas valide.',
-
         ]);
 
         try {
@@ -50,7 +47,6 @@ class UserController extends Controller
                 'nom' => $request->Nom,
                 'prenom' => $request->Prenom,
                 'email' => $request->Mail,
-                'telephone' => $request->Telephone,
             ]);
 
             $output = [
@@ -59,10 +55,6 @@ class UserController extends Controller
                     'Nom' => $user->nom,
                     'Prenom' => $user->prenom,
                     'Mail' => $user->email,
-                    'Telephone' => $user->telephone,
-                    'Adresse' => $user->adresse,
-                    'CodePostal' => $user->code_postal,
-                    'Ville' => $user->ville
                 ]
             ];
 

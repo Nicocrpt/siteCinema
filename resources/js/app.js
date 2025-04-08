@@ -553,7 +553,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('selectPrices', () => ({
         places: window.selectedPlaces.length,
         placesMax: window.selectedPlaces.length,
-        totalHTML: document.getElementById('total'),
+        totalHTML: document.querySelectorAll('.total'),
         total: 0,
         totalArray : [],
         index: 0,
@@ -569,24 +569,23 @@ document.addEventListener('alpine:init', () => {
 
                     this.total += 9
                     this.totalArray.push(9)
-                    this.totalHTML.innerHTML = this.total.toString()
+                    this.totalHTML.forEach(total => {
+                        total.innerHTML = this.total.toString()
+                    })
 
                     console.log(this.places)
                     if (this.places == 0) {
-                        button.classList.remove('bg-cyan-500')
-                        button.classList.add('bg-zinc-200')
-                        button.classList.add('text-zinc-400')
-                        document.getElementById('plusET').classList.remove('bg-cyan-500')
-                        document.getElementById('plusET').classList.add('bg-zinc-200')
-                        document.getElementById('plusET').classList.add('text-zinc-400')
+                        button.classList.remove('bg-yellow-500', 'dark:bg-yellow-600')
+                        button.classList.add('bg-zinc-200', 'text-zinc-400')
+                        document.getElementById('plusET').classList.remove('bg-yellow-500', 'dark:bg-yellow-600')
+                        document.getElementById('plusET').classList.add('bg-zinc-200', 'text-zinc-400')
                         if (document.getElementById('priceET').value == 0) {
                             let other = document.getElementById('plusET')
-                            other.classList.remove('bg-cyan-500')
+                            other.classList.remove('bg-yellow-500', 'dark:bg-yellow-600')
                             other.classList.add('bg-zinc-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusET').setAttribute('disabled', 'true')
-                            document.getElementById('minusET').classList.add('bg-zinc-200')
-                            document.getElementById('minusET').classList.add('text-zinc-400')
+                            document.getElementById('minusET').classList.add('bg-zinc-200', 'text-zinc-400')
                             document.getElementById('minusET').classList.remove('bg-zinc-300')
                             document.getElementById('priceET').classList.add('text-zinc-200')
                             document.getElementById('priceET').setAttribute('disabled', 'true')
@@ -605,18 +604,17 @@ document.addEventListener('alpine:init', () => {
                         this.totalArray.splice(this.index, 1)
                     }
 
-                    this.totalHTML.innerHTML = this.total.toString()
-                    document.getElementById('plusSTD').classList.remove('bg-zinc-300')
-                    document.getElementById('plusSTD').classList.add('bg-cyan-500')
-                    document.getElementById('plusSTD').classList.remove('text-zinc-400')
+                    this.totalHTML.forEach(total => {
+                        total.innerHTML = this.total.toString()
+                    })
+                    document.getElementById('plusSTD').classList.remove('bg-zinc-200', 'text-zinc-400')
+                    document.getElementById('plusSTD').classList.add('bg-yellow-500', 'dark:bg-yellow-600')
 
-                    document.getElementById('plusET').classList.add('bg-cyan-500')
-                    document.getElementById('plusET').classList.remove('bg-zinc-200')
-                    document.getElementById('plusET').classList.remove('text-zinc-400')
+                    document.getElementById('plusET').classList.add('bg-yellow-500', 'dark:bg-yellow-600')
+                    document.getElementById('plusET').classList.remove('bg-zinc-200', 'text-zinc-400')
                     document.getElementById('plusET').removeAttribute('disabled')
                     document.getElementById('minusET').removeAttribute('disabled')
-                    document.getElementById('minusET').classList.remove('bg-zinc-200')
-                    document.getElementById('minusET').classList.remove('text-zinc-400')
+                    document.getElementById('minusET').classList.remove('bg-zinc-200', 'text-zinc-400')
                     document.getElementById('minusET').classList.add('bg-zinc-300')
                     document.getElementById('priceET').classList.remove('text-zinc-200')
                     document.getElementById('priceET').removeAttribute('disabled')
@@ -634,24 +632,22 @@ document.addEventListener('alpine:init', () => {
                     this.places = this.places - 1
                     this.total += 6
                     this.totalArray.push(6)
-                    this.totalHTML.innerHTML = this.total.toString()
+                    this.totalHTML.forEach(total => {
+                        total.innerHTML = this.total.toString()
+                    })
                     console.log(this.places)
                     if (this.places == 0) {
-                        button.classList.remove('bg-cyan-500')
-                        button.classList.add('bg-zinc-200')
-                        button.classList.add('text-zinc-400')
-                        document.getElementById('plusSTD').classList.add('bg-zinc-200')
-                        document.getElementById('plusSTD').classList.remove('bg-zinc-300')
-                        document.getElementById('plusSTD').classList.remove('bg-cyan-500')
-                        document.getElementById('plusSTD').classList.add('text-zinc-400')
+                        button.classList.remove('bg-yellow-500', 'dark:bg-yellow-600')
+                        button.classList.add('bg-zinc-200', 'text-zinc-400')
+                        document.getElementById('plusSTD').classList.add('bg-zinc-200', 'text-zinc-400')
+                        document.getElementById('plusSTD').classList.remove('bg-zinc-300', 'bg-yellow-500', 'dark:bg-yellow-600')
                         if (document.getElementById('priceSTD').value == 0) {
                             let other = document.getElementById('plusSTD')
-                            other.classList.remove('bg-cyan-500')
+                            other.classList.remove('bg-yellow-500', 'dark:bg-yellow-600')
                             other.classList.add('bg-zinc-200')
                             other.setAttribute('disabled', 'true')
                             document.getElementById('minusSTD').setAttribute('disabled', 'true')
-                            document.getElementById('minusSTD').classList.add('bg-zinc-200')
-                            document.getElementById('minusSTD').classList.add('text-zinc-400')
+                            document.getElementById('minusSTD').classList.add('bg-zinc-200', 'text-zinc-400')
                             document.getElementById('minusSTD').classList.remove('bg-zinc-300')
                             document.getElementById('priceSTD').classList.add('text-zinc-200')
                             document.getElementById('priceSTD').setAttribute('disabled', 'true')
@@ -670,18 +666,17 @@ document.addEventListener('alpine:init', () => {
                         this.totalArray.splice(this.index, 1)
                     }
 
-                    this.totalHTML.innerHTML = this.total.toString()
-                    document.getElementById('plusET').classList.remove('bg-zinc-300')
-                    document.getElementById('plusET').classList.add('bg-cyan-500')
-                    document.getElementById('plusET').classList.remove('text-zinc-400')
+                    this.totalHTML.forEach(total => {
+                        total.innerHTML = this.total.toString()
+                    })
+                    document.getElementById('plusET').classList.remove('bg-zinc-200', 'text-zinc-400')
+                    document.getElementById('plusET').classList.add('bg-yellow-500', 'dark:bg-yellow-600')
 
-                    document.getElementById('plusSTD').classList.add('bg-cyan-500')
-                    document.getElementById('plusSTD').classList.remove('bg-zinc-200')
-                    document.getElementById('plusSTD').classList.remove('text-zinc-400')
+                    document.getElementById('plusSTD').classList.add('bg-yellow-500', 'dark:bg-yellow-600')
+                    document.getElementById('plusSTD').classList.remove('bg-zinc-200', 'text-zinc-400')
                     document.getElementById('plusSTD').removeAttribute('disabled')
                     document.getElementById('minusSTD').removeAttribute('disabled')
-                    document.getElementById('minusSTD').classList.remove('bg-zinc-200')
-                    document.getElementById('minusSTD').classList.remove('text-zinc-400')
+                    document.getElementById('minusSTD').classList.remove('bg-zinc-200', 'text-zinc-400')
                     document.getElementById('minusSTD').classList.add('bg-zinc-300')
                     document.getElementById('priceSTD').classList.remove('text-zinc-200')
                     document.getElementById('priceSTD').removeAttribute('disabled')
@@ -742,10 +737,6 @@ document.addEventListener('alpine:init', () => {
                     Nom: document.getElementById('Nom').value,
                     Prenom: document.getElementById('Prenom').value,
                     Mail: document.getElementById('Mail').value,
-                    Telephone: document.getElementById('Telephone').value,
-                    Adresse: document.getElementById('Adresse').value,
-                    CodePostal: document.getElementById('CodePostal').value,
-                    Ville: document.getElementById('Ville').value
                 })
             })
             .then(response => {
@@ -759,10 +750,6 @@ document.addEventListener('alpine:init', () => {
                 document.getElementById('Nom').value = data.updated_data.Nom
                 document.getElementById('Prenom').value = data.updated_data.Prenom
                 document.getElementById('Mail').value = data.updated_data.Mail
-                document.getElementById('Telephone').value = data.updated_data.Telephone
-                document.getElementById('Adresse').value = data.updated_data.Adresse
-                document.getElementById('CodePostal').value = data.updated_data.CodePostal
-                document.getElementById('Ville').value = data.updated_data.Ville
                 this.active_form = false
                 document.getElementById('responseValue').innerHTML = data.message
                 this.formsStatus = true

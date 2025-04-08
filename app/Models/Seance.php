@@ -29,4 +29,9 @@ class Seance extends Model
     {
         return $this->belongsTo(Film::class);
     }
+
+    public function placesReservees(): HasMany
+    {
+        return $this->hasMany(Reservationligne::class);
+    }
 }

@@ -26,38 +26,38 @@ class FilmSeeder extends Seeder
         $tmdbClient = new TmdbService;
         
         // Perfect Blue
-        $tmdbClient->addMovieToDb(10494);
+        $tmdbClient->addMovieToDb(10494, 1);
 
         // D&D
-        $tmdbClient->addMovieToDb(493529);
+        $tmdbClient->addMovieToDb(493529, 1);
 
         // Contact
-        $tmdbClient->addMovieToDb(686);
+        $tmdbClient->addMovieToDb(686, 3);
 
         // Nausicaa
-        $tmdbClient->addMovieToDb(81);
+        $tmdbClient->addMovieToDb(81, 3);
 
         // Akira
-        $tmdbClient->addMovieToDb(149);
+        $tmdbClient->addMovieToDb(149, 1);
 
         // Babylon
-        $tmdbClient->addMovieToDb(615777);
+        $tmdbClient->addMovieToDb(615777, 3);
 
         // La La Land
-        $tmdbClient->addMovieToDb(313369);
+        $tmdbClient->addMovieToDb(313369, 3);
 
         // Interstellar
-        $tmdbClient->addMovieToDb(157336);
+        $tmdbClient->addMovieToDb(157336, 1);
 
         // Le roi et l'oiseau
-        $tmdbClient->addMovieToDb(22504);
+        $tmdbClient->addMovieToDb(22504, 3);
 
 
         // Films à l'affiche
 
         //Blade Runner 2049
 
-        $tmdbClient->addMovieToDb(335984);
+        $tmdbClient->addMovieToDb(335984, 1);
         $movie = Film::where('tmdb_id', 335984)->first();
         $movie->update([
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/ilRyazdMJwN05exqhwK4tMKBYZs.jpg',
@@ -68,7 +68,7 @@ class FilmSeeder extends Seeder
 
         // Princesse Mononoke
 
-        $tmdbClient->addMovieToDb(128);
+        $tmdbClient->addMovieToDb(128, 3);
         $movie = Film::where('tmdb_id', 128)->first();
         $movie->update([
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/wPwLLtHmtXS8JQ7wX9CeLoeW69Y.jpg',
@@ -80,7 +80,7 @@ class FilmSeeder extends Seeder
 
         // Spider-Man : Across the spider-verse
 
-        $tmdbClient->addMovieToDb(569094);
+        $tmdbClient->addMovieToDb(569094, 1);
         $movie = Film::where('tmdb_id', 569094)->first();
         $movie->update([
             'url_backdrop' => 'https://image.tmdb.org/t/p/original/3IlBBELuZszOkGtPHVBTWlYzWqu.jpg',
@@ -88,44 +88,7 @@ class FilmSeeder extends Seeder
             'est_favori' => 1,
             'statut_id' => 2,
         ]);
-        
-
-
-
-
-
-        // DB::statement('
-        //     INSERT INTO films (tmdb_id, titre, slug, url_affiche, url_backdrop, url_trailer, url_logo, duree, synopsis, tagline, langue_id, certification_id, date_sortie, a_laffiche, est_favori, created_at, updated_at) VALUES
-
-        //     (
-        //         335984, 
-        //         "Blade Runner 2049", 
-        //         "blade-runner-2049", 
-        //         "https://image.tmdb.org/t/p/original/baCC3v1wLnmoBbr2aH0e7P312gv.jpg", 
-        //         "https://image.tmdb.org/t/p/original/9AU3kxNMM6AGofeC1uOtm4etsNj.jpg", 
-        //         "https://www.youtube.com/embed/O4C5cwSbXZ8", 
-        //         "https://image.tmdb.org/t/p/original/wa5oPNclj7ogyKJLpV8ADHxwy8b.png", 
-        //         "164", 
-        //         "En 2049, la société est fragilisée par les nombreuses tensions entre les humains et leurs esclaves créés par bioingénierie. L\'officier K est un Blade Runner : il fait partie d\'une force d\'intervention d\'élite chargée de trouver et d\'éliminer ceux qui n\'obéissent pas aux ordres des humains. Lorsqu\'il découvre un secret enfoui depuis longtemps et capable de changer le monde, les plus hautes instances décident que c\'est à son tour d\'être traqué et éliminé. Son seul espoir est de retrouver Rick Deckard, un ancien Blade Runner qui a disparu depuis des décennies…", 
-        //         "La clé de l\'avenir est enfin découverte.", 
-        //         1, 
-        //         3, 
-        //         "2017-10-04T00:00:00Z", 
-        //         1, 
-        //         1, 
-        //         "2024-10-13 12:20:41", 
-        //         "2024-10-13 19:43:18"
-        //     ),
-
-            
-        //     (128, "Princesse Mononoké", "princesse-mononoke", "https://image.tmdb.org/t/p/original/AulQiyP2PMQKW5Vm7PviGrFbpPm.jpg", "https://image.tmdb.org/t/p/original/wPwLLtHmtXS8JQ7wX9CeLoeW69Y.jpg", NULL, "https://image.tmdb.org/t/p/original/w29hHfCISGc0C82VgcOxKHTIBQZ.png", "135", "Au XVᵉ siècle, durant l\'ère Muromachi, la forêt japonaise, jadis protégée par des animaux géants, se dépeuple à cause de l\'homme. Un sanglier transformé en démon dévastateur en sort et attaque le village d\'Ashitaka, futur chef du clan Emishi. Touché par le sanglier qu\'il a tué, celui-ci est forcé de partir à la recherche du dieu Cerf pour lever la malédiction qui lui gangrène le bras.", "Les hommes sont bien plus dangereux que les dieux de la forêt.", 10, 3, "2000-01-12T00:00:00Z", 1, 1, "2024-10-13 12:35:03", "2024-10-13 13:44:33"),
-
-            
-        //     (569094, "Spider-Man : Across the Spider-Verse", "spider-man-across-the-spider-verse", "https://image.tmdb.org/t/p/original/hvfwCeSTgsExmz9l31dKkfR83DH.jpg", "https://image.tmdb.org/t/p/original/3IlBBELuZszOkGtPHVBTWlYzWqu.jpg", "https://www.youtube.com/embed/8j-skPUTkqs", "https://image.tmdb.org/t/p/original/mZK6Gt9YUqXC8vUCcdIGFhIjuzr.png", "140", "Après avoir retrouvé Gwen Stacy, Spider-Man, le sympathique héros originaire de Brooklyn, est catapulté à travers le Multivers, où il rencontre une équipe de Spider-Héros chargée d\'en protéger l\'existence. Mais lorsque les héros s\'opposent sur la façon de gérer une nouvelle menace, Miles se retrouve confronté à eux et doit redéfinir ce que signifie être un héros afin de sauver les personnes qu\'il aime le plus.", "Pendant ce temps-là dans un autre autre univers...", 1, 3, "2023-05-31T00:00:00Z", 1, 1, "2024-10-13 13:04:00", "2024-10-13 13:05:02");
-        // ');
-
-
-        
+           
     }
 
     

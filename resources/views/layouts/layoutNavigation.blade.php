@@ -10,6 +10,11 @@
 
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    @if (isset($contactTitle))
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    @endif
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite('resources/css/app.css')

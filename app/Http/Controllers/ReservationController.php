@@ -35,36 +35,45 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'seance' => 'required',
-            'places' => 'required',
-            'prices' => 'required',
-            'email' =>  ['email', 'max:255']
-        ]);
-
-        
-        $places = explode(',', $request['places']);
-        $prices = explode(',', $request['prices']);
-        $reference = (string) Str::uuid();
-
-        Reservation::create([
-            'seance_id' => $request['seance'],
-            'reference' => $reference,
-            'user_id' => Auth::id() ?? null,
-            'guest_mail' => $request['email'] ?? null
-        ]);
-
-        
-        foreach($places as $place){
-            Reservationligne::create([
-                'reservation_id' => Reservation::latest()->first()->id,
-                'place_id' => Place::where('rangee', substr($place, 0, 1))->where('numero', substr($place, 1))->where('salle_id', Seance::where('id', $request['seance'])->first()->salle_id)->first()->id,
-                'prix' => $prices[array_search($place, $places)]
+        try {
+            $request->validate([
+                'seance' => 'required',
+                'places' => 'required',
+                'prices' => 'required',
+                'email' =>  ['email', 'max:255']
             ]);
-        };
-        
-
-        return redirect()->route('reservations.validated', Reservation::latest()->first()->reference);
+    
+            
+            $places = explode(',', $request['places']);
+            $prices = explode(',', $request['prices']);
+            $reference = (string) Str::uuid();
+    
+            $reservation = Reservation::create([
+                'seance_id' => $request['seance'],
+                'reference' => $reference,
+                'user_id' => Auth::id() ?? null,
+                'guest_mail' => $request['email'] ?? null
+            ]);
+            
+            try {
+                foreach($places as $place){
+                    Reservationligne::create([
+                        'reservation_id' => $reservation->id,
+                        'seance_id' => $reservation->seance_id,
+                        'place_id' => Place::where('rangee', substr($place, 0, 1))->where('numero', substr($place, 1))->where('salle_id', Seance::where('id', $request['seance'])->first()->salle_id)->first()->id,
+                        'prix' => $prices[array_search($place, $places)]
+                    ]);
+                };
+            } catch (\Exception $e) {
+                $reservation->delete();
+                return response()->json(['error' => $e]);
+            }
+            
+    
+            return redirect()->route('reservations.validated', Reservation::latest()->first()->reference);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e]);
+        }
     }
 
     /**

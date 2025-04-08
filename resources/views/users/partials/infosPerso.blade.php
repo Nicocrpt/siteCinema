@@ -31,24 +31,7 @@
             <x-input-label for="Email" :value="__('Email')" />
             <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="email" name="Mail" id="Mail" value="{{ $user->email }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
         </div>
-        <div class="mt-5">
-            <x-input-label for="Telephone" :value="__('Téléphone')" />
-            <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Telephone" id="Telephone" value="{{ $user->telephone }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
-        </div>
-        <div class="mt-5">
-            <x-input-label for="Adresse" :value="__('Adresse')" />
-            <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Adresse" id="Adresse" value="{{ $user->adresse ? $user->adresse : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
-        </div>
-        <div class="flex gap-4 mt-10">
-            <div class="w-full">
-                <x-input-label for="CodePostal" :value="__('Code postal')" />
-                <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="CodePostal" id="CodePostal" value="{{ $user->code_postal ? $user->code_postal : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
-            </div>
-            <div class="w-full">
-                <x-input-label for="Ville" :value="__('Ville')" />
-                <input class="border-gray-300 dark:border-zinc-500 dark:bg-zinc-600  focus:border-zinc-500 dark:focus:border-zinc-600 focus:ring-zinc-500 dark:focus:ring-zinc-600 rounded-md shadow-sm mt-1 w-full block" type="text" name="Ville" id="Ville" value="{{ $user->ville ? $user->ville : null }}" :disabled="!active_form" :class="active_form ? 'text-black dark:text-white' : 'text-zinc-500 dark:text-zinc-300'">
-            </div>
-        </div>
+
         <div class="h-20 flex justify-end items-center">
             <button type="submit" @click="onUpdateUserInfoClick($event)" class="text-md text-white w-fit p-2 px-3  rounded-md bg-cyan-600 hover:bg-cyan-500 border-b-2 border-cyan-700 transition-all ease-in-out duration-200 cursor-pointer mt-6 shadow-sm" 
             x-show="active_form"

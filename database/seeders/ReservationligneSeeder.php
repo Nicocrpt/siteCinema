@@ -13,6 +13,12 @@ class ReservationligneSeeder extends Seeder
      */
     public function run(): void
     {
-        Reservationligne::factory(100)->create();
+        for ($i = 0; $i < 350; $i++) {
+            try {
+                Reservationligne::factory()->create();
+            } catch (\Exception $e) {
+
+            }
+        }
     }
 }

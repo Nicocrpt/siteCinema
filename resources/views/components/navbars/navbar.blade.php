@@ -18,7 +18,7 @@
         
         @if (Auth::check())
             <div class="relative md:inline-block hidden">
-                @if(Auth::user()->is_admin)
+                @if(Auth::user()->role == 'administrateur')
                 <div class="flex gap-2 items-center group">
                     <svg width="20" class="group-hover:translate-x-[20%] transition-all ease-in-out duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" class="fill-white opacity-85 group-hover:opacity-100"></path> </g></svg>
                     <a href="{{route('admin.films.manage')}}" class="flex items-center gap-2 group cursor-pointer text-white opacity-85 group-hover:opacity-100 hover:underline" >Solaris Manager</a>
@@ -54,7 +54,7 @@
             </a>
             <div class="h-4 border-r-[0.5px] border-zinc-100 rounded-full"></div>
             <a href="{{ route('register')}}" class="navBar-account flex items-center gap-2 group" >
-                S'inscire
+                S'inscrire
             </a>
         </div>
         @endif

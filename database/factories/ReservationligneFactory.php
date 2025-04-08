@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Reservation;
+use App\Models\Reservationligne;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +18,31 @@ class ReservationligneFactory extends Factory
      */
     public function definition(): array
     {
-        $randId = Reservation::all()->random()->id;
 
-        $reservation = Reservation::find($randId);
-        $place = $reservation->seance->salle->places->random();
+        $reservation = Reservation::with('seance.salle.places', 'seance.placesReservees')->inRandomOrder()->first();
+
+        $placesReservees = $reservation->seance->placesReservees->map(function ($ligne) {
+            return $ligne->place_id;
+        })->toArray();
+        $placesTotal = $reservation->seance->salle->places->map(function ($place) {
+            return $place->id;
+        })->toArray();
+        
+
+        $placesDisponibles = array_diff($placesTotal, $placesReservees);
+
+        
+
+        if (empty($placesDisponibles)) {
+            throw new \Exception("plus de places");
+        }
+
+        $place = $placesDisponibles[array_rand($placesDisponibles)];
 
         return [
-            'reservation_id' => $randId,
-            'place_id' => $place->id,
+            'reservation_id' => $reservation->id,
+            'seance_id' => $reservation->seance_id,
+            'place_id' => $place,
             'prix' => [9,6][rand(0,1)]
         ];
 

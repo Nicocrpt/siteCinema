@@ -29,6 +29,7 @@ class FilmController extends Controller
 
     public function welcomePage(): View
     {
+        
         $films = Film::with('seances')->with('realisateurs')->get();
         $seances = Seance::with('film')->get();
 
