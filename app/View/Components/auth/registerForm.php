@@ -15,7 +15,7 @@ class registerForm extends Component
     public $loginLink ;
     public $clickAction ;
     
-    public function __construct($loginLink = null, $clickAction = null)
+    public function __construct($loginLink = '', $clickAction = null)
     {
         $this->loginLink = $loginLink;
         $this->clickAction = $clickAction;

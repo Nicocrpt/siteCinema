@@ -13,7 +13,7 @@ class loginForm extends Component
      */
     public $registerLink;
     public $clickAction;
-    public function __construct($registerLink = null, $clickAction = null)
+    public function __construct($registerLink = '', $clickAction = null)
     {
         $this->registerLink = $registerLink;
         $this->clickAction = $clickAction;
